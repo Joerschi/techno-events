@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.19.0 – 24.11.2026
+- 👥 Crew-Zusagen: mit Spitzname + Crew-Code sieht die ganze Crew «🔥 3 dabei: Mike · Sara · du» direkt beim Event
+- Zusagen laufen über einen eigenen kleinen Server (techno.howeverto.me), werden nach dem Event automatisch gelöscht
+- Ohne Crew weiterhin per WhatsApp möglich
+- 🔒 Datenschutz-Hinweis als Popup (Link unten), «👥 Crew» im Fussbereich
+
 ## v1.18.2 – 24.11.2026
 - Region (Schweiz/München) wird beim Öffnen immer nach Standort gewählt; Umschalten von Hand gilt nur bis zum nächsten Öffnen
 

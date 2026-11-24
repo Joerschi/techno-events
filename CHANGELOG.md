@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.18.0 – 24.11.2026
+- ★ «Deine Tickets» heisst jetzt «Meine Favoriten»: jeder sieht nur seine eigenen ★-Events (nur auf dem Handy gespeichert)
+- Favoriten behalten ihre Daten auch nach dem Wochenende und beim Regionwechsel; Countdown und «Schon erlebt» wie bisher
+- In der eigenen Android-App werden die alten Tickets einmalig als Favoriten übernommen
+- Brücke zur Android-App (ab v2.5): Widget zeigt den nächsten Favoriten
+
 ## v1.17.0 – 24.11.2026
 - 📏 Umkreis-Filter: ≤ 10 · 25 · 50 · 100 km (Luftlinie ab Startort bzw. deinem Standort), ersetzt den Minuten-Filter
 - 🇩🇪 Neue Testregion München mit eigener Wochenend-Ausgabe (events-muc.json)

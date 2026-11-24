@@ -429,7 +429,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.14.2<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.15.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -781,8 +781,16 @@ async function ortsname(lat, lon) {
   try {
     const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&accept-language=de&lat=${lat}&lon=${lon}`);
     const j = await r.json(); const a = j.address || {};
-    return a.city || a.town || a.village || a.municipality || null;
-  } catch (e) { return null; }
+    const n = a.city || a.town || a.village || a.municipality;
+    if (n) return n;
+  } catch (e) {}
+  // Ersatz: nächste ÖV-Haltestelle (z. B. «Stans, Bahnhof» → «Stans»)
+  try {
+    const r = await fetch(`https://transport.opendata.ch/v1/locations?x=${lat}&y=${lon}&type=station`);
+    const j = await r.json(); const st = (j.stations || []).find(s => s.name);
+    if (st) return st.name.split(",")[0].trim();
+  } catch (e) {}
+  return null;
 }
 function metaStart(text) { document.getElementById("meta-start").textContent = (text || "Beckenried").toUpperCase(); }
 function standortAnzeigen(text) {
@@ -811,7 +819,7 @@ document.getElementById("standort-btn").onclick = (e) => {
     allesNeuZeichnen(); return;
   }
   if (!("geolocation" in navigator)) { zeigeToast("Standort wird auf diesem Gerät nicht unterstützt"); return; }
-  standortAnzeigen("wird gesucht …");
+  standortAnzeigen("wird gesucht …"); metaStart("Standort …");
   navigator.geolocation.getCurrentPosition(async (pos) => {
     standort.lat = pos.coords.latitude; standort.lon = pos.coords.longitude; standort.aktiv = true;
     try { localStorage.setItem("te-standort", "gps"); } catch (e) {}
@@ -822,6 +830,8 @@ document.getElementById("standort-btn").onclick = (e) => {
     allesNeuZeichnen();
   }, (err) => {
     standort.aktiv = false; standortAnzeigen();
+    metaStart();
+    if (stillerStart) return;   // beim automatischen Start leise bei Beckenried bleiben
     zeigeToast(err.code === 1 ? "📍 Standort blockiert – siehe Tipp unten" : "Standort nicht gefunden – ist GPS am Handy an?");
     if (err.code === 1) document.getElementById("standort-hilfe").hidden = false;
   }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
@@ -1054,7 +1064,8 @@ async function start() {
 start().then(() => {
   // Wer letztes Mal «Mein Standort» gewählt hat, startet wieder damit (ohne Meldung)
   let wahl = null; try { wahl = localStorage.getItem("te-standort"); } catch (e) {}
-  if (wahl === "gps" && "geolocation" in navigator && !standort.aktiv) {
+  // Standard: aktueller Standort (ausser man hat bewusst Beckenried gewählt)
+  if (wahl !== "beckenried" && "geolocation" in navigator && !standort.aktiv) {
     stillerStart = true; document.getElementById("standort-btn").click();
     setTimeout(() => stillerStart = false, 20000);
   }

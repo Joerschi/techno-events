@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.15.0 – 24.11.2026
+- START oben zeigt standardmässig den aktuellen Standort (Ort wird automatisch ermittelt)
+- Wer bewusst Beckenried wählt, bleibt bei Beckenried; ohne Standort-Erlaubnis leise Beckenried
+- Ortsname: Ersatz über die nächste ÖV-Haltestelle, falls die Karte keinen Ort liefert
+
 ## v1.14.2 – 24.11.2026
 - Zusage-Zeile aufgeräumt: «✓ Dabei · nochmal teilen» und ✕ zum Zurückziehen in einer Zeile
 

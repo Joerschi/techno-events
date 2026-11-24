@@ -133,11 +133,13 @@
   .tipp { margin-top: 10px; color: var(--gelb); text-shadow: var(--glow-y); font-size: .95rem; }
   .anreise { border-top: 1px dashed var(--line); margin-top: 12px; padding-top: 12px; display: grid; gap: 6px; font-size: .98rem; line-height: 1.45; }
   .anreise a { color: var(--cyan); text-decoration: none; white-space: nowrap; }
-  .aktionen { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
-  .btn { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; text-align: center; text-decoration: none; font: 700 .85rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .05em; padding: 10px 8px; background: transparent; color: var(--text); border: 1px solid var(--line); cursor: pointer; }
-  .btn.acid { background: var(--acid); color: #000; border-color: var(--acid); box-shadow: var(--glow-g); }
-  .btn.dabei { grid-column: 1 / -1; background: var(--orange); color: #000; border-color: var(--orange); box-shadow: 0 0 4px rgba(255,106,0,.6), 0 0 10px rgba(255,106,0,.3); font-size: .95rem; }
-  .btn.wa { border-color: var(--laser); color: var(--laser); text-shadow: 0 0 2px rgba(255,16,240,.5); }
+  .aktionen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 14px; }
+  .btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 54px; text-align: center; text-decoration: none; font: 700 .68rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .03em; padding: 8px 4px; background: rgba(255,255,255,.02); color: var(--text); border: 1px solid var(--line); cursor: pointer; }
+  .btn .i { font-size: 1.15rem; line-height: 1; }
+  .btn.acid { background: rgba(57,255,20,.08); color: var(--acid); border-color: rgba(57,255,20,.6); }
+  .crew.btn.acid { background: var(--acid); color: #000; flex-direction: row; min-height: 48px; font-size: .8rem; }
+  .btn.dabei { grid-column: 1 / -1; flex-direction: row; gap: 8px; min-height: 44px; background: var(--orange); color: #000; border-color: var(--orange); box-shadow: 0 0 6px rgba(255,106,0,.35); font-size: .82rem; }
+  .btn.wa { border-color: rgba(255,16,240,.55); color: var(--laser); background: rgba(255,16,240,.06); }
   .leer { border: 1px dashed var(--line); padding: 22px 18px; text-align: center; color: var(--muted); line-height: 1.5; }
   .leer b { display: block; font: 900 1.1rem Unbounded, sans-serif; color: var(--text); text-transform: uppercase; margin-bottom: 6px; }
 
@@ -181,7 +183,7 @@
   @keyframes fl { from { transform: translateY(-5px); } to { transform: translateY(6px); } }
 
 
-  .abschluss .motto { display: block; margin-top: 6px; color: var(--laser); text-shadow: 0 0 4px rgba(255,16,240,.5); letter-spacing: .08em; }
+  .abschluss .motto { display: block; margin-top: 8px; color: #fff6ee; text-shadow: none; letter-spacing: .06em; font-size: .85rem; }
   .abschluss { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); text-align: center; font: 700 .8rem "Space Mono", monospace; letter-spacing: .12em; color: var(--cyan); text-shadow: 0 0 4px rgba(0,229,255,.5); }
   /* ---------- Event-Cover (eigene generierte Bilder) ---------- */
   .cover { display: block; margin: -16px -16px 12px -20px; height: 104px; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
@@ -211,6 +213,17 @@
   .meta-r { display: inline-flex; align-items: center; gap: 10px; }
   .sound-btn { background: transparent; border: 1px solid var(--line); color: var(--text); font-size: 1rem; line-height: 1; padding: 5px 7px; cursor: pointer; }
   .sound-btn.aus { opacity: .5; }
+
+
+  /* ---------- Aufgeräumt (v1.8) ---------- */
+  .chip.sort { margin-left: auto; border-color: rgba(0,229,255,.5); color: var(--cyan); }
+  .mehr-filter { border: 1px solid var(--line); background: var(--panel); }
+  .mehr-filter summary { cursor: pointer; padding: 9px 12px; font: 700 .8rem "Space Mono", monospace; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .mehr-filter .reihe { padding: 0 10px 10px; }
+  .karte.kompakt { padding-top: 14px; }
+  .karte.kompakt .titel { font-size: 1.15rem; }
+  .zeit { text-shadow: 0 0 3px rgba(57,255,20,.5) !important; }
+  .approved { display: inline-block; margin-top: 12px; padding: 6px 12px; border: 2px solid var(--acid); color: var(--acid); font: 900 .72rem Unbounded, sans-serif; letter-spacing: .08em; transform: rotate(-3deg); box-shadow: 0 0 8px rgba(57,255,20,.35), inset 0 0 8px rgba(57,255,20,.2); }
 
   /* ---------- Party-Extras ---------- */
   /* 1) Strobo am Event-Tag */
@@ -377,7 +390,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.7.0<br><span class="motto">Made by Ravers – for Ravers 🎧</span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.8.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -401,6 +414,8 @@ function el(tag, cls, text) {
   if (text !== undefined && text !== null) e.textContent = text;
   return e;
 }
+// Knopf mit Symbol oben und kurzem Text darunter
+function label(a, icon, text) { a.textContent = ""; a.append(el("span", "i", icon), el("span", "", text)); return a; }
 function link(cls, href, text) {
   const a = el("a", cls, text);
   a.href = href; a.target = "_blank"; a.rel = "noopener";
@@ -514,12 +529,12 @@ function heimText(ev) {
 }
 function aktionen(ev, mitTicket) {
   const box = el("div", "aktionen");
-  box.append(link("btn acid", kalenderLink(ev), "📅 Kalender"));
-  box.append(link("btn", naviLink(ev), "📍 Navi"));
-  box.append(waKnopf("btn wa", whatsappLink(ev), "💬 Crew fragen"));
-  if (ev.link) box.append(link("btn", ev.link, mitTicket ? "🎟 Ticket ↗" : "Tickets ↗"));
-  const dabei = waKnopf("btn dabei", dabeiLink(ev), "🙋 Ich bin dabei");
-  box.append(dabei);
+  box.append(label(link("btn acid", kalenderLink(ev), ""), "📅", "Kalender"));
+  box.append(label(link("btn", naviLink(ev), ""), "📍", "Navi"));
+  box.append(label(waKnopf("btn wa", whatsappLink(ev), ""), "💬", "Crew"));
+  if (ev.link) box.append(label(link("btn", ev.link, ""), "🎟", mitTicket ? "Ticket" : "Tickets"));
+  else box.append(label(el("span", "btn", ""), "🎟", "–"));
+  box.append(waKnopf("btn dabei", dabeiLink(ev), "🙋 Ich bin dabei"));
   return box;
 }
 
@@ -560,12 +575,13 @@ function neonFuer(text) { let h = 0; for (const c of text) h = (h * 31 + c.charC
 function genreChip(g) { const c = el("span", "chip klein", g); const f = neonFuer(g); c.style.color = f; c.style.borderColor = f; c.style.textShadow = `0 0 6px ${f}`; c.style.boxShadow = `0 0 8px ${f}55`; return c; }
 
 function eventKarte(ev, rang) {
-  const k = el("article", "karte" + (rang ? " top" : ""));
+  const k = el("article", "karte" + (rang ? " top" : " kompakt"));
   k.style.setProperty("--ampel", AMPEL[ev.ampel] || "var(--grau)");
-  k.append(cover(ev));
+  if (rang) k.append(cover(ev));   // Cover-Bild nur bei den Top 3 – die Liste bleibt kompakt
   if (rang) k.append(el("div", "rang", "0" + rang));
   const oben = el("div", "zeile-oben");
-  oben.append(el("div", "zeit", `${kurzDatum(ev).toUpperCase()} · ${ev.start || "?"}${ev.ende ? "–" + ev.ende : ""}`));
+  const zeitText = `${ev.start || "?"}${ev.ende ? "–" + ev.ende : ""}`;
+  oben.append(el("div", "zeit", rang ? zeitText : `${kurzDatum(ev).toUpperCase()} · ${zeitText}`));
   oben.append(eqFuer(ev));
   k.append(oben);
   k.append(el("div", "titel", ev.name));
@@ -625,7 +641,7 @@ function cover(ev) {
   const d = startDatum(ev);
   const t1 = svgEl("text", { x: 16, y: 54, fill: "#fff", "font-family": "Unbounded, sans-serif", "font-weight": 900, "font-size": 34, stroke: f1, "stroke-width": .8, style: `paint-order:stroke;filter:drop-shadow(0 0 6px ${f1})` });
   t1.textContent = `${TAGE[d.getDay()].toUpperCase()} ${d.getDate()}.${d.getMonth() + 1}.`;
-  const t2 = svgEl("text", { x: 18, y: 82, fill: f2, "font-family": "Space Mono, monospace", "font-weight": 700, "font-size": 14, "letter-spacing": 2 });
+  const t2 = svgEl("text", { x: 18, y: 82, fill: "#fff", stroke: "#000", "stroke-width": 3, style: "paint-order:stroke", "font-family": "Space Mono, monospace", "font-weight": 700, "font-size": 14, "letter-spacing": 2 });
   t2.textContent = ((ev.genre && ev.genre[0]) || "TECHNO").toUpperCase() + (ev.stadt ? " · " + ev.stadt.toUpperCase() : "");
   svg.append(t1, t2);
   const box = el("div", "cover"); box.append(svg);
@@ -852,17 +868,29 @@ function chipReihe(werte, key, beschriften) {
   }
   return r;
 }
+let mehrFilterOffen = false;
 function filterZeigen() {
   const f = document.getElementById("filter");
   f.innerHTML = "";
   if (!daten.events.length) return;
-  f.append(chipReihe(["Alle", "Fr", "Sa", "So"], "tag"));
-  f.append(chipReihe([30, 60, 90, 120, 999], "zeit", w => w === 999 ? "Alle Distanzen" : `≤ ${w} Min`));
-  const genres = ["Alle", ...new Set(daten.events.flatMap(e => e.genre || []))];
-  f.append(chipReihe(genres, "genre"));
+  // Zeile 1: Tag + Sortierung
+  const r1 = chipReihe(["Alle", "Fr", "Sa", "So"], "tag");
+  const sort = el("button", "chip sort", filter.sort === "zeit" ? "↕ Fahrzeit" : "↕ Startzeit");
+  sort.onclick = () => { filter.sort = filter.sort === "zeit" ? "start" : "zeit"; filterZeigen(); listeZeigen(); };
+  r1.append(sort);
+  f.append(r1);
+  // Zeile 2: Fahrzeit
+  f.append(chipReihe([30, 60, 90, 120, 999], "zeit", w => w === 999 ? "Alle" : `≤ ${w}′`));
+  // Aufklappbar: Genre + Stadt
+  const det = el("details", "mehr-filter");
+  if (mehrFilterOffen) det.open = true;
+  det.ontoggle = () => { mehrFilterOffen = det.open; };
+  const aktiv = (filter.genre !== "Alle" ? 1 : 0) + (filter.stadt !== "Alle" ? 1 : 0);
+  det.append(el("summary", "", "⚙ Genre & Stadt" + (aktiv ? ` (${aktiv})` : "")));
+  det.append(chipReihe(["Alle", ...new Set(daten.events.flatMap(e => e.genre || []))], "genre"));
   const staedte = ["Alle", ...new Set(daten.events.map(e => e.stadt).filter(Boolean))];
-  if (staedte.length > 2) f.append(chipReihe(staedte, "stadt"));
-  f.append(chipReihe(["zeit", "start"], "sort", w => w === "zeit" ? "↕ Nach Fahrzeit" : "↕ Nach Startzeit"));
+  det.append(chipReihe(staedte, "stadt"));
+  f.append(det);
 }
 function listeZeigen() {
   const liste = document.getElementById("event-liste");

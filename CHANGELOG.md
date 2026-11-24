@@ -1,5 +1,13 @@
 # Changelog – Techno Events
 
+## v1.8.0 – 24.11.2026 – «Aufgeräumt»
+- Kompakte Aktionsleiste: Kalender, Navi, Crew, Ticket als Symbol-Reihe, darunter «Ich bin dabei»
+- Cover-Bilder nur bei den Top 3, Wochenend-Liste kompakter
+- Kein doppeltes Datum mehr (Cover + Zeitzeile)
+- Filter auf zwei Zeilen reduziert, Genre & Stadt aufklappbar, Sortierung als ein Umschalt-Knopf
+- Cover-Text besser lesbar
+- Abschluss: «Made by Ravers – for Ravers» gut lesbar, neuer Stempel «✓ TECHNO DANCER APPROVED»
+
 ## v1.7.0 – 24.11.2026
 - Oben steht jetzt der echte Startort: «START BECKENRIED» oder mit GPS z. B. «START KRIENS» (Ortsname via OpenStreetMap)
 - «Mein Standort» bleibt beim nächsten Öffnen aktiv

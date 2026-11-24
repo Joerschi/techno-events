@@ -1,7 +1,7 @@
 // Service Worker: macht Techno Events installierbar und offline nutzbar.
 // Daten (JSON) immer zuerst frisch aus dem Netz, sonst aus dem Speicher.
-// App-Dateien (HTML, Icons) aus dem Speicher, im Hintergrund aktualisiert.
-const CACHE = "techno-events-v1.13.2";
+// Seite (HTML) ebenfalls frisch aus dem Netz; Icons aus dem Speicher.
+const CACHE = "techno-events-v1.14.0";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -19,7 +19,8 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
 
-  if (url.pathname.endsWith(".json")) {
+  // Seite selbst (HTML) und Daten (JSON): Netz zuerst, damit Updates sofort ankommen
+  if (url.pathname.endsWith(".json") || e.request.mode === "navigate" || url.pathname.endsWith(".html") || url.pathname.endsWith("/")) {
     // Netz zuerst: immer die neuesten Events/Tickets
     e.respondWith(
       fetch(e.request).then((r) => {

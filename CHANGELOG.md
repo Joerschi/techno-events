@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.14.0 – 24.11.2026
+- Updates kommen sofort an: Seite wird frisch aus dem Netz geladen (offline weiter aus dem Speicher)
+- Nach unten ziehen erkennt eine neue App-Version und lädt automatisch neu («✨ Neue Version …»)
+
 ## v1.13.2 – 24.11.2026
 - Ampel-Legende (ÖV hin & zurück · Nur Morgenzug · Besser Auto) immer einzeilig, Schrift passt sich der Breite an
 

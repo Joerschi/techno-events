@@ -136,8 +136,8 @@
   .aktionen { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
   .btn { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; text-align: center; text-decoration: none; font: 700 .85rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .05em; padding: 10px 8px; background: transparent; color: var(--text); border: 1px solid var(--line); cursor: pointer; }
   .btn.acid { background: var(--acid); color: #000; border-color: var(--acid); box-shadow: var(--glow-g); }
-  .btn.dabei { grid-column: 1 / -1; background: var(--orange); color: #000; border-color: var(--orange); box-shadow: 0 0 6px var(--orange), 0 0 18px rgba(255,106,0,.55); font-size: .95rem; }
-  .btn.wa { border-color: var(--laser); color: var(--laser); text-shadow: var(--glow-p); }
+  .btn.dabei { grid-column: 1 / -1; background: var(--orange); color: #000; border-color: var(--orange); box-shadow: 0 0 4px rgba(255,106,0,.6), 0 0 10px rgba(255,106,0,.3); font-size: .95rem; }
+  .btn.wa { border-color: var(--laser); color: var(--laser); text-shadow: 0 0 2px rgba(255,16,240,.5); }
   .leer { border: 1px dashed var(--line); padding: 22px 18px; text-align: center; color: var(--muted); line-height: 1.5; }
   .leer b { display: block; font: 900 1.1rem Unbounded, sans-serif; color: var(--text); text-transform: uppercase; margin-bottom: 6px; }
 
@@ -247,6 +247,7 @@
       <button class="btn acid crew" id="crew-link">🔗 Techno Events an die Crew – Link kopieren</button>
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
+      <span id="version" style="color:var(--cyan)">Techno Events v1.1.0</span><br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
     </footer>
   </div>

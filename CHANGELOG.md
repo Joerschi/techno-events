@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.15.1 – 24.11.2026
+- «START» oben ersetzt durch einen Neon-Standort-Pin; antippen wechselt den Startort, Pin hüpft während der Suche
+
 ## v1.15.0 – 24.11.2026
 - START oben zeigt standardmässig den aktuellen Standort (Ort wird automatisch ermittelt)
 - Wer bewusst Beckenried wählt, bleibt bei Beckenried; ohne Standort-Erlaubnis leise Beckenried

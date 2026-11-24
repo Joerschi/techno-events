@@ -42,7 +42,7 @@
   .wrap { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; padding: 18px 18px 90px; }
 
   .ticker { position: relative; z-index: 2; border-top: 1px solid var(--acid); border-bottom: 1px solid var(--acid); box-shadow: var(--glow-g); overflow: hidden; white-space: nowrap; background: #000; }
-  .ticker span { display: inline-block; padding: 8px 0; font: 700 .85rem "Space Mono", monospace; letter-spacing: .12em; color: var(--acid); text-shadow: var(--glow-g); animation: lauf 26s linear infinite; }
+  .ticker span { display: inline-block; padding: 8px 0; font: 700 .85rem "Space Mono", monospace; letter-spacing: .12em; color: var(--acid); text-shadow: var(--glow-g); animation: lauf 48s linear infinite; }
   @keyframes lauf { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   .regenbogen { position: relative; z-index: 2; height: 3px; background: linear-gradient(90deg, #00e5ff, #1f5bff, #39ff14, #f4ff00, #ff7a00, #ff1e3c, #ff10f0, #00e5ff); background-size: 200% 100%; animation: regen 6s linear infinite; box-shadow: 0 0 12px rgba(255,255,255,.35); }
@@ -329,8 +329,8 @@
   <div class="scan"></div>
 
   <div class="ticker"><span>
-    TECHNO ✕ HARD TECHNO ✕ MELODIC TECHNO ✕ MINIMAL ✕ ACID ✕ HOUSE ✕ DEEP HOUSE ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ TRANCE ✕ AFRO HOUSE ✕ DUB TECHNO ✕ HARDGROOVE ✕
-    TECHNO ✕ HARD TECHNO ✕ MELODIC TECHNO ✕ MINIMAL ✕ ACID ✕ HOUSE ✕ DEEP HOUSE ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ TRANCE ✕ AFRO HOUSE ✕ DUB TECHNO ✕ HARDGROOVE ✕&nbsp;
+    TECHNO ✕ HARD TECHNO ✕ MELODIC TECHNO ✕ PEAK TIME ✕ MINIMAL ✕ DEEP TECH ✕ ACID ✕ HOUSE ✕ DEEP HOUSE ✕ TECH HOUSE ✕ AFRO HOUSE ✕ ORGANIC HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ SCHRANZ ✕ HARDGROOVE ✕ TRANCE ✕ PSYTRANCE ✕ HYPNOTIC ✕ ELECTRO ✕ EBM ✕ DUB TECHNO ✕ BREAKS ✕ DRUM & BASS ✕ UK GARAGE ✕
+    TECHNO ✕ HARD TECHNO ✕ MELODIC TECHNO ✕ PEAK TIME ✕ MINIMAL ✕ DEEP TECH ✕ ACID ✕ HOUSE ✕ DEEP HOUSE ✕ TECH HOUSE ✕ AFRO HOUSE ✕ ORGANIC HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ SCHRANZ ✕ HARDGROOVE ✕ TRANCE ✕ PSYTRANCE ✕ HYPNOTIC ✕ ELECTRO ✕ EBM ✕ DUB TECHNO ✕ BREAKS ✕ DRUM & BASS ✕ UK GARAGE ✕&nbsp;
   </span></div>
   <div class="regenbogen"></div>
 
@@ -470,7 +470,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.19.4<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.20.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1219,6 +1219,28 @@ function chipReihe(werte, key, beschriften) {
   return r;
 }
 let mehrFilterOffen = false;
+// Genre-Familien: die vielen Einzel-Genres der Events werden zu übersichtlichen Gruppen zusammengefasst
+const GENRE_FAMILIEN = [
+  ["Hard Techno",   /hard ?techno|schranz|industrial|hardgroove|rave|hard bounce/i],
+  ["Melodic",       /melodic|progressive|afterlife|indie dance/i],
+  ["Minimal",       /minimal|deep tech|micro|rominimal/i],
+  ["Tech House",    /tech ?house/i],
+  ["Afro House",    /afro|organic|amapiano/i],
+  ["House",         /house|disco|garage house|balearic/i],
+  ["Trance & Psy",  /trance|psy|hypnotic|goa/i],
+  ["Acid & Electro",/acid|electro|ebm|wave/i],
+  ["Bass & DnB",    /drum ?(&|and|n) ?bass|dnb|jungle|garage|breaks|dubstep|bass/i],
+  ["Hard Dance",    /hardstyle|hardcore|gabber|frenchcore|uptempo/i],
+  ["Techno",        /techno|peak|dub|detroit|raw|driving/i]
+];
+function familien(ev) {
+  const set = new Set();
+  for (const g of ev.genre || []) {
+    const f = GENRE_FAMILIEN.find(([, re]) => re.test(g));
+    set.add(f ? f[0] : g);
+  }
+  return [...set];
+}
 function filterZeigen() {
   const f = document.getElementById("filter");
   f.innerHTML = "";
@@ -1241,7 +1263,10 @@ function filterZeigen() {
   det.ontoggle = () => { mehrFilterOffen = det.open; };
   const aktiv = (filter.genre !== "Alle" ? 1 : 0) + (filter.stadt !== "Alle" ? 1 : 0);
   det.append(el("summary", "", "⚙ Genre & Stadt" + (aktiv ? ` (${aktiv})` : "")));
-  det.append(chipReihe(["Alle", ...new Set(daten.events.flatMap(e => e.genre || []))], "genre"));
+  const vorhanden = new Set(daten.events.flatMap(familien));
+  const reihenfolge = GENRE_FAMILIEN.map(f => f[0]).filter(n => vorhanden.has(n));
+  const rest = [...vorhanden].filter(n => !reihenfolge.includes(n));
+  det.append(chipReihe(["Alle", ...reihenfolge, ...rest], "genre", g => g === "Alle" ? "Alle" : `${g} ${daten.events.filter(e => familien(e).includes(g)).length}`));
   const staedte = ["Alle", ...new Set(daten.events.map(e => e.stadt).filter(Boolean))];
   det.append(chipReihe(staedte, "stadt"));
   f.append(det);
@@ -1252,7 +1277,7 @@ function listeZeigen() {
   let evs = daten.events.filter(e =>
     (filter.tag === "Alle" || (e.tag || TAGE[startDatum(e).getDay()]) === filter.tag) &&
     (filter.km === 999 || luftlinie(e) <= filter.km) &&
-    (filter.genre === "Alle" || (e.genre || []).includes(filter.genre)) &&
+    (filter.genre === "Alle" || familien(e).includes(filter.genre)) &&
     (filter.stadt === "Alle" || e.stadt === filter.stadt) &&
     (!filter.merk || merkliste.has(evKey(e))));
   evs.sort((a, b) => filter.sort === "zeit" ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));

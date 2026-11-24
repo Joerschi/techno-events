@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.20.0 – 24.11.2026
+- 🎛 Genre-Filter mit Gruppen: Techno, Hard Techno, Melodic, Minimal, Tech House, House, Afro House, Trance & Psy, Acid & Electro, Bass & DnB, Hard Dance – mit Anzahl Events
+- Laufband mit mehr Sound-Styles (Peak Time, Deep Tech, Organic House, Schranz, Psytrance, EBM, Breaks, DnB, UK Garage …)
+- Wöchentliche Ausgabe sucht breiter: zusätzlich House, Afro/Organic House, Trance/Psy, Electro/EBM; DnB & Co. bei grossen Acts
+
 ## v1.19.4 – 24.11.2026
 - Popups mittig und mit Abstand zur Android-Navigationsleiste; Fussbereich mit mehr Platz nach unten
 

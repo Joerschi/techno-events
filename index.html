@@ -275,9 +275,16 @@
 
   /* ---------- Aufgeräumt (v1.8) ---------- */
   .chip.sort { margin-left: auto; border-color: rgba(0,229,255,.5); color: var(--cyan); }
-  .mehr-filter { border: 1px solid var(--line); background: var(--panel); }
-  .mehr-filter summary { cursor: pointer; padding: 9px 12px; font: 700 .8rem "Space Mono", monospace; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .mehr-filter { border: 1px solid rgba(255,16,240,.7); background: linear-gradient(90deg, rgba(255,16,240,.12), rgba(0,240,255,.08)); box-shadow: 0 0 10px rgba(255,16,240,.3); }
+  .mehr-filter[open] { border-color: var(--laser); box-shadow: 0 0 16px rgba(255,16,240,.45); }
+  .mehr-filter summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 11px 12px; font: 700 clamp(11px, 3.3vw, 13.5px) "Space Mono", monospace; color: #fff; letter-spacing: .06em; text-transform: uppercase; }
+  .mehr-filter summary::-webkit-details-marker { display: none; }
+  .mehr-filter summary .mf-i { font-size: 1.2em; filter: drop-shadow(0 0 6px var(--laser)); }
+  .mehr-filter summary .mf-wahl { flex: 1; min-width: 0; text-align: right; color: var(--laser); text-shadow: var(--glow-p); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .85em; }
+  .mehr-filter summary .mf-pfeil { color: var(--laser); transition: transform .2s; }
+  .mehr-filter[open] summary .mf-pfeil { transform: rotate(180deg); }
   .mehr-filter .reihe { padding: 0 10px 10px; }
+  .mehr-filter .mf-titel { padding: 2px 12px 6px; font: 700 .66rem "Space Mono", monospace; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
   .karte.kompakt { padding-top: 14px; }
   .karte.kompakt .titel { font-size: 1.15rem; }
   .zeit { text-shadow: 0 0 3px rgba(57,255,20,.5) !important; }
@@ -470,7 +477,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.20.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.20.1<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1262,11 +1269,16 @@ function filterZeigen() {
   if (mehrFilterOffen) det.open = true;
   det.ontoggle = () => { mehrFilterOffen = det.open; };
   const aktiv = (filter.genre !== "Alle" ? 1 : 0) + (filter.stadt !== "Alle" ? 1 : 0);
-  det.append(el("summary", "", "⚙ Genre & Stadt" + (aktiv ? ` (${aktiv})` : "")));
+  const sm = el("summary", "");
+  const wahl = [filter.genre !== "Alle" ? filter.genre : "", filter.stadt !== "Alle" ? filter.stadt : ""].filter(Boolean).join(" · ") || "alle";
+  sm.append(el("span", "mf-i", "🎛"), el("span", "", "Genre & Stadt"), el("span", "mf-wahl", wahl), el("span", "mf-pfeil", "▾"));
+  det.append(sm);
+  det.append(el("div", "mf-titel", "Sound"));
   const vorhanden = new Set(daten.events.flatMap(familien));
   const reihenfolge = GENRE_FAMILIEN.map(f => f[0]).filter(n => vorhanden.has(n));
   const rest = [...vorhanden].filter(n => !reihenfolge.includes(n));
   det.append(chipReihe(["Alle", ...reihenfolge, ...rest], "genre", g => g === "Alle" ? "Alle" : `${g} ${daten.events.filter(e => familien(e).includes(g)).length}`));
+  det.append(el("div", "mf-titel", "Stadt"));
   const staedte = ["Alle", ...new Set(daten.events.map(e => e.stadt).filter(Boolean))];
   det.append(chipReihe(staedte, "stadt"));
   f.append(det);

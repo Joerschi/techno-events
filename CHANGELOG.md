@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.20.1 – 24.11.2026
+- 🎛 Genre & Stadt deutlich sichtbarer: Neon-Rahmen, aktuelle Auswahl rechts, Pfeil, Abschnitte «Sound» und «Stadt»
+
 ## v1.20.0 – 24.11.2026
 - 🎛 Genre-Filter mit Gruppen: Techno, Hard Techno, Melodic, Minimal, Tech House, House, Afro House, Trance & Psy, Acid & Electro, Bass & DnB, Hard Dance – mit Anzahl Events
 - Laufband mit mehr Sound-Styles (Peak Time, Deep Tech, Organic House, Schranz, Psytrance, EBM, Breaks, DnB, UK Garage …)

@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.21.0 – 24.11.2026
+- Teilen: aufgeräumte Nachricht (Eventname fett, keine langen Ticket-Links) mit einem einzigen kurzen Link am Ende
+- Event-Link (howeverto.me/techno?e=…): öffnet die App, springt direkt zum Event und lässt es aufleuchten – auch über Regionen hinweg
+- Vorschau-Karte in WhatsApp (Titel, Beschreibung, Logo)
+
 ## v1.20.5 – 24.11.2026
 - Teilen-Texte und «Link kopieren» nutzen den kurzen Link https://howeverto.me/techno statt der GitHub-Adresse
 

@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.20.2 – 24.11.2026
+- Sprungleiste: «Top 3» ersetzt durch «🎛 Filter»; «Weekend» springt direkt zur Event-Liste
+- Sprungleiste, Filter und Region ohne Leucht-Nebel, auf solidem Hintergrund – gut lesbar
+- Flaggen als kleine Grafiken (Emoji-Flaggen erschienen auf manchen Handys als «CH»/«DE»)
+
 ## v1.20.1 – 24.11.2026
 - 🎛 Genre & Stadt deutlich sichtbarer: Neon-Rahmen, aktuelle Auswahl rechts, Pfeil, Abschnitte «Sound» und «Stadt»
 

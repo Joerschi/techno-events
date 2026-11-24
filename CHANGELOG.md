@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.13.2 – 24.11.2026
+- Ampel-Legende (ÖV hin & zurück · Nur Morgenzug · Besser Auto) immer einzeilig, Schrift passt sich der Breite an
+
 ## v1.13.1 – 24.11.2026
 - Boxen exakt bündig mit den Aussenkanten der Inhalte darunter
 

@@ -187,6 +187,16 @@
   .karte.top .cover { margin-top: -18px; height: 128px; }
   .cover svg { width: 100%; height: 100%; display: block; }
 
+
+  /* ---------- Standort-Schalter ---------- */
+  .standort { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 12px 0 0; padding: 10px 12px; border: 1px solid var(--line); background: var(--panel); }
+  .standort span { font: 700 .85rem "Space Mono", monospace; color: var(--muted); letter-spacing: .04em; }
+  .standort span b { color: var(--text); }
+  .standort button { flex: 0 0 auto; font: 700 .8rem "Space Mono", monospace; text-transform: uppercase; padding: 9px 11px; border: 1px solid var(--cyan); color: var(--cyan); background: transparent; cursor: pointer; }
+  .standort.aktiv { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,229,255,.35); }
+  .standort.aktiv button { background: var(--cyan); color: #000; }
+  .live-tag { display: inline-block; font: 700 .7rem "Space Mono", monospace; color: #000; background: var(--cyan); padding: 1px 5px; margin-left: 6px; vertical-align: middle; }
+
   /* ---------- Party-Extras ---------- */
   /* 1) Strobo am Event-Tag */
   .hero.strobo::before { content: ""; position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; animation: strobo 3.2s steps(1) infinite; z-index: 1; }
@@ -325,6 +335,8 @@
       <a href="#tickets"><span>🎟</span>Tickets</a><a href="#top"><span>🔥</span>Top 3</a><a href="#weekend"><span>⚡</span>Weekend</a><a href="#ausblick"><span>🔭</span>Ausblick</a>
     </nav>
 
+    <div class="standort" id="standort"><span id="standort-text">📍 Start: <b>Beckenried</b></span><button id="standort-btn">Mein Standort</button></div>
+
     <div class="label" id="tickets"><b>// Deine Tickets</b><small id="t-anzahl"></small></div>
     <div id="ticket-liste"></div>
 
@@ -349,7 +361,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.3.0 · Made in Beckenried 🎧</div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.4.0 · Made in Beckenried 🎧</div>
     </footer>
   </div>
   <div class="toast" id="toast"></div>
@@ -425,7 +437,9 @@ function kalenderLink(ev) {
     + "&details=" + encodeURIComponent(details);
 }
 function naviLink(ev) {
-  return ev.navi || ("https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=" + encodeURIComponent([ev.club, ev.adresse].filter(Boolean).join(", ")) + "&travelmode=driving");
+  let url = ev.navi || ("https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=" + encodeURIComponent([ev.club, ev.adresse].filter(Boolean).join(", ")) + "&travelmode=driving");
+  if (standort.aktiv) url = url.replace(/&origin=[^&]*/, "");   // ohne Start = Google nimmt den aktuellen Standort
+  return url;
 }
 // WhatsApp: Im Claude-App-Browser öffnet wa.me nur die Download-Seite.
 // Darum: Text beim Tippen in die Zwischenablage kopieren UND direkt die WhatsApp-App öffnen (whatsapp://).
@@ -493,12 +507,20 @@ function aktionen(ev, mitTicket) {
 // ---- Anreise-Block für Event-Karten ----
 function anreiseBlock(ev) {
   const box = el("div", "anreise");
-  if (ev.auto_km) box.append(el("div", "", `🚗 ${ev.auto_km} km · ca. ${fmtMin(ev.auto_min)}${ev.losfahren ? " · losfahren ca. " + ev.losfahren : ""}`));
-  if (ev.oev_hin && typeof ev.oev_hin === "object") {
+  if (autoKm(ev)) {
+    const z = el("div", "", `🚗 ${autoKm(ev)} km · ca. ${fmtMin(autoMin(ev))}${ev.losfahren && !istLive(ev) ? " · losfahren ca. " + ev.losfahren : ""}`);
+    if (istLive(ev)) z.append(el("span", "live-tag", "AB HIER"));
+    box.append(z);
+  }
+  if (standort.aktiv) {
+    const z = el("div", "", "🚆 ÖV ab hier: ");
+    z.append(link("", "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent([ev.club, ev.adresse || ev.stadt].filter(Boolean).join(", ")) + "&travelmode=transit", "Verbindung ↗"));
+    box.append(z);
+  } else if (ev.oev_hin && typeof ev.oev_hin === "object") {
     const z = el("div", "", `🚆 Hin: ab ${ev.oev_hin.ab} → an ${ev.oev_hin.an}${ev.oev_hin.umsteigen != null ? ` (${ev.oev_hin.umsteigen}× umst.)` : ""} `);
     if (ev.oev_hin.sbb) z.append(link("", ev.oev_hin.sbb, "SBB ↗"));
     box.append(z);
-  } else if (ev.oev_hin) box.append(el("div", "", "🚆 Hin: " + ev.oev_hin));
+  } else if (ev.oev_hin && !standort.aktiv) box.append(el("div", "", "🚆 Hin: " + ev.oev_hin));
   if (ev.oev_letzte) {
     const z = el("div", "", `🌙 Heim: letzte ${ev.oev_letzte.ab} → ${ev.oev_letzte.an} `);
     if (ev.oev_letzte.sbb) z.append(link("", ev.oev_letzte.sbb, "SBB ↗"));
@@ -638,6 +660,59 @@ function tonightZeigen(liste) {
   return true;
 }
 
+
+// ======================= STANDORT (GPS) =======================
+// Fragt nach Erlaubnis, holt die Position und berechnet die Auto-Fahrzeit live (OSRM).
+// Funktioniert nur ausserhalb von Claude (GitHub-Seite / Android-App), weil dort Anfragen nach aussen erlaubt sind.
+const standort = { aktiv: false, lat: null, lon: null, zeiten: {} };
+function hatKoordinaten(ev) { return typeof ev.lat === "number" && typeof ev.lon === "number"; }
+function autoMin(ev) { const z = standort.aktiv && standort.zeiten[ev.lat + "," + ev.lon]; return z ? z.min : ev.auto_min; }
+function autoKm(ev) { const z = standort.aktiv && standort.zeiten[ev.lat + "," + ev.lon]; return z ? z.km : ev.auto_km; }
+function istLive(ev) { return !!(standort.aktiv && standort.zeiten[ev.lat + "," + ev.lon]); }
+
+async function fahrzeitenLaden() {
+  const ziele = [...tickets, ...daten.events, ...(daten.ausblick || [])].filter(hatKoordinaten);
+  const eindeutig = [...new Map(ziele.map(z => [z.lat + "," + z.lon, z])).values()];
+  if (!eindeutig.length) return;
+  const punkte = [`${standort.lon},${standort.lat}`, ...eindeutig.map(z => `${z.lon},${z.lat}`)].join(";");
+  const url = `https://router.project-osrm.org/table/v1/driving/${punkte}?sources=0&annotations=duration,distance`;
+  const r = await fetch(url);
+  const j = await r.json();
+  eindeutig.forEach((z, i) => {
+    const sek = j.durations?.[0]?.[i + 1], m = j.distances?.[0]?.[i + 1];
+    if (typeof sek === "number") standort.zeiten[z.lat + "," + z.lon] = { min: Math.round(sek / 60 * 1.1), km: Math.round(m / 1000) };
+  });
+}
+function standortAnzeigen(text) {
+  document.getElementById("standort").classList.toggle("aktiv", standort.aktiv);
+  document.getElementById("standort-text").innerHTML = "";
+  const t = document.getElementById("standort-text");
+  t.append(document.createTextNode("📍 Start: "));
+  t.append(el("b", "", text || (standort.aktiv ? "Mein Standort" : "Beckenried")));
+  document.getElementById("standort-btn").textContent = standort.aktiv ? "Beckenried" : "Mein Standort";
+}
+function allesNeuZeichnen() { ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen(); }
+document.getElementById("standort-btn").onclick = () => {
+  if (standort.aktiv) {                       // zurück zu Beckenried
+    standort.aktiv = false; standortAnzeigen();
+    try { localStorage.setItem("te-standort", "beckenried"); } catch (e) {}
+    allesNeuZeichnen(); return;
+  }
+  if (!("geolocation" in navigator)) { zeigeToast("Standort wird auf diesem Gerät nicht unterstützt"); return; }
+  standortAnzeigen("wird gesucht …");
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    standort.lat = pos.coords.latitude; standort.lon = pos.coords.longitude; standort.aktiv = true;
+    try { localStorage.setItem("te-standort", "gps"); } catch (e) {}
+    standortAnzeigen("Mein Standort");
+    try { await fahrzeitenLaden(); zeigeToast("✓ Fahrzeiten ab deinem Standort berechnet"); }
+    catch (e) { zeigeToast("Fahrzeiten gerade nicht abrufbar – Navi-Links nutzen deinen Standort trotzdem"); }
+    allesNeuZeichnen();
+  }, (err) => {
+    standort.aktiv = false; standortAnzeigen();
+    zeigeToast(err.code === 1 ? "Standort-Zugriff abgelehnt – in den Einstellungen erlauben" : "Standort nicht gefunden – nochmal versuchen");
+  }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
+};
+
 // ======================= TICKETS =======================
 let tickets = [];
 function ticketsZeigen() {
@@ -673,7 +748,8 @@ function ticketsZeigen() {
     b.append(el("div", "to", [t.club, t.stadt].filter(Boolean).join(" · ") || "Ort folgt"));
     if (t.lineup && t.lineup.length) b.append(el("div", "tl", t.lineup.join(" · ")));
     const an = [];
-    if (t.anreise === "auto" && t.losfahren) an.push(`🚗 Losfahren ca. ${t.losfahren} · ${t.auto_km} km · ${fmtMin(t.auto_min)}`);
+    if (istLive(t)) an.push(`🚗 ${autoKm(t)} km · ${fmtMin(autoMin(t))} ab deinem Standort`);
+    else if (t.anreise === "auto" && t.losfahren) an.push(`🚗 Losfahren ca. ${t.losfahren} · ${t.auto_km} km · ${fmtMin(t.auto_min)}`);
     else if (t.auto_km) an.push(`🚗 ${t.auto_km} km · ${fmtMin(t.auto_min)}${t.losfahren ? " · losfahren ca. " + t.losfahren : ""}`);
     if (t.anreise !== "auto" && t.oev_hin) an.push("🚆 " + (typeof t.oev_hin === "object" ? `${t.oev_hin.ab} → ${t.oev_hin.an}` : t.oev_hin));
     if (t.anreise !== "auto" && heimText(t)) an.push("🌙 " + heimText(t));
@@ -733,7 +809,7 @@ let daten = { events: [], top3: [], ausblick: [] };
 const filter = { tag: "Alle", zeit: 90, genre: "Alle", stadt: "Alle", sort: "zeit" };
 
 function reiseMin(ev) {
-  const werte = [ev.auto_min, ev.oev_min].filter(v => typeof v === "number");
+  const werte = (standort.aktiv ? [autoMin(ev)] : [ev.auto_min, ev.oev_min]).filter(v => typeof v === "number");
   return werte.length ? Math.min(...werte) : 999;
 }
 function chipReihe(werte, key, beschriften) {
@@ -795,7 +871,7 @@ function ausblickZeigen() {
     dd.append(el("small", "", TAGE[d.getDay()]));
     z.append(dd);
     const n = el("div", "n", a.name);
-    n.append(el("small", "", [a.club, a.stadt, a.auto_min ? "🚗 " + fmtMin(a.auto_min) : ""].filter(Boolean).join(" · ")));
+    n.append(el("small", "", [a.club, a.stadt, autoMin(a) ? "🚗 " + fmtMin(autoMin(a)) : ""].filter(Boolean).join(" · ")));
     if (a.lineup && a.lineup.length) n.append(el("small", "", a.lineup.join(" · ")));
     z.append(n);
     const knoepfe = el("div", "");

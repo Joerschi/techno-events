@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.4.0 – 24.11.2026
+- 📍 Neuer Schalter «Mein Standort»: GPS-Abfrage, Auto-Fahrzeiten live ab der aktuellen Position (OSRM), ÖV-Verbindung ab hier über Google Maps
+- Navi-Links starten im Standort-Modus automatisch beim aktuellen Ort
+- Tickets mit Koordinaten
+
 ## v1.3.0 – 24.11.2026
 - Jedes Event bekommt ein eigenes Cover-Bild (aus Name und Genre generiert: Laser, Synthwave-Gitter, Schallplatte oder Equalizer)
 - «Nächster Rave» heisst jetzt «Nächstes Event»

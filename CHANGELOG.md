@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.14.1 – 24.11.2026
+- «Als App installieren» erscheint nicht mehr in der eigenen Android-App (bessere Erkennung der App-Ansicht)
+
 ## v1.14.0 – 24.11.2026
 - Updates kommen sofort an: Seite wird frisch aus dem Netz geladen (offline weiter aus dem Speicher)
 - Nach unten ziehen erkennt eine neue App-Version und lädt automatisch neu («✨ Neue Version …»)

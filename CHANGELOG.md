@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.4.1 – 24.11.2026
+- Hinweise (Toasts) kleiner, über der Navigationsleiste, per Tipp schliessbar
+- Hilfe-Text, wenn der Standort blockiert ist
+
 ## v1.4.0 – 24.11.2026
 - 📍 Neuer Schalter «Mein Standort»: GPS-Abfrage, Auto-Fahrzeiten live ab der aktuellen Position (OSRM), ÖV-Verbindung ab hier über Google Maps
 - Navi-Links starten im Standort-Modus automatisch beim aktuellen Ort

@@ -153,7 +153,7 @@
 
   footer { margin-top: 36px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: .9rem; line-height: 1.55; }
   .crew { width: 100%; margin-bottom: 14px; }
-  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); width: max-content; max-width: 90vw; text-align: center; background: var(--acid); box-shadow: var(--glow-g); color: #000; font: 700 .9rem "Space Mono", monospace; padding: 12px 16px; z-index: 10; display: none; }
+  .toast { position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom)); font-size: .8rem !important; padding: 10px 14px !important; border-radius: 10px; cursor: pointer; transform: translateX(-50%); width: max-content; max-width: 90vw; text-align: center; background: var(--acid); box-shadow: var(--glow-g); color: #000; font: 700 .9rem "Space Mono", monospace; padding: 12px 16px; z-index: 10; display: none; }
 
 
 
@@ -193,6 +193,7 @@
   .standort span { font: 700 .85rem "Space Mono", monospace; color: var(--muted); letter-spacing: .04em; }
   .standort span b { color: var(--text); }
   .standort button { flex: 0 0 auto; font: 700 .8rem "Space Mono", monospace; text-transform: uppercase; padding: 9px 11px; border: 1px solid var(--cyan); color: var(--cyan); background: transparent; cursor: pointer; }
+  .standort-hilfe { margin-top: 12px; padding: 10px 12px; border: 1px dashed var(--orange); color: #e6dcd2; font-size: .9rem; line-height: 1.5; }
   .standort.aktiv { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,229,255,.35); }
   .standort.aktiv button { background: var(--cyan); color: #000; }
   .live-tag { display: inline-block; font: 700 .7rem "Space Mono", monospace; color: #000; background: var(--cyan); padding: 1px 5px; margin-left: 6px; vertical-align: middle; }
@@ -335,6 +336,7 @@
       <a href="#tickets"><span>🎟</span>Tickets</a><a href="#top"><span>🔥</span>Top 3</a><a href="#weekend"><span>⚡</span>Weekend</a><a href="#ausblick"><span>🔭</span>Ausblick</a>
     </nav>
 
+    <div class="standort-hilfe" id="standort-hilfe" hidden>Standort freigeben: <b>Einstellungen → Apps → (Chrome bzw. Techno Events) → Berechtigungen → Standort → Erlauben</b>. In Chrome zusätzlich: Schloss-Symbol neben der Adresse → Berechtigungen → Standort.</div>
     <div class="standort" id="standort"><span id="standort-text">📍 Start: <b>Beckenried</b></span><button id="standort-btn">Mein Standort</button></div>
 
     <div class="label" id="tickets"><b>// Deine Tickets</b><small id="t-anzahl"></small></div>
@@ -361,7 +363,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.4.0 · Made in Beckenried 🎧</div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.4.1 · Made in Beckenried 🎧</div>
     </footer>
   </div>
   <div class="toast" id="toast"></div>
@@ -458,7 +460,8 @@ function waKnopf(cls, webLink, label) {
 function zeigeToast(text) {
   const t = document.getElementById("toast");
   t.textContent = text; t.style.display = "block";
-  clearTimeout(zeigeToast.timer); zeigeToast.timer = setTimeout(() => t.style.display = "none", 4000);
+  t.onclick = () => t.style.display = "none";
+  clearTimeout(zeigeToast.timer); zeigeToast.timer = setTimeout(() => t.style.display = "none", 3500);
 }
 function whatsappLink(ev) {
   const text = [
@@ -709,7 +712,8 @@ document.getElementById("standort-btn").onclick = () => {
     allesNeuZeichnen();
   }, (err) => {
     standort.aktiv = false; standortAnzeigen();
-    zeigeToast(err.code === 1 ? "Standort-Zugriff abgelehnt – in den Einstellungen erlauben" : "Standort nicht gefunden – nochmal versuchen");
+    zeigeToast(err.code === 1 ? "📍 Standort blockiert – siehe Tipp unten" : "Standort nicht gefunden – ist GPS am Handy an?");
+    if (err.code === 1) document.getElementById("standort-hilfe").hidden = false;
   }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
 };
 

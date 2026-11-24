@@ -1,5 +1,12 @@
 # Changelog – Techno Events
 
+## v1.10.0 – 24.11.2026
+- ★ Merkliste: Events mit dem Stern merken, Filter-Chip «★» zeigt nur Gemerkte
+- 🙋 «Ich bin dabei» markiert das Event zusätzlich mit DABEI ✓ (zurückziehbar)
+- Merkliste & Zusagen bleiben nur auf dem eigenen Handy – keine Daten an Server
+- Laufband zeigt nur noch Sound-Styles, keine Orte
+- Warehouse Zürich (temporärer Superclub): HUGEL (Fr) & Charlotte de Witte (Sa), ARTBAT & Eric Prydz im Ausblick
+
 ## v1.9.0 – 24.11.2026
 - Erste echte Wochenend-Ausgabe (27.–29. November): 9 Events in Zürich, Basel und Engelberg mit Fahrzeiten und ÖV
 - Ausblick: Schrotthagen, Verknipt Stadion, WinterDaydance, Klewen DayDance

@@ -120,6 +120,12 @@
   /* ---------- Event-Karten ---------- */
   .karte { position: relative; background: var(--panel); border: 1px solid var(--line); padding: 16px 16px 14px 20px; margin-bottom: 14px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); animation: rein .4s ease-out both; }
   .karte::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--ampel, var(--grau)); box-shadow: 0 0 8px var(--ampel, transparent), 0 0 24px var(--ampel, transparent); }
+  .stern { background: none; border: 1px solid var(--line); color: #fff8; font-size: 1.05rem; line-height: 1; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; flex: none; }
+  .stern.on { color: var(--gelb); border-color: var(--gelb); text-shadow: 0 0 8px var(--gelb); box-shadow: 0 0 8px rgba(244,255,0,.35); }
+  .karte.gemerkt { border-color: var(--gelb); }
+  .btn.dabei.ja { background: #000; color: var(--orange); }
+  .aus .stern.mini { width: 44px; height: auto; border-radius: 0; padding: 6px; }
+  .dabei-tag { display: inline-block; margin-left: 8px; padding: 2px 7px; font: 700 .62rem "Space Mono", monospace; letter-spacing: .1em; color: #000; background: var(--orange); vertical-align: middle; }
   .karte.top { border-color: var(--laser); box-shadow: inset 0 0 24px rgba(255,16,240,.12); padding-top: 18px; }
   .karte .rang { position: absolute; right: 26px; top: 10px; z-index: 1; font: 900 2.4rem Unbounded, sans-serif; color: transparent; -webkit-text-stroke: 1px var(--laser); filter: drop-shadow(0 0 6px rgba(255,16,240,.8)); }
   @keyframes rein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
@@ -271,8 +277,8 @@
   <div class="scan"></div>
 
   <div class="ticker"><span>
-    TECHNO ✕ HARD TECHNO ✕ MELODIC ✕ MINIMAL ✕ ACID ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ LUZERN ✕ ZÜRICH ✕ BASEL ✕ BERN ✕ ENGELBERG ✕
-    TECHNO ✕ HARD TECHNO ✕ MELODIC ✕ MINIMAL ✕ ACID ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ LUZERN ✕ ZÜRICH ✕ BASEL ✕ BERN ✕ ENGELBERG ✕&nbsp;
+    TECHNO ✕ HARD TECHNO ✕ MELODIC TECHNO ✕ MINIMAL ✕ ACID ✕ HOUSE ✕ DEEP HOUSE ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ TRANCE ✕ AFRO HOUSE ✕ DUB TECHNO ✕ HARDGROOVE ✕
+    TECHNO ✕ HARD TECHNO ✕ MELODIC TECHNO ✕ MINIMAL ✕ ACID ✕ HOUSE ✕ DEEP HOUSE ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ TRANCE ✕ AFRO HOUSE ✕ DUB TECHNO ✕ HARDGROOVE ✕&nbsp;
   </span></div>
   <div class="regenbogen"></div>
 
@@ -395,7 +401,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.9.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.10.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -539,7 +545,20 @@ function aktionen(ev, mitTicket) {
   box.append(label(waKnopf("btn wa", whatsappLink(ev), ""), "💬", "Crew"));
   if (ev.link) box.append(label(link("btn", ev.link, ""), "🎟", mitTicket ? "Ticket" : "Tickets"));
   else box.append(label(el("span", "btn", ""), "🎟", "–"));
-  box.append(waKnopf("btn dabei", dabeiLink(ev), "🙋 Ich bin dabei"));
+  const ja = zusagen.has(evKey(ev));
+  const d = waKnopf("btn dabei" + (ja ? " ja" : ""), dabeiLink(ev), ja ? "✓ Du bist dabei · nochmal teilen" : "🙋 Ich bin dabei");
+  const waKlick = d.onclick;
+  d.onclick = async (e) => {
+    await waKlick(e);
+    if (!zusagen.has(evKey(ev))) { zusagen.add(evKey(ev)); merkliste.add(evKey(ev)); setSpeichern("te-dabei", zusagen); setSpeichern("te-merk", merkliste); setTimeout(allesNeuZeichnen, 400); }
+  };
+  if (ja) {
+    const weg = el("button", "chip klein", "Zusage zurückziehen");
+    weg.onclick = () => { zusagen.delete(evKey(ev)); setSpeichern("te-dabei", zusagen); allesNeuZeichnen(); };
+    box.append(d, weg);
+    return box;
+  }
+  box.append(d);
   return box;
 }
 
@@ -588,8 +607,12 @@ function eventKarte(ev, rang) {
   const zeitText = `${ev.start || "?"}${ev.ende ? "–" + ev.ende : ""}`;
   oben.append(el("div", "zeit", rang ? zeitText : `${kurzDatum(ev).toUpperCase()} · ${zeitText}`));
   oben.append(eqFuer(ev));
+  oben.append(sternKnopf(ev));
   k.append(oben);
-  k.append(el("div", "titel", ev.name));
+  if (merkliste.has(evKey(ev))) k.classList.add("gemerkt");
+  const titel = el("div", "titel", ev.name);
+  if (zusagen.has(evKey(ev))) titel.append(el("span", "dabei-tag", "DABEI ✓"));
+  k.append(titel);
   const ort = el("div", "ort", [ev.club, ev.stadt].filter(Boolean).join(" · "));
   if (ev.adresse) ort.append(el("small", "", ev.adresse));
   k.append(ort);
@@ -858,7 +881,23 @@ setInterval(tick, 1000);
 
 // ======================= WOCHENENDE =======================
 let daten = { events: [], top3: [], ausblick: [] };
-const filter = { tag: "Alle", zeit: 120, genre: "Alle", stadt: "Alle", sort: "zeit" };
+const filter = { tag: "Alle", zeit: 120, genre: "Alle", stadt: "Alle", sort: "zeit", merk: false };
+// ---- Merkliste & Zusagen: bleiben NUR auf diesem Gerät (localStorage) – nichts geht an einen Server ----
+function setLaden(key) { try { return new Set(JSON.parse(localStorage.getItem(key) || "[]")); } catch (e) { return new Set(); } }
+function setSpeichern(key, set) { try { localStorage.setItem(key, JSON.stringify([...set])); } catch (e) {} }
+const merkliste = setLaden("te-merk"), zusagen = setLaden("te-dabei");
+function evKey(ev) { return (ev.id || ev.name) + "@" + (ev.datum || ""); }
+function sternKnopf(ev) {
+  const b = el("button", "stern" + (merkliste.has(evKey(ev)) ? " on" : ""), merkliste.has(evKey(ev)) ? "★" : "☆");
+  b.title = "Merken";
+  b.onclick = () => {
+    const k = evKey(ev);
+    if (merkliste.has(k)) { merkliste.delete(k); zeigeToast("Von der Merkliste entfernt"); }
+    else { merkliste.add(k); zeigeToast("★ Gemerkt – nur auf deinem Handy gespeichert"); hihat(); }
+    setSpeichern("te-merk", merkliste); allesNeuZeichnen();
+  };
+  return b;
+}
 
 function reiseMin(ev) {
   const werte = (standort.aktiv ? [autoMin(ev)] : [ev.auto_min, ev.oev_min]).filter(v => typeof v === "number");
@@ -880,9 +919,13 @@ function filterZeigen() {
   if (!daten.events.length) return;
   // Zeile 1: Tag + Sortierung
   const r1 = chipReihe(["Alle", "Fr", "Sa", "So"], "tag");
-  const sort = el("button", "chip sort", filter.sort === "zeit" ? "↕ Fahrzeit" : "↕ Startzeit");
+  const sort = el("button", "chip sort", filter.sort === "zeit" ? "↕ Fahrt" : "↕ Start");
   sort.onclick = () => { filter.sort = filter.sort === "zeit" ? "start" : "zeit"; filterZeigen(); listeZeigen(); };
-  r1.append(sort);
+  const nMerk = daten.events.filter(e => merkliste.has(evKey(e))).length;
+  const m = el("button", "chip" + (filter.merk ? " on" : ""), `★ ${nMerk}`);
+  m.title = "Nur gemerkte Events";
+  m.onclick = () => { filter.merk = !filter.merk; filterZeigen(); listeZeigen(); };
+  r1.append(m, sort);
   f.append(r1);
   // Zeile 2: Fahrzeit
   f.append(chipReihe([30, 60, 90, 120, 999], "zeit", w => w === 999 ? "Alle" : `≤ ${w}′`));
@@ -904,7 +947,8 @@ function listeZeigen() {
     (filter.tag === "Alle" || (e.tag || TAGE[startDatum(e).getDay()]) === filter.tag) &&
     reiseMin(e) <= filter.zeit &&
     (filter.genre === "Alle" || (e.genre || []).includes(filter.genre)) &&
-    (filter.stadt === "Alle" || e.stadt === filter.stadt));
+    (filter.stadt === "Alle" || e.stadt === filter.stadt) &&
+    (!filter.merk || merkliste.has(evKey(e))));
   evs.sort((a, b) => filter.sort === "zeit" ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));
   document.getElementById("we-anzahl").textContent = daten.events.length ? `${evs.length} von ${daten.events.length}` : "";
   if (!daten.events.length) {
@@ -914,7 +958,7 @@ function listeZeigen() {
     liste.append(l);
     return;
   }
-  if (!evs.length) { liste.append(el("div", "leer", "Keine Events mit diesen Filtern – mehr Distanz zulassen?")); return; }
+  if (!evs.length) { liste.append(el("div", "leer", filter.merk ? "Noch nichts gemerkt – tipp auf ☆ bei einem Event." : "Keine Events mit diesen Filtern – mehr Distanz zulassen?")); return; }
   evs.forEach(e => liste.append(eventKarte(e)));
 }
 function topZeigen() {
@@ -940,6 +984,8 @@ function ausblickZeigen() {
     z.append(n);
     const knoepfe = el("div", "");
     knoepfe.style.display = "grid"; knoepfe.style.gap = "6px";
+    const st = sternKnopf(a); st.classList.add("mini"); knoepfe.append(st);
+    if (merkliste.has(evKey(a))) z.style.borderColor = "var(--gelb)";
     knoepfe.append(link("mini", kalenderLink(a), "📅"));
     knoepfe.append(waKnopf("mini", whatsappLink(a), "💬"));
     z.append(knoepfe);

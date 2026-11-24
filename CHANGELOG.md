@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.3.0 – 24.11.2026
+- Jedes Event bekommt ein eigenes Cover-Bild (aus Name und Genre generiert: Laser, Synthwave-Gitter, Schallplatte oder Equalizer)
+- «Nächster Rave» heisst jetzt «Nächstes Event»
+- Versionsnummer als Abschlusszeile ganz unten
+
 ## v1.2.0 – 24.11.2026
 - Neues Logo: drehende Schallplatte mit Neon-Ring und Equalizer im Label
 - Animiertes DJ-Pult im Kopf: zwei Plattenspieler, Mixer mit VU-Meter und Fadern, Boxen mit Bass-Puls im 128-BPM-Takt

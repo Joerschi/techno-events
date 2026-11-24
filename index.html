@@ -121,7 +121,7 @@
   .karte { position: relative; background: var(--panel); border: 1px solid var(--line); padding: 16px 16px 14px 20px; margin-bottom: 14px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); animation: rein .4s ease-out both; }
   .karte::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--ampel, var(--grau)); box-shadow: 0 0 8px var(--ampel, transparent), 0 0 24px var(--ampel, transparent); }
   .karte.top { border-color: var(--laser); box-shadow: inset 0 0 24px rgba(255,16,240,.12); padding-top: 18px; }
-  .karte .rang { position: absolute; right: 26px; top: 10px; font: 900 2.4rem Unbounded, sans-serif; color: transparent; -webkit-text-stroke: 1px var(--laser); filter: drop-shadow(0 0 6px rgba(255,16,240,.8)); }
+  .karte .rang { position: absolute; right: 26px; top: 10px; z-index: 1; font: 900 2.4rem Unbounded, sans-serif; color: transparent; -webkit-text-stroke: 1px var(--laser); filter: drop-shadow(0 0 6px rgba(255,16,240,.8)); }
   @keyframes rein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .zeit { font: 700 .95rem "Space Mono", monospace; color: var(--acid); text-shadow: var(--glow-g); letter-spacing: .05em; }
   .titel { font: 900 1.3rem/1.08 Unbounded, sans-serif; text-transform: uppercase; margin: 8px 0 5px; overflow-wrap: anywhere; padding-right: 30px; }
@@ -179,6 +179,13 @@
   @keyframes xf { from { transform: translateX(-7px); } to { transform: translateX(7px); } }
   .booth .fader-l { animation: fl 3s ease-in-out infinite alternate; } .booth .fader-r { animation: fl 3.6s ease-in-out infinite alternate-reverse; }
   @keyframes fl { from { transform: translateY(-5px); } to { transform: translateY(6px); } }
+
+
+  .abschluss { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); text-align: center; font: 700 .8rem "Space Mono", monospace; letter-spacing: .12em; color: var(--cyan); text-shadow: 0 0 4px rgba(0,229,255,.5); }
+  /* ---------- Event-Cover (eigene generierte Bilder) ---------- */
+  .cover { display: block; margin: -16px -16px 12px -20px; height: 104px; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .karte.top .cover { margin-top: -18px; height: 128px; }
+  .cover svg { width: 100%; height: 100%; display: block; }
 
   /* ---------- Party-Extras ---------- */
   /* 1) Strobo am Event-Tag */
@@ -303,7 +310,7 @@
     <div class="tonight" id="tonight" hidden></div>
 
     <div class="hero" id="hero" hidden>
-      <div class="k">// Nächster Rave in</div>
+      <div class="k">// Nächstes Event in</div>
       <div class="count">
         <div><b id="cd-t">0</b><span>TAGE</span></div>
         <div><b id="cd-h">00</b><span>STD</span></div>
@@ -341,8 +348,8 @@
       <button class="btn acid crew" id="crew-link">🔗 Techno Events an die Crew – Link kopieren</button>
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
-      <span id="version" style="color:var(--cyan)">Techno Events v1.2.0</span><br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.3.0 · Made in Beckenried 🎧</div>
     </footer>
   </div>
   <div class="toast" id="toast"></div>
@@ -514,6 +521,7 @@ function genreChip(g) { const c = el("span", "chip klein", g); const f = neonFue
 function eventKarte(ev, rang) {
   const k = el("article", "karte" + (rang ? " top" : ""));
   k.style.setProperty("--ampel", AMPEL[ev.ampel] || "var(--grau)");
+  k.append(cover(ev));
   if (rang) k.append(el("div", "rang", "0" + rang));
   const oben = el("div", "zeile-oben");
   oben.append(el("div", "zeit", `${kurzDatum(ev).toUpperCase()} · ${ev.start || "?"}${ev.ende ? "–" + ev.ende : ""}`));
@@ -534,6 +542,54 @@ function eventKarte(ev, rang) {
   return k;
 }
 
+
+
+// ======================= EVENT-COVER =======================
+// Jedes Event bekommt ein eigenes Bild: aus Name + Genre berechnet (immer gleich für dasselbe Event).
+const NS = "http://www.w3.org/2000/svg";
+function svgEl(tag, attrs) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+function hashText(t) { let h = 2166136261; for (const c of t) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+function cover(ev) {
+  const h = hashText((ev.name || "") + (ev.club || ""));
+  const f1 = ev.genre && ev.genre[0] ? neonFuer(ev.genre[0]) : NEON[h % NEON.length];
+  let f2 = NEON[(h >> 3) % NEON.length]; if (f2 === f1) f2 = NEON[((h >> 3) + 2) % NEON.length];
+  const id = "g" + h;
+  const svg = svgEl("svg", { viewBox: "0 0 400 130", preserveAspectRatio: "xMidYMid slice", "aria-hidden": "true" });
+  const defs = svgEl("defs", {});
+  const lg = svgEl("linearGradient", { id, x1: "0", y1: "0", x2: "1", y2: "1" });
+  lg.append(svgEl("stop", { offset: "0", "stop-color": f1, "stop-opacity": ".55" }), svgEl("stop", { offset: ".55", "stop-color": "#0a0608", "stop-opacity": "1" }), svgEl("stop", { offset: "1", "stop-color": f2, "stop-opacity": ".5" }));
+  defs.append(lg); svg.append(defs);
+  svg.append(svgEl("rect", { width: 400, height: 130, fill: "#07050a" }), svgEl("rect", { width: 400, height: 130, fill: `url(#${id})` }));
+  const g = svgEl("g", { fill: "none", "stroke-linecap": "round" });
+  const muster = h % 4;
+  if (muster === 0) {            // Laser aus einem Punkt
+    const ox = 60 + (h % 280);
+    for (let i = 0; i < 9; i++) g.append(svgEl("line", { x1: ox, y1: -5, x2: -40 + i * 60, y2: 140, stroke: i % 2 ? f1 : f2, "stroke-width": 1.6, opacity: .75 }));
+  } else if (muster === 1) {     // Synthwave-Gitter
+    for (let i = 0; i < 8; i++) g.append(svgEl("line", { x1: 0, y1: 70 + i * i * 1.3, x2: 400, y2: 70 + i * i * 1.3, stroke: f1, "stroke-width": 1, opacity: .6 }));
+    for (let i = -6; i <= 6; i++) g.append(svgEl("line", { x1: 200 + i * 14, y1: 70, x2: 200 + i * 80, y2: 135, stroke: f1, "stroke-width": 1, opacity: .6 }));
+    g.append(svgEl("circle", { cx: 200, cy: 62, r: 30, fill: f2, opacity: .85, stroke: "none" }));
+  } else if (muster === 2) {     // Schallplatten-Rillen
+    const cx = 300 + (h % 60);
+    for (let r = 14; r < 150; r += 9) g.append(svgEl("circle", { cx, cy: 65, r, stroke: r % 2 ? f1 : f2, "stroke-width": 1.1, opacity: .55 }));
+    g.append(svgEl("circle", { cx, cy: 65, r: 12, fill: f2, stroke: "none" }));
+  } else {                       // Equalizer-Balken
+    for (let i = 0; i < 26; i++) {
+      const hoehe = 18 + ((h >> (i % 24)) % 90);
+      g.append(svgEl("rect", { x: 8 + i * 15.2, y: 130 - hoehe, width: 9, height: hoehe, fill: i % 3 ? f1 : f2, opacity: .7, stroke: "none" }));
+    }
+  }
+  svg.append(g);
+  // Datum gross + Genre als Text (sicher als textContent)
+  const d = startDatum(ev);
+  const t1 = svgEl("text", { x: 16, y: 54, fill: "#fff", "font-family": "Unbounded, sans-serif", "font-weight": 900, "font-size": 34, stroke: f1, "stroke-width": .8, style: `paint-order:stroke;filter:drop-shadow(0 0 6px ${f1})` });
+  t1.textContent = `${TAGE[d.getDay()].toUpperCase()} ${d.getDate()}.${d.getMonth() + 1}.`;
+  const t2 = svgEl("text", { x: 18, y: 82, fill: f2, "font-family": "Space Mono, monospace", "font-weight": 700, "font-size": 14, "letter-spacing": 2 });
+  t2.textContent = ((ev.genre && ev.genre[0]) || "TECHNO").toUpperCase() + (ev.stadt ? " · " + ev.stadt.toUpperCase() : "");
+  svg.append(t1, t2);
+  const box = el("div", "cover"); box.append(svg);
+  return box;
+}
 
 // ======================= PARTY-EXTRAS =======================
 // Equalizer-Tempo nach Genre: härter = schneller

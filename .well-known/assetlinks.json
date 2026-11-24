@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "ch.technoevents.app",
+    "sha256_cert_fingerprints": ["70:0D:BB:17:46:CF:C8:57:74:65:A5:8C:54:19:ED:96:52:06:C8:D1:22:95:70:7F:27:51:DF:8E:9C:54:91:8F"]
+  }
+}]

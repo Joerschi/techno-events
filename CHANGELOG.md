@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.17.0 – 24.11.2026
+- 📏 Umkreis-Filter: ≤ 10 · 25 · 50 · 100 km (Luftlinie ab Startort bzw. deinem Standort), ersetzt den Minuten-Filter
+- 🇩🇪 Neue Testregion München mit eigener Wochenend-Ausgabe (events-muc.json)
+- Umschalter 🇨🇭 Schweiz / 🇩🇪 München; mit Standort wird automatisch die nächste Region gewählt
+- München: ÖV-Hinweis mit nächster U-/S-Bahn-Haltestelle und Route-Link
+
 ## v1.16.0 – 24.11.2026
 - Responsive-Durchgang: Seite war durch die Filter-Leiste breiter als das Handy – behoben
 - Filter: Tage/★/Sortierung und Fahrzeit-Chips passen immer in eine Zeile, Genre & Stadt brechen um statt seitlich zu scrollen

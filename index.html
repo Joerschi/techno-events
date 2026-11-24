@@ -52,12 +52,16 @@
   .bpm::before { content: "●"; color: var(--laser); margin-right: 6px; animation: blink .4687s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
-  h1 { position: relative; z-index: 0; -webkit-text-stroke: 2px var(--orange); font: 900 clamp(2.4rem, 12vw, 3.4rem)/.92 Unbounded, sans-serif; text-shadow: 0 0 10px rgba(255,255,255,.5), 0 0 30px rgba(255,106,0,.85); text-transform: uppercase; letter-spacing: -.02em; margin: 6px 0 10px; }
-  h1::before, h1::after { content: attr(data-text); position: absolute; inset: 0; -webkit-text-stroke: 0; z-index: -1; }
-  h1::before { color: var(--laser); text-shadow: var(--glow-p); mix-blend-mode: screen; animation: glitch 2.6s infinite steps(1); clip-path: inset(0 0 55% 0); }
-  h1::after { color: var(--cyan); text-shadow: var(--glow-c); mix-blend-mode: screen; animation: glitch 3.1s infinite steps(1) reverse; clip-path: inset(50% 0 0 0); }
+  h1 { margin: 6px 0 10px; line-height: 1; text-transform: uppercase; min-width: 0; }
+  h1 .t1 { position: relative; z-index: 0; display: block; font: 900 clamp(2.3rem, 11.5vw, 3.3rem)/.95 Unbounded, sans-serif; letter-spacing: -.01em; color: #fff; text-shadow: 0 0 2px #fff, 0 0 10px rgba(255,106,0,.95), 0 0 26px rgba(255,106,0,.7), 0 0 50px rgba(255,16,240,.35); }
+  h1 .t1::before, h1 .t1::after { content: attr(data-text); position: absolute; inset: 0; z-index: -1; }
+  h1 .t1::before { color: var(--laser); text-shadow: var(--glow-p); mix-blend-mode: screen; animation: glitch 2.6s infinite steps(1); clip-path: inset(0 0 55% 0); }
+  h1 .t1::after { color: var(--cyan); text-shadow: var(--glow-c); mix-blend-mode: screen; animation: glitch 3.1s infinite steps(1) reverse; clip-path: inset(50% 0 0 0); }
+  h1 .t2 { display: flex; align-items: center; gap: 8px; margin-top: 6px; font: 600 clamp(.9rem, 4.6vw, 1.25rem)/1 Unbounded, sans-serif; letter-spacing: .42em; color: var(--orange); text-shadow: 0 0 8px rgba(255,106,0,.9), 0 0 20px rgba(255,106,0,.5); }
+  h1 .t2::before, h1 .t2::after { content: ""; flex: 1; height: 2px; min-width: 14px; background: linear-gradient(90deg, transparent, var(--orange)); box-shadow: 0 0 8px var(--orange); }
+  h1 .t2::after { background: linear-gradient(90deg, var(--laser), transparent); box-shadow: 0 0 8px var(--laser); margin-left: -.42em; }
   @keyframes glitch { 0%,88%,100% { transform: translate(0,0); } 90% { transform: translate(4px,-2px); } 94% { transform: translate(-4px,2px); } }
-  .stand { font: 400 .85rem "Space Mono", monospace; color: var(--muted); }
+  .stand { font: 400 clamp(.62rem, 3vw, .85rem) "Space Mono", monospace; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* ---------- Hero-Countdown ---------- */
   .hero { position: relative; margin: 18px 0 6px; padding: 18px; border: 1px solid var(--laser); box-shadow: var(--glow-p), inset 0 0 30px rgba(255,16,240,.15); background:
@@ -303,7 +307,7 @@
       </g>
       <circle cx="50" cy="59" r="1.6" fill="#050505"/>
     </svg>
-    <h1 data-text="Techno Events">Techno Events</h1>
+    <h1 aria-label="Techno Events"><span class="t1" data-text="Techno">Techno</span><span class="t2">Events</span></h1>
   </div>
 <div class="booth" aria-hidden="true">
     <svg viewBox="0 0 360 132">
@@ -401,7 +405,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.10.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.11.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1006,7 +1010,7 @@ async function start() {
   tickets = Array.isArray(t) ? t : [];
   if (d && typeof d === "object") daten = Object.assign(daten, d);
   document.getElementById("stand").textContent = daten.stand
-    ? `⟳ Aktualisiert ${daten.stand}${daten.wochenende ? " · Weekend " + daten.wochenende : ""}`
+    ? `⟳ ${String(daten.stand).replace(/\.20\d\d/, ".")} · Weekend ${String(daten.wochenende || "").replace(/\.?\s*(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)/, m => "." + (["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"].indexOf(m.replace(/[.\s]/g, "")) + 1) + ".")}`
     : "";
   document.getElementById("we-datum").textContent = daten.wochenende || "";
   ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen();

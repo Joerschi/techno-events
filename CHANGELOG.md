@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.11.0 – 24.11.2026
+- Neuer Schriftzug: TECHNO weiss mit Neon-Glow (ohne Kontur-Artefakte), darunter E V E N T S in Neonorange zwischen zwei Laserlinien
+- Aktualisiert-Zeile kompakt und immer einzeilig (passt sich der Bildschirmbreite an)
+
 ## v1.10.0 – 24.11.2026
 - ★ Merkliste: Events mit dem Stern merken, Filter-Chip «★» zeigt nur Gemerkte
 - 🙋 «Ich bin dabei» markiert das Event zusätzlich mit DABEI ✓ (zurückziehbar)

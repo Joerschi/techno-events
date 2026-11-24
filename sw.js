@@ -1,7 +1,7 @@
 // Service Worker: macht Techno Events installierbar und offline nutzbar.
 // Daten (JSON) immer zuerst frisch aus dem Netz, sonst aus dem Speicher.
 // App-Dateien (HTML, Icons) aus dem Speicher, im Hintergrund aktualisiert.
-const CACHE = "techno-events-v1.10.0";
+const CACHE = "techno-events-v1.11.0";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {

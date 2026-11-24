@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.8.1 – 24.11.2026
+- Standort-Umschalter als 5. Knopf in der Sprungleiste (📍 Beckenried / 📍 Ortsname), eigene Zeile entfällt
+
 ## v1.8.0 – 24.11.2026 – «Aufgeräumt»
 - Kompakte Aktionsleiste: Kalender, Navi, Crew, Ticket als Symbol-Reihe, darunter «Ich bin dabei»
 - Cover-Bilder nur bei den Top 3, Wochenend-Liste kompakter

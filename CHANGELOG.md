@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.19.4 – 24.11.2026
+- Popups mittig und mit Abstand zur Android-Navigationsleiste; Fussbereich mit mehr Platz nach unten
+
 ## v1.19.3 – 24.11.2026
 - Fix: «Crew beitreten» unten hatte dieselbe Kennung wie der Knopf «Link kopieren» – öffnet jetzt zuverlässig das Crew-Fenster
 

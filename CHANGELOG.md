@@ -1,5 +1,12 @@
 # Changelog – Techno Events
 
+## v1.16.0 – 24.11.2026
+- Responsive-Durchgang: Seite war durch die Filter-Leiste breiter als das Handy – behoben
+- Filter: Tage/★/Sortierung und Fahrzeit-Chips passen immer in eine Zeile, Genre & Stadt brechen um statt seitlich zu scrollen
+- Schrift skaliert mit der Bildschirmbreite (etwas kleiner auf Handys)
+- Aktions-Knöpfe passen sich an; in schmalen Ticket-Karten 2×2 statt 4 nebeneinander
+- Event-Cover: Datum wird links nicht mehr abgeschnitten
+
 ## v1.15.1 – 24.11.2026
 - «START» oben ersetzt durch einen Neon-Standort-Pin; antippen wechselt den Startort, Pin hüpft während der Suche
 

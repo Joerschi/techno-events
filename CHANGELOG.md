@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.19.2 – 24.11.2026
+- Fix: «Crew beitreten» und «Datenschutz» springen nicht mehr nach oben; nach dem Schliessen bleibt die Position
+
 ## v1.19.1 – 24.11.2026
 - Zusagen-Server läuft unter https://howeverto.me/techno/ (Strato-SSL gilt nicht für Subdomains)
 

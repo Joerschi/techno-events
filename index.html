@@ -160,7 +160,7 @@
   .popup-fehler { color: var(--rot); font-size: .8rem; min-height: 1em; margin-top: 6px; }
   .ds-klein { color: var(--muted) !important; font-size: .78rem !important; }
   .fuss-links { display: block; margin-top: 12px; font: 700 .72rem "Space Mono", monospace; letter-spacing: .04em; }
-  .fuss-links a { color: var(--cyan); text-decoration: none; }
+  .fuss-links button { padding: 4px 2px; background: none; border: 0; color: var(--cyan); font: inherit; letter-spacing: inherit; cursor: pointer; }
   .dabei-zeile .btn.dabei { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .dabei-zeile .weg { flex: none; width: 48px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line); color: var(--muted); font-size: 1rem; cursor: pointer; }
   .aus .stern.mini { width: 44px; height: auto; border-radius: 0; padding: 6px; }
@@ -469,7 +469,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.19.1<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><a href="#" id="crew-link">👥 Crew beitreten</a> · <a href="#" id="ds-link">🔒 Datenschutz</a></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.19.2<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-link">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -699,7 +699,8 @@ function popup(titel, inhalt) {
   const hg = el("div", "popup-hg");
   const box = el("div", "popup");
   const zu = el("button", "popup-zu", "✕"); zu.setAttribute("aria-label", "Schliessen");
-  const weg = () => hg.remove();
+  const y = window.scrollY;                      // Position merken – nach dem Schliessen genau dorthin zurück
+  const weg = () => { hg.remove(); window.scrollTo(0, y); };
   zu.onclick = weg; hg.onclick = (e) => { if (e.target === hg) weg(); };
   box.append(zu, el("h3", "", titel), inhalt);
   hg.append(box); document.body.append(hg);
@@ -738,7 +739,6 @@ function crewDialog(ev) {
   ds.onclick = () => { schliessen(); datenschutzZeigen(); };
   f.append(ds);
   schliessen = popup("👥 Deine Crew", f);
-  setTimeout(() => (crew.name ? c : n).focus(), 50);
 }
 function datenschutzZeigen() {
   const f = el("div", "ds");
@@ -1322,8 +1322,8 @@ async function start() {
   document.getElementById("we-datum").textContent = daten.wochenende || "";
   ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen();
 }
-document.getElementById("crew-link").onclick = (e) => { e.preventDefault(); crewDialog(null); };
-document.getElementById("ds-link").onclick = (e) => { e.preventDefault(); datenschutzZeigen(); };
+document.getElementById("crew-link").onclick = () => crewDialog(null);
+document.getElementById("ds-link").onclick = () => datenschutzZeigen();
 crewFussZeigen(); ichBerechnen();
 start().then(() => {
   // Wer letztes Mal «Mein Standort» gewählt hat, startet wieder damit (ohne Meldung)

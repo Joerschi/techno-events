@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.20.5 – 24.11.2026
+- Teilen-Texte und «Link kopieren» nutzen den kurzen Link https://howeverto.me/techno statt der GitHub-Adresse
+
 ## v1.20.4 – 24.11.2026
 - Alle Knöpfe (Filter, Region, Leiste, Aktionen) in klarer, fetter Schrift (Inter) statt Pixel-Schrift – deutlich besser lesbar
 - Umkreis-Knöpfe kürzer: «10 km · 25 km · 50 km · 100 km · Alle»

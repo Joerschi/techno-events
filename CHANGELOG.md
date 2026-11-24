@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.24.0 – 25.11.2026
+- ❓ Kurzanleitung in der App: Favoriten, Filter, Standort & Region, Event-Karte, Crew, Aktualisieren, Installation (Android & iPhone)
+- 👋 Beim ersten Öffnen ein Hinweis «Neu hier?» mit Link zur Anleitung; jederzeit unten über «❓ Anleitung»
+
 ## v1.23.0 – 24.11.2026
 - ✨ «Neue Crew gründen»: App erzeugt einen zufälligen, nicht erratbaren Crew-Code (z. B. 7K3Q-X9TP)
 - 📨 «Freunde einladen»: WhatsApp-Nachricht mit Einladungslink – antippen, Spitzname eingeben, drin

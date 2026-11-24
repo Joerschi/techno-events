@@ -184,6 +184,20 @@
   .popup-link { display: block; width: 100%; margin-top: 8px; padding: 8px; background: none; border: 0; color: var(--cyan); font: 700 .8rem "Space Mono", monospace; cursor: pointer; }
   .popup-neu { color: var(--gelb) !important; }
   .popup .popup-einladen { display: flex; width: 100%; margin-top: 10px; min-height: 44px; flex-direction: row; gap: 8px; box-sizing: border-box; }
+  .willkommen { display: flex; align-items: center; gap: 8px; margin: 18px 0 0; padding: 10px 10px 10px 14px; background: #0c0705; border: 1px solid var(--cyan); font-size: .9rem; color: #f3e9df; }
+  .willkommen[hidden] { display: none; }
+  .willkommen span { flex: 1; min-width: 0; }
+  .willkommen button { font: 700 .8rem Inter, sans-serif; padding: 8px 10px; border: 1px solid var(--cyan); background: var(--cyan); color: #000; cursor: pointer; }
+  .willkommen .weg { background: none; color: var(--muted); border-color: var(--line); width: 36px; padding: 8px 0; }
+  .guide details { border-top: 1px solid var(--line); }
+  .guide details:last-of-type { border-bottom: 1px solid var(--line); }
+  .guide summary { list-style: none; cursor: pointer; padding: 12px 2px; font: 700 .95rem Inter, sans-serif; color: #fff; display: flex; gap: 10px; align-items: center; }
+  .guide summary::-webkit-details-marker { display: none; }
+  .guide summary::after { content: "▾"; margin-left: auto; color: var(--orange); transition: transform .2s; }
+  .guide details[open] summary::after { transform: rotate(180deg); }
+  .guide ul { margin: 0 0 12px; padding-left: 20px; }
+  .guide li { margin: 0 0 6px; font-size: .88rem; line-height: 1.45; color: #e6dcd2; }
+  .guide li b { color: #fff; }
   .popup-fehler { color: var(--rot); font-size: .8rem; min-height: 1em; margin-top: 6px; }
   .ds-klein { color: var(--muted) !important; font-size: .78rem !important; }
   .fuss-links { display: block; margin-top: 12px; font: 700 .72rem "Space Mono", monospace; letter-spacing: .04em; }
@@ -478,6 +492,7 @@
 
     <div class="standort-hilfe" id="standort-hilfe" hidden>Standort freigeben: <b>Einstellungen → Apps → (Chrome bzw. Techno Events) → Berechtigungen → Standort → Erlauben</b>. In Chrome zusätzlich: Schloss-Symbol neben der Adresse → Berechtigungen → Standort.</div>
 
+    <div class="willkommen" id="willkommen" hidden><span>👋 <b>Neu hier?</b> Die App in 1 Minute erklärt.</span><button type="button" id="willkommen-los">Anleitung</button><button type="button" class="weg" id="willkommen-weg" aria-label="Ausblenden">✕</button></div>
     <div class="label" id="tickets"><b>// Meine Favoriten</b><small id="t-anzahl"></small></div>
     <div id="ticket-liste"></div>
 
@@ -503,7 +518,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.23.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.24.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -819,6 +834,53 @@ function datenschutzZeigen() {
   for (const [t, x] of punkte) { const p = el("p", ""); p.append(el("b", "", t + ": "), document.createTextNode(x)); f.append(p); }
   f.append(el("p", "ds-klein", "Fragen? howeverto.me"));
   popup("🔒 Datenschutz", f);
+}
+// ---- Kurzanleitung ----
+function guideZeigen() {
+  const f = el("div", "guide");
+  f.append(el("p", "", "Alle Techno-Events fürs Wochenende – mit Fahrzeit, Tickets und deiner Crew. So geht's:"));
+  const teile = [
+    ["⭐ Favoriten", [
+      ["Stern ☆", "bei einem Event antippen – es erscheint ganz oben unter «Meine Favoriten» mit Countdown."],
+      ["Nochmals tippen", "nimmt es wieder raus. Gespeichert nur auf deinem Handy."],
+      ["Vorbei?", "Erlebte Events landen unter «Schon erlebt»."]]],
+    ["🔎 Filter", [
+      ["Tag", "Alle · Fr · Sa · So – und ★ zeigt nur deine Favoriten."],
+      ["Umkreis", "10 · 25 · 50 · 100 km Luftlinie ab deinem Standort."],
+      ["Genre & Stadt", "aufklappen und Sound oder Stadt wählen."],
+      ["↕ Fahrt / Start", "sortiert nach Fahrzeit oder Startzeit."]]],
+    ["📍 Standort & Region", [
+      ["Pin oben", "oder 📍 in der Leiste: Fahrzeiten ab deinem Standort statt ab Beckenried bzw. München."],
+      ["Region", "🇨🇭 Schweiz oder 🇩🇪 München – wird beim Öffnen automatisch nach Standort gewählt."]]],
+    ["🎟 Die Event-Karte", [
+      ["Kalender", "trägt das Event mit allen Infos in deinen Kalender ein."],
+      ["Navi", "öffnet die Route in Google Maps."],
+      ["Crew", "teilt das Event per WhatsApp – mit Link direkt zur Karte."],
+      ["Farbbalken links", "grün = ÖV hin & zurück · orange = zurück nur Morgenzug · grau = besser Auto."]]],
+    ["👥 Crew & Zusagen", [
+      ["Crew gründen", "unten auf «👥 Crew» → «Neue Crew gründen» → Freunde per WhatsApp einladen."],
+      ["Beitreten", "Einladungslink antippen, Spitzname eingeben – fertig."],
+      ["🙋 Ich bin dabei", "deine Crew sieht beim Event «🔥 3 dabei: …». Mit ✕ ziehst du zurück."]]],
+    ["⟳ Aktualisieren", [
+      ["Nach unten ziehen", "lädt die neuesten Events – und eine neue App-Version, falls es eine gibt."],
+      ["Jeden Donnerstag", "erscheint die neue Wochenend-Ausgabe."]]],
+    ["📲 Als App aufs Handy", [
+      ["Android", "in Chrome öffnen → Menü ⋮ → «App installieren» bzw. «Zum Startbildschirm hinzufügen»."],
+      ["iPhone", "in Safari öffnen → Teilen-Symbol (Quadrat mit Pfeil) → «Zum Home-Bildschirm». Wichtig: So bleiben Favoriten und Crew sicher gespeichert."]]]
+  ];
+  for (const [titel, punkte] of teile) {
+    const d = el("details", "");
+    d.append(el("summary", "", titel));
+    const ul = el("ul", "");
+    for (const [b, t] of punkte) { const li = el("li", ""); li.append(el("b", "", b + " "), document.createTextNode(t)); ul.append(li); }
+    d.append(ul); f.append(d);
+  }
+  const ds = el("button", "popup-link", "🔒 Datenschutz – was wird gespeichert?");
+  let zu; ds.onclick = () => { zu(); datenschutzZeigen(); };
+  f.append(ds);
+  zu = popup("❓ So funktioniert's", f);
+  try { localStorage.setItem("te-guide", "1"); } catch (e) {}
+  const w = document.getElementById("willkommen"); if (w) w.hidden = true;
 }
 function crewFussZeigen() {
   const a = document.getElementById("crew-fuss");
@@ -1426,6 +1488,10 @@ async function start() {
 }
 document.getElementById("crew-fuss").onclick = () => crewDialog(null);
 document.getElementById("ds-link").onclick = () => datenschutzZeigen();
+document.getElementById("guide-link").onclick = () => guideZeigen();
+document.getElementById("willkommen-los").onclick = () => guideZeigen();
+document.getElementById("willkommen-weg").onclick = () => { document.getElementById("willkommen").hidden = true; try { localStorage.setItem("te-guide", "1"); } catch (e) {} };
+try { if (!localStorage.getItem("te-guide")) document.getElementById("willkommen").hidden = false; } catch (e) {}
 crewFussZeigen(); ichBerechnen();
 // Geteilter Link (?e=<event>): zur Karte springen und kurz aufleuchten lassen
 // Einladungslink (?crew=CODE): Beitreten anbieten

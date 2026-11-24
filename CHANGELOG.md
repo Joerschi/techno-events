@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.18.1 – 24.11.2026
+- Fix: Equalizer-Balken im Event-Cover wurden teilweise nicht gezeichnet
+
 ## v1.18.0 – 24.11.2026
 - ★ «Deine Tickets» heisst jetzt «Meine Favoriten»: jeder sieht nur seine eigenen ★-Events (nur auf dem Handy gespeichert)
 - Favoriten behalten ihre Daten auch nach dem Wochenende und beim Regionwechsel; Countdown und «Schon erlebt» wie bisher

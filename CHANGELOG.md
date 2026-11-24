@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.13.1 – 24.11.2026
+- Boxen exakt bündig mit den Aussenkanten der Inhalte darunter
+
 ## v1.13.0 – 24.11.2026
 - Aktualisiert-Zeile sitzt jetzt direkt unter den Plattenspielern zwischen den Boxen, kleiner und kompakt
 

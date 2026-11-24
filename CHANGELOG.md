@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.23.0 – 24.11.2026
+- ✨ «Neue Crew gründen»: App erzeugt einen zufälligen, nicht erratbaren Crew-Code (z. B. 7K3Q-X9TP)
+- 📨 «Freunde einladen»: WhatsApp-Nachricht mit Einladungslink – antippen, Spitzname eingeben, drin
+
 ## v1.22.0 – 24.11.2026
 - 🌐 Eigene Adresse: https://techno.howeverto.me (GitHub Pages mit eigener Domain, SSL von GitHub)
 - Teilen-Links zeigen direkt auf techno.howeverto.me/?e=… – keine fremde Adresse mehr sichtbar

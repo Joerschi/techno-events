@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.6.1 – 24.11.2026
+- «Als App installieren» erscheint nicht mehr in der Android-App und nicht in der bereits installierten App
+
 ## v1.6.0 – 24.11.2026
 - Leise Sounds, im Browser erzeugt: Hi-Hat bei Knöpfen, Kick-Drum bei «Let's go», «Ich bin dabei» und Kalender, Plattenkratzer beim Aktualisieren
 - Sound-Schalter 🔊/🔇 oben rechts neben «128 BPM» (wird gemerkt)

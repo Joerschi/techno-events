@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.5.0 – 24.11.2026
+- Nach unten ziehen zum Aktualisieren – mit drehender Neon-Schallplatte als Ladeanzeige (auch in der Android-App)
+
 ## v1.4.1 – 24.11.2026
 - Hinweise (Toasts) kleiner, über der Navigationsleiste, per Tipp schliessbar
 - Hilfe-Text, wenn der Standort blockiert ist

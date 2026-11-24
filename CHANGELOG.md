@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.21.1 – 24.11.2026
+- Wer über einen geteilten Link zum ersten Mal kommt, wird nicht sofort nach dem Standort gefragt (erst beim Tipp auf 📍); in der eigenen App und bei erlaubtem Standort weiterhin automatisch
+
 ## v1.21.0 – 24.11.2026
 - Teilen: aufgeräumte Nachricht (Eventname fett, keine langen Ticket-Links) mit einem einzigen kurzen Link am Ende
 - Event-Link (howeverto.me/techno?e=…): öffnet die App, springt direkt zum Event und lässt es aufleuchten – auch über Regionen hinweg

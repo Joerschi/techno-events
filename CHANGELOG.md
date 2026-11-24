@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.20.3 – 24.11.2026
+- Fix: Standort-Knopf in der Leiste war bei aktivem GPS unlesbar (schwarz auf dunkel) – jetzt cyan
+- Filter-Knopf mit Lupe 🔎
+
 ## v1.20.2 – 24.11.2026
 - Sprungleiste: «Top 3» ersetzt durch «🎛 Filter»; «Weekend» springt direkt zur Event-Liste
 - Sprungleiste, Filter und Region ohne Leucht-Nebel, auf solidem Hintergrund – gut lesbar

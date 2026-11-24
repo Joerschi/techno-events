@@ -156,6 +156,30 @@
   .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); width: max-content; max-width: 90vw; text-align: center; background: var(--acid); box-shadow: var(--glow-g); color: #000; font: 700 .9rem "Space Mono", monospace; padding: 12px 16px; z-index: 10; display: none; }
 
 
+
+  /* ---------- Logo + DJ-Pult ---------- */
+  .kopf { display: flex; align-items: center; gap: 12px; margin: 6px 0 4px; }
+  .kopf h1 { margin: 0; }
+  .logo { width: clamp(58px, 17vw, 76px); height: auto; flex: 0 0 auto; filter: drop-shadow(0 0 6px rgba(255,106,0,.55)) drop-shadow(0 0 14px rgba(255,16,240,.35)); }
+  .logo-platte { transform-origin: 50px 50px; animation: dreh 3.2s linear infinite; }
+  .logo-eq rect { transform-box: fill-box; transform-origin: bottom; animation: logoeq .46875s ease-in-out infinite alternate; }
+  .logo-eq rect:nth-child(2) { animation-delay: -.2s; } .logo-eq rect:nth-child(3) { animation-delay: -.35s; } .logo-eq rect:nth-child(4) { animation-delay: -.1s; }
+  @keyframes logoeq { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+  @keyframes dreh { to { transform: rotate(360deg); } }
+  .booth { margin: 10px 0 6px; }
+  .booth svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 4px rgba(0,229,255,.35)) drop-shadow(0 0 10px rgba(255,16,240,.2)); }
+  .booth .platte { animation: dreh 1.8s linear infinite; }
+  .booth .woofer { animation: bass .46875s ease-out infinite; }
+  @keyframes bass { 0% { transform: scale(1.08); } 35% { transform: scale(.97); } 100% { transform: scale(1); } }
+  .booth .led-c, .booth .led-g { animation: blink .9375s steps(1) infinite; }
+  .booth .vu rect { animation: vu .46875s steps(1) infinite; }
+  .booth .vu rect:nth-child(1) { animation-delay: -.05s; } .booth .vu rect:nth-child(2) { animation-delay: -.1s; } .booth .vu rect:nth-child(3) { animation-delay: -.2s; } .booth .vu rect:nth-child(4) { animation-delay: -.3s; } .booth .vu rect:nth-child(5) { animation-delay: -.4s; }
+  @keyframes vu { 0%, 60% { opacity: 1; } 61%, 100% { opacity: .15; } }
+  .booth .xfader { animation: xf 4s ease-in-out infinite alternate; }
+  @keyframes xf { from { transform: translateX(-7px); } to { transform: translateX(7px); } }
+  .booth .fader-l { animation: fl 3s ease-in-out infinite alternate; } .booth .fader-r { animation: fl 3.6s ease-in-out infinite alternate-reverse; }
+  @keyframes fl { from { transform: translateY(-5px); } to { transform: translateY(6px); } }
+
   /* ---------- Party-Extras ---------- */
   /* 1) Strobo am Event-Tag */
   .hero.strobo::before { content: ""; position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; animation: strobo 3.2s steps(1) infinite; z-index: 1; }
@@ -203,7 +227,77 @@
 
   <div class="wrap">
     <div class="meta"><span>START <b>BECKENRIED</b></span><span class="bpm">128 BPM</span></div>
+    <div class="kopf">
+    <svg class="logo" viewBox="0 0 100 100" aria-label="Techno Events Logo">
+      <defs>
+        <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".35" stop-color="#00e5ff"/><stop offset=".7" stop-color="#ff10f0"/><stop offset="1" stop-color="#ff6a00"/></linearGradient>
+      </defs>
+      <g class="logo-platte">
+        <circle cx="50" cy="50" r="46" fill="#0b0b0e" stroke="url(#ring)" stroke-width="3.5"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#1c1c22" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#1c1c22" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="26" fill="none" stroke="#1c1c22" stroke-width="1.2"/>
+        <path d="M18 34 A36 36 0 0 1 34 18" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="18" fill="#ff6a00"/>
+      </g>
+      <g class="logo-eq">
+        <rect x="40" y="46" width="3.4" height="9" fill="#050505"/><rect x="45" y="40" width="3.4" height="15" fill="#050505"/>
+        <rect x="50" y="43" width="3.4" height="12" fill="#050505"/><rect x="55" y="48" width="3.4" height="7" fill="#050505"/>
+      </g>
+      <circle cx="50" cy="59" r="1.6" fill="#050505"/>
+    </svg>
     <h1 data-text="Techno Events">Techno Events</h1>
+  </div>
+<div class="booth" aria-hidden="true">
+    <svg viewBox="0 0 360 132">
+      <g class="box" transform="translate(4 18)">
+        <rect x="0" y="0" width="58" height="104" rx="6" fill="#0b0b0e" stroke="#00e5ff" stroke-width="1.6"/>
+        <circle cx="29" cy="22" r="8" fill="#111" stroke="#00e5ff" stroke-width="1.2"/><circle cx="29" cy="22" r="3" fill="#00e5ff" class="led-c"/>
+        <g class="woofer" style="transform-origin:29px 68px"><circle cx="29" cy="68" r="22" fill="#111" stroke="#00e5ff" stroke-width="1.8"/>
+        <circle cx="29" cy="68" r="14" fill="#16161c" stroke="#ff10f0" stroke-width="1.2"/><circle cx="29" cy="68" r="5" fill="#ff10f0"/></g>
+      </g>
+      <g class="box" transform="translate(298 18)">
+        <rect x="0" y="0" width="58" height="104" rx="6" fill="#0b0b0e" stroke="#00e5ff" stroke-width="1.6"/>
+        <circle cx="29" cy="22" r="8" fill="#111" stroke="#00e5ff" stroke-width="1.2"/><circle cx="29" cy="22" r="3" fill="#00e5ff" class="led-c"/>
+        <g class="woofer" style="transform-origin:29px 68px"><circle cx="29" cy="68" r="22" fill="#111" stroke="#00e5ff" stroke-width="1.8"/>
+        <circle cx="29" cy="68" r="14" fill="#16161c" stroke="#ff10f0" stroke-width="1.2"/><circle cx="29" cy="68" r="5" fill="#ff10f0"/></g>
+      </g>
+      <rect x="66" y="104" width="228" height="10" rx="2" fill="#16161c" stroke="#2c2c36" stroke-width="1"/>
+      <g class="deck">
+        <rect x="74" y="40" width="72" height="66" rx="5" fill="#101014" stroke="#39ff14" stroke-width="1.4"/>
+        <g class="platte" style="transform-origin:106px 73px">
+          <circle cx="106" cy="73" r="27" fill="#060607" stroke="#2a2a33" stroke-width="1"/>
+          <circle cx="106" cy="73" r="21" fill="none" stroke="#1d1d24" stroke-width="1"/><circle cx="106" cy="73" r="15" fill="none" stroke="#1d1d24" stroke-width="1"/>
+          <path d="M84 66 A23 23 0 0 1 98 52" stroke="rgba(255,255,255,.3)" stroke-width="1.5" fill="none"/>
+          <circle cx="106" cy="73" r="8" fill="#ff10f0"/><circle cx="106" cy="73" r="1.4" fill="#000"/>
+        </g>
+        <path d="M138 48 L138 78 L122 92" stroke="#cfcfd6" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="138" cy="48" r="3.5" fill="#2a2a33" stroke="#39ff14" stroke-width="1"/>
+        <rect x="134" y="94" width="8" height="3" fill="#39ff14" class="led-g"/>
+      </g>
+      <g class="mixer">
+        <rect x="152" y="40" width="56" height="66" rx="5" fill="#101014" stroke="#ff6a00" stroke-width="1.4"/>
+        <g fill="#1d1d24" stroke="#f4ff00" stroke-width="1"><circle cx="166" cy="52" r="4"/><circle cx="180" cy="52" r="4"/><circle cx="194" cy="52" r="4"/>
+        <circle cx="166" cy="64" r="4"/><circle cx="180" cy="64" r="4"/><circle cx="194" cy="64" r="4"/></g>
+        <rect x="164" y="72" width="4" height="22" fill="#000" stroke="#333" stroke-width=".8"/><rect x="192" y="72" width="4" height="22" fill="#000" stroke="#333" stroke-width=".8"/>
+        <rect class="fader-l" x="161" y="78" width="10" height="5" rx="1" fill="#00e5ff"/><rect class="fader-r" x="189" y="84" width="10" height="5" rx="1" fill="#ff10f0"/>
+        <g class="vu"><rect x="177" y="72" width="6" height="3" fill="#39ff14"/><rect x="177" y="77" width="6" height="3" fill="#39ff14"/><rect x="177" y="82" width="6" height="3" fill="#f4ff00"/><rect x="177" y="87" width="6" height="3" fill="#ff6a00"/><rect x="177" y="92" width="6" height="3" fill="#ff1e3c"/></g>
+        <rect x="168" y="98" width="24" height="3" fill="#000"/><rect class="xfader" x="176" y="96.5" width="8" height="6" rx="1" fill="#f4ff00"/>
+      </g>
+      <g class="deck">
+        <rect x="214" y="40" width="72" height="66" rx="5" fill="#101014" stroke="#39ff14" stroke-width="1.4"/>
+        <g class="platte" style="transform-origin:246px 73px">
+          <circle cx="246" cy="73" r="27" fill="#060607" stroke="#2a2a33" stroke-width="1"/>
+          <circle cx="246" cy="73" r="21" fill="none" stroke="#1d1d24" stroke-width="1"/><circle cx="246" cy="73" r="15" fill="none" stroke="#1d1d24" stroke-width="1"/>
+          <path d="M224 66 A23 23 0 0 1 238 52" stroke="rgba(255,255,255,.3)" stroke-width="1.5" fill="none"/>
+          <circle cx="246" cy="73" r="8" fill="#ff6a00"/><circle cx="246" cy="73" r="1.4" fill="#000"/>
+        </g>
+        <path d="M278 48 L278 78 L262 92" stroke="#cfcfd6" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="278" cy="48" r="3.5" fill="#2a2a33" stroke="#39ff14" stroke-width="1"/>
+        <rect x="274" y="94" width="8" height="3" fill="#39ff14" class="led-g"/>
+      </g>
+    </svg>
+  </div>
     <div class="stand" id="stand">Lade …</div>
 
     <div class="tonight" id="tonight" hidden></div>
@@ -247,7 +341,7 @@
       <button class="btn acid crew" id="crew-link">🔗 Techno Events an die Crew – Link kopieren</button>
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
-      <span id="version" style="color:var(--cyan)">Techno Events v1.1.0</span><br>
+      <span id="version" style="color:var(--cyan)">Techno Events v1.2.0</span><br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
     </footer>
   </div>

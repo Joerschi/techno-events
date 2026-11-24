@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.12.0 – 24.11.2026
+- Schriftzug mittig zwischen zwei drehenden Platten (rechte Platte dreht gegenläufig)
+- Aktualisiert-Zeile wieder mit vollem Text; Schrift passt sich automatisch an, damit alles auf eine Zeile passt
+
 ## v1.11.0 – 24.11.2026
 - Neuer Schriftzug: TECHNO weiss mit Neon-Glow (ohne Kontur-Artefakte), darunter E V E N T S in Neonorange zwischen zwei Laserlinien
 - Aktualisiert-Zeile kompakt und immer einzeilig (passt sich der Bildschirmbreite an)

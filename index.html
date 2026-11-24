@@ -61,7 +61,7 @@
   h1 .t2::before, h1 .t2::after { content: ""; flex: 1; height: 2px; min-width: 14px; background: linear-gradient(90deg, transparent, var(--orange)); box-shadow: 0 0 8px var(--orange); }
   h1 .t2::after { background: linear-gradient(90deg, var(--laser), transparent); box-shadow: 0 0 8px var(--laser); margin-left: -.42em; }
   @keyframes glitch { 0%,88%,100% { transform: translate(0,0); } 90% { transform: translate(4px,-2px); } 94% { transform: translate(-4px,2px); } }
-  .stand { font: 400 clamp(.62rem, 3vw, .85rem) "Space Mono", monospace; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .stand { font: 400 14px "Space Mono", monospace; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* ---------- Hero-Countdown ---------- */
   .hero { position: relative; margin: 18px 0 6px; padding: 18px; border: 1px solid var(--laser); box-shadow: var(--glow-p), inset 0 0 30px rgba(255,16,240,.15); background:
@@ -170,9 +170,12 @@
 
 
   /* ---------- Logo + DJ-Pult ---------- */
-  .kopf { display: flex; align-items: center; gap: 12px; margin: 6px 0 4px; }
+  .kopf { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 16px); margin: 6px 0 4px; }
+  .kopf h1 { text-align: center; }
+  .kopf h1 .t1 { font-size: clamp(1.9rem, 9.4vw, 3rem); }
+  .logo.rechts .logo-platte { animation-direction: reverse; }
   .kopf h1 { margin: 0; }
-  .logo { width: clamp(58px, 17vw, 76px); height: auto; flex: 0 0 auto; filter: drop-shadow(0 0 6px rgba(255,106,0,.55)) drop-shadow(0 0 14px rgba(255,16,240,.35)); }
+  .logo { width: clamp(48px, 14vw, 70px); height: auto; flex: 0 0 auto; filter: drop-shadow(0 0 6px rgba(255,106,0,.55)) drop-shadow(0 0 14px rgba(255,16,240,.35)); }
   .logo-platte { transform-origin: 50px 50px; animation: dreh 3.2s linear infinite; }
   .logo-eq rect { transform-box: fill-box; transform-origin: bottom; animation: logoeq .46875s ease-in-out infinite alternate; }
   .logo-eq rect:nth-child(2) { animation-delay: -.2s; } .logo-eq rect:nth-child(3) { animation-delay: -.35s; } .logo-eq rect:nth-child(4) { animation-delay: -.1s; }
@@ -308,6 +311,22 @@
       <circle cx="50" cy="59" r="1.6" fill="#050505"/>
     </svg>
     <h1 aria-label="Techno Events"><span class="t1" data-text="Techno">Techno</span><span class="t2">Events</span></h1>
+    <svg class="logo rechts" aria-hidden="true" viewBox="0 0 100 100">
+      
+      <g class="logo-platte">
+        <circle cx="50" cy="50" r="46" fill="#0b0b0e" stroke="url(#ring)" stroke-width="3.5"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#1c1c22" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#1c1c22" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="26" fill="none" stroke="#1c1c22" stroke-width="1.2"/>
+        <path d="M18 34 A36 36 0 0 1 34 18" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="18" fill="#ff6a00"/>
+      </g>
+      <g class="logo-eq">
+        <rect x="40" y="46" width="3.4" height="9" fill="#050505"/><rect x="45" y="40" width="3.4" height="15" fill="#050505"/>
+        <rect x="50" y="43" width="3.4" height="12" fill="#050505"/><rect x="55" y="48" width="3.4" height="7" fill="#050505"/>
+      </g>
+      <circle cx="50" cy="59" r="1.6" fill="#050505"/>
+    </svg>
   </div>
 <div class="booth" aria-hidden="true">
     <svg viewBox="0 0 360 132">
@@ -405,7 +424,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.11.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.12.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -766,6 +785,18 @@ function standortAnzeigen(text) {
   document.getElementById("standort-label").textContent = text === "wird gesucht …" ? "Sucht…" : (text || (standort.aktiv ? "Standort" : "Beckenried"));
   b.title = standort.aktiv ? "Zurück zu Beckenried" : "Fahrzeiten ab meinem Standort";
 }
+// Stand-Zeile: Schrift so weit verkleinern, bis alles auf eine Zeile passt
+function standEinpassen() {
+  const z = document.getElementById("stand"); if (!z) return;
+  let px = 14; z.style.fontSize = px + "px";
+  while (z.scrollWidth > z.clientWidth && px > 9) { px -= .5; z.style.fontSize = px + "px"; }
+  if (z.scrollWidth > z.clientWidth) {   // sehr schmales Handy: Jahr weglassen, dann nochmals einpassen
+    z.textContent = z.textContent.replace(/\.20\d\d/, ".");
+    px = 12; z.style.fontSize = px + "px";
+    while (z.scrollWidth > z.clientWidth && px > 8.5) { px -= .5; z.style.fontSize = px + "px"; }
+  }
+}
+window.addEventListener("resize", () => requestAnimationFrame(standEinpassen));
 function allesNeuZeichnen() { ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen(); }
 let stillerStart = false;
 document.getElementById("standort-btn").onclick = (e) => {
@@ -1009,8 +1040,9 @@ async function start() {
   const [t, d] = await Promise.all([laden("tickets.json"), laden("events.json")]);
   tickets = Array.isArray(t) ? t : [];
   if (d && typeof d === "object") daten = Object.assign(daten, d);
+  requestAnimationFrame(standEinpassen);
   document.getElementById("stand").textContent = daten.stand
-    ? `⟳ ${String(daten.stand).replace(/\.20\d\d/, ".")} · Weekend ${String(daten.wochenende || "").replace(/\.?\s*(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)/, m => "." + (["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"].indexOf(m.replace(/[.\s]/g, "")) + 1) + ".")}`
+    ? `⟳ Aktualisiert ${daten.stand}${daten.wochenende ? " · Weekend " + daten.wochenende : ""}`
     : "";
   document.getElementById("we-datum").textContent = daten.wochenende || "";
   ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen();

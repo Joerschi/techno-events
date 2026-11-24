@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.6.0 – 24.11.2026
+- Leise Sounds, im Browser erzeugt: Hi-Hat bei Knöpfen, Kick-Drum bei «Let's go», «Ich bin dabei» und Kalender, Plattenkratzer beim Aktualisieren
+- Sound-Schalter 🔊/🔇 oben rechts neben «128 BPM» (wird gemerkt)
+
 ## v1.5.0 – 24.11.2026
 - Nach unten ziehen zum Aktualisieren – mit drehender Neon-Schallplatte als Ladeanzeige (auch in der Android-App)
 

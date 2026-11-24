@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.13.0 – 24.11.2026
+- Aktualisiert-Zeile sitzt jetzt direkt unter den Plattenspielern zwischen den Boxen, kleiner und kompakt
+
 ## v1.12.0 – 24.11.2026
 - Schriftzug mittig zwischen zwei drehenden Platten (rechte Platte dreht gegenläufig)
 - Aktualisiert-Zeile wieder mit vollem Text; Schrift passt sich automatisch an, damit alles auf eine Zeile passt

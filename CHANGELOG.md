@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.7.0 – 24.11.2026
+- Oben steht jetzt der echte Startort: «START BECKENRIED» oder mit GPS z. B. «START KRIENS» (Ortsname via OpenStreetMap)
+- «Mein Standort» bleibt beim nächsten Öffnen aktiv
+- Neue Abschlusszeile: «Made by Ravers – for Ravers 🎧» auf eigener Zeile
+
 ## v1.6.1 – 24.11.2026
 - «Als App installieren» erscheint nicht mehr in der Android-App und nicht in der bereits installierten App
 

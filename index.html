@@ -453,7 +453,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.18.1<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.18.2<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -793,8 +793,9 @@ const REGIONEN = {
   ch:  { name: "Schweiz", flagge: "🇨🇭", datei: "events.json",     basis: "Beckenried", lat: 46.966857, lon: 8.475245 },
   muc: { name: "München", flagge: "🇩🇪", datei: "events-muc.json", basis: "München",    lat: 48.1402,   lon: 11.5600 }
 };
+// Region folgt beim Start immer dem Standort; Umschalten von Hand gilt nur bis zum nächsten Öffnen
 let region = "ch", regionManuell = false;
-try { const r = localStorage.getItem("te-region"); if (REGIONEN[r]) { region = r; regionManuell = true; } } catch (e) {}
+try { localStorage.removeItem("te-region"); } catch (e) {}
 function basis() { return REGIONEN[region]; }
 function km(lat1, lon1, lat2, lon2) {   // Luftlinie (Haversine)
   const R = 6371, rad = x => x * Math.PI / 180;
@@ -813,7 +814,7 @@ function regionZeigen() {
   const box = document.getElementById("region"); box.innerHTML = "";
   for (const k of Object.keys(REGIONEN)) {
     const b = el("button", k === region ? "on" : "", `${REGIONEN[k].flagge} ${REGIONEN[k].name}`);
-    b.onclick = () => { if (k === region) return; try { localStorage.setItem("te-region", k); } catch (e) {} regionManuell = true; regionWechseln(k); };
+    b.onclick = () => { if (k === region) return; regionManuell = true; regionWechseln(k); };
     box.append(b);
   }
 }

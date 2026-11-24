@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.18.2 – 24.11.2026
+- Region (Schweiz/München) wird beim Öffnen immer nach Standort gewählt; Umschalten von Hand gilt nur bis zum nächsten Öffnen
+
 ## v1.18.1 – 24.11.2026
 - Fix: Equalizer-Balken im Event-Cover wurden teilweise nicht gezeichnet
 

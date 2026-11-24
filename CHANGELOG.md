@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.9.0 – 24.11.2026
+- Erste echte Wochenend-Ausgabe (27.–29. November): 9 Events in Zürich, Basel und Engelberg mit Fahrzeiten und ÖV
+- Ausblick: Schrotthagen, Verknipt Stadion, WinterDaydance, Klewen DayDance
+- Platzhaltertext entfernt – stattdessen «⟳ Aktualisiert …»
+- Fahrzeit-Filter startet bei ≤ 120′, damit auch Basel sichtbar ist
+
 ## v1.8.1 – 24.11.2026
 - Standort-Umschalter als 5. Knopf in der Sprungleiste (📍 Beckenried / 📍 Ortsname), eigene Zeile entfällt
 

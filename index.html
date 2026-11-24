@@ -349,7 +349,7 @@
       </g>
     </svg>
   </div>
-    <div class="stand" id="stand">Lade …</div>
+    <div class="stand" id="stand"></div>
 
     <div class="tonight" id="tonight" hidden></div>
 
@@ -395,7 +395,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.8.1<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.9.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -858,7 +858,7 @@ setInterval(tick, 1000);
 
 // ======================= WOCHENENDE =======================
 let daten = { events: [], top3: [], ausblick: [] };
-const filter = { tag: "Alle", zeit: 90, genre: "Alle", stadt: "Alle", sort: "zeit" };
+const filter = { tag: "Alle", zeit: 120, genre: "Alle", stadt: "Alle", sort: "zeit" };
 
 function reiseMin(ev) {
   const werte = (standort.aktiv ? [autoMin(ev)] : [ev.auto_min, ev.oev_min]).filter(v => typeof v === "number");
@@ -960,8 +960,8 @@ async function start() {
   tickets = Array.isArray(t) ? t : [];
   if (d && typeof d === "object") daten = Object.assign(daten, d);
   document.getElementById("stand").textContent = daten.stand
-    ? `Stand ${daten.stand}${daten.wochenende ? " · Wochenende " + daten.wochenende : ""}`
-    : "Erste Wochenend-Ausgabe folgt am Donnerstag";
+    ? `⟳ Aktualisiert ${daten.stand}${daten.wochenende ? " · Weekend " + daten.wochenende : ""}`
+    : "";
   document.getElementById("we-datum").textContent = daten.wochenende || "";
   ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen();
 }

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070403">
+<meta name="description" content="Alle Techno-Events der Schweiz fürs Wochenende – mit Fahrzeit, Tickets und Countdown.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Techno Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070403; --panel: #110a06; --panel2: #1a0f08; --blau: #1f5bff; --rot: #ff1e3c; --line: #3a2414; --text: #fff6ee; --muted: #b9ab9e;
+    --acid: #39ff14; --laser: #ff10f0; --uv: #ff6a00; --orange: #ff6a00; --gelb: #f4ff00; --cyan: #00f0ff; --grau: #5e5650;
+    --glow-g: 0 0 6px #39ff14, 0 0 18px rgba(57,255,20,.6);
+    --glow-p: 0 0 6px #ff10f0, 0 0 18px rgba(255,16,240,.6);
+    --glow-c: 0 0 6px #00f0ff, 0 0 18px rgba(0,240,255,.55);
+    --glow-y: 0 0 6px #f4ff00, 0 0 18px rgba(244,255,0,.55);
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 112.5%; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 10% -10%, rgba(255,106,0,.32), transparent 55%), radial-gradient(ellipse at 110% 30%, rgba(255,16,240,.18), transparent 50%), radial-gradient(ellipse at 50% 120%, rgba(0,240,255,.15), transparent 55%), var(--bg); background-attachment: fixed; color: var(--text); font-family: Inter, system-ui, sans-serif; overflow-x: hidden; }
+  a { color: inherit; }
+
+  /* ---------- Atmosphäre: Laser ---------- */
+  .laser { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .laser i { position: absolute; top: -20%; left: 50%; width: 3px; height: 140%; transform-origin: top center; opacity: .6; filter: blur(.6px); }
+  .laser i:nth-child(1) { background: linear-gradient(var(--acid), transparent 70%); box-shadow: 0 0 12px var(--acid); animation: sweep 7s ease-in-out infinite alternate; }
+  .laser i:nth-child(2) { background: linear-gradient(var(--laser), transparent 70%); box-shadow: 0 0 12px var(--laser); animation: sweep 9s ease-in-out infinite alternate-reverse; }
+  .laser i:nth-child(3) { background: linear-gradient(var(--orange), transparent 70%); box-shadow: 0 0 12px var(--orange); animation: sweep 11s ease-in-out infinite alternate; }
+  .laser i:nth-child(4) { left: 15%; background: linear-gradient(var(--cyan), transparent 60%); box-shadow: 0 0 12px var(--cyan); animation: sweep 13s ease-in-out infinite alternate-reverse; opacity: .4; }
+  .laser i:nth-child(5) { left: 85%; background: linear-gradient(var(--gelb), transparent 60%); box-shadow: 0 0 12px var(--gelb); animation: sweep 10s ease-in-out infinite alternate; opacity: .4; }
+  @keyframes sweep { from { transform: rotate(-38deg); } to { transform: rotate(38deg); } }
+  .noise { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: .07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .scan { position: fixed; inset: 0; pointer-events: none; z-index: 1; background: repeating-linear-gradient(transparent 0 3px, rgba(255,255,255,.025) 3px 4px); }
+
+  .wrap { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; padding: 18px 18px 90px; }
+
+  .ticker { position: relative; z-index: 2; border-top: 1px solid var(--acid); border-bottom: 1px solid var(--acid); box-shadow: var(--glow-g); overflow: hidden; white-space: nowrap; background: #000; }
+  .ticker span { display: inline-block; padding: 8px 0; font: 700 .85rem "Space Mono", monospace; letter-spacing: .12em; color: var(--acid); text-shadow: var(--glow-g); animation: lauf 26s linear infinite; }
+  @keyframes lauf { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .regenbogen { position: relative; z-index: 2; height: 3px; background: linear-gradient(90deg, #00e5ff, #1f5bff, #39ff14, #f4ff00, #ff7a00, #ff1e3c, #ff10f0, #00e5ff); background-size: 200% 100%; animation: regen 6s linear infinite; box-shadow: 0 0 12px rgba(255,255,255,.35); }
+  @keyframes regen { to { background-position: 200% 0; } }
+  .meta { display: flex; justify-content: space-between; font: 700 .85rem "Space Mono", monospace; color: var(--muted); letter-spacing: .1em; margin: 10px 0 4px; }
+  .meta b { color: var(--laser); text-shadow: var(--glow-p); }
+  .bpm::before { content: "●"; color: var(--laser); margin-right: 6px; animation: blink .4687s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  h1 { position: relative; z-index: 0; -webkit-text-stroke: 2px var(--orange); font: 900 clamp(2.4rem, 12vw, 3.4rem)/.92 Unbounded, sans-serif; text-shadow: 0 0 10px rgba(255,255,255,.5), 0 0 30px rgba(255,106,0,.85); text-transform: uppercase; letter-spacing: -.02em; margin: 6px 0 10px; }
+  h1::before, h1::after { content: attr(data-text); position: absolute; inset: 0; -webkit-text-stroke: 0; z-index: -1; }
+  h1::before { color: var(--laser); text-shadow: var(--glow-p); mix-blend-mode: screen; animation: glitch 2.6s infinite steps(1); clip-path: inset(0 0 55% 0); }
+  h1::after { color: var(--cyan); text-shadow: var(--glow-c); mix-blend-mode: screen; animation: glitch 3.1s infinite steps(1) reverse; clip-path: inset(50% 0 0 0); }
+  @keyframes glitch { 0%,88%,100% { transform: translate(0,0); } 90% { transform: translate(4px,-2px); } 94% { transform: translate(-4px,2px); } }
+  .stand { font: 400 .85rem "Space Mono", monospace; color: var(--muted); }
+
+  /* ---------- Hero-Countdown ---------- */
+  .hero { position: relative; margin: 18px 0 6px; padding: 18px; border: 1px solid var(--laser); box-shadow: var(--glow-p), inset 0 0 30px rgba(255,16,240,.15); background:
+    linear-gradient(135deg, rgba(255,16,240,.14), rgba(255,106,0,.16) 50%, rgba(0,240,255,.10)); overflow: hidden; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,16,240,.18), transparent); transform: translateX(-100%); animation: shine 4s ease-in-out infinite; pointer-events: none; }
+  @keyframes shine { 60%,100% { transform: translateX(100%); } }
+  .hero .k { font: 700 .85rem "Space Mono", monospace; letter-spacing: .14em; color: var(--laser); text-shadow: var(--glow-p); text-transform: uppercase; }
+  .hero .n { font: 900 1.5rem/1.05 Unbounded, sans-serif; text-transform: uppercase; margin: 8px 0 4px; }
+  .hero .o { color: #c9c9cf; }
+  .count { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+  .count div { background: rgba(0,0,0,.7); border: 1px solid rgba(244,255,0,.35); text-align: center; padding: 10px 4px; }
+  .count b { display: block; font: 900 1.7rem Unbounded, sans-serif; color: var(--gelb); text-shadow: 0 0 3px rgba(244,255,0,.55); font-variant-numeric: tabular-nums; }
+  .count span { font: 700 .8rem "Space Mono", monospace; color: var(--muted); letter-spacing: .1em; }
+
+  /* ---------- Navigation ---------- */
+  .nav { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 10px 0; margin: 10px 0 0; background: linear-gradient(var(--bg) 75%, transparent); }
+  .nav a { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font: 700 .72rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .02em; padding: 8px 2px; border: 1px solid var(--line); background: var(--panel); text-align: center; }
+  .nav a span { font-size: 1.15rem; line-height: 1; }
+  .nav a:nth-child(1) { border-color: var(--acid); color: var(--acid); box-shadow: var(--glow-g); }
+  .nav a:nth-child(2) { color: var(--laser); border-color: rgba(255,16,240,.5); } .nav a:nth-child(3) { color: var(--cyan); border-color: rgba(0,240,255,.5); } .nav a:nth-child(4) { color: var(--gelb); border-color: rgba(244,255,0,.45); }
+
+  .label { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font: 700 .9rem "Space Mono", monospace; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; margin: 30px 0 12px; scroll-margin-top: 64px; }
+  .label b { color: var(--text); }
+  .label small { font-size: .85rem; letter-spacing: .04em; color: var(--cyan); text-shadow: var(--glow-c); }
+  .label b { text-shadow: 0 0 10px rgba(255,106,0,.9); }
+
+  /* ---------- Tickets ---------- */
+  .ticket { position: relative; display: grid; grid-template-columns: 86px 1fr; margin-bottom: 16px; background: var(--panel2); border: 1px solid var(--acid); box-shadow: 0 0 14px rgba(57,255,20,.35); }
+  .ticket::before { content: ""; position: absolute; top: 0; bottom: 0; left: 86px; border-left: 2px dashed rgba(57,255,20,.45); }
+  .ticket .loch { position: absolute; left: 76px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); }
+  .ticket .loch.o { top: -12px; } .ticket .loch.u { bottom: -12px; }
+  .stub { padding: 16px 6px; text-align: center; background: linear-gradient(180deg, rgba(57,255,20,.16), rgba(255,106,0,.14)); }
+  .stub .t { font: 900 2.1rem/1 Unbounded, sans-serif; color: var(--acid); text-shadow: 0 0 3px rgba(57,255,20,.55); }
+  .stub .m { font: 700 .9rem "Space Mono", monospace; letter-spacing: .1em; margin-top: 4px; }
+  .stub .w { font: 400 .85rem "Space Mono", monospace; color: var(--muted); margin-top: 2px; }
+  .stub .bar { height: 30px; margin: 12px 8px 0; background: repeating-linear-gradient(90deg, var(--cyan) 0 2px, transparent 2px 4px, var(--cyan) 4px 5px, transparent 5px 8px); opacity: .8; filter: drop-shadow(0 0 4px var(--cyan)); }
+  .tbody { padding: 14px 14px 14px 18px; min-width: 0; }
+  .tbody .cd { display: inline-block; font: 700 .85rem "Space Mono", monospace; color: #000; background: var(--gelb); box-shadow: var(--glow-y); padding: 3px 8px; letter-spacing: .06em; }
+  .tbody .cd.bald { background: var(--laser); color: #fff; box-shadow: var(--glow-p); animation: puls 1.2s ease-in-out infinite; }
+  @keyframes puls { 50% { opacity: .55; } }
+  .tbody .tn { font: 900 1.2rem/1.1 Unbounded, sans-serif; text-transform: uppercase; margin: 8px 0 4px; overflow-wrap: anywhere; }
+  .tbody .to { color: #c9c9cf; }
+  .tbody .tl { font: 400 .95rem "Space Mono", monospace; margin: 8px 0; line-height: 1.45; }
+  .tbody .ta { font-size: .95rem; color: #c9c9cf; line-height: 1.5; }
+  .ticket.offen { border-style: dashed; border-color: var(--orange); box-shadow: 0 0 14px rgba(255,106,0,.35); }
+  .ticket.offen .stub { background: linear-gradient(180deg, rgba(255,106,0,.18), transparent); }
+  .ticket.offen .stub .t { color: var(--orange); text-shadow: 0 0 6px var(--orange), 0 0 18px rgba(255,106,0,.6); }
+  details.archiv { margin-top: 6px; border: 1px solid var(--line); background: var(--panel); }
+  details.archiv summary { cursor: pointer; padding: 12px 14px; font: 700 .9rem "Space Mono", monospace; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  details.archiv .zeile { padding: 10px 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
+  details.archiv .zeile div > span { display: block; color: var(--muted); font-family: "Space Mono", monospace; font-size: .9rem; }
+
+  /* ---------- Filter ---------- */
+  .filter { display: grid; gap: 10px; margin-bottom: 14px; }
+  .reihe { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+  .chip { flex: 0 0 auto; font: 700 .85rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .05em; padding: 9px 12px; border: 1px solid var(--line); color: var(--text); background: var(--panel); cursor: pointer; }
+  .chip.on { border-color: var(--acid); color: #000; background: var(--acid); box-shadow: var(--glow-g); }
+  .chip.klein { padding: 5px 9px; font-size: .8rem; cursor: default; }
+
+  /* ---------- Event-Karten ---------- */
+  .karte { position: relative; background: var(--panel); border: 1px solid var(--line); padding: 16px 16px 14px 20px; margin-bottom: 14px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); animation: rein .4s ease-out both; }
+  .karte::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--ampel, var(--grau)); box-shadow: 0 0 8px var(--ampel, transparent), 0 0 24px var(--ampel, transparent); }
+  .karte.top { border-color: var(--laser); box-shadow: inset 0 0 24px rgba(255,16,240,.12); padding-top: 18px; }
+  .karte .rang { position: absolute; right: 26px; top: 10px; font: 900 2.4rem Unbounded, sans-serif; color: transparent; -webkit-text-stroke: 1px var(--laser); filter: drop-shadow(0 0 6px rgba(255,16,240,.8)); }
+  @keyframes rein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .zeit { font: 700 .95rem "Space Mono", monospace; color: var(--acid); text-shadow: var(--glow-g); letter-spacing: .05em; }
+  .titel { font: 900 1.3rem/1.08 Unbounded, sans-serif; text-transform: uppercase; margin: 8px 0 5px; overflow-wrap: anywhere; padding-right: 30px; }
+  .karte.top .titel { font-size: 1.5rem; }
+  .ort { color: #c9c9cf; }
+  .ort small { display: block; color: var(--muted); font-size: .9rem; margin-top: 2px; }
+  .lineup { font: 400 .95rem "Space Mono", monospace; margin: 10px 0; line-height: 1.45; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tipp { margin-top: 10px; color: var(--gelb); text-shadow: var(--glow-y); font-size: .95rem; }
+  .anreise { border-top: 1px dashed var(--line); margin-top: 12px; padding-top: 12px; display: grid; gap: 6px; font-size: .98rem; line-height: 1.45; }
+  .anreise a { color: var(--cyan); text-decoration: none; white-space: nowrap; }
+  .aktionen { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; text-align: center; text-decoration: none; font: 700 .85rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .05em; padding: 10px 8px; background: transparent; color: var(--text); border: 1px solid var(--line); cursor: pointer; }
+  .btn.acid { background: var(--acid); color: #000; border-color: var(--acid); box-shadow: var(--glow-g); }
+  .btn.dabei { grid-column: 1 / -1; background: var(--orange); color: #000; border-color: var(--orange); box-shadow: 0 0 6px var(--orange), 0 0 18px rgba(255,106,0,.55); font-size: .95rem; }
+  .btn.wa { border-color: var(--laser); color: var(--laser); text-shadow: var(--glow-p); }
+  .leer { border: 1px dashed var(--line); padding: 22px 18px; text-align: center; color: var(--muted); line-height: 1.5; }
+  .leer b { display: block; font: 900 1.1rem Unbounded, sans-serif; color: var(--text); text-transform: uppercase; margin-bottom: 6px; }
+
+  .ampel { display: flex; gap: 14px; flex-wrap: wrap; font-size: .9rem; color: #c9c9cf; margin: 4px 0 6px; }
+  .ampel i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; }
+
+  .aus { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .aus .d { font: 900 1.05rem/1.05 Unbounded, sans-serif; color: var(--cyan); text-shadow: var(--glow-c); text-align: center; }
+  .aus .d small { display: block; font: 700 .8rem "Space Mono", monospace; color: var(--muted); }
+  .aus .n { font-weight: 600; overflow-wrap: anywhere; }
+  .aus .n small { display: block; color: var(--muted); font-weight: 400; font-size: .9rem; }
+  .aus a.mini { font: 700 .8rem "Space Mono", monospace; text-decoration: none; border: 1px solid var(--line); padding: 8px; min-width: 44px; text-align: center; }
+
+  footer { margin-top: 36px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+  .crew { width: 100%; margin-bottom: 14px; }
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); width: max-content; max-width: 90vw; text-align: center; background: var(--acid); box-shadow: var(--glow-g); color: #000; font: 700 .9rem "Space Mono", monospace; padding: 12px 16px; z-index: 10; display: none; }
+
+
+  /* ---------- Party-Extras ---------- */
+  /* 1) Strobo am Event-Tag */
+  .hero.strobo::before { content: ""; position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; animation: strobo 3.2s steps(1) infinite; z-index: 1; }
+  @keyframes strobo { 0%, 100% { opacity: 0; } 2% { opacity: .55; } 4% { opacity: 0; } 6% { opacity: .35; } 8% { opacity: 0; } }
+  /* 2) Beat-Puls 128 BPM auf den Top 3 */
+  .karte.top { animation: rein .4s ease-out both, beat .46875s ease-out infinite; }
+  @keyframes beat { 0% { box-shadow: inset 0 0 24px rgba(255,16,240,.22), 0 0 16px rgba(255,16,240,.45); } 100% { box-shadow: inset 0 0 24px rgba(255,16,240,.08), 0 0 4px rgba(255,16,240,.1); } }
+  /* 3) Mini-Equalizer pro Event */
+  .zeile-oben { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-right: 26px; }
+  .eq { display: inline-flex; gap: 3px; align-items: flex-end; height: 18px; flex: 0 0 auto; }
+  .eq i { width: 4px; background: var(--eq, var(--acid)); box-shadow: 0 0 6px var(--eq, var(--acid)); animation: eqb var(--tempo, .45s) ease-in-out infinite alternate; }
+  .eq i:nth-child(2) { animation-delay: calc(var(--tempo, .45s) * -.4); } .eq i:nth-child(3) { animation-delay: calc(var(--tempo, .45s) * -.8); } .eq i:nth-child(4) { animation-delay: calc(var(--tempo, .45s) * -.2); }
+  @keyframes eqb { from { height: 3px; } to { height: 18px; } }
+  /* 4) Club-Stempel im Archiv */
+  details.archiv .zeile { align-items: center; }
+  .stempel { flex: 0 0 auto; transform: rotate(-9deg); border: 2px solid var(--laser); color: var(--laser); text-shadow: 0 0 6px var(--laser); box-shadow: 0 0 10px rgba(255,16,240,.5), inset 0 0 8px rgba(255,16,240,.35); font: 900 .8rem Unbounded, sans-serif; letter-spacing: .06em; padding: 5px 9px; border-radius: 6px; opacity: .92; text-transform: uppercase; }
+  .stempel small { display: block; font: 700 .7rem "Space Mono", monospace; letter-spacing: .1em; }
+  /* 5) Tonight-Modus */
+  .tonight { position: relative; margin: 16px 0 6px; padding: 20px 18px 18px; border: 2px solid var(--orange); background: linear-gradient(160deg, rgba(255,106,0,.22), rgba(255,16,240,.12) 60%, rgba(0,0,0,.6)); box-shadow: 0 0 10px var(--orange), 0 0 34px rgba(255,106,0,.45), inset 0 0 30px rgba(255,106,0,.18); overflow: hidden; }
+  .tonight .k { font: 900 2.2rem/1 Unbounded, sans-serif; color: var(--orange); -webkit-text-stroke: 1px #fff; text-shadow: 0 0 8px var(--orange), 0 0 24px rgba(255,106,0,.8); letter-spacing: .02em; }
+  .tonight .live { display: inline-block; margin-left: 8px; vertical-align: middle; font: 700 .8rem "Space Mono", monospace; background: var(--laser); color: #fff; padding: 3px 7px; box-shadow: var(--glow-p); animation: puls 1s ease-in-out infinite; }
+  .tonight .n { font: 900 1.35rem/1.1 Unbounded, sans-serif; text-transform: uppercase; margin: 12px 0 4px; }
+  .tonight .o { color: #e6dcd2; }
+  .tonight .gross { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
+  .tonight .gross div { background: rgba(0,0,0,.55); border: 1px solid rgba(255,106,0,.5); padding: 10px; }
+  .tonight .gross b { display: block; font: 900 1.5rem Unbounded, sans-serif; color: var(--gelb); text-shadow: 0 0 3px rgba(244,255,0,.55); }
+  .tonight .gross span { font: 700 .8rem "Space Mono", monospace; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  .tonight .heim { font-size: .98rem; color: #e6dcd2; line-height: 1.5; margin-bottom: 12px; }
+  .letsgo { display: flex; align-items: center; justify-content: center; min-height: 58px; text-decoration: none; font: 900 1.25rem Unbounded, sans-serif; letter-spacing: .04em; color: #000; background: var(--acid); box-shadow: 0 0 8px var(--acid), 0 0 30px rgba(57,255,20,.6); text-transform: uppercase; }
+  .tonight .aktionen { margin-top: 8px; }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+  <div class="laser"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="noise"></div>
+  <div class="scan"></div>
+
+  <div class="ticker"><span>
+    TECHNO ✕ HARD TECHNO ✕ MELODIC ✕ MINIMAL ✕ ACID ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ LUZERN ✕ ZÜRICH ✕ BASEL ✕ BERN ✕ ENGELBERG ✕
+    TECHNO ✕ HARD TECHNO ✕ MELODIC ✕ MINIMAL ✕ ACID ✕ TECH HOUSE ✕ PROGRESSIVE ✕ INDUSTRIAL ✕ LUZERN ✕ ZÜRICH ✕ BASEL ✕ BERN ✕ ENGELBERG ✕&nbsp;
+  </span></div>
+  <div class="regenbogen"></div>
+
+  <div class="wrap">
+    <div class="meta"><span>START <b>BECKENRIED</b></span><span class="bpm">128 BPM</span></div>
+    <h1 data-text="Techno Events">Techno Events</h1>
+    <div class="stand" id="stand">Lade …</div>
+
+    <div class="tonight" id="tonight" hidden></div>
+
+    <div class="hero" id="hero" hidden>
+      <div class="k">// Nächster Rave in</div>
+      <div class="count">
+        <div><b id="cd-t">0</b><span>TAGE</span></div>
+        <div><b id="cd-h">00</b><span>STD</span></div>
+        <div><b id="cd-m">00</b><span>MIN</span></div>
+        <div><b id="cd-s">00</b><span>SEK</span></div>
+      </div>
+      <div class="n" id="hero-n"></div>
+      <div class="o" id="hero-o"></div>
+    </div>
+
+    <nav class="nav">
+      <a href="#tickets"><span>🎟</span>Tickets</a><a href="#top"><span>🔥</span>Top 3</a><a href="#weekend"><span>⚡</span>Weekend</a><a href="#ausblick"><span>🔭</span>Ausblick</a>
+    </nav>
+
+    <div class="label" id="tickets"><b>// Deine Tickets</b><small id="t-anzahl"></small></div>
+    <div id="ticket-liste"></div>
+
+    <div class="label" id="top"><b>// Top 3</b><small id="we-datum"></small></div>
+    <div id="top-liste"></div>
+
+    <div class="label" id="weekend"><b>// Wochenende</b><small id="we-anzahl"></small></div>
+    <div class="filter" id="filter"></div>
+    <div id="event-liste"></div>
+    <div class="ampel">
+      <span><i style="background:var(--acid)"></i>ÖV hin &amp; zurück</span>
+      <span><i style="background:var(--orange)"></i>Nur Morgenzug</span>
+      <span><i style="background:var(--grau)"></i>Besser Auto</span>
+    </div>
+
+    <div class="label" id="ausblick"><b>// Ausblick</b><small>nächste Wochen</small></div>
+    <div id="ausblick-liste"></div>
+
+    <footer>
+      <button class="btn crew" id="install" hidden style="border-color:var(--cyan);color:var(--cyan);margin-bottom:10px">📲 Als App installieren</button>
+      <button class="btn acid crew" id="crew-link">🔗 Techno Events an die Crew – Link kopieren</button>
+      Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
+      Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Beckenried, ohne Stau.<br>
+      📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
+    </footer>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+// ======================================================================
+// TECHNO EVENTS – Daten kommen aus zwei Dateien neben dieser Seite:
+//   tickets.json = deine Tickets (pflegt Claude, wenn du «Ticket für …» schreibst)
+//   events.json  = das Wochenende + Ausblick (erstellt jeden Donnerstag)
+// ======================================================================
+const GUIDE_URL = "https://joerschi.github.io/techno-events/";
+const TAGE = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+const MONATE = ["JAN", "FEB", "MÄR", "APR", "MAI", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEZ"];
+
+// kleines Hilfsmittel: Element bauen, Text immer sicher als textContent
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined && text !== null) e.textContent = text;
+  return e;
+}
+function link(cls, href, text) {
+  const a = el("a", cls, text);
+  a.href = href; a.target = "_blank"; a.rel = "noopener";
+  return a;
+}
+function startDatum(ev) {
+  return new Date(`${ev.datum}T${ev.start || "20:00"}:00`);
+}
+function endDatum(ev) {
+  if (!ev.ende) return new Date(startDatum(ev).getTime() + 6 * 3600e3);
+  const d = new Date(`${ev.datum}T${ev.ende}:00`);
+  if (ev.ende_folgetag || d <= startDatum(ev)) d.setDate(d.getDate() + 1);
+  return d;
+}
+function kurzDatum(ev) {
+  const d = startDatum(ev);
+  return `${TAGE[d.getDay()]} ${d.getDate()}.${d.getMonth() + 1}.`;
+}
+function fmtMin(min) {
+  if (!min && min !== 0) return "";
+  return min < 60 ? `${min} Min.` : `${Math.floor(min / 60)}:${String(min % 60).padStart(2, "0")} Std.`;
+}
+function gcalStamp(d) {
+  const p = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}T${p(d.getHours())}${p(d.getMinutes())}00`;
+}
+
+// ---- Links für Kalender, Navi, WhatsApp ----
+function kalenderLink(ev) {
+  const anreise = [];
+  if (ev.auto_km) anreise.push(`🚗 Auto: ${ev.auto_km} km · ca. ${fmtMin(ev.auto_min)}${ev.losfahren ? " · losfahren ca. " + ev.losfahren : ""}`);
+  const hin = typeof ev.oev_hin === "object" && ev.oev_hin ? `${ev.oev_hin.ab} → ${ev.oev_hin.an}` : ev.oev_hin;
+  if (hin) anreise.push(`🚆 Hin (ÖV): ${hin}`);
+  const heim = heimText(ev);
+  if (heim) anreise.push(`🌙 Heim (ÖV): ${heim}`);
+  const details = [
+    ev.lineup && ev.lineup.length ? "Lineup: " + ev.lineup.join(", ") : "",
+    ev.genre && ev.genre.length ? "Genre: " + ev.genre.join(", ") : "",
+    ev.preis ? "Preis: " + ev.preis : "",
+    ev.link ? "Tickets/Infos: " + ev.link : "",
+    "", ...anreise,
+    ev.navi ? "📍 Navigation: " + ev.navi : "",
+    "🏠 Navigation heim: https://www.google.com/maps/dir/?api=1&destination=Beckenried&travelmode=driving",
+    "", "Techno Events: " + GUIDE_URL
+  ].filter((z, i, a) => z !== "" || (i > 0 && a[i - 1] !== "")).join("\n");
+  const ort = [ev.club, ev.adresse].filter(Boolean).join(", ");
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent("🎧 " + ev.name)
+    + "&dates=" + gcalStamp(startDatum(ev)) + "/" + gcalStamp(endDatum(ev))
+    + "&ctz=Europe/Zurich"
+    + "&location=" + encodeURIComponent(ort)
+    + "&details=" + encodeURIComponent(details);
+}
+function naviLink(ev) {
+  return ev.navi || ("https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=" + encodeURIComponent([ev.club, ev.adresse].filter(Boolean).join(", ")) + "&travelmode=driving");
+}
+// WhatsApp: Im Claude-App-Browser öffnet wa.me nur die Download-Seite.
+// Darum: Text beim Tippen in die Zwischenablage kopieren UND direkt die WhatsApp-App öffnen (whatsapp://).
+function waText(link) { return decodeURIComponent(link.split("?text=")[1] || ""); }
+function waApp(link) { return "whatsapp://send?text=" + (link.split("?text=")[1] || ""); }
+function waKnopf(cls, webLink, label) {
+  const a = el("a", cls, label);
+  a.href = waApp(webLink);
+  a.rel = "noopener";
+  a.onclick = async () => {
+    try { await navigator.clipboard.writeText(waText(webLink)); zeigeToast("✓ Text kopiert – falls WhatsApp nicht aufgeht: öffnen & einfügen"); }
+    catch (e) { zeigeToast("WhatsApp öffnet sich …"); }
+  };
+  return a;
+}
+function zeigeToast(text) {
+  const t = document.getElementById("toast");
+  t.textContent = text; t.style.display = "block";
+  clearTimeout(zeigeToast.timer); zeigeToast.timer = setTimeout(() => t.style.display = "none", 4000);
+}
+function whatsappLink(ev) {
+  const text = [
+    `🔊 ${ev.name}`,
+    `📅 ${kurzDatum(ev)}${ev.start ? " ab " + ev.start : ""}${ev.club ? " · " + ev.club : ""}${ev.stadt ? ", " + ev.stadt : ""}`,
+    ev.lineup && ev.lineup.length ? "🎧 " + ev.lineup.join(" · ") : "",
+    ev.link ? "🎟 " + ev.link : "",
+    "Wer kommt mit? 🔥",
+    "", "Techno Events: " + GUIDE_URL
+  ].filter(Boolean).join("\n");
+  return "https://wa.me/?text=" + encodeURIComponent(text);
+}
+// «Ich bin dabei» als WhatsApp-Nachricht an die Crew-Gruppe (keine Konten nötig)
+function dabeiLink(ev) {
+  const text = [
+    `🙋 Ich bin dabei!`,
+    `🔊 ${ev.name}`,
+    `📅 ${kurzDatum(ev)}${ev.start ? " ab " + ev.start : ""}${ev.club ? " · " + ev.club : ""}${ev.stadt ? ", " + ev.stadt : ""}`,
+    ev.link ? "🎟 " + ev.link : "",
+    "Wer kommt noch mit? 🔥",
+    "", "Techno Events: " + GUIDE_URL
+  ].filter(Boolean).join("\n");
+  return "https://wa.me/?text=" + encodeURIComponent(text);
+}
+function heimText(ev) {
+  if (ev.oev_letzte || ev.oev_erste) {
+    const teile = [];
+    if (ev.oev_letzte) teile.push(`letzte ${ev.oev_letzte.ab} → ${ev.oev_letzte.an}`);
+    else teile.push("kein Nachtanschluss");
+    if (ev.oev_erste) teile.push(`erster Zug ${ev.oev_erste.ab} → ${ev.oev_erste.an}`);
+    return teile.join(" · ");
+  }
+  return typeof ev.oev_heim === "string" ? ev.oev_heim : "";
+}
+function aktionen(ev, mitTicket) {
+  const box = el("div", "aktionen");
+  box.append(link("btn acid", kalenderLink(ev), "📅 Kalender"));
+  box.append(link("btn", naviLink(ev), "📍 Navi"));
+  box.append(waKnopf("btn wa", whatsappLink(ev), "💬 Crew fragen"));
+  if (ev.link) box.append(link("btn", ev.link, mitTicket ? "🎟 Ticket ↗" : "Tickets ↗"));
+  const dabei = waKnopf("btn dabei", dabeiLink(ev), "🙋 Ich bin dabei");
+  box.append(dabei);
+  return box;
+}
+
+// ---- Anreise-Block für Event-Karten ----
+function anreiseBlock(ev) {
+  const box = el("div", "anreise");
+  if (ev.auto_km) box.append(el("div", "", `🚗 ${ev.auto_km} km · ca. ${fmtMin(ev.auto_min)}${ev.losfahren ? " · losfahren ca. " + ev.losfahren : ""}`));
+  if (ev.oev_hin && typeof ev.oev_hin === "object") {
+    const z = el("div", "", `🚆 Hin: ab ${ev.oev_hin.ab} → an ${ev.oev_hin.an}${ev.oev_hin.umsteigen != null ? ` (${ev.oev_hin.umsteigen}× umst.)` : ""} `);
+    if (ev.oev_hin.sbb) z.append(link("", ev.oev_hin.sbb, "SBB ↗"));
+    box.append(z);
+  } else if (ev.oev_hin) box.append(el("div", "", "🚆 Hin: " + ev.oev_hin));
+  if (ev.oev_letzte) {
+    const z = el("div", "", `🌙 Heim: letzte ${ev.oev_letzte.ab} → ${ev.oev_letzte.an} `);
+    if (ev.oev_letzte.sbb) z.append(link("", ev.oev_letzte.sbb, "SBB ↗"));
+    box.append(z);
+  } else if (ev.oev_erste) box.append(el("div", "", "🌙 Kein Nachtanschluss nach Beckenried"));
+  if (ev.oev_erste) {
+    const z = el("div", "", `☀️ Erster Zug: ${ev.oev_erste.ab} → ${ev.oev_erste.an} `);
+    if (ev.oev_erste.sbb) z.append(link("", ev.oev_erste.sbb, "SBB ↗"));
+    box.append(z);
+  }
+  if (!ev.oev_letzte && !ev.oev_erste && typeof ev.oev_heim === "string" && ev.oev_heim) box.append(el("div", "", "🌙 Heim: " + ev.oev_heim));
+  return box;
+}
+const AMPEL = { gruen: "var(--acid)", orange: "var(--orange)", grau: "var(--grau)" };
+// Genre-Chips leuchten in eigenen Schwarzlicht-Farben
+const NEON = ["#00e5ff", "#ff10f0", "#f4ff00", "#39ff14", "#ff7a00", "#1f5bff", "#ff1e3c"];
+function neonFuer(text) { let h = 0; for (const c of text) h = (h * 31 + c.charCodeAt(0)) >>> 0; return NEON[h % NEON.length]; }
+function genreChip(g) { const c = el("span", "chip klein", g); const f = neonFuer(g); c.style.color = f; c.style.borderColor = f; c.style.textShadow = `0 0 6px ${f}`; c.style.boxShadow = `0 0 8px ${f}55`; return c; }
+
+function eventKarte(ev, rang) {
+  const k = el("article", "karte" + (rang ? " top" : ""));
+  k.style.setProperty("--ampel", AMPEL[ev.ampel] || "var(--grau)");
+  if (rang) k.append(el("div", "rang", "0" + rang));
+  const oben = el("div", "zeile-oben");
+  oben.append(el("div", "zeit", `${kurzDatum(ev).toUpperCase()} · ${ev.start || "?"}${ev.ende ? "–" + ev.ende : ""}`));
+  oben.append(eqFuer(ev));
+  k.append(oben);
+  k.append(el("div", "titel", ev.name));
+  const ort = el("div", "ort", [ev.club, ev.stadt].filter(Boolean).join(" · "));
+  if (ev.adresse) ort.append(el("small", "", ev.adresse));
+  k.append(ort);
+  if (ev.lineup && ev.lineup.length) k.append(el("div", "lineup", ev.lineup.join(" · ")));
+  const tags = el("div", "tags");
+  (ev.genre || []).forEach(g => tags.append(genreChip(g)));
+  if (ev.preis) tags.append(el("span", "chip klein", ev.preis));
+  k.append(tags);
+  if (ev.tipp) k.append(el("div", "tipp", "→ " + ev.tipp));
+  k.append(anreiseBlock(ev));
+  k.append(aktionen(ev, false));
+  return k;
+}
+
+
+// ======================= PARTY-EXTRAS =======================
+// Equalizer-Tempo nach Genre: härter = schneller
+function eqFuer(ev) {
+  const g = (ev.genre || []).join(" ").toLowerCase();
+  let tempo = ".42s";
+  if (/hard|schranz|industrial|peak/.test(g)) tempo = ".22s";
+  else if (/melodic|progressive|minimal|hypnotic|deep/.test(g)) tempo = ".7s";
+  else if (/house/.test(g)) tempo = ".5s";
+  const e = el("span", "eq");
+  e.style.setProperty("--tempo", tempo);
+  e.style.setProperty("--eq", ev.genre && ev.genre[0] ? neonFuer(ev.genre[0]) : "var(--acid)");
+  for (let i = 0; i < 4; i++) e.append(el("i"));
+  return e;
+}
+
+// Tonight-Modus: am Event-Tag (ab 8 Std. vor Start bis Ende) eine grosse Übersicht
+function tonightZeigen(liste) {
+  const box = document.getElementById("tonight");
+  const jetzt = new Date();
+  const t = liste.find(x => x.status !== "details_fehlen" && jetzt >= new Date(startDatum(x).getTime() - 8 * 3600e3) && jetzt < endDatum(x));
+  if (!t) { box.hidden = true; return false; }
+  box.hidden = false; box.innerHTML = "";
+  const laeuft = jetzt >= startDatum(t);
+  const kopf = el("div", "k", startDatum(t).getHours() < 17 ? "TODAY" : "TONIGHT");
+  if (laeuft) kopf.append(el("span", "live", "● LIVE"));
+  box.append(kopf);
+  box.append(el("div", "n", t.name));
+  box.append(el("div", "o", `${t.start || ""} · ${[t.club, t.stadt].filter(Boolean).join(", ")}`));
+  const gross = el("div", "gross");
+  const g1 = el("div"); g1.append(el("b", "", t.losfahren || t.start || "–")); g1.append(el("span", "", t.losfahren ? "🚗 Losfahren" : "Start"));
+  const g2 = el("div");
+  if (laeuft) { g2.append(el("b", "", "JETZT")); g2.append(el("span", "", "Party läuft")); }
+  else {
+    const ziel = t.losfahren ? new Date(`${t.datum}T${t.losfahren}:00`) : startDatum(t);
+    const min = Math.max(0, Math.round((ziel - jetzt) / 60000));
+    g2.append(el("b", "", min >= 60 ? `${Math.floor(min / 60)}:${String(min % 60).padStart(2, "0")}` : `${min} Min`));
+    g2.append(el("span", "", t.losfahren ? "bis Abfahrt" : "bis Start"));
+  }
+  gross.append(g1, g2);
+  box.append(gross);
+  const heim = heimText(t);
+  if (heim || t.oev_hin) box.append(el("div", "heim", [t.oev_hin ? "🚆 Hin: " + (typeof t.oev_hin === "object" ? `${t.oev_hin.ab} → ${t.oev_hin.an}` : t.oev_hin) : "", heim ? "🌙 Heim: " + heim : ""].filter(Boolean).join("\n"))), box.lastChild.style.whiteSpace = "pre-line";
+  box.append(link("letsgo", naviLink(t), "🚀 Let's go"));
+  box.append(aktionen(t, true));
+  return true;
+}
+
+// ======================= TICKETS =======================
+let tickets = [];
+function ticketsZeigen() {
+  const jetzt = new Date();
+  const kommend = tickets.filter(t => endDatum(t) > jetzt).sort((a, b) => startDatum(a) - startDatum(b));
+  const vorbei = tickets.filter(t => endDatum(t) <= jetzt).sort((a, b) => startDatum(b) - startDatum(a));
+  const liste = document.getElementById("ticket-liste");
+  liste.innerHTML = "";
+  document.getElementById("t-anzahl").textContent = kommend.length ? `${kommend.length} kommend` : "";
+
+  if (!kommend.length) {
+    const l = el("div", "leer");
+    l.append(el("b", "", "Noch keine Tickets"));
+    l.append(document.createTextNode("Schreib Claude «Ticket für …» – dann erscheint es hier mit Countdown."));
+    liste.append(l);
+  }
+  for (const t of kommend) {
+    const d = startDatum(t);
+    const tage = Math.ceil((d - jetzt) / 864e5);
+    const offen = t.status === "details_fehlen";
+    const card = el("article", "ticket" + (offen ? " offen" : ""));
+    card.append(el("span", "loch o")); card.append(el("span", "loch u"));
+    const stub = el("div", "stub");
+    stub.append(el("div", "t", String(d.getDate())));
+    stub.append(el("div", "m", MONATE[d.getMonth()]));
+    stub.append(el("div", "w", TAGE[d.getDay()] + (t.start ? " " + t.start : "")));
+    stub.append(el("div", "bar"));
+    card.append(stub);
+    const b = el("div", "tbody");
+    const laeuft = d <= jetzt;
+    b.append(el("span", "cd" + (tage <= 3 ? " bald" : ""), laeuft ? "● LÄUFT GERADE" : tage <= 0 ? "HEUTE!" : tage === 1 ? "MORGEN!" : `IN ${tage} TAGEN`));
+    b.append(el("div", "tn", t.name));
+    b.append(el("div", "to", [t.club, t.stadt].filter(Boolean).join(" · ") || "Ort folgt"));
+    if (t.lineup && t.lineup.length) b.append(el("div", "tl", t.lineup.join(" · ")));
+    const an = [];
+    if (t.anreise === "auto" && t.losfahren) an.push(`🚗 Losfahren ca. ${t.losfahren} · ${t.auto_km} km · ${fmtMin(t.auto_min)}`);
+    else if (t.auto_km) an.push(`🚗 ${t.auto_km} km · ${fmtMin(t.auto_min)}${t.losfahren ? " · losfahren ca. " + t.losfahren : ""}`);
+    if (t.anreise !== "auto" && t.oev_hin) an.push("🚆 " + (typeof t.oev_hin === "object" ? `${t.oev_hin.ab} → ${t.oev_hin.an}` : t.oev_hin));
+    if (t.anreise !== "auto" && heimText(t)) an.push("🌙 " + heimText(t));
+    if (t.notiz) an.push("ℹ️ " + t.notiz);
+    if (an.length) b.append(el("div", "ta", an.join("\n"))), b.lastChild.style.whiteSpace = "pre-line";
+    if (!offen) b.append(aktionen(t, true));
+    card.append(b);
+    liste.append(card);
+  }
+  if (vorbei.length) {
+    const det = el("details", "archiv");
+    det.append(el("summary", "", `✓ Schon erlebt (${vorbei.length})`));
+    for (const t of vorbei) {
+      const z = el("div", "zeile");
+      const info = el("div", "", t.name);
+      info.append(el("span", "", "  " + kurzDatum(t)));
+      z.append(info);
+      const st = el("div", "stempel", t.club || t.stadt || "Rave");
+      st.append(el("small", "", "✓ WAR DABEI"));
+      z.append(st);
+      det.append(z);
+    }
+    liste.append(det);
+  }
+  const tonight = tonightZeigen(kommend);
+  heroZeigen(tonight ? null : (kommend.find(t => t.status !== "details_fehlen" && startDatum(t) > jetzt) || null));
+}
+
+// Countdown zum nächsten Ticket, tickt jede Sekunde
+let heroZiel = null;
+function heroZeigen(t) {
+  const hero = document.getElementById("hero");
+  if (!t) { hero.hidden = true; heroZiel = null; return; }
+  hero.hidden = false;
+  heroZiel = startDatum(t);
+  // Strobo, wenn das Event in weniger als 24 Stunden beginnt
+  hero.classList.toggle("strobo", heroZiel - new Date() < 24 * 3600e3);
+  document.getElementById("hero-n").textContent = t.name;
+  document.getElementById("hero-o").textContent = `${kurzDatum(t)} ${t.start || ""} · ${[t.club, t.stadt].filter(Boolean).join(", ")}`;
+  tick();
+}
+function tick() {
+  if (!heroZiel) return;
+  let s = Math.max(0, Math.floor((heroZiel - new Date()) / 1000));
+  const t = Math.floor(s / 86400); s -= t * 86400;
+  const h = Math.floor(s / 3600); s -= h * 3600;
+  const m = Math.floor(s / 60); s -= m * 60;
+  document.getElementById("cd-t").textContent = t;
+  document.getElementById("cd-h").textContent = String(h).padStart(2, "0");
+  document.getElementById("cd-m").textContent = String(m).padStart(2, "0");
+  document.getElementById("cd-s").textContent = String(s).padStart(2, "0");
+}
+setInterval(tick, 1000);
+
+// ======================= WOCHENENDE =======================
+let daten = { events: [], top3: [], ausblick: [] };
+const filter = { tag: "Alle", zeit: 90, genre: "Alle", stadt: "Alle", sort: "zeit" };
+
+function reiseMin(ev) {
+  const werte = [ev.auto_min, ev.oev_min].filter(v => typeof v === "number");
+  return werte.length ? Math.min(...werte) : 999;
+}
+function chipReihe(werte, key, beschriften) {
+  const r = el("div", "reihe");
+  for (const w of werte) {
+    const c = el("button", "chip" + (filter[key] === w ? " on" : ""), beschriften ? beschriften(w) : w);
+    c.onclick = () => { filter[key] = w; filterZeigen(); listeZeigen(); };
+    r.append(c);
+  }
+  return r;
+}
+function filterZeigen() {
+  const f = document.getElementById("filter");
+  f.innerHTML = "";
+  if (!daten.events.length) return;
+  f.append(chipReihe(["Alle", "Fr", "Sa", "So"], "tag"));
+  f.append(chipReihe([30, 60, 90, 120, 999], "zeit", w => w === 999 ? "Alle Distanzen" : `≤ ${w} Min`));
+  const genres = ["Alle", ...new Set(daten.events.flatMap(e => e.genre || []))];
+  f.append(chipReihe(genres, "genre"));
+  const staedte = ["Alle", ...new Set(daten.events.map(e => e.stadt).filter(Boolean))];
+  if (staedte.length > 2) f.append(chipReihe(staedte, "stadt"));
+  f.append(chipReihe(["zeit", "start"], "sort", w => w === "zeit" ? "↕ Nach Fahrzeit" : "↕ Nach Startzeit"));
+}
+function listeZeigen() {
+  const liste = document.getElementById("event-liste");
+  liste.innerHTML = "";
+  let evs = daten.events.filter(e =>
+    (filter.tag === "Alle" || (e.tag || TAGE[startDatum(e).getDay()]) === filter.tag) &&
+    reiseMin(e) <= filter.zeit &&
+    (filter.genre === "Alle" || (e.genre || []).includes(filter.genre)) &&
+    (filter.stadt === "Alle" || e.stadt === filter.stadt));
+  evs.sort((a, b) => filter.sort === "zeit" ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));
+  document.getElementById("we-anzahl").textContent = daten.events.length ? `${evs.length} von ${daten.events.length}` : "";
+  if (!daten.events.length) {
+    const l = el("div", "leer");
+    l.append(el("b", "", "Ausgabe wird erstellt"));
+    l.append(document.createTextNode("Jeden Donnerstag ab ca. 6:20 Uhr erscheinen hier alle Techno-Events fürs Wochenende."));
+    liste.append(l);
+    return;
+  }
+  if (!evs.length) { liste.append(el("div", "leer", "Keine Events mit diesen Filtern – mehr Distanz zulassen?")); return; }
+  evs.forEach(e => liste.append(eventKarte(e)));
+}
+function topZeigen() {
+  const liste = document.getElementById("top-liste");
+  liste.innerHTML = "";
+  const top = (daten.top3 || []).map(id => daten.events.find(e => e.id === id)).filter(Boolean);
+  if (!top.length) { liste.append(el("div", "leer", "Die Top 3 kommen mit der nächsten Ausgabe.")); return; }
+  top.forEach((e, i) => liste.append(eventKarte(e, i + 1)));
+}
+function ausblickZeigen() {
+  const liste = document.getElementById("ausblick-liste");
+  liste.innerHTML = "";
+  if (!daten.ausblick || !daten.ausblick.length) { liste.append(el("div", "leer", "Der Ausblick kommt mit der nächsten Ausgabe.")); return; }
+  for (const a of daten.ausblick) {
+    const d = startDatum(a);
+    const z = el("div", "aus");
+    const dd = el("div", "d", `${d.getDate()}.${d.getMonth() + 1}.`);
+    dd.append(el("small", "", TAGE[d.getDay()]));
+    z.append(dd);
+    const n = el("div", "n", a.name);
+    n.append(el("small", "", [a.club, a.stadt, a.auto_min ? "🚗 " + fmtMin(a.auto_min) : ""].filter(Boolean).join(" · ")));
+    if (a.lineup && a.lineup.length) n.append(el("small", "", a.lineup.join(" · ")));
+    z.append(n);
+    const knoepfe = el("div", "");
+    knoepfe.style.display = "grid"; knoepfe.style.gap = "6px";
+    knoepfe.append(link("mini", kalenderLink(a), "📅"));
+    knoepfe.append(waKnopf("mini", whatsappLink(a), "💬"));
+    z.append(knoepfe);
+    liste.append(z);
+  }
+}
+
+// ======================= LADEN =======================
+async function laden(datei) {
+  try {
+    const r = await fetch(datei, { cache: "no-store" });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (e) { return null; }
+}
+async function start() {
+  const [t, d] = await Promise.all([laden("tickets.json"), laden("events.json")]);
+  tickets = Array.isArray(t) ? t : [];
+  if (d && typeof d === "object") daten = Object.assign(daten, d);
+  document.getElementById("stand").textContent = daten.stand
+    ? `Stand ${daten.stand}${daten.wochenende ? " · Wochenende " + daten.wochenende : ""}`
+    : "Erste Wochenend-Ausgabe folgt am Donnerstag";
+  document.getElementById("we-datum").textContent = daten.wochenende || "";
+  ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen();
+}
+start();
+
+// Link für die Crew kopieren (Clipboard geht nur nach einem Tipp)
+document.getElementById("crew-link").onclick = async () => {
+  const toast = document.getElementById("toast");
+  try { await navigator.clipboard.writeText(GUIDE_URL); toast.textContent = "✓ Link kopiert – ab in den Crew-Chat!"; }
+  catch (e) { toast.textContent = GUIDE_URL; }
+  toast.style.display = "block";
+  setTimeout(() => toast.style.display = "none", 3500);
+};
+
+// ---------- Installierbar machen (PWA) ----------
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+let installEvent = null;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault(); installEvent = e;
+  document.getElementById("install").hidden = false;
+});
+document.getElementById("install").onclick = async () => {
+  if (!installEvent) return;
+  installEvent.prompt();
+  await installEvent.userChoice.catch(() => {});
+  installEvent = null; document.getElementById("install").hidden = true;
+};
+</script>
+</body>
+</html>

@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.20.4 – 24.11.2026
+- Alle Knöpfe (Filter, Region, Leiste, Aktionen) in klarer, fetter Schrift (Inter) statt Pixel-Schrift – deutlich besser lesbar
+- Umkreis-Knöpfe kürzer: «10 km · 25 km · 50 km · 100 km · Alle»
+
 ## v1.20.3 – 24.11.2026
 - Fix: Standort-Knopf in der Leiste war bei aktivem GPS unlesbar (schwarz auf dunkel) – jetzt cyan
 - Filter-Knopf mit Lupe 🔎

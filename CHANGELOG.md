@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.22.0 – 24.11.2026
+- 🌐 Eigene Adresse: https://techno.howeverto.me (GitHub Pages mit eigener Domain, SSL von GitHub)
+- Teilen-Links zeigen direkt auf techno.howeverto.me/?e=… – keine fremde Adresse mehr sichtbar
+- Alte Links (joerschi.github.io, howeverto.me/techno) leiten automatisch weiter
+
 ## v1.21.1 – 24.11.2026
 - Wer über einen geteilten Link zum ersten Mal kommt, wird nicht sofort nach dem Standort gefragt (erst beim Tipp auf 📍); in der eigenen App und bei erlaubtem Standort weiterhin automatisch
 

@@ -2,7 +2,7 @@
 
 Alle Techno-Events der Schweiz fürs Wochenende – mit Fahrzeit ab Beckenried (Auto & ÖV), Tickets mit Countdown, Tonight-Modus und Crew-Knöpfen für WhatsApp.
 
-**App öffnen:** https://joerschi.github.io/techno-events/
+**App öffnen:** https://techno.howeverto.me/
 
 ## Dateien
 | Datei | Inhalt |

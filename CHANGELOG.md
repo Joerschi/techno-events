@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.14.2 – 24.11.2026
+- Zusage-Zeile aufgeräumt: «✓ Dabei · nochmal teilen» und ✕ zum Zurückziehen in einer Zeile
+
 ## v1.14.1 – 24.11.2026
 - «Als App installieren» erscheint nicht mehr in der eigenen Android-App (bessere Erkennung der App-Ansicht)
 

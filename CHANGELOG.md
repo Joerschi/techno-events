@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.28.0 – 25.11.2026
+- 📊 Anonymer Nutzerzähler (einmal pro Tag, nur gehashte Zufallsnummer + Art: App / iPhone / Home-Bildschirm / Browser)
+- Unten in der App: «👥 x Raver nutzen Techno Events»
+- Private Statistik-Seite auf howeverto.me (geschützt mit eigenem Schlüssel)
+- Datenschutz-Hinweis ergänzt
+
 ## v1.27.0 – 25.11.2026
 - 🍏 iPhone: Knopf und Hinweis «Als App aufs iPhone» mit Schritt-für-Schritt-Anleitung (Safari → Teilen → Zum Home-Bildschirm)
 - Erkennt App-Browser (z. B. WhatsApp) und erklärt, wie man in Safari öffnet

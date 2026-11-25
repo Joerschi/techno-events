@@ -237,6 +237,8 @@
   .hoer-zeile a { padding: 7px 9px; border: 1px solid var(--line); color: var(--cyan); text-decoration: none; font: 700 .74rem Inter, sans-serif; }
   .popup-fehler { color: var(--rot); font-size: .8rem; min-height: 1em; margin-top: 6px; }
   .ds-klein { color: var(--muted) !important; font-size: .78rem !important; }
+  .nutzer { display: block; margin-top: 12px; font: 700 .8rem Inter, sans-serif; color: var(--acid); letter-spacing: .03em; }
+  .nutzer[hidden] { display: none; }
   .fuss-links { display: block; margin-top: 12px; font: 700 .72rem "Space Mono", monospace; letter-spacing: .04em; }
   .fuss-links button { padding: 4px 2px; background: none; border: 0; color: var(--cyan); font: inherit; letter-spacing: inherit; cursor: pointer; }
   .dabei-zeile .btn.dabei { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -556,7 +558,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.27.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.28.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -873,11 +875,12 @@ function crewDialog(ev, vorgabeCode) {
 function datenschutzZeigen() {
   const f = el("div", "ds");
   const punkte = [
-    ["Kein Konto, kein Tracking", "Keine Anmeldung, keine Cookies, keine Werbung, keine Statistik."],
+    ["Kein Konto, kein Tracking", "Keine Anmeldung, keine Cookies, keine Werbung, kein Tracking über andere Seiten."],
     ["Favoriten & Einstellungen", "Bleiben nur auf deinem Handy (Speicher des Browsers bzw. der App). Löschen: App-/Browserdaten löschen."],
     ["Standort", "Wird nicht gespeichert. Für Fahrzeit und Ortsnamen gehen die Koordinaten kurz an OpenStreetMap-Dienste (OSRM, Nominatim) bzw. transport.opendata.ch."],
     ["Crew-Zusagen (freiwillig)", "Nur Spitzname, Crew-Code, Event und eine zufällige Geräte-Nummer – auf dem Server von howeverto.me. Nach dem Event automatisch gelöscht. Der Hoster führt technisch übliche Zugriffsprotokolle."],
     ["Wetter", "Für die Vorhersage gehen nur die Koordinaten des Events an Open-Meteo – nie dein Standort."],
+    ["Nutzerzähler", "Einmal pro Tag meldet die App anonym «ein Gerät war da» (gehashte Zufallsnummer und ob App oder Browser) an howeverto.me – keine IP, kein Standort, kein Name."],
     ["Schriften", "Werden von Google Fonts geladen – dabei sieht Google technisch deine IP-Adresse."],
     ["Links", "Google Maps, Kalender, SBB, WhatsApp und Ticketseiten öffnen fremde Dienste – dort gelten deren Regeln."]
   ];
@@ -949,6 +952,35 @@ function reinhoerenZeigen(ev) {
   }
   f.append(l);
   popup("🎧 Reinhören · " + ev.name, f);
+}
+
+// ======================= ANONYMER ZÄHLER =======================
+// Einmal pro Tag: «dieses Gerät war da» (nur Zufallsnummer + Art, keine IP/kein Standort)
+const STATS_URL = "https://howeverto.me/techno/stats.php";
+function nutzungsArt() {
+  const ua = navigator.userAgent;
+  if (/TechnoEventsApp|; wv\)/.test(ua)) return "android";
+  const ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const standalone = navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
+  if (standalone) return ios ? "iphone" : "homescreen";
+  return "browser";
+}
+function nutzerZeigen(n) {
+  const z = document.getElementById("nutzer"); if (!z || !n) return;
+  z.textContent = `👥 ${n} Raver nutzen Techno Events`; z.hidden = false;
+}
+async function zaehlen() {
+  const heute = new Date().toISOString().slice(0, 10);
+  let schon = null; try { schon = localStorage.getItem("te-zaehler"); } catch (e) {}
+  try {
+    if (schon === heute) {
+      const r = await fetch(STATS_URL + "?oeffentlich=1", { cache: "no-store" });
+      if (r.ok) nutzerZeigen((await r.json()).geraete);
+      return;
+    }
+    const r = await fetch(STATS_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ geraet: geraetId(), art: nutzungsArt() }) });
+    if (r.ok) { nutzerZeigen((await r.json()).geraete); try { localStorage.setItem("te-zaehler", heute); } catch (e) {} }
+  } catch (e) {}
 }
 
 // ---- Kurzanleitung ----
@@ -1694,7 +1726,7 @@ document.getElementById("guide-link").onclick = () => guideZeigen();
 document.getElementById("willkommen-los").onclick = () => guideZeigen();
 document.getElementById("willkommen-weg").onclick = () => { document.getElementById("willkommen").hidden = true; try { localStorage.setItem("te-guide", "1"); } catch (e) {} };
 try { if (!localStorage.getItem("te-guide")) document.getElementById("willkommen").hidden = false; } catch (e) {}
-crewFussZeigen(); ichBerechnen();
+crewFussZeigen(); ichBerechnen(); setTimeout(zaehlen, 2500);
 // Geteilter Link (?e=<event>): zur Karte springen und kurz aufleuchten lassen
 // Einladungslink (?crew=CODE): Beitreten anbieten
 const EINLADUNG = (new URLSearchParams(location.search).get("crew") || "").toUpperCase();

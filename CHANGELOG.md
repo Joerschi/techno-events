@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.39.2 – 25.11.2026
+- 📻 Old Skool Rave Tapes raus; neu: «Sunshine Live Classics» (90er & 2000er) und «Sunshine Live Techno» – jetzt 8 Sender
+
 ## v1.39.1 – 25.11.2026
 - 📻 Neuer Sender CH 3: «Old Skool Rave Tapes» – Classics, Rave & Techno der frühen 90er (jetzt 7 Sender)
 

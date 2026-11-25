@@ -2,13 +2,15 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070403">
 <meta name="description" content="Alle Techno-Events der Schweiz fürs Wochenende – mit Fahrzeit, Tickets und Countdown.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Techno Events">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Techno Events</title>
 <meta property="og:title" content="Techno Events 🎧">
@@ -96,7 +98,8 @@
   .count span { font: 700 .8rem "Space Mono", monospace; color: var(--muted); letter-spacing: .1em; }
 
   /* ---------- Navigation ---------- */
-  .nav { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; padding: 10px 0; margin: 10px 0 0; background: linear-gradient(var(--bg) 75%, transparent); }
+  body { padding-top: env(safe-area-inset-top, 0px); }
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; padding: 10px 0; margin: 10px 0 0; background: linear-gradient(var(--bg) 75%, transparent); }
   .nav a { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font: 700 .62rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .02em; padding: 8px 2px; border: 1px solid var(--line); background: var(--panel); text-align: center; }
   .nav a span { font-size: 1.15rem; line-height: 1; }
   @media (max-width: 340px) { .nav a { font-size: .56rem; letter-spacing: 0; } .nav a.nav-ort b { font-size: .46rem; } }
@@ -553,7 +556,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.26.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.27.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1868,13 +1871,48 @@ let installEvent = null;
 const ua = navigator.userAgent;
 const inEigenerApp = /; wv\)/.test(ua) || /Version\/[\d.]+ Chrome\//.test(ua) || /TechnoEventsApp/.test(ua) ||
   document.referrer.startsWith("android-app://") || window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+// iPhone/iPad: Safari kennt keinen Installations-Knopf – stattdessen eine Anleitung zeigen
+const istIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const inAppBrowser = /FBAN|FBAV|Instagram|WhatsApp|Line\/|GSA\/|CriOS|FxiOS|EdgiOS/.test(ua);
+function iosAnleitung() {
+  const f = el("div", "guide");
+  const teilen = '<svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-4px"><path d="M12 3v12M7 8l5-5 5 5" fill="none" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="#00f0ff" stroke-width="2"/></svg>';
+  if (inAppBrowser) {
+    const p = el("p", ""); p.innerHTML = "Du bist gerade in einem App-Browser (z. B. WhatsApp). <b>Installieren geht nur in Safari:</b>";
+    const ul = el("ul", ""); ul.innerHTML = "<li>Unten/oben auf <b>⋯</b> oder das Kompass-Symbol tippen → <b>«In Safari öffnen»</b>.</li><li>Oder Link kopieren und in Safari einfügen: <b>techno.howeverto.me</b></li>";
+    f.append(p, ul);
+  }
+  const ul2 = el("ul", "");
+  ul2.innerHTML = `<li><b>1.</b> In Safari unten auf das Teilen-Symbol ${teilen} tippen.</li>
+    <li><b>2.</b> Nach unten scrollen → <b>«Zum Home-Bildschirm»</b> (evtl. zuerst «Mehr» bzw. «Bearbeiten»).</li>
+    <li><b>3.</b> Oben rechts <b>«Hinzufügen»</b> – fertig! Das Vinyl-Icon liegt jetzt auf deinem Home-Bildschirm.</li>
+    <li>💡 Öffne die App ab jetzt immer über das Icon – nur so bleiben Favoriten und Crew sicher gespeichert.</li>`;
+  f.append(el("p", "", "So kommt Techno Events als App auf dein iPhone:"), ul2);
+  popup("📲 Auf dem iPhone installieren", f);
+}
 if (inEigenerApp) document.getElementById("install").remove();
+else if (istIOS) {
+  const b = document.getElementById("install");
+  b.textContent = "📲 Auf dem iPhone installieren"; b.hidden = false;
+  b.onclick = iosAnleitung;
+  // Hinweis gut sichtbar oben (bis man ihn wegklickt)
+  let weg = null; try { weg = localStorage.getItem("te-ios-hinweis"); } catch (e) {}
+  if (!weg) {
+    const h = el("div", "willkommen");
+    h.append(el("span", "", "📲 Hol dir Techno Events als App aufs iPhone."));
+    const los = el("button", "", "So geht's"); los.type = "button"; los.onclick = iosAnleitung;
+    const x = el("button", "weg", "✕"); x.type = "button"; x.setAttribute("aria-label", "Ausblenden");
+    x.onclick = () => { h.remove(); try { localStorage.setItem("te-ios-hinweis", "1"); } catch (e) {} };
+    h.append(los, x);
+    const ziel = document.getElementById("tickets"); ziel.parentNode.insertBefore(h, ziel);
+  }
+}
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault(); installEvent = e;
   if (!inEigenerApp) { const b = document.getElementById("install"); if (b) b.hidden = false; }
 });
 window.addEventListener("appinstalled", () => { const b = document.getElementById("install"); if (b) b.hidden = true; });
-if (!inEigenerApp) document.getElementById("install").onclick = async () => {
+if (!inEigenerApp && !istIOS) document.getElementById("install").onclick = async () => {
   if (!installEvent) return;
   installEvent.prompt();
   await installEvent.userChoice.catch(() => {});

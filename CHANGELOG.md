@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.27.0 – 25.11.2026
+- 🍏 iPhone: Knopf und Hinweis «Als App aufs iPhone» mit Schritt-für-Schritt-Anleitung (Safari → Teilen → Zum Home-Bildschirm)
+- Erkennt App-Browser (z. B. WhatsApp) und erklärt, wie man in Safari öffnet
+- Vollbild auf dem iPhone: App-Name, schwarze Statusleiste, Platz für Notch und Home-Leiste
+
 ## v1.26.0 – 25.11.2026
 - 🌦 Wetter beim Countdown: Vorhersage für den Event-Tag (Wetter, Min/Max, Temperatur zur Startzeit, Regen, Wind, Höhe)
 - Wetter auch bei Favoriten und bei Open-Air-/Berg-Events (bis ca. 2 Wochen vorher), mit Tipp: warm anziehen, Regenjacke, Sonnencreme …

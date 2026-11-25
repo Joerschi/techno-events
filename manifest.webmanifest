@@ -1,7 +1,7 @@
 {
   "name": "Techno Events",
   "short_name": "Techno Events",
-  "description": "Alle Techno-Events der Schweiz fürs Wochenende – mit Fahrzeit ab Beckenried, Tickets und Countdown.",
+  "description": "Alle Techno-Events fürs Wochenende – mit Fahrzeit, Tickets, Wetter und Crew.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

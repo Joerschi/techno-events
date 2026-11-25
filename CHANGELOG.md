@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.39.1 – 25.11.2026
+- 📻 Neuer Sender CH 3: «Old Skool Rave Tapes» – Classics, Rave & Techno der frühen 90er (jetzt 7 Sender)
+
 ## v1.39.0 – 25.11.2026
 - 📻 Zwei Techno-Sender neu: «4 To The Floor» (NTS Radio, House & Techno) und «TEKnival Radio» (Hard Techno & Tekno) – jetzt 6 Sender
 - Quellen-Link unten im Radio passt sich dem Sender an

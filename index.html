@@ -681,7 +681,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.39.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.39.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -821,7 +821,7 @@ const DICT = {
   "🧥 Open-Air bei Kälte – warm anziehen, Mütze & Handschuhe": "🧥 Cold open-air – dress warm, hat & gloves", "⚡ Gewitter möglich – Infos des Veranstalters checken": "⚡ Thunderstorms possible – check the organiser's info",
   "📲 Auf dem iPhone installieren": "📲 Install on iPhone", "📲 Hol dir Techno Events als App aufs iPhone.": "📲 Get Techno Events as an app on your iPhone.", "So geht's": "How", "So kommt Techno Events als App auf dein iPhone:": "Here's how to get Techno Events as an app on your iPhone:",
   "📲 Als App installieren": "📲 Install as app", "🆕": "🆕", "Rave": "Rave", "Melodic": "Melodic", "Bass & DnB": "Bass & DnB", "Hard Dance": "Hard Dance", "Acid & Electro": "Acid & Electro", "Trance & Psy": "Trance & Psy",
-  "Progressive House & Trance": "Progressive House & Trance", "Deep House & Downtempo": "Deep House & Downtempo", "Dunkle Electronica": "Dark electronica", "Spacige Electronica": "Spacey electronica",
+  "Progressive House & Trance": "Progressive House & Trance", "Deep House & Downtempo": "Deep House & Downtempo", "Dunkle Electronica": "Dark electronica", "Spacige Electronica": "Spacey electronica", "Classics · Rave & Techno der frühen 90er": "Classics · early-90s rave & techno",
   "Startort wechseln ": "Change start location", "Air-Horn": "Air horn", "Radio": "Radio", "Wer kommt mit? 🔥": "Who's coming? 🔥", "Wer kommt noch mit? 🔥": "Who else is coming? 🔥",
   "👉 Infos, Tickets & Anreise:": "👉 Info, tickets & travel:", "🙋 *Ich bin dabei!*": "🙋 *I'm in!*", "👥 *Komm in meine Techno-Crew!*": "👥 *Join my techno crew!*",
   "Dann sehen wir in der App, wer an welches Event geht.": "Then we can see in the app who's going to which event.", "👉 Antippen & beitreten:": "👉 Tap & join:",
@@ -1257,6 +1257,7 @@ function datenschutzZeigen() {
 const SENDER = [
   { name: "4 To The Floor", genre: "House & Techno · NTS Radio", url: "https://stream-mixtape-geo.ntslive.net/mixtape5", quelle: "NTS Radio · werbefrei", web: "https://www.nts.live/" },
   { name: "TEKnival Radio", genre: "Hard Techno & Tekno", url: "https://listen.teknivalradio.com/listen/teknivalradio/radio.mp3", quelle: "TEKnival Radio", web: "https://teknivalradio.com/" },
+  { name: "Old Skool Rave Tapes", genre: "Classics · Rave & Techno der frühen 90er", url: "https://azuracast.oldskoolravetapes.co.uk/listen/old_skool_rave_tapes/listen", quelle: "Old Skool Rave Tapes", web: "https://oldskoolravetapes.co.uk/" },
   { name: "The Trip", genre: "Progressive House & Trance", id: "thetrip" },
   { name: "Beat Blender", genre: "Deep House & Downtempo", id: "beatblender" },
   { name: "DEF CON Radio", genre: "Dunkle Electronica", id: "defcon" },

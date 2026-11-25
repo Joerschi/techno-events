@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.29.1 – 25.11.2026
+- Fix: Wetter im Countdown erschien mehrfach
+
 ## v1.29.0 – 25.11.2026
 - 🟠 Neues Neon-Orange #FF5E1A (einen Tick röter, inspiriert vom Shirt) statt #FF6A00 – überall: Knöpfe, Rahmen, Schriftzug, Radio, Popups
 

@@ -1,5 +1,12 @@
 # Changelog – Techno Events
 
+## v1.36.0 – 25.11.2026
+- 🌗 Tageszeit-Farben: tagsüber gedämpft, abends Neon, nach Mitternacht volles Schwarzlicht
+- 🔁 Wochenend-Rhythmus: Fr/Sa-Nacht schnellere Laser, Sonntag ruhige Afterhour-Stimmung, ⚡ Fresh Drop bei neuer Ausgabe
+- 👥 Crew lebt mit: neue Zusagen/Fahrer leuchten auf + Meldung (Abgleich alle 2 Min.)
+- ☀️ Morgen danach: einmal «Wie war's?» mit Sternen
+- ❄️ Jahreszeiten: Schneeflocken im Winter (ab 20.11.), Open-Air-Sonne im Sommer
+
 ## v1.35.0 – 25.11.2026
 - 🔴 Live-Modus: Läuft ein Favorit, wird die App dunkler und pink, die Tonight-Box pulsiert
 - 🌙 Nacht-Modus öffnet sich beim Start des Favoriten einmal von selbst

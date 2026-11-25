@@ -449,6 +449,22 @@
   .stempel small { display: block; font: 700 .7rem "Space Mono", monospace; letter-spacing: .1em; }
   /* 5) Tonight-Modus */
   .tonight { position: relative; margin: 16px 0 6px; padding: 20px 18px 18px; border: 2px solid var(--orange); background: linear-gradient(160deg, rgba(255,106,0,.22), rgba(255,16,240,.12) 60%, rgba(0,0,0,.6)); box-shadow: 0 0 10px var(--orange), 0 0 34px rgba(255,106,0,.45), inset 0 0 30px rgba(255,106,0,.18); overflow: hidden; }
+  /* ---- Lebende App: Tageszeit, Wochenend-Rhythmus, Jahreszeit ---- */
+  .laser { transition: opacity 2s, filter 2s; }
+  body.zeit-tag .laser { opacity: .45; filter: saturate(.8); }
+  body.zeit-nacht .laser { opacity: 1; background: radial-gradient(ellipse at 50% -10%, rgba(140,0,255,.24), transparent 65%); }
+  body.party-nacht:not(.ruhig) .laser i { animation-duration: 3.2s !important; }
+  body.sonntag .laser { opacity: .55; filter: sepia(.3) saturate(.9); }
+  body.sonntag:not(.ruhig) .laser i { animation-duration: 20s !important; }
+  .flocke { position: absolute; top: -12px; width: 5px; height: 5px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px #fff, 0 0 12px rgba(0,240,255,.6); opacity: .75; animation: flocke linear infinite; }
+  @keyframes flocke { to { transform: translate3d(30px, 110vh, 0); } }
+  body.ruhig .flocke { display: none; }
+  body.sommer .hero { box-shadow: 0 0 14px rgba(255,200,0,.6), 0 0 50px rgba(255,170,0,.35), inset 0 0 30px rgba(255,200,0,.15); }
+  .fresh-blitz { position: fixed; inset: 0; z-index: 70; pointer-events: none; background: linear-gradient(120deg, rgba(57,255,20,.35), rgba(255,16,240,.35), rgba(0,240,255,.35)); animation: freshBlitz 1.4s ease-out forwards; }
+  @keyframes freshBlitz { 0% { opacity: 0; } 12% { opacity: 1; } 25% { opacity: .2; } 38% { opacity: .9; } 100% { opacity: 0; } }
+  .crew-neu { animation: crewNeu 1.2s ease-in-out 4; }
+  @keyframes crewNeu { 50% { box-shadow: 0 0 0 2px var(--acid), 0 0 30px var(--acid); } }
+  body.ruhig .crew-neu, body.ruhig .fresh-blitz { animation: none; }
   body.live-modus { background: #000; }
   body.live-modus .laser { opacity: .3; }
   body.live-modus .tonight { border-color: var(--laser); background: linear-gradient(160deg, rgba(255,16,240,.26), rgba(120,0,255,.14) 60%, rgba(0,0,0,.7)); box-shadow: 0 0 10px var(--laser), 0 0 34px rgba(255,16,240,.5), inset 0 0 30px rgba(255,16,240,.2); }
@@ -622,7 +638,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.35.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.36.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -809,6 +825,9 @@ Object.assign(DICT, {
   "4 verschiedene Sound-Gruppen": "4 different sound groups", "In einer Crew": "In a crew", "Zusage-König": "RSVP king", "5× «Ich bin dabei»": "5× “I'm in”", "Winter-Raver": "Winter raver",
   "Open-Air bei Kälte (Nov–Feb)": "Open-air in the cold (Nov–Feb)", "ZÜRICH": "ZURICH", "Zürich": "Zurich", "TECHNO · ZÜRICH": "TECHNO · ZURICH", "TECHNO · MÜNCHEN": "TECHNO · MUNICH", "Luzern": "Lucerne"
 });
+Object.assign(DICT, { "☀️ Guten Morgen, Raver! Wie war's?": "☀️ Good morning, raver! How was it?" });
+REGELN.push([/^⚡ Fresh Drop! (\d+) Events fürs Wochenende$/, "⚡ Fresh drop! $1 events for the weekend"],
+  [/^🔥 (.+) ist jetzt bei «(.*)» dabei(.*)$/, "🔥 $1 is now going to “$2”$3"], [/^🚗 (.+) fährt zu «(.*)» – (\d+) Plätze frei(.*)$/, "🚗 $1 is driving to “$2” – $3 free seats$4"]);
 for (const k of Object.keys(DICT)) if (!k.endsWith(":")) DICT[k + ":"] = DICT[k] + ":";
 function sprachKnopf() {
   const b = document.createElement("button"); b.type = "button"; b.id = "sprache-link";
@@ -1039,16 +1058,21 @@ function crewZeile(ev) {
   return z;
 }
 async function crewLaden() {
-  if (!crew.code) { crewZusagen = {}; return; }
+  if (!crew.code) { crewZusagen = {}; crewLaden.letzt = null; return; }
   const keys = [...new Set([...daten.events, ...(daten.ausblick || []), ...favoriten].map(evKey))].slice(0, 80);
   try {
     const r = await fetch(`${API_URL}?crew=${encodeURIComponent(crew.code)}&keys=${encodeURIComponent(keys.join(","))}`, { cache: "no-store" });
     if (!r.ok) return;
-    const j = await r.json(); crewZusagen = j.zusagen || {};
+    const j = await r.json();
+    const roh = JSON.stringify(j.zusagen || {});
+    if (roh === crewLaden.letzt) return;          // nichts Neues – nicht neu zeichnen
+    crewLaden.letzt = roh; crewZusagen = j.zusagen || {};
+    if (ichHash) crewAenderungen(crewZusagen);
     // eigene Zusagen vom Server übernehmen (z. B. nach Neuinstallation)
     for (const [k, l] of Object.entries(crewZusagen)) if (l.some(p => p.ich === ichHash)) zusagen.add(k);
     setSpeichern("te-dabei", zusagen);
     allesNeuZeichnen();
+    crewNeuMarkieren();
   } catch (e) {}
 }
 async function crewMelden(ev, aktion) {
@@ -2374,6 +2398,93 @@ function ausblickZeigen() {
   }
 }
 
+// ======================= LEBENDE APP =======================
+// Die App verändert sich mit Tageszeit, Wochentag und Jahreszeit – alles nur hier auf dem Handy berechnet.
+function lebenAnwenden() {
+  const d = new Date(), h = d.getHours(), tag = d.getDay(), mon = d.getMonth(), b = document.body.classList;
+  b.toggle("zeit-tag", h >= 6 && h < 17);
+  b.toggle("zeit-abend", h >= 17);
+  b.toggle("zeit-nacht", h < 6);
+  // Fr- und Sa-Nacht (18–6 Uhr): Laser schneller. Sonntag tagsüber: ruhige Afterhour-Stimmung
+  b.toggle("party-nacht", (tag === 5 && h >= 18) || tag === 6 && (h < 6 || h >= 18) || (tag === 0 && h < 6));
+  b.toggle("sonntag", tag === 0 && h >= 6);
+  // Jahreszeit: Winter mit Schneeflocken im Laser, Sommer mit Open-Air-Sonne beim Countdown
+  const winter = mon === 11 || mon <= 1 || (mon === 10 && d.getDate() >= 20);
+  b.toggle("sommer", mon >= 5 && mon <= 7);
+  const laser = document.querySelector(".laser");
+  if (laser && winter && !laser.querySelector(".flocke")) {
+    for (let i = 0; i < 18; i++) {
+      const f = el("span", "flocke");
+      f.style.left = (Math.random() * 100) + "%";
+      f.style.animationDuration = (9 + Math.random() * 9) + "s";
+      f.style.animationDelay = (-Math.random() * 18) + "s";
+      const s = 2 + Math.random() * 4; f.style.width = f.style.height = s + "px";
+      laser.append(f);
+    }
+  } else if (laser && !winter) laser.querySelectorAll(".flocke").forEach(f => f.remove());
+}
+lebenAnwenden();
+setInterval(lebenAnwenden, 5 * 60000);
+
+// Fresh Drop: Ist seit dem letzten Besuch eine neue Ausgabe erschienen, gibt's einen kurzen Blitz
+function freshDropPruefen() {
+  if (!daten.stand) return;
+  const k = "te-ausgabe-" + region;
+  let alt = null; try { alt = localStorage.getItem(k); localStorage.setItem(k, daten.stand); } catch (e) { return; }
+  if (!alt || alt === daten.stand) return;
+  zeigeToast(`⚡ Fresh Drop! ${daten.events.length} Events fürs Wochenende`);
+  if (ruhig) return;
+  const blitz = el("div", "fresh-blitz"); document.body.append(blitz);
+  setTimeout(() => blitz.remove(), 1500);
+  try { kick(1.2); setTimeout(() => kick(1.4), 420); } catch (e) {}
+}
+
+// Crew lebt mit: neue Zusagen oder Fahrer aus deiner Crew leuchten kurz auf
+let crewNeu = new Set();
+function crewAenderungen(zusagen) {
+  const jetzt = {};
+  for (const [k, l] of Object.entries(zusagen)) jetzt[k] = l.filter(p => p.ich !== ichHash).map(p => p.name + "|" + (p.fahrt || ""));
+  let alt = null; try { alt = JSON.parse(localStorage.getItem("te-crew-stand-" + region) || "null"); localStorage.setItem("te-crew-stand-" + region, JSON.stringify(jetzt)); } catch (e) {}
+  if (!alt) return;
+  const meldungen = [];
+  for (const [k, l] of Object.entries(jetzt)) {
+    const vorher = alt[k] || [];
+    for (const eintrag of l) {
+      if (vorher.includes(eintrag)) continue;
+      const [name, fahrt] = eintrag.split("|");
+      const war = vorher.find(v => v.split("|")[0] === name);
+      const ev = [...daten.events, ...(daten.ausblick || []), ...favoriten].find(e => evKey(e) === k);
+      const evName = ev ? ev.name : "";
+      crewNeu.add(k);
+      if (fahrt.startsWith("fahre:") && (!war || !war.includes("fahre:"))) meldungen.push(`🚗 ${name} fährt zu «${evName}» – ${fahrt.slice(6)} Plätze frei`);
+      else if (!war) meldungen.push(`🔥 ${name} ist jetzt bei «${evName}» dabei`);
+    }
+  }
+  if (meldungen.length) zeigeToast(meldungen[0] + (meldungen.length > 1 ? ` (+${meldungen.length - 1})` : ""));
+}
+function crewNeuMarkieren() {
+  if (!crewNeu.size) return;
+  document.querySelectorAll("[data-key]").forEach(k => { if (crewNeu.has(k.dataset.key)) { k.classList.remove("crew-neu"); k.offsetHeight; k.classList.add("crew-neu"); } });
+  crewNeu = new Set();
+}
+// Alle 2 Minuten nachsehen, ob sich in der Crew etwas getan hat (nur wenn die App sichtbar ist)
+setInterval(() => { if (!document.hidden && crew.code) crewLaden(); }, 120000);
+
+// Der Morgen danach: Am Tag nach einem Favoriten fragt die App einmal «Wie war's?»
+function morgenDanach() {
+  const jetzt = new Date();
+  const t = favoriten.find(f => !f.bewertung && endDatum(f) < jetzt && jetzt - endDatum(f) < 36 * 3600e3 && jetzt - endDatum(f) > 3 * 3600e3);
+  if (!t) return;
+  const k = "te-gefragt-" + evKey(t);
+  try { if (localStorage.getItem(k)) return; } catch (e) { return; }
+  setTimeout(() => {
+    if (document.querySelector(".nacht, .popup-hg")) return;   // nicht über andere Fenster legen – nächstes Mal fragen
+    try { localStorage.setItem(k, "1"); } catch (e) {}
+    zeigeToast("☀️ Guten Morgen, Raver! Wie war's?");
+    bewertenDialog(t);
+  }, 1800);
+}
+
 // ======================= LADEN =======================
 async function laden(datei) {
   try {
@@ -2397,6 +2508,7 @@ async function start() {
     : "";
   document.getElementById("we-datum").textContent = daten.wochenende || "";
   ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen();
+  freshDropPruefen(); morgenDanach();
 }
 document.getElementById("crew-fuss").onclick = () => crewDialog(null);
 document.getElementById("ds-link").onclick = () => datenschutzZeigen();

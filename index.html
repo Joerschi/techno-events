@@ -235,6 +235,42 @@
   .hoer-zeile { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--line); }
   .hoer-zeile b { flex: 1; min-width: 0; color: #fff; font: 700 .95rem Inter, sans-serif; }
   .hoer-zeile a { padding: 7px 9px; border: 1px solid var(--line); color: var(--cyan); text-decoration: none; font: 700 .74rem Inter, sans-serif; }
+  .story-knopf { position: relative; z-index: 2; display: block; width: 100%; margin-top: 12px; padding: 11px; border: 1px solid var(--orange); background: #0c0705; color: var(--orange); font: 800 .9rem Inter, sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+  .story-bild { width: 100%; height: auto; display: block; border: 1px solid var(--line); margin: 6px 0 10px; }
+  .pass-zeile { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: -4px 0 12px; }
+  .pass-zeile button { padding: 9px 6px; border: 1px solid var(--gelb); background: #0c0705; color: var(--gelb); font: 800 .82rem Inter, sans-serif; cursor: pointer; }
+  .pass-zeile button + button { border-color: var(--laser); color: var(--laser); }
+  .pass-kopf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 4px 0 14px; }
+  .pass-kopf div { border: 1px solid var(--line); background: #000; padding: 8px 4px; text-align: center; font: 700 .7rem Inter, sans-serif; color: var(--muted); text-transform: uppercase; }
+  .pass-kopf b { display: block; font: 900 1.4rem Unbounded, sans-serif; color: var(--acid); }
+  .abz { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0 14px; }
+  .abz div { border: 1px solid var(--line); padding: 10px 4px; text-align: center; font: 700 .7rem/1.25 Inter, sans-serif; color: #fff; background: #0c0705; }
+  .abz div i { display: block; font-style: normal; font-size: 1.7rem; margin-bottom: 4px; }
+  .abz div small { display: block; color: var(--muted); font-weight: 600; margin-top: 3px; }
+  .abz div.zu { opacity: .35; filter: grayscale(1); }
+  .abz div.neu { border-color: var(--gelb); box-shadow: 0 0 10px rgba(244,255,0,.4); }
+  .pass-stempel { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 12px; }
+  .pass-stempel span { padding: 5px 8px; border: 2px dashed var(--orange); color: var(--orange); font: 800 .7rem Inter, sans-serif; transform: rotate(-2deg); }
+  .pass-stempel span:nth-child(2n) { transform: rotate(2deg); border-color: var(--cyan); color: var(--cyan); }
+  .jahr-zahl { font: 900 3rem/1 Unbounded, sans-serif; color: var(--orange); text-shadow: 0 0 14px rgba(255,106,0,.6); }
+  .jahr-liste p { margin: 0 0 8px; }
+  .drop { position: fixed; inset: 0; z-index: 60; pointer-events: none; background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.9), rgba(255,16,240,.5) 30%, rgba(0,240,255,.25) 55%, transparent 75%); animation: dropblitz 2.4s ease-out forwards; }
+  .drop[hidden] { display: none; }
+  @keyframes dropblitz { 0% { opacity: 0; transform: scale(.4); } 8% { opacity: 1; } 16% { opacity: .2; } 24% { opacity: 1; transform: scale(1.1); } 40% { opacity: .3; } 55% { opacity: .9; } 100% { opacity: 0; transform: scale(1.6); } }
+  .beat .laser { animation: beatpuls .46875s ease-out infinite; }
+  .beat .logo { animation: beatlogo .46875s ease-out infinite; }
+  @keyframes beatpuls { 0% { opacity: 1; } 100% { opacity: .35; } }
+  @keyframes beatlogo { 0% { transform: scale(1.1); } 100% { transform: scale(1); } }
+  .nacht { position: fixed; inset: 0; z-index: 55; background: #000; color: #bdb3aa; padding: calc(24px + env(safe-area-inset-top, 0px)) 22px calc(70px + env(safe-area-inset-bottom, 0px)); overflow: auto; font-family: Inter, sans-serif; }
+  .nacht h2 { margin: 0 0 4px; font: 900 1.5rem/1.1 Unbounded, sans-serif; color: #d9cfc6; text-transform: uppercase; }
+  .nacht .status { font: 800 1rem Inter, sans-serif; color: var(--orange); margin-bottom: 18px; }
+  .nacht .block { border: 1px solid #2a211c; padding: 14px; margin-bottom: 12px; }
+  .nacht .block span { display: block; font: 700 .72rem Inter, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #6e645c; }
+  .nacht .block b { display: block; font: 900 1.9rem/1.15 Unbounded, sans-serif; color: #e8ded5; margin-top: 4px; }
+  .nacht .block small { display: block; color: #8d837a; margin-top: 4px; font-size: .85rem; }
+  .nacht a, .nacht button { display: block; width: 100%; box-sizing: border-box; margin-top: 10px; padding: 14px; text-align: center; border: 1px solid #3a2e27; background: #0b0807; color: #e8ded5; font: 800 1rem Inter, sans-serif; text-decoration: none; cursor: pointer; }
+  .nacht .zu-gross { border-color: #2a211c; color: #8d837a; }
+  .nacht-knopf { display: block; width: 100%; margin-top: 10px; padding: 12px; border: 1px solid var(--cyan); background: #000; color: var(--cyan); font: 800 .95rem Inter, sans-serif; cursor: pointer; }
   .popup-fehler { color: var(--rot); font-size: .8rem; min-height: 1em; margin-top: 6px; }
   .ds-klein { color: var(--muted) !important; font-size: .78rem !important; }
   .nutzer { display: block; margin-top: 12px; font: 700 .8rem Inter, sans-serif; color: var(--acid); letter-spacing: .03em; }
@@ -524,6 +560,7 @@
       <div class="n" id="hero-n"></div>
       <div class="o" id="hero-o"></div>
       <div class="wetter" id="hero-wetter" hidden></div>
+      <button type="button" class="story-knopf" id="story-knopf">📸 Als Story teilen</button>
     </div>
 
     <nav class="nav">
@@ -534,6 +571,7 @@
 
     <div class="willkommen" id="willkommen" hidden><span>👋 <b>Neu hier?</b> Die App in 1 Minute erklärt.</span><button type="button" id="willkommen-los">Anleitung</button><button type="button" class="weg" id="willkommen-weg" aria-label="Ausblenden">✕</button></div>
     <div class="label" id="tickets"><b>// Meine Favoriten</b><small id="t-anzahl"></small></div>
+    <div class="pass-zeile"><button type="button" id="pass-knopf">🎖 Raver-Pass</button><button type="button" id="jahr-knopf">🎆 Rave-Jahr</button></div>
     <div id="ticket-liste"></div>
 
     <div class="label" id="top"><b>// Top 3</b><small id="we-datum"></small></div>
@@ -558,18 +596,20 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.29.2<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.30.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
   <div class="pull-text" id="pull-text">↓ ZIEHEN ZUM AKTUALISIEREN</div>
   <div class="toast" id="toast"></div>
+  <div class="drop" id="drop" hidden></div>
   <div class="radio" id="radio">
     <button type="button" class="radio-knopf" id="radio-knopf" aria-label="Radio">📻</button>
     <div class="radio-leiste" id="radio-leiste" hidden>
       <button type="button" class="radio-play" id="radio-play" aria-label="Abspielen">▶</button>
       <div class="radio-info"><b id="radio-name">Radio</b><small id="radio-genre"></small></div>
       <div class="radio-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <button type="button" class="radio-weiter" id="radio-horn" aria-label="Air-Horn">📣</button>
       <button type="button" class="radio-weiter" id="radio-weiter" aria-label="Nächster Sender">⏭</button>
       <button type="button" class="radio-zu" id="radio-zu" aria-label="Schliessen">✕</button>
       <a class="radio-quelle" href="https://somafm.com/" target="_blank" rel="noopener">via SomaFM · werbefrei & hörerfinanziert</a>
@@ -905,6 +945,7 @@ function radioAnzeigen() {
   document.getElementById("radio-genre").textContent = an ? "● LIVE · " + s.genre : s.genre;
   document.getElementById("radio-play").textContent = an ? "⏸" : "▶";
   document.getElementById("radio").classList.toggle("an", !!an);
+  document.body.classList.toggle("beat", !!an);   // Laser & Logo pulsieren im Takt (128 BPM)
 }
 function radioStarten() {
   if (!radio.audio) {
@@ -983,6 +1024,230 @@ async function zaehlen() {
   } catch (e) {}
 }
 
+// ======================= PARTY-EXTRAS =======================
+const FARBE = { orange: "#ff6a00", acid: "#39ff14", laser: "#ff10f0", cyan: "#00f0ff", gelb: "#f4ff00" };
+function heute0() { const d = new Date(); d.setHours(0, 0, 0, 0); return d; }
+function tageBis(ev) { const d = new Date(ev.datum + "T00:00"); return Math.round((d - heute0()) / 864e5); }
+
+// ---- Air-Horn (synthetisch, kein Sample) ----
+function airHorn() {
+  const ctx = audio(); if (!ctx) { zeigeToast("📣 Sound ist aus – oben 🔊 einschalten"); return; }
+  const t0 = ctx.currentTime, g = ctx.createGain(); g.connect(ctx.destination);
+  const muster = [[0, .12], [.16, .12], [.32, .55]];
+  for (const [ab, dauer] of muster) for (const fr of [466, 554, 698]) {
+    const o = ctx.createOscillator(), og = ctx.createGain(), vib = ctx.createOscillator(), vg = ctx.createGain();
+    o.type = "sawtooth"; o.frequency.value = fr; vib.frequency.value = 6; vg.gain.value = 6;
+    vib.connect(vg).connect(o.frequency);
+    og.gain.setValueAtTime(0.0001, t0 + ab); og.gain.linearRampToValueAtTime(0.07 * sound.lautstaerke, t0 + ab + .02);
+    og.gain.setValueAtTime(0.07 * sound.lautstaerke, t0 + ab + dauer - .03); og.gain.linearRampToValueAtTime(0.0001, t0 + ab + dauer);
+    o.connect(og).connect(g); o.start(t0 + ab); vib.start(t0 + ab); o.stop(t0 + ab + dauer + .02); vib.stop(t0 + ab + dauer + .02);
+  }
+}
+
+// ---- Drop: wenn der Countdown auf 0 springt ----
+function dropAusloesen(ev) {
+  const k = "te-drop-" + evKey(ev);
+  try { if (localStorage.getItem(k)) return; localStorage.setItem(k, "1"); } catch (e) { return; }
+  const d = document.getElementById("drop"); d.hidden = false; d.style.animation = "none"; d.offsetHeight; d.style.animation = "";
+  kick(1.4); setTimeout(() => kick(1.4), 470); setTimeout(() => kick(1.6), 940); setTimeout(airHorn, 1200);
+  zeigeToast("🔊 DROP! Viel Spass bei " + ev.name + " 🎉");
+  setTimeout(() => { d.hidden = true; allesNeuZeichnen(); }, 2500);
+}
+
+// ---- Nacht-Modus: gedimmt, grosse Schrift – fürs Handy im Club ----
+function nachtModus(t) {
+  const n = el("div", "nacht");
+  const jetzt = new Date(), laeuft = jetzt >= startDatum(t);
+  n.append(el("h2", "", t.name));
+  n.append(el("div", "status", laeuft ? "● LÄUFT GERADE" : `Start ${t.start || ""} · ${[t.club, t.stadt].filter(Boolean).join(", ")}`));
+  const block = (label, gross, klein) => { const b = el("div", "block"); b.append(el("span", "", label), el("b", "", gross)); if (klein) b.append(el("small", "", klein)); n.append(b); };
+  if (t.oev_letzte) block("🌙 Letzter Zug heim", `${t.oev_letzte.ab} → ${t.oev_letzte.an}`, "nach " + basis().basis);
+  if (t.oev_erste) block("🌅 Erster Zug am Morgen", `${t.oev_erste.ab} → ${t.oev_erste.an}`);
+  if (!t.oev_letzte && !t.oev_erste && t.oev_hinweis) block("🚇 ÖV", t.oev_hinweis);
+  if (t.ende) block("🏁 Ende", t.ende);
+  const liste = crew.code && crewZusagen[evKey(t)];
+  if (liste && liste.length) block("👥 Crew", `${liste.length} dabei`, liste.map(p => p.ich === ichHash ? "du" : p.name).join(" · "));
+  n.append(link("", `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(basis().basis)}&travelmode=driving`, "🏠 Navi nach Hause"));
+  if (t.oev_letzte && t.oev_letzte.sbb) n.append(link("", t.oev_letzte.sbb, "🚆 Verbindung im SBB-Fahrplan"));
+  const zu = el("button", "zu-gross", "✕ Nacht-Modus beenden"); zu.type = "button";
+  zu.onclick = () => n.remove();
+  n.append(zu);
+  document.body.append(n);
+  try { if (navigator.wakeLock) navigator.wakeLock.request("screen").then(w => { zu.addEventListener("click", () => w.release().catch(() => {})); }).catch(() => {}); } catch (e) {}
+}
+
+// ---- Bilder erzeugen & teilen (Story, Rave-Jahr) ----
+function leinwand() { const c = document.createElement("canvas"); c.width = 1080; c.height = 1920; return c; }
+function hintergrund(g) {
+  g.fillStyle = "#070403"; g.fillRect(0, 0, 1080, 1920);
+  const farben = [FARBE.acid, FARBE.laser, FARBE.cyan, FARBE.orange, FARBE.gelb];
+  farben.forEach((f, i) => {
+    g.save(); g.translate(540, -80); g.rotate((-0.55 + i * 0.27));
+    const lg = g.createLinearGradient(0, 0, 0, 2000); lg.addColorStop(0, f); lg.addColorStop(.75, "rgba(0,0,0,0)");
+    g.fillStyle = lg; g.shadowColor = f; g.shadowBlur = 30; g.globalAlpha = .55; g.fillRect(-4, 0, 8, 2100); g.restore();
+  });
+  const v = g.createRadialGradient(540, 960, 200, 540, 960, 1100); v.addColorStop(0, "rgba(7,4,3,.2)"); v.addColorStop(1, "rgba(7,4,3,.85)");
+  g.fillStyle = v; g.fillRect(0, 0, 1080, 1920);
+}
+function zeilen(g, text, maxB) {
+  const w = String(text).split(/\s+/), out = []; let z = "";
+  for (const x of w) { const t = z ? z + " " + x : x; if (g.measureText(t).width > maxB && z) { out.push(z); z = x; } else z = t; }
+  if (z) out.push(z); return out;
+}
+function neonText(g, text, x, y, farbe, blur = 28) {
+  g.save(); g.shadowColor = farbe; g.shadowBlur = blur; g.fillStyle = farbe; g.fillText(text, x, y); g.shadowBlur = 0; g.fillText(text, x, y); g.restore();
+}
+function kopfUndFuss(g) {
+  g.textAlign = "center";
+  g.font = "700 40px 'Space Mono', monospace"; neonText(g, "// TECHNO EVENTS", 540, 150, FARBE.orange, 18);
+  g.font = "800 44px Inter, sans-serif"; g.fillStyle = "#fff"; g.fillText("techno.howeverto.me", 540, 1800);
+  g.font = "700 30px 'Space Mono', monospace"; g.fillStyle = "#998f86"; g.fillText("MADE BY RAVERS – FOR RAVERS", 540, 1850);
+}
+async function bildTeilen(canvas, name, text) {
+  const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
+  // 1) eigene Android-App: über die Brücke teilen
+  try {
+    if (window.TechnoApp && TechnoApp.bildTeilen) {
+      const b64 = canvas.toDataURL("image/png").split(",")[1];
+      TechnoApp.bildTeilen(b64, name, text); return;
+    }
+  } catch (e) {}
+  // 2) Handy-Browser mit Teilen-Funktion
+  try {
+    const file = new File([blob], name, { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text }); return; }
+  } catch (e) { if (e && e.name === "AbortError") return; }
+  // 3) Fallback: Bild zeigen + herunterladen
+  const url = URL.createObjectURL(blob), f = el("div", "");
+  const img = el("img", "story-bild"); img.src = url; img.alt = name;
+  const a = el("a", "btn dabei", "⬇ Bild speichern"); a.href = url; a.download = name; a.style.display = "flex";
+  f.append(img, el("p", "", "Speichern und dann als WhatsApp-Status oder Instagram-Story posten."), a);
+  popup("📸 Dein Bild", f);
+}
+async function storyTeilen(ev) {
+  try { await document.fonts.ready; } catch (e) {}
+  const c = leinwand(), g = c.getContext("2d"); hintergrund(g); kopfUndFuss(g);
+  const tage = tageBis(ev);
+  g.textAlign = "center";
+  g.font = "800 64px Inter, sans-serif"; g.fillStyle = "#fff";
+  g.fillText(tage <= 0 ? "" : "NOCH", 540, 470);
+  g.font = "900 300px Unbounded, sans-serif";
+  neonText(g, tage <= 0 ? "HEUTE" : String(tage), 540, tage <= 0 ? 700 : 760, FARBE.gelb, 40);
+  g.font = "900 80px Unbounded, sans-serif";
+  if (tage > 0) neonText(g, tage === 1 ? "TAG" : "TAGE", 540, 870, FARBE.gelb, 24);
+  g.font = "900 82px Unbounded, sans-serif"; g.fillStyle = "#fff";
+  let y = 1060;
+  for (const z of zeilen(g, String(ev.name).toUpperCase(), 940).slice(0, 3)) { neonText(g, z, 540, y, "#ffffff", 18); y += 96; }
+  g.font = "700 46px Inter, sans-serif"; g.fillStyle = FARBE.cyan;
+  g.fillText(`${kurzDatum(ev)}${ev.start ? " · " + ev.start : ""}`, 540, y + 30);
+  g.fillStyle = "#e6dcd2"; g.fillText([ev.club, ev.stadt].filter(Boolean).join(", ").slice(0, 44), 540, y + 95);
+  if (ev.lineup && ev.lineup.length) {
+    g.font = "700 40px 'Space Mono', monospace"; g.fillStyle = FARBE.acid; let yy = y + 200;
+    for (const z of zeilen(g, ev.lineup.slice(0, 5).join(" · "), 940).slice(0, 3)) { g.fillText(z, 540, yy); yy += 56; }
+  }
+  g.font = "900 64px Unbounded, sans-serif"; neonText(g, "WER KOMMT MIT? 🔥", 540, 1690, FARBE.orange, 26);
+  bildTeilen(c, "techno-events-story.png", `${ev.name} – wer kommt mit? 🔥 ${eventLink(ev)}`);
+}
+
+// ---- Raver-Pass ----
+function erlebte() {
+  const jetzt = new Date(), seen = new Set();
+  return favoriten.filter(f => f.datum && endDatum(f) < jetzt && !seen.has(f.fav_key) && seen.add(f.fav_key))
+    .sort((a, b) => a.datum.localeCompare(b.datum));
+}
+const ABZEICHEN = [
+  ["erstes", "🎟", "Erstes Event", "1 Event erlebt", l => l.length >= 1],
+  ["fuenf", "🔥", "Stammgast", "5 Events erlebt", l => l.length >= 5],
+  ["zehn", "🏆", "Rave-Legende", "10 Events erlebt", l => l.length >= 10],
+  ["berg", "⛰", "Berg-Raver", "2 Events über 1500 m", l => l.filter(e => (e.hoehe || 0) >= 1500).length >= 2],
+  ["day", "🌅", "Daydancer", "3 Events mit Start vor 16 Uhr", l => l.filter(e => (e.start || "99") < "16:00").length >= 3],
+  ["after", "🌙", "Afterhour-König", "Party bis nach 8 Uhr morgens", l => l.some(e => e.ende_folgetag && (e.ende || "") >= "08:00" && (e.ende || "") < "14:00")],
+  ["road", "🚗", "Roadtrip", "Event über 100 km entfernt", l => l.some(e => (e.auto_km || 0) >= 100)],
+  ["grenze", "🇩🇪", "Grenzgänger", "Event in München", l => l.some(e => e.region === "muc" || e.stadt === "München")],
+  ["genre", "🎧", "Genre-Hopper", "4 verschiedene Sound-Gruppen", l => new Set(l.flatMap(familien)).size >= 4],
+  ["crew", "👥", "Crew-Member", "In einer Crew", () => !!crew.code],
+  ["dabei", "🙋", "Zusage-König", "5× «Ich bin dabei»", () => zusagen.size >= 5],
+  ["winter", "❄️", "Winter-Raver", "Open-Air bei Kälte (Nov–Feb)", l => l.some(e => e.openair && /-(11|12|01|02)-/.test(e.datum))]
+];
+function abzeichenPruefen(stumm) {
+  const l = erlebte(), hat = ABZEICHEN.filter(a => a[4](l)).map(a => a[0]);
+  let alt = []; try { alt = JSON.parse(localStorage.getItem("te-abzeichen") || "[]"); } catch (e) {}
+  const neu = hat.filter(k => !alt.includes(k));
+  try { localStorage.setItem("te-abzeichen", JSON.stringify(hat)); } catch (e) {}
+  if (!stumm && neu.length && alt.length + neu.length > 0) {
+    const a = ABZEICHEN.find(x => x[0] === neu[0]);
+    setTimeout(() => { zeigeToast(neu.length > 1 ? `🎖 ${neu.length} neue Abzeichen – schau in deinen Raver-Pass!` : `🎖 Neues Abzeichen: ${a[1]} ${a[2]}`); kick(1.2); }, 1500);
+  }
+  return { hat, neu };
+}
+function passZeigen() {
+  const l = erlebte(), { hat, neu } = abzeichenPruefen(true);
+  const km = l.reduce((s, e) => s + 2 * (e.auto_km || 0), 0);
+  const f = el("div", "");
+  const kopf = el("div", "pass-kopf");
+  for (const [z, t] of [[l.length, "Events"], [Math.round(km), "km gefahren"], [`${hat.length}/${ABZEICHEN.length}`, "Abzeichen"]]) { const d = el("div"); d.append(el("b", "", String(z)), document.createTextNode(t)); kopf.append(d); }
+  f.append(kopf);
+  f.append(el("h3", "", "🎖 Abzeichen"));
+  const g = el("div", "abz");
+  for (const [k, icon, name, wie] of ABZEICHEN) {
+    const d = el("div", hat.includes(k) ? (neu.includes(k) ? "neu" : "") : "zu");
+    d.append(el("i", "", icon), document.createTextNode(name), el("small", "", wie)); g.append(d);
+  }
+  f.append(g);
+  f.append(el("h3", "", "🎟 Deine Stempel"));
+  if (l.length) { const st = el("div", "pass-stempel"); for (const e of l.slice().reverse()) st.append(el("span", "", `${e.datum.slice(8, 10)}.${e.datum.slice(5, 7)}. ${e.name.slice(0, 22)}`)); f.append(st); }
+  else f.append(el("p", "", "Noch keine Stempel. Markiere Events mit ☆ – nach der Party landet der Stempel automatisch hier."));
+  f.append(el("p", "ds-klein", "Alles nur auf deinem Handy gespeichert."));
+  popup("🎖 Raver-Pass", f);
+}
+
+// ---- Dein Rave-Jahr ----
+function raveJahr() {
+  const d = new Date(), jahr = d.getMonth() === 0 ? d.getFullYear() - 1 : d.getFullYear();
+  const l = erlebte().filter(e => e.datum.startsWith(String(jahr)));
+  const zaehle = arr => { const m = {}; arr.forEach(x => { if (x) m[x] = (m[x] || 0) + 1; }); return Object.entries(m).sort((a, b) => b[1] - a[1])[0]; };
+  const stunden = l.reduce((s, e) => s + Math.max(0, (endDatum(e) - startDatum(e)) / 36e5), 0);
+  return { jahr, l, anzahl: l.length, km: Math.round(l.reduce((s, e) => s + 2 * (e.auto_km || 0), 0)), stunden: Math.round(stunden),
+    genre: zaehle(l.flatMap(familien)), club: zaehle(l.map(e => e.club)), stadt: zaehle(l.map(e => e.stadt)),
+    hoechste: l.reduce((m, e) => (e.hoehe || 0) > ((m && m.hoehe) || 0) ? e : m, null) };
+}
+function jahrZeigen() {
+  const r = raveJahr(), f = el("div", "jahr-liste");
+  f.append(el("div", "jahr-zahl", String(r.anzahl)), el("p", "", r.anzahl === 1 ? "Event erlebt" : "Events erlebt"));
+  if (!r.anzahl) f.append(el("p", "", "Noch keine erlebten Events in diesem Jahr. Markiere deine Partys mit ☆ – nach dem Event zählen sie automatisch."));
+  else {
+    const p = (t) => f.append(el("p", "", t));
+    p(`🕺 ${r.stunden} Stunden auf der Tanzfläche`);
+    if (r.km) p(`🚗 ${r.km} km unterwegs (hin & zurück)`);
+    if (r.genre) p(`🎧 Dein Sound: ${r.genre[0]}`);
+    if (r.club) p(`🏠 Lieblings-Location: ${r.club[0]} (${r.club[1]}×)`);
+    if (r.stadt) p(`📍 Top-Stadt: ${r.stadt[0]}`);
+    if (r.hoechste) p(`⛰ Höchste Party: ${r.hoechste.name} auf ${r.hoechste.hoehe} m`);
+    const b = el("button", "btn dabei", "📸 Als Bild teilen"); b.type = "button"; b.style.width = "100%";
+    b.onclick = () => jahrBild(r); f.append(b);
+  }
+  popup(`🎆 Dein Rave-Jahr ${r.jahr}`, f);
+}
+async function jahrBild(r) {
+  try { await document.fonts.ready; } catch (e) {}
+  const c = leinwand(), g = c.getContext("2d"); hintergrund(g); kopfUndFuss(g);
+  g.textAlign = "center";
+  g.font = "900 90px Unbounded, sans-serif"; neonText(g, "MEIN RAVE-JAHR", 540, 330, "#fff", 20);
+  g.font = "900 120px Unbounded, sans-serif"; neonText(g, String(r.jahr), 540, 470, FARBE.laser, 30);
+  g.font = "900 260px Unbounded, sans-serif"; neonText(g, String(r.anzahl), 540, 780, FARBE.gelb, 40);
+  g.font = "800 60px Inter, sans-serif"; g.fillStyle = "#fff"; g.fillText(r.anzahl === 1 ? "EVENT" : "EVENTS", 540, 870);
+  const zeilenTxt = [
+    [`🕺 ${r.stunden} Stunden getanzt`, FARBE.acid],
+    r.km ? [`🚗 ${r.km} km unterwegs`, FARBE.cyan] : null,
+    r.genre ? [`🎧 ${r.genre[0]}`, FARBE.orange] : null,
+    r.club ? [`🏠 ${r.club[0]}`.slice(0, 32), "#fff"] : null,
+    r.hoechste ? [`⛰ ${r.hoechste.hoehe} m – höchste Party`, FARBE.gelb] : null
+  ].filter(Boolean);
+  g.font = "800 56px Inter, sans-serif"; let y = 1040;
+  for (const [t, farbe] of zeilenTxt) { neonText(g, t, 540, y, farbe, 14); y += 110; }
+  bildTeilen(c, `mein-rave-jahr-${r.jahr}.png`, `Mein Rave-Jahr ${r.jahr} 🎆 – ${r.anzahl} Events! ${GUIDE_URL}`);
+}
+
 // ---- Kurzanleitung ----
 function guideZeigen() {
   const f = el("div", "guide");
@@ -1010,8 +1275,14 @@ function guideZeigen() {
       ["Crew gründen", "unten auf «👥 Crew» → «Neue Crew gründen» → Freunde per WhatsApp einladen."],
       ["Beitreten", "Einladungslink antippen, Spitzname eingeben – fertig."],
       ["🙋 Ich bin dabei", "deine Crew sieht beim Event «🔥 3 dabei: …». Mit ✕ ziehst du zurück."]]],
+    ["🎉 Party-Extras", [
+      ["📸 Story", "beim Countdown: Bild «Noch X Tage» für WhatsApp-Status oder Instagram-Story."],
+      ["🎖 Raver-Pass", "unter «Meine Favoriten»: Stempel für jede erlebte Party und Abzeichen zum Sammeln."],
+      ["🎆 Rave-Jahr", "dein Jahresrückblick – Events, Stunden, Kilometer, Lieblingssound. Auch als Bild."],
+      ["🌙 Nacht-Modus", "am Event-Tag: dunkle Ansicht mit grosser Schrift, letztem Zug und Navi heim."],
+      ["💥 Drop", "springt der Countdown auf 0, gibt's eine Laser-Explosion."]]],
     ["📻 Radio & Reinhören", [
-      ["📻 unten rechts", "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender (werbefreie Electronic-Sender von SomaFM)."],
+      ["📻 unten rechts", "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender, 📣 Air-Horn. Läuft Musik, pulsieren die Laser im Takt."],
       ["🎧 Reinhören", "bei jedem Event: Sets der Künstler auf SoundCloud oder Mixcloud anhören."]]],
     ["⟳ Aktualisieren", [
       ["Nach unten ziehen", "lädt die neuesten Events – und eine neue App-Version, falls es eine gibt."],
@@ -1208,6 +1479,9 @@ function tonightZeigen(liste) {
   const heim = heimText(t);
   if (heim || t.oev_hin) box.append(el("div", "heim", [t.oev_hin ? "🚆 Hin: " + (typeof t.oev_hin === "object" ? `${t.oev_hin.ab} → ${t.oev_hin.an}` : t.oev_hin) : "", heim ? "🌙 Heim: " + heim : ""].filter(Boolean).join("\n"))), box.lastChild.style.whiteSpace = "pre-line";
   box.append(link("letsgo", naviLink(t), "🚀 Let's go"));
+  const nk = el("button", "nacht-knopf", "🌙 Nacht-Modus – fürs Handy im Club"); nk.type = "button";
+  nk.onclick = () => nachtModus(t);
+  box.append(nk);
   box.append(aktionen(t, true));
   return true;
 }
@@ -1511,6 +1785,7 @@ function tick() {
   document.getElementById("cd-h").textContent = String(h).padStart(2, "0");
   document.getElementById("cd-m").textContent = String(m).padStart(2, "0");
   document.getElementById("cd-s").textContent = String(s).padStart(2, "0");
+  if (heroZiel - new Date() <= 0 && heroEvent) dropAusloesen(heroEvent);
 }
 setInterval(tick, 1000);
 
@@ -1725,6 +2000,10 @@ async function start() {
 document.getElementById("crew-fuss").onclick = () => crewDialog(null);
 document.getElementById("ds-link").onclick = () => datenschutzZeigen();
 document.getElementById("guide-link").onclick = () => guideZeigen();
+document.getElementById("pass-knopf").onclick = () => passZeigen();
+document.getElementById("jahr-knopf").onclick = () => jahrZeigen();
+document.getElementById("story-knopf").onclick = () => { if (heroEvent) storyTeilen(heroEvent); };
+document.getElementById("radio-horn").onclick = () => airHorn();
 document.getElementById("willkommen-los").onclick = () => guideZeigen();
 document.getElementById("willkommen-weg").onclick = () => { document.getElementById("willkommen").hidden = true; try { localStorage.setItem("te-guide", "1"); } catch (e) {} };
 try { if (!localStorage.getItem("te-guide")) document.getElementById("willkommen").hidden = false; } catch (e) {}
@@ -1763,6 +2042,7 @@ function zumGeteiltenEvent() {
   }, 600);
 }
 start().then(() => {
+  abzeichenPruefen(false);
   crewEinladungPruefen();
   zumGeteiltenEvent();
   // Wer letztes Mal «Mein Standort» gewählt hat, startet wieder damit (ohne Meldung)

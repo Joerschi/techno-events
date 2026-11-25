@@ -1,5 +1,13 @@
 # Changelog – Techno Events
 
+## v1.30.0 – 25.11.2026
+- 📸 Story-Bild: «Noch X Tage» bis zum nächsten Event als Bild für WhatsApp-Status / Instagram-Story
+- 🎖 Raver-Pass: Stempel für erlebte Events und 12 Abzeichen (Berg-Raver, Afterhour-König, Roadtrip …), mit Hinweis bei neuen Abzeichen
+- 🎆 Dein Rave-Jahr: Jahresrückblick (Events, Stunden, Kilometer, Sound, Lieblings-Location, höchste Party) – auch als Bild
+- ⚡ Beat-Modus: Läuft das Radio, pulsieren Laser und Logo mit 128 BPM; 📣 Air-Horn im Radio
+- 🌙 Nacht-Modus am Event-Tag: dunkel, grosse Schrift, letzter/erster Zug, Navi heim, Crew
+- 💥 Drop: Laser-Explosion mit Kick und Air-Horn, wenn der Countdown auf 0 springt
+
 ## v1.29.2 – 25.11.2026
 - Orange zurück auf das leuchtendere Neon-Orange #FF6A00
 

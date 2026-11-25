@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.34.0 – 25.11.2026
+- 🌐 Englische Version: automatisch bei englischsprachigem Handy, Umschalter «🌐 English / Deutsch» unten
+- Teilen-Texte, Story- und Rave-Jahr-Bilder auch auf Englisch
+- Event-Tipps neu mit `tipp_en`
+
 ## v1.33.0 – 25.11.2026
 - 📅 Kalender-Eintrag nur noch mit dem Event (Lineup, Tickets, Link) – ohne An-/Abfahrt; iPhone: direkt in den Apple-Kalender
 - 📅 Alle kommenden Favoriten auf einmal in den Kalender (im Raver-Pass)

@@ -1,321 +1,327 @@
 {
- "region": "muc",
- "basis": "München Hbf",
- "stand": "Di 24.11.2026 21:00",
- "wochenende": "27.–29. November",
- "top3": [
-  "muc-ritual",
-  "muc-legal-sa",
-  "muc-thiel-fr"
- ],
- "events": [
-  {
-   "id": "muc-legal-fr",
-   "name": "Legal Klubnacht: DJoy & Onur Özer",
-   "tag": "Fr",
-   "datum": "2026-11-27",
-   "start": "22:00",
-   "ende": "06:00",
-   "ende_folgetag": true,
-   "club": "Legal",
-   "adresse": "Thalkirchner Str. 2, 80337 München",
-   "stadt": "München",
-   "lat": 48.1336,
-   "lon": 11.5665,
-   "lineup": [
-    "DJoy",
-    "Onur Özer",
-    "Jokâ",
-    "Angel K.",
-    "Leyla"
-   ],
-   "genre": [
-    "Techno",
-    "House"
-   ],
-   "preis": "ab €15",
-   "link": "https://www.technoairlines.com/event/legal-klubnacht-w-djoy-onur-ozer-joka-angel-k-leyla-legal-2026-11-27",
-   "auto_km": 1.0,
-   "auto_min": 2,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Legal%2C%20Thalkirchner%20Str.%202%2C%2080337%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U Sendlinger Tor · 1 Min. zu Fuss",
-   "ampel": "gruen",
-   "tipp": "Kellerclub direkt am Sendlinger Tor, selbstgebaute Anlage."
-  },
-  {
-   "id": "muc-thiel-fr",
-   "name": "Freitag mit Fab Massimo",
-   "tag": "Fr",
-   "datum": "2026-11-27",
-   "start": "22:00",
-   "ende": "06:00",
-   "ende_folgetag": true,
-   "club": "Bahnwärter Thiel",
-   "adresse": "Tumblingerstr. 29, 80337 München",
-   "stadt": "München",
-   "lat": 48.1219,
-   "lon": 11.5537,
-   "lineup": [
-    "Fab Massimo",
-    "Concentio",
-    "Gizmo",
-    "SILSAN",
-    "eira haul"
-   ],
-   "genre": [
-    "Techno"
-   ],
-   "preis": "ab €10",
-   "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
-   "auto_km": 2.3,
-   "auto_min": 5,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Bahnw%C3%A4rter%20Thiel%2C%20Tumblingerstr.%2029%2C%2080337%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U Poccistraße · 5 Min. zu Fuss",
-   "ampel": "gruen",
-   "tipp": "Münchens «Zirkus» – Zugwaggons, Schaukel, Pommes."
-  },
-  {
-   "id": "muc-reiter-fr",
-   "name": "Dancekowski invites… hawi",
-   "tag": "Fr",
-   "datum": "2026-11-27",
-   "start": "23:00",
-   "ende": "05:00",
-   "ende_folgetag": true,
-   "club": "Goldener Reiter",
-   "adresse": "Theklastr. 1, 80469 München",
-   "stadt": "München",
-   "lat": 48.1318,
-   "lon": 11.5713,
-   "lineup": [
-    "André Dancekowski",
-    "hawi"
-   ],
-   "genre": [
-    "House"
-   ],
-   "preis": "ab €12",
-   "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
-   "auto_km": 1.5,
-   "auto_min": 3,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Goldener%20Reiter%2C%20Theklastr.%201%2C%2080469%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U Fraunhoferstraße · 5 Min. zu Fuss",
-   "ampel": "gruen"
-  },
-  {
-   "id": "muc-ritual",
-   "name": "Ritual – 24h Rhythm is Ritual",
-   "tag": "Sa",
-   "datum": "2026-11-28",
-   "start": "23:00",
-   "ende": "23:00",
-   "ende_folgetag": false,
-   "club": "Rote Sonne",
-   "adresse": "Maximiliansplatz 5, 80333 München",
-   "stadt": "München",
-   "lat": 48.1424,
-   "lon": 11.5689,
-   "lineup": [
-    "Amotik",
-    "Stenny",
-    "Artifex",
-    "E2NMN",
-    "Goiaba",
-    "Chet Rubbs",
-    "Impedance",
-    "Luka Jukić",
-    "IZZYA",
-    "Melchiorr"
-   ],
-   "genre": [
-    "Techno"
-   ],
-   "preis": "ab €16",
-   "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
-   "auto_km": 1.3,
-   "auto_min": 3,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Rote%20Sonne%2C%20Maximiliansplatz%205%2C%2080333%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U/S Karlsplatz (Stachus) · 5 Min. zu Fuss",
-   "ampel": "gruen",
-   "tipp": "24 Stunden in der Roten Sonne – Amotik & Stenny, das Highlight des Wochenendes."
-  },
-  {
-   "id": "muc-legal-sa",
-   "name": "Legal Klubnacht: Kareem El Morr & Stenny",
-   "tag": "Sa",
-   "datum": "2026-11-28",
-   "start": "22:00",
-   "ende": "06:00",
-   "ende_folgetag": true,
-   "club": "Legal",
-   "adresse": "Thalkirchner Str. 2, 80337 München",
-   "stadt": "München",
-   "lat": 48.1336,
-   "lon": 11.5665,
-   "lineup": [
-    "Kareem El Morr",
-    "Stenny",
-    "Boris & Davy",
-    "Lulu"
-   ],
-   "genre": [
-    "Techno"
-   ],
-   "preis": "ab €15",
-   "link": "https://www.technoairlines.com/event/legal-klubnacht-w-kareem-el-morr-stenny-bar-takeover-by-creme-clu-legal-2026-11-28",
-   "auto_km": 1.0,
-   "auto_min": 2,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Legal%2C%20Thalkirchner%20Str.%202%2C%2080337%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U Sendlinger Tor · 1 Min. zu Fuss",
-   "ampel": "gruen",
-   "tipp": "Bar-Takeover by Crème Club."
-  },
-  {
-   "id": "muc-thiel-sa",
-   "name": "Samstag mit Matija",
-   "tag": "Sa",
-   "datum": "2026-11-28",
-   "start": "22:00",
-   "ende": "06:00",
-   "ende_folgetag": true,
-   "club": "Bahnwärter Thiel",
-   "adresse": "Tumblingerstr. 29, 80337 München",
-   "stadt": "München",
-   "lat": 48.1219,
-   "lon": 11.5537,
-   "lineup": [
-    "Matija",
-    "seboro",
-    "Natanael Megersa",
-    "Tala Berg",
-    "špii"
-   ],
-   "genre": [
-    "Techno"
-   ],
-   "preis": "ab €10",
-   "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
-   "auto_km": 2.3,
-   "auto_min": 5,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Bahnw%C3%A4rter%20Thiel%2C%20Tumblingerstr.%2029%2C%2080337%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U Poccistraße · 5 Min. zu Fuss",
-   "ampel": "gruen"
-  },
-  {
-   "id": "muc-reiter-sa",
-   "name": "Antenne Geyer x Strapaze: Maggie Jane",
-   "tag": "Sa",
-   "datum": "2026-11-28",
-   "start": "23:00",
-   "ende": "05:00",
-   "ende_folgetag": true,
-   "club": "Goldener Reiter",
-   "adresse": "Theklastr. 1, 80469 München",
-   "stadt": "München",
-   "lat": 48.1318,
-   "lon": 11.5713,
-   "lineup": [
-    "Maggie Jane",
-    "DJ PLUS PLUS",
-    "Spinneck",
-    "skathi",
-    "Arninho"
-   ],
-   "genre": [
-    "House",
-    "Techno"
-   ],
-   "preis": "ab €12",
-   "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
-   "auto_km": 1.5,
-   "auto_min": 3,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Goldener%20Reiter%2C%20Theklastr.%201%2C%2080469%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U Fraunhoferstraße · 5 Min. zu Fuss",
-   "ampel": "gruen"
-  },
-  {
-   "id": "muc-charlie",
-   "name": "PP Night: Public Possession",
-   "tag": "Sa",
-   "datum": "2026-11-28",
-   "start": "23:00",
-   "ende": "05:00",
-   "ende_folgetag": true,
-   "club": "Charlie",
-   "adresse": "Schyrenstr. 8, 81543 München",
-   "stadt": "München",
-   "lat": 48.1188,
-   "lon": 11.5759,
-   "lineup": [
-    "Public Possession"
-   ],
-   "genre": [
-    "House"
-   ],
-   "preis": "ab €15",
-   "link": "https://www.technoairlines.com/event/pp-night-charlie-2026-11-28",
-   "auto_km": 3.4,
-   "auto_min": 7,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Charlie%2C%20Schyrenstr.%208%2C%2081543%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "U Kolumbusplatz · ca. 8 Min. zu Fuss",
-   "ampel": "gruen",
-   "tipp": "Das Münchner Label im Kult-Keller in Untergiesing."
-  },
-  {
-   "id": "muc-toon",
-   "name": "Toon Winter Town",
-   "tag": "Sa",
-   "datum": "2026-11-28",
-   "start": "16:00",
-   "ende": "23:00",
-   "ende_folgetag": false,
-   "club": "Lieberscholli",
-   "adresse": "Landsberger Str. 212, 80687 München",
-   "stadt": "München",
-   "lat": 48.1427,
-   "lon": 11.5165,
-   "lineup": [
-    "kamo.",
-    "Danya",
-    "LYZA",
-    "SHAJAN",
-    "Goiaba",
-    "DJ Yugo",
-    "Jeyrototo"
-   ],
-   "genre": [
-    "House",
-    "Techno"
-   ],
-   "preis": "ab €19.20",
-   "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
-   "auto_km": 3.7,
-   "auto_min": 7,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Lieberscholli%2C%20Landsberger%20Str.%20212%2C%2080687%20M%C3%BCnchen&travelmode=driving",
-   "oev_hinweis": "S Laim / Tram 19 · wenige Min. zu Fuss",
-   "ampel": "gruen",
-   "tipp": "Daydance in der alten Papierfabrik."
-  }
- ],
- "ausblick": [
-  {
-   "name": "together is the answer: Tiefschwarz",
-   "datum": "2026-12-05",
-   "start": "23:00",
-   "club": "Charlie",
-   "adresse": "Schyrenstr. 8, 81543 München",
-   "stadt": "München",
-   "lat": 48.1188,
-   "lon": 11.5759,
-   "lineup": [
-    "Tiefschwarz"
-   ],
-   "genre": [
-    "House"
-   ],
-   "link": "https://www.technoairlines.com/club/charlie-munich",
-   "auto_min": 7,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Charlie%2C%20Schyrenstr.%208%2C%2081543%20M%C3%BCnchen&travelmode=driving"
-  }
- ]
+  "region": "muc",
+  "basis": "München Hbf",
+  "stand": "Di 24.11.2026 21:00",
+  "wochenende": "27.–29. November",
+  "top3": [
+    "muc-ritual",
+    "muc-legal-sa",
+    "muc-thiel-fr"
+  ],
+  "events": [
+    {
+      "id": "muc-legal-fr",
+      "name": "Legal Klubnacht: DJoy & Onur Özer",
+      "tag": "Fr",
+      "datum": "2026-11-27",
+      "start": "22:00",
+      "ende": "06:00",
+      "ende_folgetag": true,
+      "club": "Legal",
+      "adresse": "Thalkirchner Str. 2, 80337 München",
+      "stadt": "München",
+      "lat": 48.1336,
+      "lon": 11.5665,
+      "lineup": [
+        "DJoy",
+        "Onur Özer",
+        "Jokâ",
+        "Angel K.",
+        "Leyla"
+      ],
+      "genre": [
+        "Techno",
+        "House"
+      ],
+      "preis": "ab €15",
+      "link": "https://www.technoairlines.com/event/legal-klubnacht-w-djoy-onur-ozer-joka-angel-k-leyla-legal-2026-11-27",
+      "auto_km": 1.0,
+      "auto_min": 2,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Legal%2C%20Thalkirchner%20Str.%202%2C%2080337%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U Sendlinger Tor · 1 Min. zu Fuss",
+      "ampel": "gruen",
+      "tipp": "Kellerclub direkt am Sendlinger Tor, selbstgebaute Anlage.",
+      "tipp_en": "Basement club right at Sendlinger Tor, home-built sound system."
+    },
+    {
+      "id": "muc-thiel-fr",
+      "name": "Freitag mit Fab Massimo",
+      "tag": "Fr",
+      "datum": "2026-11-27",
+      "start": "22:00",
+      "ende": "06:00",
+      "ende_folgetag": true,
+      "club": "Bahnwärter Thiel",
+      "adresse": "Tumblingerstr. 29, 80337 München",
+      "stadt": "München",
+      "lat": 48.1219,
+      "lon": 11.5537,
+      "lineup": [
+        "Fab Massimo",
+        "Concentio",
+        "Gizmo",
+        "SILSAN",
+        "eira haul"
+      ],
+      "genre": [
+        "Techno"
+      ],
+      "preis": "ab €10",
+      "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
+      "auto_km": 2.3,
+      "auto_min": 5,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Bahnw%C3%A4rter%20Thiel%2C%20Tumblingerstr.%2029%2C%2080337%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U Poccistraße · 5 Min. zu Fuss",
+      "ampel": "gruen",
+      "tipp": "Münchens «Zirkus» – Zugwaggons, Schaukel, Pommes.",
+      "tipp_en": "Munich's “circus” – train carriages, a swing, fries."
+    },
+    {
+      "id": "muc-reiter-fr",
+      "name": "Dancekowski invites… hawi",
+      "tag": "Fr",
+      "datum": "2026-11-27",
+      "start": "23:00",
+      "ende": "05:00",
+      "ende_folgetag": true,
+      "club": "Goldener Reiter",
+      "adresse": "Theklastr. 1, 80469 München",
+      "stadt": "München",
+      "lat": 48.1318,
+      "lon": 11.5713,
+      "lineup": [
+        "André Dancekowski",
+        "hawi"
+      ],
+      "genre": [
+        "House"
+      ],
+      "preis": "ab €12",
+      "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
+      "auto_km": 1.5,
+      "auto_min": 3,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Goldener%20Reiter%2C%20Theklastr.%201%2C%2080469%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U Fraunhoferstraße · 5 Min. zu Fuss",
+      "ampel": "gruen"
+    },
+    {
+      "id": "muc-ritual",
+      "name": "Ritual – 24h Rhythm is Ritual",
+      "tag": "Sa",
+      "datum": "2026-11-28",
+      "start": "23:00",
+      "ende": "23:00",
+      "ende_folgetag": false,
+      "club": "Rote Sonne",
+      "adresse": "Maximiliansplatz 5, 80333 München",
+      "stadt": "München",
+      "lat": 48.1424,
+      "lon": 11.5689,
+      "lineup": [
+        "Amotik",
+        "Stenny",
+        "Artifex",
+        "E2NMN",
+        "Goiaba",
+        "Chet Rubbs",
+        "Impedance",
+        "Luka Jukić",
+        "IZZYA",
+        "Melchiorr"
+      ],
+      "genre": [
+        "Techno"
+      ],
+      "preis": "ab €16",
+      "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
+      "auto_km": 1.3,
+      "auto_min": 3,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Rote%20Sonne%2C%20Maximiliansplatz%205%2C%2080333%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U/S Karlsplatz (Stachus) · 5 Min. zu Fuss",
+      "ampel": "gruen",
+      "tipp": "24 Stunden in der Roten Sonne – Amotik & Stenny, das Highlight des Wochenendes.",
+      "tipp_en": "24 hours at Rote Sonne – Amotik & Stenny, the highlight of the weekend."
+    },
+    {
+      "id": "muc-legal-sa",
+      "name": "Legal Klubnacht: Kareem El Morr & Stenny",
+      "tag": "Sa",
+      "datum": "2026-11-28",
+      "start": "22:00",
+      "ende": "06:00",
+      "ende_folgetag": true,
+      "club": "Legal",
+      "adresse": "Thalkirchner Str. 2, 80337 München",
+      "stadt": "München",
+      "lat": 48.1336,
+      "lon": 11.5665,
+      "lineup": [
+        "Kareem El Morr",
+        "Stenny",
+        "Boris & Davy",
+        "Lulu"
+      ],
+      "genre": [
+        "Techno"
+      ],
+      "preis": "ab €15",
+      "link": "https://www.technoairlines.com/event/legal-klubnacht-w-kareem-el-morr-stenny-bar-takeover-by-creme-clu-legal-2026-11-28",
+      "auto_km": 1.0,
+      "auto_min": 2,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Legal%2C%20Thalkirchner%20Str.%202%2C%2080337%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U Sendlinger Tor · 1 Min. zu Fuss",
+      "ampel": "gruen",
+      "tipp": "Bar-Takeover by Crème Club.",
+      "tipp_en": "Bar takeover by Crème Club."
+    },
+    {
+      "id": "muc-thiel-sa",
+      "name": "Samstag mit Matija",
+      "tag": "Sa",
+      "datum": "2026-11-28",
+      "start": "22:00",
+      "ende": "06:00",
+      "ende_folgetag": true,
+      "club": "Bahnwärter Thiel",
+      "adresse": "Tumblingerstr. 29, 80337 München",
+      "stadt": "München",
+      "lat": 48.1219,
+      "lon": 11.5537,
+      "lineup": [
+        "Matija",
+        "seboro",
+        "Natanael Megersa",
+        "Tala Berg",
+        "špii"
+      ],
+      "genre": [
+        "Techno"
+      ],
+      "preis": "ab €10",
+      "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
+      "auto_km": 2.3,
+      "auto_min": 5,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Bahnw%C3%A4rter%20Thiel%2C%20Tumblingerstr.%2029%2C%2080337%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U Poccistraße · 5 Min. zu Fuss",
+      "ampel": "gruen"
+    },
+    {
+      "id": "muc-reiter-sa",
+      "name": "Antenne Geyer x Strapaze: Maggie Jane",
+      "tag": "Sa",
+      "datum": "2026-11-28",
+      "start": "23:00",
+      "ende": "05:00",
+      "ende_folgetag": true,
+      "club": "Goldener Reiter",
+      "adresse": "Theklastr. 1, 80469 München",
+      "stadt": "München",
+      "lat": 48.1318,
+      "lon": 11.5713,
+      "lineup": [
+        "Maggie Jane",
+        "DJ PLUS PLUS",
+        "Spinneck",
+        "skathi",
+        "Arninho"
+      ],
+      "genre": [
+        "House",
+        "Techno"
+      ],
+      "preis": "ab €12",
+      "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
+      "auto_km": 1.5,
+      "auto_min": 3,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Goldener%20Reiter%2C%20Theklastr.%201%2C%2080469%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U Fraunhoferstraße · 5 Min. zu Fuss",
+      "ampel": "gruen"
+    },
+    {
+      "id": "muc-charlie",
+      "name": "PP Night: Public Possession",
+      "tag": "Sa",
+      "datum": "2026-11-28",
+      "start": "23:00",
+      "ende": "05:00",
+      "ende_folgetag": true,
+      "club": "Charlie",
+      "adresse": "Schyrenstr. 8, 81543 München",
+      "stadt": "München",
+      "lat": 48.1188,
+      "lon": 11.5759,
+      "lineup": [
+        "Public Possession"
+      ],
+      "genre": [
+        "House"
+      ],
+      "preis": "ab €15",
+      "link": "https://www.technoairlines.com/event/pp-night-charlie-2026-11-28",
+      "auto_km": 3.4,
+      "auto_min": 7,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Charlie%2C%20Schyrenstr.%208%2C%2081543%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "U Kolumbusplatz · ca. 8 Min. zu Fuss",
+      "ampel": "gruen",
+      "tipp": "Das Münchner Label im Kult-Keller in Untergiesing.",
+      "tipp_en": "The Munich label in the cult basement in Untergiesing."
+    },
+    {
+      "id": "muc-toon",
+      "name": "Toon Winter Town",
+      "tag": "Sa",
+      "datum": "2026-11-28",
+      "start": "16:00",
+      "ende": "23:00",
+      "ende_folgetag": false,
+      "club": "Lieberscholli",
+      "adresse": "Landsberger Str. 212, 80687 München",
+      "stadt": "München",
+      "lat": 48.1427,
+      "lon": 11.5165,
+      "lineup": [
+        "kamo.",
+        "Danya",
+        "LYZA",
+        "SHAJAN",
+        "Goiaba",
+        "DJ Yugo",
+        "Jeyrototo"
+      ],
+      "genre": [
+        "House",
+        "Techno"
+      ],
+      "preis": "ab €19.20",
+      "link": "https://technobeatscloud.com/en/events/clubs/germany/munich",
+      "auto_km": 3.7,
+      "auto_min": 7,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Lieberscholli%2C%20Landsberger%20Str.%20212%2C%2080687%20M%C3%BCnchen&travelmode=driving",
+      "oev_hinweis": "S Laim / Tram 19 · wenige Min. zu Fuss",
+      "ampel": "gruen",
+      "tipp": "Daydance in der alten Papierfabrik.",
+      "tipp_en": "Daydance in the old paper factory."
+    }
+  ],
+  "ausblick": [
+    {
+      "name": "together is the answer: Tiefschwarz",
+      "datum": "2026-12-05",
+      "start": "23:00",
+      "club": "Charlie",
+      "adresse": "Schyrenstr. 8, 81543 München",
+      "stadt": "München",
+      "lat": 48.1188,
+      "lon": 11.5759,
+      "lineup": [
+        "Tiefschwarz"
+      ],
+      "genre": [
+        "House"
+      ],
+      "link": "https://www.technoairlines.com/club/charlie-munich",
+      "auto_min": 7,
+      "navi": "https://www.google.com/maps/dir/?api=1&origin=M%C3%BCnchen%20Hbf&destination=Charlie%2C%20Schyrenstr.%208%2C%2081543%20M%C3%BCnchen&travelmode=driving"
+    }
+  ]
 }

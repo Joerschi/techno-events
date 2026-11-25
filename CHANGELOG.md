@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.39.0 – 25.11.2026
+- 📻 Zwei Techno-Sender neu: «4 To The Floor» (NTS Radio, House & Techno) und «TEKnival Radio» (Hard Techno & Tekno) – jetzt 6 Sender
+- Quellen-Link unten im Radio passt sich dem Sender an
+
 ## v1.38.0 – 25.11.2026
 - 🎛 Radio als Mini-DJ-Deck: drehende Platte mit Sender-Label (Scratch beim Senderwechsel), grünes LCD-Display mit Kanal, ON-AIR-Lampe und Pegel, runder PLAY-Knopf, NEXT- und HORN-Pads, Lautstärke-Fader
 - Radio-Knopf ist jetzt eine kleine Schallplatte, die sich dreht, wenn Musik läuft

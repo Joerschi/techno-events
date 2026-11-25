@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.35.0 – 25.11.2026
+- 🔴 Live-Modus: Läuft ein Favorit, wird die App dunkler und pink, die Tonight-Box pulsiert
+- 🌙 Nacht-Modus öffnet sich beim Start des Favoriten einmal von selbst
+- Umschalten passiert automatisch zur Start- und Endzeit, auch wenn die App offen ist
+- Android-App 3.0: Widget wird während der Party pink («LIVE – PARTY LÄUFT»), zeigt «bis HH:MM»; TONIGHT/TODAY am Event-Tag; Widget auf Englisch, wenn das Handy Englisch ist
+
 ## v1.34.0 – 25.11.2026
 - 🌐 Englische Version: automatisch bei englischsprachigem Handy, Umschalter «🌐 English / Deutsch» unten
 - Teilen-Texte, Story- und Rave-Jahr-Bilder auch auf Englisch

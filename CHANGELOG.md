@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.25.0 – 25.11.2026
+- 📻 Radio: runder Knopf unten rechts öffnet einen Mini-Player mit 4 werbefreien Electronic-Sendern von SomaFM (▶/⏸, ⏭ Sender wechseln, Equalizer)
+- 🎧 «Reinhören» bei jedem Event: Künstler aus dem Lineup direkt auf SoundCloud oder Mixcloud suchen
+- Anleitung um Radio & Reinhören ergänzt
+
 ## v1.24.0 – 25.11.2026
 - ❓ Kurzanleitung in der App: Favoriten, Filter, Standort & Region, Event-Karte, Crew, Aktualisieren, Installation (Android & iPhone)
 - 👋 Beim ersten Öffnen ein Hinweis «Neu hier?» mit Link zur Anleitung; jederzeit unten über «❓ Anleitung»

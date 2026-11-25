@@ -198,6 +198,31 @@
   .guide ul { margin: 0 0 12px; padding-left: 20px; }
   .guide li { margin: 0 0 6px; font-size: .88rem; line-height: 1.45; color: #e6dcd2; }
   .guide li b { color: #fff; }
+  .radio { position: fixed; z-index: 40; left: 12px; right: 12px; bottom: calc(64px + env(safe-area-inset-bottom, 0px)); pointer-events: none; display: flex; justify-content: flex-end; }
+  .radio-knopf { pointer-events: auto; width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--orange); background: #0c0705; font-size: 1.5rem; cursor: pointer; box-shadow: 0 0 14px rgba(255,106,0,.5); }
+  .radio.an .radio-knopf { animation: puls 1.2s ease-in-out infinite; }
+  .radio-leiste { pointer-events: auto; position: relative; flex: 1; max-width: 460px; margin: 0 auto; display: flex; align-items: center; gap: 10px; padding: 10px 10px 22px; background: #0c0705; border: 1px solid var(--orange); box-shadow: 0 0 18px rgba(255,106,0,.35); }
+  .radio-leiste[hidden] { display: none; }
+  .radio.offen .radio-knopf { display: none; }
+  .radio.offen { justify-content: center; }
+  .radio.offen .radio-leiste { width: 100%; box-sizing: border-box; }
+  .radio-play { width: 46px; height: 46px; flex: none; border: 0; background: var(--orange); color: #000; font-size: 1.2rem; cursor: pointer; }
+  .radio-info { flex: 1; min-width: 0; font-family: Inter, sans-serif; }
+  .radio-info b { display: block; color: #fff; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .radio-info small { display: block; color: var(--muted); font-size: .74rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .radio-eq { display: flex; align-items: flex-end; gap: 2px; height: 22px; flex: none; }
+  .radio-eq i { width: 3px; height: 4px; background: var(--acid); }
+  .radio.an .radio-eq i { animation: logoeq .5s ease-in-out infinite alternate; }
+  .radio.an .radio-eq i:nth-child(2) { animation-delay: -.2s; background: var(--cyan); } .radio.an .radio-eq i:nth-child(3) { animation-delay: -.35s; background: var(--laser); }
+  .radio.an .radio-eq i:nth-child(4) { animation-delay: -.1s; background: var(--gelb); } .radio.an .radio-eq i:nth-child(5) { animation-delay: -.28s; }
+  .radio.an .radio-eq i { height: 22px; transform-origin: bottom; }
+  .radio-weiter, .radio-zu { width: 38px; height: 38px; flex: none; background: none; border: 1px solid var(--line); color: #fff; cursor: pointer; font-size: .95rem; }
+  .radio-quelle { position: absolute; left: 66px; bottom: 4px; font: 600 .62rem Inter, sans-serif; color: var(--muted); text-decoration: none; }
+  .reinhoeren { display: inline-flex; align-items: center; gap: 6px; margin: -4px 0 10px; padding: 6px 10px; border: 1px solid var(--cyan); background: #0c0705; color: var(--cyan); font: 700 .78rem Inter, sans-serif; cursor: pointer; }
+  .hoer-liste { display: grid; gap: 8px; }
+  .hoer-zeile { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .hoer-zeile b { flex: 1; min-width: 0; color: #fff; font: 700 .95rem Inter, sans-serif; }
+  .hoer-zeile a { padding: 7px 9px; border: 1px solid var(--line); color: var(--cyan); text-decoration: none; font: 700 .74rem Inter, sans-serif; }
   .popup-fehler { color: var(--rot); font-size: .8rem; min-height: 1em; margin-top: 6px; }
   .ds-klein { color: var(--muted) !important; font-size: .78rem !important; }
   .fuss-links { display: block; margin-top: 12px; font: 700 .72rem "Space Mono", monospace; letter-spacing: .04em; }
@@ -518,12 +543,23 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.24.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.25.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
   <div class="pull-text" id="pull-text">↓ ZIEHEN ZUM AKTUALISIEREN</div>
   <div class="toast" id="toast"></div>
+  <div class="radio" id="radio">
+    <button type="button" class="radio-knopf" id="radio-knopf" aria-label="Radio">📻</button>
+    <div class="radio-leiste" id="radio-leiste" hidden>
+      <button type="button" class="radio-play" id="radio-play" aria-label="Abspielen">▶</button>
+      <div class="radio-info"><b id="radio-name">Radio</b><small id="radio-genre"></small></div>
+      <div class="radio-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <button type="button" class="radio-weiter" id="radio-weiter" aria-label="Nächster Sender">⏭</button>
+      <button type="button" class="radio-zu" id="radio-zu" aria-label="Schliessen">✕</button>
+      <a class="radio-quelle" href="https://somafm.com/" target="_blank" rel="noopener">via SomaFM · werbefrei & hörerfinanziert</a>
+    </div>
+  </div>
 
 <script>
 // ======================================================================
@@ -835,6 +871,72 @@ function datenschutzZeigen() {
   f.append(el("p", "ds-klein", "Fragen? howeverto.me"));
   popup("🔒 Datenschutz", f);
 }
+// ======================= RADIO =======================
+// Werbefreie Sender von SomaFM (hörerfinanziert; Streams ausdrücklich für eigene Player gedacht)
+const SENDER = [
+  { name: "The Trip", genre: "Progressive House & Trance", id: "thetrip" },
+  { name: "Beat Blender", genre: "Deep House & Downtempo", id: "beatblender" },
+  { name: "DEF CON Radio", genre: "Dunkle Electronica", id: "defcon" },
+  { name: "Space Station Soma", genre: "Spacige Electronica", id: "spacestation" }
+];
+const radio = { audio: null, nr: 0, server: 0, laeuft: false };
+try { radio.nr = Math.min(SENDER.length - 1, Math.max(0, +localStorage.getItem("te-radio") || 0)); } catch (e) {}
+function radioUrl() { return `https://ice${[2, 4, 6, 1][radio.server]}.somafm.com/${SENDER[radio.nr].id}-128-mp3`; }
+function radioAnzeigen() {
+  const s = SENDER[radio.nr], an = radio.laeuft;
+  document.getElementById("radio-name").textContent = s.name;
+  document.getElementById("radio-genre").textContent = an ? "● LIVE · " + s.genre : s.genre;
+  document.getElementById("radio-play").textContent = an ? "⏸" : "▶";
+  document.getElementById("radio").classList.toggle("an", !!an);
+}
+function radioStarten() {
+  if (!radio.audio) {
+    radio.audio = new Audio(); radio.audio.preload = "none";
+    radio.audio.onplaying = () => { radio.laeuft = true; radioAnzeigen(); };
+    radio.audio.onpause = () => { radio.laeuft = false; radioAnzeigen(); };
+    radio.audio.onerror = () => {   // anderer Server versuchen
+      if (radio.server < 3) { radio.server++; radio.audio.src = radioUrl(); radio.audio.play().catch(() => {}); }
+      else { radio.server = 0; radio.laeuft = false; zeigeToast("Radio gerade nicht erreichbar"); radioAnzeigen(); }
+    };
+  }
+  radio.audio.src = radioUrl();
+  document.getElementById("radio-genre").textContent = "verbindet …";
+  radio.audio.play().catch(() => { zeigeToast("Radio konnte nicht starten"); radioAnzeigen(); });
+  try { if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: SENDER[radio.nr].name, artist: "Techno Events Radio · SomaFM" }); } catch (e) {}
+}
+document.getElementById("radio-knopf").onclick = () => {
+  document.getElementById("radio").classList.add("offen"); document.getElementById("radio-leiste").hidden = false; radioAnzeigen();
+};
+document.getElementById("radio-play").onclick = () => {
+  if (radio.audio && !radio.audio.paused) { radio.audio.pause(); radio.laeuft = false; radio.audio.removeAttribute("src"); radio.audio.load(); radioAnzeigen(); }
+  else radioStarten();
+};
+document.getElementById("radio-weiter").onclick = () => {
+  radio.nr = (radio.nr + 1) % SENDER.length; radio.server = 0;
+  try { localStorage.setItem("te-radio", radio.nr); } catch (e) {}
+  if (radio.audio && !radio.audio.paused) radioStarten(); else radioAnzeigen();
+};
+document.getElementById("radio-zu").onclick = () => {
+  document.getElementById("radio").classList.remove("offen"); document.getElementById("radio-leiste").hidden = true;
+};
+
+// ---- Reinhören: Sets der Künstler auf SoundCloud / Mixcloud ----
+function reinhoerenZeigen(ev) {
+  const f = el("div", "");
+  f.append(el("p", "", "Hör dir vorher an, wer spielt – öffnet die Suche auf SoundCloud bzw. Mixcloud:"));
+  const l = el("div", "hoer-liste");
+  for (const name of (ev.lineup || []).slice(0, 8)) {
+    const z = el("div", "hoer-zeile");
+    z.append(el("b", "", name));
+    const q = encodeURIComponent(name.replace(/\s*[\[(].*?[\])]\s*/g, " ").replace(/\b(live|b2b.*|all night long)\b/ig, "").trim());
+    z.append(link("", `https://soundcloud.com/search/sounds?q=${q}`, "SoundCloud ↗"));
+    z.append(link("", `https://www.mixcloud.com/search/?q=${q}`, "Mixcloud ↗"));
+    l.append(z);
+  }
+  f.append(l);
+  popup("🎧 Reinhören · " + ev.name, f);
+}
+
 // ---- Kurzanleitung ----
 function guideZeigen() {
   const f = el("div", "guide");
@@ -861,6 +963,9 @@ function guideZeigen() {
       ["Crew gründen", "unten auf «👥 Crew» → «Neue Crew gründen» → Freunde per WhatsApp einladen."],
       ["Beitreten", "Einladungslink antippen, Spitzname eingeben – fertig."],
       ["🙋 Ich bin dabei", "deine Crew sieht beim Event «🔥 3 dabei: …». Mit ✕ ziehst du zurück."]]],
+    ["📻 Radio & Reinhören", [
+      ["📻 unten rechts", "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender (werbefreie Electronic-Sender von SomaFM)."],
+      ["🎧 Reinhören", "bei jedem Event: Sets der Künstler auf SoundCloud oder Mixcloud anhören."]]],
     ["⟳ Aktualisieren", [
       ["Nach unten ziehen", "lädt die neuesten Events – und eine neue App-Version, falls es eine gibt."],
       ["Jeden Donnerstag", "erscheint die neue Wochenend-Ausgabe."]]],
@@ -947,7 +1052,12 @@ function eventKarte(ev, rang) {
   const ort = el("div", "ort", [ev.club, ev.stadt].filter(Boolean).join(" · "));
   if (ev.adresse) ort.append(el("small", "", ev.adresse));
   k.append(ort);
-  if (ev.lineup && ev.lineup.length) k.append(el("div", "lineup", ev.lineup.join(" · ")));
+  if (ev.lineup && ev.lineup.length) {
+    k.append(el("div", "lineup", ev.lineup.join(" · ")));
+    const h = el("button", "reinhoeren", "🎧 Reinhören"); h.type = "button";
+    h.onclick = () => reinhoerenZeigen(ev);
+    k.append(h);
+  }
   const tags = el("div", "tags");
   (ev.genre || []).forEach(g => tags.append(genreChip(g)));
   if (ev.preis) tags.append(el("span", "chip klein", ev.preis));

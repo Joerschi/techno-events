@@ -681,7 +681,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.39.3<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.39.4<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -745,7 +745,7 @@ const DICT = {
   "Abspielen": "Play", "Lautstärke": "Volume", "Ausblenden": "Hide", "Nächster Sender": "Next station", "Schliessen": "Close", "Sound an/aus": "Sound on/off", "Startort wechseln": "Change start location",
   "Alle": "All", "Fr": "Fri", "Sa": "Sat", "So": "Sun", "Schweiz": "Switzerland", "München": "Munich", "Merken": "Save", "Nur gemerkte Events": "Saved events only",
   "Genre & Stadt": "Genre & city", "Sound": "Sound", "Stadt": "City", "Meine DJs": "My DJs", "alle": "all", "Kalender": "Calendar", "Navi": "Navi", "Crew": "Crew", "Tickets": "Tickets", "Ticket": "Ticket",
-  "🎧 Reinhören": "🎧 Listen", "🙋 Ich bin dabei": "🙋 I'm in", "✓ Dabei · in WhatsApp teilen": "✓ I'm in · share on WhatsApp", "Zusage zurückziehen": "Withdraw", "🚗 Ich fahre": "🚗 I'm driving", "🙋 Suche Mitfahrt": "🙋 Need a ride", "🙋 Suche Mitfahrt ✓": "🙋 Need a ride ✓",
+  "🎧 Reinhören": "🎧 Listen", "🙋 Ich bin dabei": "🙋 I'm in", "Zusage zurückziehen": "Withdraw", "🚗 Ich fahre": "🚗 I'm driving", "🙋 Suche Mitfahrt": "🙋 Need a ride", "🙋 Suche Mitfahrt ✓": "🙋 Need a ride ✓",
   "Keine Events mit diesen Filtern – grösseren Umkreis wählen?": "No events with these filters – try a bigger radius?", "Noch nichts gemerkt – tipp auf ☆ bei einem Event.": "Nothing saved yet – tap ☆ on an event.",
   "Der Ausblick kommt mit der nächsten Ausgabe.": "Coming up arrives with the next edition.", "Die Top 3 kommen mit der nächsten Ausgabe.": "The top 3 arrive with the next edition.",
   "Jeden Donnerstag ab ca. 6:20 Uhr erscheinen hier alle Techno-Events fürs Wochenende.": "Every Thursday from about 6:20 am, all techno events for the weekend appear here.",
@@ -880,6 +880,16 @@ Object.assign(DICT, {
 Object.assign(DICT, { "☀️ Guten Morgen! Wie war die Party?": "☀️ Good morning! How was the party?" });
 REGELN.push([/^⚡ Fresh Drop! (\d+) Events fürs Wochenende$/, "⚡ Fresh drop! $1 events for the weekend"],
   [/^🔥 (.+) ist jetzt bei «(.*)» dabei(.*)$/, "🔥 $1 is now going to “$2”$3"], [/^🚗 (.+) fährt zu «(.*)» – (\d+) Plätze frei(.*)$/, "🚗 $1 is driving to “$2” – $3 free seats$4"]);
+Object.assign(DICT, {
+  "Sonnig": "Sunny", "Meist sonnig": "Mostly sunny", "Teils bewölkt": "Partly cloudy", "Bewölkt": "Cloudy", "Nebel": "Fog", "Reifnebel": "Freezing fog",
+  "Leichter Niesel": "Light drizzle", "Niesel": "Drizzle", "Starker Niesel": "Heavy drizzle", "Gefrierender Niesel": "Freezing drizzle", "Leichter Regen": "Light rain",
+  "Regen": "Rain", "Starker Regen": "Heavy rain", "Gefrierender Regen": "Freezing rain", "Leichter Schnee": "Light snow", "Schnee": "Snow", "Starker Schnee": "Heavy snow",
+  "Schneegriesel": "Snow grains", "Regenschauer": "Rain showers", "Heftige Schauer": "Heavy showers", "Schneeschauer": "Snow showers", "Starke Schneeschauer": "Heavy snow showers",
+  "Gewitter": "Thunderstorm", "Gewitter mit Hagel": "Thunderstorm with hail", "du": "you", "✓ Dabei · in WhatsApp teilen": "✓ I'm in · share"
+});
+REGELN.push([/ ab deinem Standort$/, " from your location"], [/^🚗 Losfahren ca\. /, "🚗 Leave approx. "], [/Ende nicht angegeben/g, "end time not given"], [/^du · /, "you · "], [/ · du( · |$)/, " · you$1"],
+  [/\bletzte (\d)/g, "last $1"], [/erster Zug /g, "first train "], [/kein Nachtanschluss/g, "no night connection"],
+  [/Gondel im Ticket inbegriffen/g, "gondola included in the ticket"], [/Gondel inklusive/gi, "gondola included"], [/Ausweis/g, "ID"], [/\bab (\d\d)\b(?!:)/g, "$1+"]);
 for (const k of Object.keys(DICT)) if (!k.endsWith(":")) DICT[k + ":"] = DICT[k] + ":";
 function sprachKnopf() {
   const b = document.createElement("button"); b.type = "button"; b.id = "sprache-link";

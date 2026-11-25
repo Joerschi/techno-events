@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.39.4 – 25.11.2026
+- 🌐 Englisch: Wetter-Begriffe, «ab deinem Standort», letzter/erster Zug, «du», Losfahren, Ticket-Notizen übersetzt; Dabei-Knopf passt jetzt auf die Karte
+
 ## v1.39.3 – 25.11.2026
 - 📻 Neuer Sender «Nature One» (Sunshine Live, Festival-Sets; Ersatz-Stream Festival-Kanal) – jetzt 9 Sender
 

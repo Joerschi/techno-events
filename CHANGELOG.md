@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.32.0 – 25.11.2026
+- Ohne Startort keine Fahrzeiten mehr ab Beckenried: stattdessen Hinweis «📍 Startort wählen – dann siehst du Fahrzeit & Verbindungen»
+- Umkreis-Filter und Sortierung nach Fahrt brauchen einen Startort (Umkreis-Knopf führt zur Auswahl)
+- Feste ÖV-Zeiten und Ampel nur, wenn der Startort nahe Beckenried liegt; sonst Live-Links
+- Navi startet immer beim aktuellen Standort des Handys
+
 ## v1.31.0 – 25.11.2026
 - 📍 Startort-Auswahl: aktueller Standort, eigener Wohnort (z. B. Zug, Luzern, München) oder ohne Standort – Wohnort wird gemerkt
 - Ehrliche Anreise: ÖV-Zeiten aus der Ausgabe als «ab Beckenried» beschriftet; mit eigenem Startort Live-Links für Hin- und Heimweg; Luftlinie, solange keine Fahrzeit berechnet ist

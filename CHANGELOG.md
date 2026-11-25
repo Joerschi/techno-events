@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.30.1 – 25.11.2026
+- Ohne Standort steht oben «📍 DEIN STANDORT?» und in der Leiste «Standort» statt Beckenried – antippen aktiviert den Standort
+
 ## v1.30.0 – 25.11.2026
 - 📸 Story-Bild: «Noch X Tage» bis zum nächsten Event als Bild für WhatsApp-Status / Instagram-Story
 - 🎖 Raver-Pass: Stempel für erlebte Events und 12 Abzeichen (Berg-Raver, Afterhour-König, Roadtrip …), mit Hinweis bei neuen Abzeichen

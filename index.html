@@ -596,7 +596,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.30.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.30.1<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1567,7 +1567,7 @@ async function ortsname(lat, lon) {
   return null;
 }
 function metaStart(text) {
-  document.getElementById("meta-start").textContent = (text || basis().basis).toUpperCase();
+  document.getElementById("meta-start").textContent = (text || "Dein Standort?").toUpperCase();
   document.getElementById("meta-ort").classList.toggle("sucht", text === "Standort …");
 }
 document.getElementById("meta-ort").onclick = () => document.getElementById("standort-btn").click();
@@ -1575,8 +1575,8 @@ function standortAnzeigen(text) {
   const b = document.getElementById("standort-btn");
   b.classList.toggle("aktiv", standort.aktiv);
   b.classList.toggle("sucht", text === "wird gesucht …");
-  document.getElementById("standort-label").textContent = text === "wird gesucht …" ? "Sucht…" : (text || (standort.aktiv ? "Standort" : basis().basis));
-  b.title = standort.aktiv ? "Zurück zu " + basis().basis : "Fahrzeiten ab meinem Standort";
+  document.getElementById("standort-label").textContent = text === "wird gesucht …" ? "Sucht…" : (text || "Standort");
+  b.title = standort.aktiv ? "Standort ausschalten" : "Fahrzeiten ab meinem Standort";
 }
 // Stand-Zeile: Schrift so weit verkleinern, bis alles auf eine Zeile passt
 const MONATE_LANG = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
@@ -1592,7 +1592,7 @@ let stillerStart = false;
 document.getElementById("standort-btn").onclick = (e) => {
   if (e) e.preventDefault();
   if (standort.aktiv) {                       // zurück zu Beckenried
-    standort.aktiv = false; standortAnzeigen(); metaStart(); zeigeToast("📍 Start: " + basis().basis);
+    standort.aktiv = false; standortAnzeigen(); metaStart(); zeigeToast("📍 Standort aus – Fahrzeiten ab " + basis().basis);
     try { localStorage.setItem("te-standort", "beckenried"); } catch (e) {}
     allesNeuZeichnen(); return;
   }

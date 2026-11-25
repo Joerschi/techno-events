@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.40.0 – 25.11.2026
+- 🖥 Tablet quer & Desktop (ab 980 px): zwei Spalten – links Kopf, Countdown, Favoriten & Top 3, rechts Wochenende, Filter & Ausblick. Handy bleibt einspaltig.
+
 ## v1.39.5 – 25.11.2026
 - 📱 Seite lässt sich nicht mehr seitlich verschieben (Radio-Platte bleibt am Rand sichtbar); Knopf-Texte brechen um statt überzulaufen
 

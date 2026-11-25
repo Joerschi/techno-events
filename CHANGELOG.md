@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.39.3 – 25.11.2026
+- 📻 Neuer Sender «Nature One» (Sunshine Live, Festival-Sets; Ersatz-Stream Festival-Kanal) – jetzt 9 Sender
+
 ## v1.39.2 – 25.11.2026
 - 📻 Old Skool Rave Tapes raus; neu: «Sunshine Live Classics» (90er & 2000er) und «Sunshine Live Techno» – jetzt 8 Sender
 

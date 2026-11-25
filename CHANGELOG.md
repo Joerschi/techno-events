@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.29.2 – 25.11.2026
+- Orange zurück auf das leuchtendere Neon-Orange #FF6A00
+
 ## v1.29.1 – 25.11.2026
 - Fix: Wetter im Countdown erschien mehrfach
 

@@ -213,23 +213,47 @@
   .radio { position: fixed; z-index: 40; left: 12px; right: 12px; bottom: calc(64px + env(safe-area-inset-bottom, 0px)); pointer-events: none; display: flex; justify-content: flex-end; }
   .radio-knopf { pointer-events: auto; width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--orange); background: #0c0705; font-size: 1.5rem; cursor: pointer; box-shadow: 0 0 14px rgba(255,106,0,.5); }
   .radio.an .radio-knopf { animation: puls 1.2s ease-in-out infinite; }
-  .radio-leiste { pointer-events: auto; position: relative; flex: 1; max-width: 460px; margin: 0 auto; display: flex; align-items: center; gap: 10px; padding: 10px 10px 22px; background: #0c0705; border: 1px solid var(--orange); box-shadow: 0 0 18px rgba(255,106,0,.35); }
+  .radio-knopf { padding: 4px; display: grid; place-items: center; }
+  .radio-knopf svg { width: 100%; height: 100%; display: block; }
+  .radio.an .radio-knopf svg { animation: dreh 1.8s linear infinite; }
+  /* Radio als Mini-DJ-Deck */
+  .radio-leiste { pointer-events: auto; position: relative; flex: 1; max-width: 460px; margin: 0 auto; padding: 12px 12px 24px; background: linear-gradient(180deg, #17171c, #0b0b0e); border: 1px solid #2c2c36; border-top: 2px solid var(--orange); border-radius: 10px; box-shadow: 0 0 18px rgba(255,106,0,.35), inset 0 1px 0 rgba(255,255,255,.06); font-family: Inter, sans-serif; }
   .radio-leiste[hidden] { display: none; }
   .radio.offen .radio-knopf { display: none; }
   .radio.offen { justify-content: center; }
   .radio.offen .radio-leiste { width: 100%; box-sizing: border-box; }
-  .radio-play { width: 46px; height: 46px; flex: none; border: 0; background: var(--orange); color: #000; font-size: 1.2rem; cursor: pointer; }
-  .radio-info { flex: 1; min-width: 0; font-family: Inter, sans-serif; }
-  .radio-info b { display: block; color: #fff; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .radio-info small { display: block; color: var(--muted); font-size: .74rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .radio-eq { display: flex; align-items: flex-end; gap: 2px; height: 22px; flex: none; }
-  .radio-eq i { width: 3px; height: 4px; background: var(--acid); }
-  .radio.an .radio-eq i { animation: logoeq .5s ease-in-out infinite alternate; }
-  .radio.an .radio-eq i:nth-child(2) { animation-delay: -.2s; background: var(--cyan); } .radio.an .radio-eq i:nth-child(3) { animation-delay: -.35s; background: var(--laser); }
-  .radio.an .radio-eq i:nth-child(4) { animation-delay: -.1s; background: var(--gelb); } .radio.an .radio-eq i:nth-child(5) { animation-delay: -.28s; }
-  .radio.an .radio-eq i { height: 22px; transform-origin: bottom; }
-  .radio-weiter, .radio-zu { width: 38px; height: 38px; flex: none; background: none; border: 1px solid var(--line); color: #fff; cursor: pointer; font-size: .95rem; }
-  .radio-quelle { position: absolute; left: 66px; bottom: 4px; font: 600 .62rem Inter, sans-serif; color: var(--muted); text-decoration: none; }
+  .dj-oben { display: flex; gap: 12px; align-items: center; padding-right: 30px; }
+  .dj-platte { position: relative; width: 78px; height: 78px; flex: none; border-radius: 50%; background: #050506; box-shadow: 0 0 0 3px #1d1d24, 0 0 0 4px #39ff14, 0 0 14px rgba(57,255,20,.35); }
+  .dj-platte svg { width: 100%; height: 100%; display: block; }
+  .radio.an .dj-platte svg { animation: dreh 1.8s linear infinite; }
+  .dj-platte.scratch svg { animation: scratch .55s ease-in-out !important; }
+  @keyframes scratch { 0% { transform: rotate(0); } 30% { transform: rotate(-80deg); } 55% { transform: rotate(40deg); } 75% { transform: rotate(-30deg); } 100% { transform: rotate(0); } }
+  .dj-lcd { flex: 1; min-width: 0; position: relative; padding: 7px 9px 8px; background: #06140a; border: 1px solid #1f3a26; border-radius: 4px; box-shadow: inset 0 0 14px rgba(57,255,20,.15); font-family: "Space Mono", monospace; color: #39ff14; text-shadow: 0 0 6px rgba(57,255,20,.6); overflow: hidden; }
+  .dj-lcd::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.25) 0 1px, transparent 1px 3px); pointer-events: none; }
+  .dj-lcd-kopf { display: flex; justify-content: space-between; font-size: .62rem; letter-spacing: .1em; opacity: .85; }
+  .dj-onair { color: #3a2020; text-shadow: none; }
+  .radio.an .dj-onair { color: #ff1e3c; text-shadow: 0 0 6px #ff1e3c; animation: blink .9375s steps(1) infinite; }
+  .dj-lcd b { display: block; margin-top: 3px; font: 700 1rem "Space Mono", monospace; color: #b8ffa8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; }
+  .dj-lcd small { display: block; font-size: .68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .8; }
+  .radio-eq { display: flex; align-items: flex-end; gap: 2px; height: 14px; margin-top: 4px; }
+  .radio-eq i { flex: 1; max-width: 8px; height: 2px; background: #39ff14; box-shadow: 0 0 4px #39ff14; }
+  .radio.an .radio-eq i { height: 14px; transform-origin: bottom; animation: logoeq .46875s ease-in-out infinite alternate; }
+  .radio.an .radio-eq i:nth-child(2n) { animation-delay: -.2s; } .radio.an .radio-eq i:nth-child(3n) { animation-delay: -.35s; background: #f4ff00; box-shadow: 0 0 4px #f4ff00; } .radio.an .radio-eq i:nth-child(5n) { animation-delay: -.1s; background: #ff6a00; box-shadow: 0 0 4px #ff6a00; }
+  .radio-zu { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: none; border: 1px solid #2c2c36; border-radius: 50%; color: #8a8a96; cursor: pointer; font-size: .8rem; }
+  .dj-unten { display: flex; gap: 10px; align-items: center; margin-top: 12px; }
+  .radio-play { width: 54px; height: 54px; flex: none; border-radius: 50%; border: 3px solid #39ff14; background: radial-gradient(circle, #1a2a1c, #0b0b0e); color: #39ff14; font-size: 1.25rem; cursor: pointer; box-shadow: 0 0 10px rgba(57,255,20,.45); }
+  .radio.an .radio-play { background: #39ff14; color: #000; box-shadow: 0 0 18px #39ff14; }
+  .dj-pad { width: 54px; height: 54px; flex: none; display: grid; place-items: center; align-content: center; gap: 1px; border: 1px solid #3a3a46; border-radius: 6px; background: linear-gradient(180deg, #23232b, #121216); color: #fff; cursor: pointer; padding: 0; }
+  .dj-pad b { font-size: 1.05rem; line-height: 1; }
+  .dj-pad small { font: 700 .55rem "Space Mono", monospace; letter-spacing: .1em; color: #8a8a96; }
+  .dj-pad:active { background: var(--laser); box-shadow: 0 0 16px var(--laser); }
+  #radio-horn { border-color: rgba(255,16,240,.6); box-shadow: inset 0 0 10px rgba(255,16,240,.2); }
+  .dj-fader { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .dj-fader small { font: 700 .55rem "Space Mono", monospace; letter-spacing: .12em; color: #8a8a96; }
+  .dj-fader input { width: 100%; -webkit-appearance: none; appearance: none; height: 6px; background: #000; border: 1px solid #333; border-radius: 3px; margin: 8px 0; }
+  .dj-fader input::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 28px; border-radius: 2px; background: linear-gradient(180deg, #ddd, #888 45%, #fff 50%, #888 55%, #bbb); border: 1px solid #000; box-shadow: 0 0 8px rgba(0,240,255,.6); }
+  .dj-fader input::-moz-range-thumb { width: 16px; height: 28px; border-radius: 2px; background: #ccc; border: 1px solid #000; }
+  .radio-quelle { position: absolute; left: 12px; bottom: 5px; font: 600 .62rem Inter, sans-serif; color: var(--muted); text-decoration: none; }
   .reinhoeren { display: inline-flex; align-items: center; gap: 6px; margin: -4px 0 10px; padding: 6px 10px; border: 1px solid var(--cyan); background: #0c0705; color: var(--cyan); font: 700 .78rem Inter, sans-serif; cursor: pointer; }
   .hoer-liste { display: grid; gap: 8px; }
   .hoer-zeile { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--line); }
@@ -657,7 +681,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.37.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.38.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -665,14 +689,23 @@
   <div class="toast" id="toast"></div>
   <div class="drop" id="drop" hidden></div>
   <div class="radio" id="radio">
-    <button type="button" class="radio-knopf" id="radio-knopf" aria-label="Radio">📻</button>
+    <button type="button" class="radio-knopf" id="radio-knopf" aria-label="Radio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#050506"/><circle cx="20" cy="20" r="15" fill="none" stroke="#2a2a33"/><circle cx="20" cy="20" r="11" fill="none" stroke="#2a2a33"/><path d="M7 15 A14 14 0 0 1 15 7" stroke="rgba(255,255,255,.35)" stroke-width="1.4" fill="none"/><circle cx="20" cy="20" r="6.5" fill="#ff6a00"/><circle cx="20" cy="20" r="1.3" fill="#000"/></svg></button>
     <div class="radio-leiste" id="radio-leiste" hidden>
-      <button type="button" class="radio-play" id="radio-play" aria-label="Abspielen">▶</button>
-      <div class="radio-info"><b id="radio-name">Radio</b><small id="radio-genre"></small></div>
-      <div class="radio-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      <button type="button" class="radio-weiter" id="radio-horn" aria-label="Air-Horn">📣</button>
-      <button type="button" class="radio-weiter" id="radio-weiter" aria-label="Nächster Sender">⏭</button>
+      <div class="dj-oben">
+        <div class="dj-platte" id="radio-platte" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="49" fill="#060607"/><g fill="none" stroke="#1f1f27"><circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="39"/><circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="29"/><circle cx="50" cy="50" r="24"/></g><path d="M14 38 A38 38 0 0 1 38 14" stroke="rgba(255,255,255,.3)" stroke-width="2.5" fill="none"/><circle cx="50" cy="50" r="17" fill="var(--label, #ff6a00)"/><text x="50" y="54" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700" font-size="10" fill="#000" id="radio-label">TE</text><circle cx="50" cy="50" r="2" fill="#000"/></svg></div>
+        <div class="dj-lcd">
+          <div class="dj-lcd-kopf"><span id="radio-kanal">CH 1/4</span><span class="dj-onair">● ON AIR</span></div>
+          <b id="radio-name">Radio</b><small id="radio-genre"></small>
+          <div class="radio-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
       <button type="button" class="radio-zu" id="radio-zu" aria-label="Schliessen">✕</button>
+      <div class="dj-unten">
+        <button type="button" class="radio-play" id="radio-play" aria-label="Abspielen">▶</button>
+        <button type="button" class="dj-pad" id="radio-weiter" aria-label="Nächster Sender"><b>⏭</b><small>NEXT</small></button>
+        <button type="button" class="dj-pad" id="radio-horn" aria-label="Air-Horn"><b>📣</b><small>HORN</small></button>
+        <label class="dj-fader"><small>VOLUME</small><input type="range" id="radio-vol" min="0" max="100" value="85" aria-label="Lautstärke"></label>
+      </div>
       <a class="radio-quelle" href="https://somafm.com/" target="_blank" rel="noopener">via SomaFM · werbefrei & hörerfinanziert</a>
     </div>
   </div>
@@ -709,7 +742,7 @@ const DICT = {
   "Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.": "Timetables as of the weekly edition – check the SBB link before you leave. Drive times from your start location (choose 📍 at the top), without traffic. Radius = as the crow flies.",
   "Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.": "Sources: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, club websites. Instagram/Facebook not accessible.",
   "📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.": "📅 opens your calendar · 📍 opens Google Maps · 💬 asks your crew on WhatsApp · 🙋 tells your crew you're in.",
-  "Abspielen": "Play", "Ausblenden": "Hide", "Nächster Sender": "Next station", "Schliessen": "Close", "Sound an/aus": "Sound on/off", "Startort wechseln": "Change start location",
+  "Abspielen": "Play", "Lautstärke": "Volume", "Ausblenden": "Hide", "Nächster Sender": "Next station", "Schliessen": "Close", "Sound an/aus": "Sound on/off", "Startort wechseln": "Change start location",
   "Alle": "All", "Fr": "Fri", "Sa": "Sat", "So": "Sun", "Schweiz": "Switzerland", "München": "Munich", "Merken": "Save", "Nur gemerkte Events": "Saved events only",
   "Genre & Stadt": "Genre & city", "Sound": "Sound", "Stadt": "City", "Meine DJs": "My DJs", "alle": "all", "Kalender": "Calendar", "Navi": "Navi", "Crew": "Crew", "Tickets": "Tickets", "Ticket": "Ticket",
   "🎧 Reinhören": "🎧 Listen", "🙋 Ich bin dabei": "🙋 I'm in", "✓ Dabei · in WhatsApp teilen": "✓ I'm in · share on WhatsApp", "Zusage zurückziehen": "Withdraw", "🚗 Ich fahre": "🚗 I'm driving", "🙋 Suche Mitfahrt": "🙋 Need a ride", "🙋 Suche Mitfahrt ✓": "🙋 Need a ride ✓",
@@ -1235,12 +1268,15 @@ function radioAnzeigen() {
   document.getElementById("radio-name").textContent = s.name;
   document.getElementById("radio-genre").textContent = an ? "● LIVE · " + s.genre : s.genre;
   document.getElementById("radio-play").textContent = an ? "⏸" : "▶";
+  document.getElementById("radio-kanal").textContent = `CH ${radio.nr + 1}/${SENDER.length} · 128 BPM`;
+  document.getElementById("radio-label").textContent = s.name.split(" ").map(w => w[0]).join("").slice(0, 3).toUpperCase();
+  document.getElementById("radio-platte").style.setProperty("--label", ["#00f0ff", "#ff10f0", "#ff6a00", "#39ff14"][radio.nr % 4]);
   document.getElementById("radio").classList.toggle("an", !!an);
   document.body.classList.toggle("beat", !!an);   // Laser & Logo pulsieren im Takt (128 BPM)
 }
 function radioStarten() {
   if (!radio.audio) {
-    radio.audio = new Audio(); radio.audio.preload = "none";
+    radio.audio = new Audio(); radio.audio.preload = "none"; if (radio.vol != null) radio.audio.volume = radio.vol;
     radio.audio.onplaying = () => { radio.laeuft = true; radioAnzeigen(); };
     radio.audio.onpause = () => { radio.laeuft = false; radioAnzeigen(); };
     radio.audio.onerror = () => {   // anderer Server versuchen
@@ -1262,9 +1298,11 @@ document.getElementById("radio-play").onclick = () => {
 };
 document.getElementById("radio-weiter").onclick = () => {
   radio.nr = (radio.nr + 1) % SENDER.length; radio.server = 0;
+  const pl = document.getElementById("radio-platte"); pl.classList.remove("scratch"); pl.offsetHeight; pl.classList.add("scratch"); setTimeout(() => pl.classList.remove("scratch"), 600);
   try { localStorage.setItem("te-radio", radio.nr); } catch (e) {}
   if (radio.audio && !radio.audio.paused) radioStarten(); else radioAnzeigen();
 };
+document.getElementById("radio-vol").oninput = e => { radio.vol = e.target.value / 100; if (radio.audio) radio.audio.volume = radio.vol; };
 document.getElementById("radio-zu").onclick = () => {
   document.getElementById("radio").classList.remove("offen"); document.getElementById("radio-leiste").hidden = true;
 };

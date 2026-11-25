@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.38.0 – 25.11.2026
+- 🎛 Radio als Mini-DJ-Deck: drehende Platte mit Sender-Label (Scratch beim Senderwechsel), grünes LCD-Display mit Kanal, ON-AIR-Lampe und Pegel, runder PLAY-Knopf, NEXT- und HORN-Pads, Lautstärke-Fader
+- Radio-Knopf ist jetzt eine kleine Schallplatte, die sich dreht, wenn Musik läuft
+
 ## v1.37.0 – 25.11.2026
 - 🎚 DJ-Pult reagiert aufs Radio: ohne Musik stehen die Plattenteller und der Tonarm ist oben; mit Musik drehen sie, der Tonarm senkt sich, Boxen pumpen kräftig, VU-Meter und Fader laufen
 - «128 BPM» pulsiert, Equalizer auf den Top-3-Covern tanzen, Mini-Equalizer doppelt so schnell

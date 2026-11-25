@@ -1,5 +1,11 @@
 # Changelog – Techno Events
 
+## v1.26.0 – 25.11.2026
+- 🌦 Wetter beim Countdown: Vorhersage für den Event-Tag (Wetter, Min/Max, Temperatur zur Startzeit, Regen, Wind, Höhe)
+- Wetter auch bei Favoriten und bei Open-Air-/Berg-Events (bis ca. 2 Wochen vorher), mit Tipp: warm anziehen, Regenjacke, Sonnencreme …
+- Berg-Events mit Höhe (Trübsee 1796 m) – die Temperatur gilt für die Party, nicht fürs Tal
+- Daten von Open-Meteo; es gehen nur Event-Koordinaten raus, nie dein Standort
+
 ## v1.25.0 – 25.11.2026
 - 📻 Radio: runder Knopf unten rechts öffnet einen Mini-Player mit 4 werbefreien Electronic-Sendern von SomaFM (▶/⏸, ⏭ Sender wechseln, Equalizer)
 - 🎧 «Reinhören» bei jedem Event: Künstler aus dem Lineup direkt auf SoundCloud oder Mixcloud suchen

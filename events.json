@@ -50,7 +50,9 @@
    },
    "oev_erste": null,
    "ampel": "gruen",
-   "tipp": "Sven Väth auf 1800 m – dein Ticket! Gondel ist im Preis drin."
+   "tipp": "Sven Väth auf 1800 m – dein Ticket! Gondel ist im Preis drin.",
+   "openair": true,
+   "hoehe": 1796
   },
   {
    "id": "moving",
@@ -94,7 +96,9 @@
    },
    "oev_erste": null,
    "ampel": "gruen",
-   "tipp": "Ben Böhmer live in den Bergen – 30 Min. von zu Hause."
+   "tipp": "Ben Böhmer live in den Bergen – 30 Min. von zu Hause.",
+   "openair": true,
+   "hoehe": 1796
   },
   {
    "id": "djhell",
@@ -636,7 +640,9 @@
    ],
    "link": "https://www.luzern.com/de/event/klewen-daydance-2027-harmlos-techno",
    "auto_min": 1,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Klewenalpbahn%2C%20Beckenried&travelmode=driving"
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Klewenalpbahn%2C%20Beckenried&travelmode=driving",
+   "openair": true,
+   "hoehe": 1600
   }
  ]
 }

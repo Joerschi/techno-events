@@ -81,6 +81,15 @@
   .hero .k { font: 700 .85rem "Space Mono", monospace; letter-spacing: .14em; color: var(--laser); text-shadow: var(--glow-p); text-transform: uppercase; }
   .hero .n { font: 900 1.5rem/1.05 Unbounded, sans-serif; text-transform: uppercase; margin: 8px 0 4px; }
   .hero .o { color: #c9c9cf; }
+  .wetter { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 12px; padding: 10px 12px; background: #0c0705; border: 1px solid var(--cyan); font: 600 .88rem Inter, sans-serif; color: #f3e9df; }
+  .wetter[hidden] { display: none; }
+  .wetter .w-icon { font-size: 1.7rem; line-height: 1; }
+  .wetter .w-haupt { display: flex; flex-direction: column; }
+  .wetter .w-haupt b { color: #fff; font-size: .98rem; }
+  .wetter .w-haupt small { color: var(--muted); font-size: .74rem; }
+  .wetter .w-tipp { flex-basis: 100%; color: var(--gelb); font-size: .82rem; }
+  .wetter-klein { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 6px 0 12px; font: 600 .82rem Inter, sans-serif; color: #e6dcd2; }
+  .wetter-klein b { color: #fff; }
   .count { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
   .count div { background: rgba(0,0,0,.7); border: 1px solid rgba(244,255,0,.35); text-align: center; padding: 10px 4px; }
   .count b { display: block; font: 900 1.7rem Unbounded, sans-serif; color: var(--gelb); text-shadow: 0 0 3px rgba(244,255,0,.55); font-variant-numeric: tabular-nums; }
@@ -509,6 +518,7 @@
       </div>
       <div class="n" id="hero-n"></div>
       <div class="o" id="hero-o"></div>
+      <div class="wetter" id="hero-wetter" hidden></div>
     </div>
 
     <nav class="nav">
@@ -543,7 +553,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.25.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.26.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -864,6 +874,7 @@ function datenschutzZeigen() {
     ["Favoriten & Einstellungen", "Bleiben nur auf deinem Handy (Speicher des Browsers bzw. der App). Löschen: App-/Browserdaten löschen."],
     ["Standort", "Wird nicht gespeichert. Für Fahrzeit und Ortsnamen gehen die Koordinaten kurz an OpenStreetMap-Dienste (OSRM, Nominatim) bzw. transport.opendata.ch."],
     ["Crew-Zusagen (freiwillig)", "Nur Spitzname, Crew-Code, Event und eine zufällige Geräte-Nummer – auf dem Server von howeverto.me. Nach dem Event automatisch gelöscht. Der Hoster führt technisch übliche Zugriffsprotokolle."],
+    ["Wetter", "Für die Vorhersage gehen nur die Koordinaten des Events an Open-Meteo – nie dein Standort."],
     ["Schriften", "Werden von Google Fonts geladen – dabei sieht Google technisch deine IP-Adresse."],
     ["Links", "Google Maps, Kalender, SBB, WhatsApp und Ticketseiten öffnen fremde Dienste – dort gelten deren Regeln."]
   ];
@@ -945,7 +956,8 @@ function guideZeigen() {
     ["⭐ Favoriten", [
       ["Stern ☆", "bei einem Event antippen – es erscheint ganz oben unter «Meine Favoriten» mit Countdown."],
       ["Nochmals tippen", "nimmt es wieder raus. Gespeichert nur auf deinem Handy."],
-      ["Vorbei?", "Erlebte Events landen unter «Schon erlebt»."]]],
+      ["Vorbei?", "Erlebte Events landen unter «Schon erlebt»."],
+      ["Wetter", "Beim Countdown und bei Favoriten (bis ca. 2 Wochen vorher) – bei Open-Airs mit Tipp, was du einpacken solltest."]]],
     ["🔎 Filter", [
       ["Tag", "Alle · Fr · Sa · So – und ★ zeigt nur deine Favoriten."],
       ["Umkreis", "10 · 25 · 50 · 100 km Luftlinie ab deinem Standort."],
@@ -1036,6 +1048,7 @@ function genreChip(g) { const c = el("span", "chip klein", g); const f = neonFue
 function eventKarte(ev, rang) {
   const k = el("article", "karte" + (rang ? " top" : " kompakt"));
   k.dataset.key = evKey(ev);
+  if ((ev.openair || ev.hoehe) && wetterMoeglich(ev)) setTimeout(() => { const ziel = k.querySelector(".lineup") || k; const wz = el("div", ""); ziel.after ? ziel.after(wz) : k.append(wz); wetterInKarte(ev, wz); }, 0);
   k.style.setProperty("--ampel", AMPEL[ev.ampel] || "var(--grau)");
   if (rang) k.append(cover(ev));   // Cover-Bild nur bei den Top 3 – die Liste bleibt kompakt
   if (rang) k.append(el("div", "rang", "0" + rang));
@@ -1330,6 +1343,7 @@ function ticketsZeigen() {
     b.append(el("span", "cd" + (tage <= 3 ? " bald" : ""), laeuft ? "● LÄUFT GERADE" : tage <= 0 ? "HEUTE!" : tage === 1 ? "MORGEN!" : `IN ${tage} TAGEN`));
     b.append(el("div", "tn", t.name));
     b.append(el("div", "to", [t.club, t.stadt].filter(Boolean).join(" · ") || "Ort folgt"));
+    if (wetterMoeglich(t)) { const wz = el("div", ""); b.append(wz); wetterInKarte(t, wz); }
     if (t.lineup && t.lineup.length) b.append(el("div", "tl", t.lineup.join(" · ")));
     const an = [];
     if (istLive(t)) an.push(`🚗 ${autoKm(t)} km · ${fmtMin(autoMin(t))} ab deinem Standort`);
@@ -1364,6 +1378,80 @@ function ticketsZeigen() {
 
 // Countdown zum nächsten Ticket, tickt jede Sekunde
 let heroZiel = null;
+// ======================= WETTER (Open-Meteo, ohne Konto) =======================
+// Nur die Koordinaten des Events gehen an Open-Meteo – nie dein Standort.
+const WETTER_CODES = {
+  0: ["☀️", "Sonnig"], 1: ["🌤️", "Meist sonnig"], 2: ["⛅", "Teils bewölkt"], 3: ["☁️", "Bewölkt"],
+  45: ["🌫️", "Nebel"], 48: ["🌫️", "Reifnebel"], 51: ["🌦️", "Leichter Niesel"], 53: ["🌦️", "Niesel"], 55: ["🌧️", "Starker Niesel"],
+  56: ["🌧️", "Gefrierender Niesel"], 57: ["🌧️", "Gefrierender Niesel"], 61: ["🌦️", "Leichter Regen"], 63: ["🌧️", "Regen"], 65: ["🌧️", "Starker Regen"],
+  66: ["🌧️", "Gefrierender Regen"], 67: ["🌧️", "Gefrierender Regen"], 71: ["🌨️", "Leichter Schnee"], 73: ["🌨️", "Schnee"], 75: ["❄️", "Starker Schnee"],
+  77: ["🌨️", "Schneegriesel"], 80: ["🌦️", "Regenschauer"], 81: ["🌧️", "Regenschauer"], 82: ["⛈️", "Heftige Schauer"],
+  85: ["🌨️", "Schneeschauer"], 86: ["❄️", "Starke Schneeschauer"], 95: ["⛈️", "Gewitter"], 96: ["⛈️", "Gewitter mit Hagel"], 99: ["⛈️", "Gewitter mit Hagel"]
+};
+const wetterCache = {};
+function wetterMoeglich(ev) {
+  if (!hatKoordinaten(ev) || !ev.datum) return false;
+  const tage = (new Date(ev.datum + "T12:00") - new Date()) / 864e5;
+  return tage > -1 && tage < 15;   // Vorhersage reicht ca. 16 Tage
+}
+async function wetterLaden(ev) {
+  if (!wetterMoeglich(ev)) return null;
+  const k = `${ev.lat.toFixed(3)},${ev.lon.toFixed(3)},${ev.datum},${ev.hoehe || ""}`;
+  if (!wetterCache[k]) wetterCache[k] = (async () => {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${ev.lat}&longitude=${ev.lon}`
+      + (ev.hoehe ? `&elevation=${ev.hoehe}` : "")
+      + `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max`
+      + `&hourly=temperature_2m,weather_code,precipitation_probability&timezone=Europe%2FZurich&start_date=${ev.datum}&end_date=${ev.datum}`;
+    const r = await fetch(url); if (!r.ok) throw new Error("wetter");
+    const j = await r.json(), d = j.daily || {}, h = j.hourly || {};
+    const std = Math.min(23, parseInt((ev.start || "20:00").slice(0, 2), 10) || 20);
+    return {
+      code: d.weather_code?.[0], max: d.temperature_2m_max?.[0], min: d.temperature_2m_min?.[0],
+      regen: d.precipitation_probability_max?.[0], wind: d.wind_speed_10m_max?.[0],
+      startTemp: h.temperature_2m?.[std], startCode: h.weather_code?.[std], startRegen: h.precipitation_probability?.[std]
+    };
+  })().catch(() => null);
+  return wetterCache[k];
+}
+function wetterTipp(ev, w) {
+  if (!ev.openair && !ev.hoehe) return "";
+  if (w.code >= 95) return "⚡ Gewitter möglich – Infos des Veranstalters checken";
+  if (w.startTemp != null && w.startTemp < 3) return "🧥 Open-Air bei Kälte – warm anziehen, Mütze & Handschuhe";
+  if (w.regen >= 50) return "☔ Regenjacke einpacken";
+  if (w.code <= 1 && w.max >= 15) return "😎 Sonnenbrille & Sonnencreme nicht vergessen";
+  if (w.code <= 1) return "🏔 Bestes Open-Air-Wetter!";
+  return "";
+}
+async function wetterInHero(ev) {
+  const box = document.getElementById("hero-wetter");
+  box.hidden = true; box.innerHTML = "";
+  const w = await wetterLaden(ev);
+  if (!w || w.code == null || heroEvent !== ev) return;
+  const [icon, text] = WETTER_CODES[w.code] || ["🌡️", "Wetter"];
+  const haupt = el("div", "w-haupt");
+  haupt.append(el("b", "", `${text} · ${Math.round(w.min)}° bis ${Math.round(w.max)}°`));
+  const zusatz = [];
+  if (w.startTemp != null && ev.start) zusatz.push(`um ${ev.start}: ${Math.round(w.startTemp)}°`);
+  if (w.regen != null) zusatz.push(`☔ ${w.regen} %`);
+  if (w.wind != null) zusatz.push(`🌬 ${Math.round(w.wind)} km/h`);
+  if (ev.hoehe) zusatz.push(`⛰ ${ev.hoehe} m`);
+  haupt.append(el("small", "", zusatz.join(" · ")));
+  box.append(el("span", "w-icon", icon), haupt);
+  const tipp = wetterTipp(ev, w);
+  if (tipp) box.append(el("div", "w-tipp", tipp));
+  box.hidden = false;
+}
+async function wetterInKarte(ev, ziel) {
+  const w = await wetterLaden(ev);
+  if (!w || w.code == null) return;
+  const [icon, text] = WETTER_CODES[w.code] || ["🌡️", "Wetter"];
+  const z = el("div", "wetter-klein");
+  z.append(el("b", "", `${icon} ${text}`), el("span", "", `${Math.round(w.min)}° bis ${Math.round(w.max)}°`));
+  if (w.regen != null) z.append(el("span", "", `☔ ${w.regen} %`));
+  const tipp = wetterTipp(ev, w); if (tipp) z.append(el("span", "", tipp));
+  ziel.append(z);
+}
+let heroEvent = null;
 function heroZeigen(t) {
   const hero = document.getElementById("hero");
   if (!t) { hero.hidden = true; heroZiel = null; return; }
@@ -1373,6 +1461,7 @@ function heroZeigen(t) {
   hero.classList.toggle("strobo", heroZiel - new Date() < 24 * 3600e3);
   document.getElementById("hero-n").textContent = t.name;
   document.getElementById("hero-o").textContent = `${kurzDatum(t)} ${t.start || ""} · ${[t.club, t.stadt].filter(Boolean).join(", ")}`;
+  heroEvent = t; wetterInHero(t);
   tick();
 }
 function tick() {

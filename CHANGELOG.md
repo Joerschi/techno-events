@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.37.0 – 25.11.2026
+- 🎚 DJ-Pult reagiert aufs Radio: ohne Musik stehen die Plattenteller und der Tonarm ist oben; mit Musik drehen sie, der Tonarm senkt sich, Boxen pumpen kräftig, VU-Meter und Fader laufen
+- «128 BPM» pulsiert, Equalizer auf den Top-3-Covern tanzen, Mini-Equalizer doppelt so schnell
+
 ## v1.36.1 – 25.11.2026
 - «Raver» → «Party People»: Party-Pass, Party-Jahr, Party-Legende, Gipfel-Party, Winter-Party, neues Motto
 

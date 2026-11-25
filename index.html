@@ -613,7 +613,7 @@
 
     <div class="willkommen" id="willkommen" hidden><span>👋 <b>Neu hier?</b> Die App in 1 Minute erklärt.</span><button type="button" id="willkommen-los">Anleitung</button><button type="button" class="weg" id="willkommen-weg" aria-label="Ausblenden">✕</button></div>
     <div class="label" id="tickets"><b>// Meine Favoriten</b><small id="t-anzahl"></small></div>
-    <div class="pass-zeile"><button type="button" id="pass-knopf">🎖 Raver-Pass</button><button type="button" id="jahr-knopf">🎆 Rave-Jahr</button></div>
+    <div class="pass-zeile"><button type="button" id="pass-knopf">🎖 Party-Pass</button><button type="button" id="jahr-knopf">🎆 Party-Jahr</button></div>
     <div id="ticket-liste"></div>
 
     <div class="label" id="top"><b>// Top 3</b><small id="we-datum"></small></div>
@@ -638,7 +638,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.36.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.36.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -682,9 +682,9 @@ const DICT = {
   "Die App in 1 Minute erklärt.": "The app explained in 1 minute.", "Favoriten": "Favourites", "Neu hier?": "New here?", "Nur Morgenzug": "Morning train only",
   "ÖV hin & zurück": "Public transport both ways", "Standort": "Location", "Standort freigeben:": "Allow location:", "TAGE": "DAYS", "STD": "HRS", "SEK": "SEC",
   "nächste Wochen": "next weeks", "via SomaFM · werbefrei & hörerfinanziert": "via SomaFM · ad-free & listener-supported", "↓ ZIEHEN ZUM AKTUALISIEREN": "↓ PULL TO REFRESH",
-  "⚠️ Effekte reduzieren": "⚠️ Reduce effects", "✨ Effekte an": "✨ Effects on", "❓ Anleitung": "❓ Guide", "🎆 Rave-Jahr": "🎆 Rave year", "🎖 Raver-Pass": "🎖 Raver pass",
+  "⚠️ Effekte reduzieren": "⚠️ Reduce effects", "✨ Effekte an": "✨ Effects on", "❓ Anleitung": "❓ Guide", "🎆 Party-Jahr": "🎆 Party year", "🎖 Party-Pass": "🎖 Party pass",
   "👥 Crew beitreten": "👥 Join a crew", "📸 Als Story teilen": "📸 Share as story", "🔒 Datenschutz": "🔒 Privacy", "🔗 Techno Events an die Crew – Link kopieren": "🔗 Send Techno Events to your crew – copy link",
-  "Made by Ravers – for Ravers 🎧": "Made by Ravers – for Ravers 🎧",
+  "Made by Party People – for Party People 🎧": "Made by Party People – for Party People 🎧",
   ". In Chrome zusätzlich: Schloss-Symbol neben der Adresse → Berechtigungen → Standort.": ". In Chrome also: lock icon next to the address → Permissions → Location.",
   "Einstellungen → Apps → (Chrome bzw. Techno Events) → Berechtigungen → Standort → Erlauben": "Settings → Apps → (Chrome or Techno Events) → Permissions → Location → Allow",
   "Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.": "Timetables as of the weekly edition – check the SBB link before you leave. Drive times from your start location (choose 📍 at the top), without traffic. Radius = as the crow flies.",
@@ -744,14 +744,14 @@ const DICT = {
   "🌙 Nacht-Modus": "🌙 Night mode", "am Event-Tag: dunkle Ansicht mit grosser Schrift, letztem Zug und Navi heim.": "on the event day: dark view with big text, last train and navi home.",
   "💥 Drop": "💥 Drop", "springt der Countdown auf 0, gibt's eine Laser-Explosion.": "when the countdown hits 0, there's a laser explosion.", "❤️ Lieblings-DJs": "❤️ Favourite DJs",
   "bei «🎧 Reinhören» auf 🤍 tippen – Events mit deinen DJs werden markiert, Filter «Nur meine DJs».": "tap 🤍 in “🎧 Listen” – events with your DJs get marked, filter “My DJs only”.", "⭐ Bewerten": "⭐ Rate",
-  "unter «Schon erlebt»: Sterne und Notiz für jede Party – zählt fürs Rave-Jahr.": "under “Been there”: stars and a note for every party – counts for your rave year.", "🚗 Mitfahren": "🚗 Ride sharing",
+  "unter «Schon erlebt»: Sterne und Notiz für jede Party – zählt fürs Party-Jahr.": "under “Been there”: stars and a note for every party – counts for your party year.", "🚗 Mitfahren": "🚗 Ride sharing",
   "mit Crew und Zusage: «Ich fahre» (freie Plätze) oder «Suche Mitfahrt».": "with a crew and RSVP: “I'm driving” (free seats) or “Need a ride”.", "ganz unten: schaltet Strobo, Blitze und Animationen aus.": "at the very bottom: turns off strobe, flashes and animations.",
   "📻 Radio & Reinhören": "📻 Radio & listening", "📻 unten rechts": "📻 bottom right", "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender, 📣 Air-Horn. Läuft Musik, pulsieren die Laser im Takt.": "opens the radio: ▶ play, ⏭ next station, 📣 air horn. While music plays, the lasers pulse to the beat.",
   "bei jedem Event: Sets der Künstler auf SoundCloud oder Mixcloud anhören.": "on every event: listen to the artists' sets on SoundCloud or Mixcloud.", "⟳ Aktualisieren": "⟳ Refresh", "Nach unten ziehen": "Pull down",
   "lädt die neuesten Events – und eine neue App-Version, falls es eine gibt.": "loads the latest events – and a new app version if there is one.", "Jeden Donnerstag": "Every Thursday", "erscheint die neue Wochenend-Ausgabe.": "the new weekend edition comes out.",
   "📲 Als App aufs Handy": "📲 Install as an app", "in Chrome öffnen → Menü ⋮ → «App installieren» bzw. «Zum Startbildschirm hinzufügen».": "open in Chrome → menu ⋮ → “Install app” or “Add to home screen”.",
   "in Safari öffnen → Teilen-Symbol (Quadrat mit Pfeil) → «Zum Home-Bildschirm». Wichtig: So bleiben Favoriten und Crew sicher gespeichert.": "open in Safari → share icon (square with arrow) → “Add to Home Screen”. Important: that's how favourites and crew stay saved.",
-  "🎖 Raver-Pass ": "🎖 Raver pass", "Events": "Events", "km gefahren": "km driven", "Abzeichen": "Badges", "🎖 Abzeichen": "🎖 Badges", "🎟 Deine Stempel": "🎟 Your stamps", "❤️ Meine DJs": "❤️ My DJs",
+  "🎖 Party-Pass ": "🎖 Party pass", "Events": "Events", "km gefahren": "km driven", "Abzeichen": "Badges", "🎖 Abzeichen": "🎖 Badges", "🎟 Deine Stempel": "🎟 Your stamps", "❤️ Meine DJs": "❤️ My DJs",
   "Noch keine Stempel. Markiere Events mit ☆ – nach der Party landet der Stempel automatisch hier.": "No stamps yet. Mark events with ☆ – after the party the stamp lands here automatically.",
   "Noch keine. Bei einem Event auf «🎧 Reinhören» und dann auf 🤍 tippen.": "None yet. Tap “🎧 Listen” on an event, then 🤍.", "📅 Alle kommenden Favoriten in den Kalender": "📅 Add all upcoming favourites to your calendar",
   "Alles nur auf deinem Handy gespeichert.": "Everything is saved on your phone only.", "Keine kommenden Favoriten": "No upcoming favourites",
@@ -773,7 +773,7 @@ const DICT = {
   "Startort wechseln ": "Change start location", "Air-Horn": "Air horn", "Radio": "Radio", "Wer kommt mit? 🔥": "Who's coming? 🔥", "Wer kommt noch mit? 🔥": "Who else is coming? 🔥",
   "👉 Infos, Tickets & Anreise:": "👉 Info, tickets & travel:", "🙋 *Ich bin dabei!*": "🙋 *I'm in!*", "👥 *Komm in meine Techno-Crew!*": "👥 *Join my techno crew!*",
   "Dann sehen wir in der App, wer an welches Event geht.": "Then we can see in the app who's going to which event.", "👉 Antippen & beitreten:": "👉 Tap & join:",
-  "NOCH": "", "TAG": "DAY", "HEUTE": "TODAY", "WER KOMMT MIT? 🔥": "WHO'S COMING? 🔥", "MEIN RAVE-JAHR": "MY RAVE YEAR", "EVENT": "EVENT", "EVENTS": "EVENTS", "MADE BY RAVERS – FOR RAVERS": "MADE BY RAVERS – FOR RAVERS"
+  "NOCH": "", "TAG": "DAY", "HEUTE": "TODAY", "WER KOMMT MIT? 🔥": "WHO'S COMING? 🔥", "MEIN PARTY-JAHR": "MY PARTY YEAR", "EVENT": "EVENT", "EVENTS": "EVENTS", "MADE BY PARTY PEOPLE – FOR PARTY PEOPLE": "MADE BY PARTY PEOPLE – FOR PARTY PEOPLE"
 };
 const REGELN = [
   [/^(\d+) von (\d+)$/, "$1 of $2"], [/^(\d+) kommend$/, "$1 upcoming"], [/^IN (\d+) TAGEN$/, "IN $1 DAYS"], [/^✓ Schon erlebt \((\d+)\)$/, "✓ Been there ($1)"],
@@ -787,14 +787,14 @@ const REGELN = [
   [/^⛰ Höchste Party: (.+) auf (\d+) m$/, "⛰ Highest party: $1 at $2 m"], [/^⛰ (\d+) m – höchste Party$/, "⛰ $1 m – highest party"],
   [/^🕺 (\d+) Stunden auf der Tanzfläche$/, "🕺 $1 hours on the dancefloor"], [/^🕺 (\d+) Stunden getanzt$/, "🕺 $1 hours danced"], [/^🚗 (\d+) km unterwegs \(hin & zurück\)$/, "🚗 $1 km travelled (round trip)"], [/^🚗 (\d+) km unterwegs$/, "🚗 $1 km travelled"],
   [/^🎧 Dein Sound: /, "🎧 Your sound: "], [/^🏠 Lieblings-Location: (.+) \((\d+)×\)$/, "🏠 Favourite venue: $1 ($2×)"], [/^📍 Top-Stadt: /, "📍 Top city: "], [/^🏅 Beste Party: /, "🏅 Best party: "],
-  [/^🎆 Dein Rave-Jahr (\d+)$/, "🎆 Your rave year $1"], [/^🎖 (\d+) neue Abzeichen – schau in deinen Raver-Pass!$/, "🎖 $1 new badges – check your raver pass!"], [/^🎖 Neues Abzeichen: /, "🎖 New badge: "],
-  [/^👥 (\d+) Raver nutzen Techno Events$/, "👥 $1 ravers use Techno Events"], [/^✨ Neue Version (.+) – lädt …$/, "✨ New version $1 – loading …"],
+  [/^🎆 Dein Party-Jahr (\d+)$/, "🎆 Your party year $1"], [/^🎖 (\d+) neue Abzeichen – schau in deinen Party-Pass!$/, "🎖 $1 new badges – check your party pass!"], [/^🎖 Neues Abzeichen: /, "🎖 New badge: "],
+  [/^👥 (\d+) Party People nutzen Techno Events$/, "👥 $1 party people use Techno Events"], [/^✨ Neue Version (.+) – lädt …$/, "✨ New version $1 – loading …"],
   [/^🔊 DROP! Viel Spass bei /, "🔊 DROP! Have fun at "], [/^🔊 Los geht's! Viel Spass bei /, "🔊 Here we go! Have fun at "], [/^❤️ Dein DJ spielt: /, "❤️ Your DJ is playing: "],
   [/^❤️ Du folgst jetzt /, "❤️ You now follow "], [/^Nicht mehr gefolgt: /, "Unfollowed: "], [/^❤️ Nur meine DJs \((\d+)\)$/, "❤️ My DJs only ($1)"], [/^🏠 Fahrzeiten ab /, "🏠 Drive times from "],
   [/^🎧 Reinhören · /, "🎧 Listen · "], [/^👥 Crew (.+) gespeichert$/, "👥 Crew $1 saved"], [/^Start (.*)$/, "Start $1"], [/ – wer kommt mit\? 🔥/, " – who's coming? 🔥"],
   [/^⟳ (Mo|Di|Mi|Do|Fr|Sa|So) /, (m, d) => "⟳ " + { Mo: "Mon", Di: "Tue", Mi: "Wed", Do: "Thu", Fr: "Fri", Sa: "Sat", So: "Sun" }[d] + " "],
   [/^ab (CHF|€|EUR)/, "from $1"], [/^ca\. (CHF|€)/, "approx. $1"], [/\(inkl\. Gondel\)/i, "(incl. gondola)"], [/^📍 Standort aus – Fahrzeiten ab /, "📍 Location off – drive times from "],
-  [/^(\d+) Event(s)? erlebt$/, "$1 event$2"], [/^Mein Rave-Jahr (\d+) 🎆 – (\d+) Events!/, "My rave year $1 🎆 – $2 events!"], [/^(\d+) TAGE$/, "$1 DAYS"]
+  [/^(\d+) Event(s)? erlebt$/, "$1 event$2"], [/^Mein Party-Jahr (\d+) 🎆 – (\d+) Events!/, "My party year $1 🎆 – $2 events!"], [/^(\d+) TAGE$/, "$1 DAYS"]
 ];
 const EN_FERTIG = new Set();
 function tr(s) {
@@ -819,13 +819,13 @@ function trKnoten(root) {
 }
 REGELN.push([/^(📅 .*?) ab (\d)/, "$1 from $2"], [/ zu Fuss$/, " walk"], [/wenige Min\.?/, "a few min"], [/ · ca\. /, " · approx. "]);
 Object.assign(DICT, {
-  "Erstes Event": "First event", "1 Event erlebt": "1 event attended", "Stammgast": "Regular", "5 Events erlebt": "5 events attended", "Rave-Legende": "Rave legend", "10 Events erlebt": "10 events attended",
-  "Berg-Raver": "Mountain raver", "2 Events über 1500 m": "2 events above 1500 m", "3 Events mit Start vor 16 Uhr": "3 events starting before 4 pm", "Afterhour-König": "Afterhour king",
+  "Erstes Event": "First event", "1 Event erlebt": "1 event attended", "Stammgast": "Regular", "5 Events erlebt": "5 events attended", "Party-Legende": "Party legend", "10 Events erlebt": "10 events attended",
+  "Gipfel-Party": "Summit party", "2 Events über 1500 m": "2 events above 1500 m", "3 Events mit Start vor 16 Uhr": "3 events starting before 4 pm", "Afterhour-König": "Afterhour king",
   "Party bis nach 8 Uhr morgens": "Partied past 8 am", "Event über 100 km entfernt": "Event over 100 km away", "Grenzgänger": "Border crosser", "Event in München": "Event in Munich",
-  "4 verschiedene Sound-Gruppen": "4 different sound groups", "In einer Crew": "In a crew", "Zusage-König": "RSVP king", "5× «Ich bin dabei»": "5× “I'm in”", "Winter-Raver": "Winter raver",
+  "4 verschiedene Sound-Gruppen": "4 different sound groups", "In einer Crew": "In a crew", "Zusage-König": "RSVP king", "5× «Ich bin dabei»": "5× “I'm in”", "Winter-Party": "Winter party",
   "Open-Air bei Kälte (Nov–Feb)": "Open-air in the cold (Nov–Feb)", "ZÜRICH": "ZURICH", "Zürich": "Zurich", "TECHNO · ZÜRICH": "TECHNO · ZURICH", "TECHNO · MÜNCHEN": "TECHNO · MUNICH", "Luzern": "Lucerne"
 });
-Object.assign(DICT, { "☀️ Guten Morgen, Raver! Wie war's?": "☀️ Good morning, raver! How was it?" });
+Object.assign(DICT, { "☀️ Guten Morgen! Wie war die Party?": "☀️ Good morning! How was the party?" });
 REGELN.push([/^⚡ Fresh Drop! (\d+) Events fürs Wochenende$/, "⚡ Fresh drop! $1 events for the weekend"],
   [/^🔥 (.+) ist jetzt bei «(.*)» dabei(.*)$/, "🔥 $1 is now going to “$2”$3"], [/^🚗 (.+) fährt zu «(.*)» – (\d+) Plätze frei(.*)$/, "🚗 $1 is driving to “$2” – $3 free seats$4"]);
 for (const k of Object.keys(DICT)) if (!k.endsWith(":")) DICT[k + ":"] = DICT[k] + ":";
@@ -1296,7 +1296,7 @@ function nutzungsArt() {
 }
 function nutzerZeigen(n) {
   const z = document.getElementById("nutzer"); if (!z || !n) return;
-  z.textContent = `👥 ${n} Raver nutzen Techno Events`; z.hidden = false;
+  z.textContent = `👥 ${n} Party People nutzen Techno Events`; z.hidden = false;
 }
 async function zaehlen() {
   const heute = new Date().toISOString().slice(0, 10);
@@ -1375,7 +1375,7 @@ function nachtModus(t) {
   try { if (navigator.wakeLock) navigator.wakeLock.request("screen").then(w => { zu.addEventListener("click", () => w.release().catch(() => {})); }).catch(() => {}); } catch (e) {}
 }
 
-// ---- Bilder erzeugen & teilen (Story, Rave-Jahr) ----
+// ---- Bilder erzeugen & teilen (Story, Party-Jahr) ----
 function leinwand() { const c = document.createElement("canvas"); c.width = 1080; c.height = 1920; return c; }
 function hintergrund(g) {
   g.fillStyle = "#070403"; g.fillRect(0, 0, 1080, 1920);
@@ -1400,7 +1400,7 @@ function kopfUndFuss(g) {
   g.textAlign = "center";
   g.font = "700 40px 'Space Mono', monospace"; neonText(g, "// TECHNO EVENTS", 540, 150, FARBE.orange, 18);
   g.font = "800 44px Inter, sans-serif"; g.fillStyle = "#fff"; g.fillText("techno.howeverto.me", 540, 1800);
-  g.font = "700 30px 'Space Mono', monospace"; g.fillStyle = "#998f86"; g.fillText("MADE BY RAVERS – FOR RAVERS", 540, 1850);
+  g.font = "700 30px 'Space Mono', monospace"; g.fillStyle = "#998f86"; g.fillText("MADE BY PARTY PEOPLE – FOR PARTY PEOPLE", 540, 1850);
 }
 async function bildTeilen(canvas, name, text) {
   const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -1466,7 +1466,7 @@ function bewertenDialog(t) {
   zu = popup("⭐ Wie war's?", f);
 }
 
-// ---- Raver-Pass ----
+// ---- Party-Pass ----
 function erlebte() {
   const jetzt = new Date(), seen = new Set();
   return favoriten.filter(f => f.datum && endDatum(f) < jetzt && !seen.has(f.fav_key) && seen.add(f.fav_key))
@@ -1475,8 +1475,8 @@ function erlebte() {
 const ABZEICHEN = [
   ["erstes", "🎟", "Erstes Event", "1 Event erlebt", l => l.length >= 1],
   ["fuenf", "🔥", "Stammgast", "5 Events erlebt", l => l.length >= 5],
-  ["zehn", "🏆", "Rave-Legende", "10 Events erlebt", l => l.length >= 10],
-  ["berg", "⛰", "Berg-Raver", "2 Events über 1500 m", l => l.filter(e => (e.hoehe || 0) >= 1500).length >= 2],
+  ["zehn", "🏆", "Party-Legende", "10 Events erlebt", l => l.length >= 10],
+  ["berg", "⛰", "Gipfel-Party", "2 Events über 1500 m", l => l.filter(e => (e.hoehe || 0) >= 1500).length >= 2],
   ["day", "🌅", "Daydancer", "3 Events mit Start vor 16 Uhr", l => l.filter(e => (e.start || "99") < "16:00").length >= 3],
   ["after", "🌙", "Afterhour-König", "Party bis nach 8 Uhr morgens", l => l.some(e => e.ende_folgetag && (e.ende || "") >= "08:00" && (e.ende || "") < "14:00")],
   ["road", "🚗", "Roadtrip", "Event über 100 km entfernt", l => l.some(e => (e.auto_km || 0) >= 100)],
@@ -1484,7 +1484,7 @@ const ABZEICHEN = [
   ["genre", "🎧", "Genre-Hopper", "4 verschiedene Sound-Gruppen", l => new Set(l.flatMap(familien)).size >= 4],
   ["crew", "👥", "Crew-Member", "In einer Crew", () => !!crew.code],
   ["dabei", "🙋", "Zusage-König", "5× «Ich bin dabei»", () => zusagen.size >= 5],
-  ["winter", "❄️", "Winter-Raver", "Open-Air bei Kälte (Nov–Feb)", l => l.some(e => e.openair && /-(11|12|01|02)-/.test(e.datum))]
+  ["winter", "❄️", "Winter-Party", "Open-Air bei Kälte (Nov–Feb)", l => l.some(e => e.openair && /-(11|12|01|02)-/.test(e.datum))]
 ];
 function abzeichenPruefen(stumm) {
   const l = erlebte(), hat = ABZEICHEN.filter(a => a[4](l)).map(a => a[0]);
@@ -1493,7 +1493,7 @@ function abzeichenPruefen(stumm) {
   try { localStorage.setItem("te-abzeichen", JSON.stringify(hat)); } catch (e) {}
   if (!stumm && neu.length && alt.length + neu.length > 0) {
     const a = ABZEICHEN.find(x => x[0] === neu[0]);
-    setTimeout(() => { zeigeToast(neu.length > 1 ? `🎖 ${neu.length} neue Abzeichen – schau in deinen Raver-Pass!` : `🎖 Neues Abzeichen: ${a[1]} ${a[2]}`); kick(1.2); }, 1500);
+    setTimeout(() => { zeigeToast(neu.length > 1 ? `🎖 ${neu.length} neue Abzeichen – schau in deinen Party-Pass!` : `🎖 Neues Abzeichen: ${a[1]} ${a[2]}`); kick(1.2); }, 1500);
   }
   return { hat, neu };
 }
@@ -1521,10 +1521,10 @@ function passZeigen() {
   ics.onclick = () => { const k = favoriten.filter(x => x.datum && endDatum(x) > new Date()); if (!k.length) { zeigeToast("Keine kommenden Favoriten"); return; } icsLaden(k, "techno-events-favoriten.ics"); };
   f.append(ics);
   f.append(el("p", "ds-klein", "Alles nur auf deinem Handy gespeichert."));
-  popup("🎖 Raver-Pass", f);
+  popup("🎖 Party-Pass", f);
 }
 
-// ---- Dein Rave-Jahr ----
+// ---- Dein Party-Jahr ----
 function raveJahr() {
   const d = new Date(), jahr = d.getMonth() === 0 ? d.getFullYear() - 1 : d.getFullYear();
   const l = erlebte().filter(e => e.datum.startsWith(String(jahr)));
@@ -1551,13 +1551,13 @@ function jahrZeigen() {
     const b = el("button", "btn dabei", "📸 Als Bild teilen"); b.type = "button"; b.style.width = "100%";
     b.onclick = () => jahrBild(r); f.append(b);
   }
-  popup(`🎆 Dein Rave-Jahr ${r.jahr}`, f);
+  popup(`🎆 Dein Party-Jahr ${r.jahr}`, f);
 }
 async function jahrBild(r) {
   try { await document.fonts.ready; } catch (e) {}
   const c = leinwand(), g = c.getContext("2d"); hintergrund(g); kopfUndFuss(g);
   g.textAlign = "center";
-  g.font = "900 90px Unbounded, sans-serif"; neonText(g, "MEIN RAVE-JAHR", 540, 330, "#fff", 20);
+  g.font = "900 76px Unbounded, sans-serif"; neonText(g, "MEIN PARTY-JAHR", 540, 330, "#fff", 20);
   g.font = "900 120px Unbounded, sans-serif"; neonText(g, String(r.jahr), 540, 470, FARBE.laser, 30);
   g.font = "900 260px Unbounded, sans-serif"; neonText(g, String(r.anzahl), 540, 780, FARBE.gelb, 40);
   g.font = "800 60px Inter, sans-serif"; g.fillStyle = "#fff"; g.fillText(tr(r.anzahl === 1 ? "EVENT" : "EVENTS"), 540, 870);
@@ -1571,7 +1571,7 @@ async function jahrBild(r) {
   ].filter(Boolean);
   g.font = "800 56px Inter, sans-serif"; let y = 1040;
   for (const [t, farbe] of zeilenTxt) { neonText(g, t, 540, y, farbe, 14); y += 110; }
-  bildTeilen(c, `mein-rave-jahr-${r.jahr}.png`, tr(`Mein Rave-Jahr ${r.jahr} 🎆 – ${r.anzahl} Events!`) + " " + GUIDE_URL);
+  bildTeilen(c, `mein-party-jahr-${r.jahr}.png`, tr(`Mein Party-Jahr ${r.jahr} 🎆 – ${r.anzahl} Events!`) + " " + GUIDE_URL);
 }
 
 // ---- Kurzanleitung ----
@@ -1603,12 +1603,12 @@ function guideZeigen() {
       ["🙋 Ich bin dabei", "deine Crew sieht beim Event «🔥 3 dabei: …». Mit ✕ ziehst du zurück."]]],
     ["🎉 Party-Extras", [
       ["📸 Story", "beim Countdown: Bild «Noch X Tage» für WhatsApp-Status oder Instagram-Story."],
-      ["🎖 Raver-Pass", "unter «Meine Favoriten»: Stempel für jede erlebte Party und Abzeichen zum Sammeln."],
-      ["🎆 Rave-Jahr", "dein Jahresrückblick – Events, Stunden, Kilometer, Lieblingssound. Auch als Bild."],
+      ["🎖 Party-Pass", "unter «Meine Favoriten»: Stempel für jede erlebte Party und Abzeichen zum Sammeln."],
+      ["🎆 Party-Jahr", "dein Jahresrückblick – Events, Stunden, Kilometer, Lieblingssound. Auch als Bild."],
       ["🌙 Nacht-Modus", "am Event-Tag: dunkle Ansicht mit grosser Schrift, letztem Zug und Navi heim."],
       ["💥 Drop", "springt der Countdown auf 0, gibt's eine Laser-Explosion."],
       ["❤️ Lieblings-DJs", "bei «🎧 Reinhören» auf 🤍 tippen – Events mit deinen DJs werden markiert, Filter «Nur meine DJs»."],
-      ["⭐ Bewerten", "unter «Schon erlebt»: Sterne und Notiz für jede Party – zählt fürs Rave-Jahr."],
+      ["⭐ Bewerten", "unter «Schon erlebt»: Sterne und Notiz für jede Party – zählt fürs Party-Jahr."],
       ["🚗 Mitfahren", "mit Crew und Zusage: «Ich fahre» (freie Plätze) oder «Suche Mitfahrt»."],
       ["⚠️ Effekte reduzieren", "ganz unten: schaltet Strobo, Blitze und Animationen aus."]]],
     ["📻 Radio & Reinhören", [
@@ -2480,7 +2480,7 @@ function morgenDanach() {
   setTimeout(() => {
     if (document.querySelector(".nacht, .popup-hg")) return;   // nicht über andere Fenster legen – nächstes Mal fragen
     try { localStorage.setItem(k, "1"); } catch (e) {}
-    zeigeToast("☀️ Guten Morgen, Raver! Wie war's?");
+    zeigeToast("☀️ Guten Morgen! Wie war die Party?");
     bewertenDialog(t);
   }, 1800);
 }

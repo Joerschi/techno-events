@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.36.1 – 25.11.2026
+- «Raver» → «Party People»: Party-Pass, Party-Jahr, Party-Legende, Gipfel-Party, Winter-Party, neues Motto
+
 ## v1.36.0 – 25.11.2026
 - 🌗 Tageszeit-Farben: tagsüber gedämpft, abends Neon, nach Mitternacht volles Schwarzlicht
 - 🔁 Wochenend-Rhythmus: Fr/Sa-Nacht schnellere Laser, Sonntag ruhige Afterhour-Stimmung, ⚡ Fresh Drop bei neuer Ausgabe

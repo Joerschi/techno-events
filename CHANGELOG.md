@@ -1,5 +1,14 @@
 # Changelog – Techno Events
 
+## v1.33.0 – 25.11.2026
+- 📅 Kalender-Eintrag nur noch mit dem Event (Lineup, Tickets, Link) – ohne An-/Abfahrt; iPhone: direkt in den Apple-Kalender
+- 📅 Alle kommenden Favoriten auf einmal in den Kalender (im Raver-Pass)
+- ❤️ Lieblings-DJs: bei «Reinhören» folgen, Events werden markiert, Filter «Nur meine DJs»
+- ⭐ Partys bewerten (Sterne + Notiz) unter «Schon erlebt»; «Beste Party» im Rave-Jahr
+- 🚗 Mitfahren in der Crew: «Ich fahre · x frei» oder «Suche Mitfahrt»
+- 🚕 Nacht-Modus: Taxi in der Nähe / Uber
+- ⚠️ Strobo-Schutz: «Effekte reduzieren» (automatisch bei «Bewegung reduzieren» am Handy)
+
 ## v1.32.0 – 25.11.2026
 - Ohne Startort keine Fahrzeiten mehr ab Beckenried: stattdessen Hinweis «📍 Startort wählen – dann siehst du Fahrzeit & Verbindungen»
 - Umkreis-Filter und Sortierung nach Fahrt brauchen einen Startort (Umkreis-Knopf führt zur Auswahl)

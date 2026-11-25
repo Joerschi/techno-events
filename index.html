@@ -274,6 +274,22 @@
   .ohne-ort { width: 100%; padding: 10px 12px; border: 1px dashed var(--cyan); background: #0c0705; color: var(--cyan); font: 700 .85rem Inter, sans-serif; text-align: left; cursor: pointer; }
   .reihe.ohne .chip:not(:last-child) { opacity: .45; }
   .ohne-ampel .ampel { display: none !important; }
+  .ruhig .laser, .ruhig .hero::after, .ruhig h1 .t1::before, .ruhig h1 .t1::after { display: none !important; }
+  .ruhig .hero.strobo::before, .ruhig .drop { display: none !important; }
+  .ruhig *, .ruhig *::before, .ruhig *::after { animation-duration: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }
+  .dj-alarm { margin: 2px 0 6px; padding: 5px 9px; display: inline-block; border: 1px solid var(--laser); color: #fff; background: rgba(255,16,240,.15); font: 800 .8rem Inter, sans-serif; }
+  .herz { flex: none; width: 38px; height: 34px; border: 1px solid var(--line); background: #000; font-size: 1rem; cursor: pointer; }
+  .herz.an { border-color: var(--laser); }
+  .fahrt-zeile { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .fahrt-knopf { padding: 9px 6px; border: 1px solid var(--line); background: #0c0705; color: #fff; font: 700 .8rem Inter, sans-serif; cursor: pointer; }
+  .fahrt-knopf.an { border-color: var(--acid); color: var(--acid); }
+  .fahrt-info { margin-top: 4px; color: var(--acid); font-weight: 700; }
+  .plaetze { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 6px 0 10px; }
+  .plaetze .chip { padding: 14px 0; font-size: 1.1rem; }
+  .bewerten { display: inline-block; margin-left: 8px; padding: 2px 8px; border: 1px solid var(--gelb); background: none; color: var(--gelb); font: 700 .72rem Inter, sans-serif; cursor: pointer; }
+  .sterne-wahl { display: flex; gap: 6px; justify-content: center; margin: 6px 0 12px; }
+  .sterne-wahl button { width: 48px; height: 48px; border: 1px solid var(--line); background: #000; color: #887; font-size: 1.6rem; cursor: pointer; }
+  .sterne-wahl button.an { color: var(--gelb); border-color: var(--gelb); }
   .popup-fehler { color: var(--rot); font-size: .8rem; min-height: 1em; margin-top: 6px; }
   .ds-klein { color: var(--muted) !important; font-size: .78rem !important; }
   .nutzer { display: block; margin-top: 12px; font: 700 .8rem Inter, sans-serif; color: var(--acid); letter-spacing: .03em; }
@@ -599,7 +615,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.32.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.33.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -678,9 +694,6 @@ function kalenderLink(ev) {
     ev.genre && ev.genre.length ? "Genre: " + ev.genre.join(", ") : "",
     ev.preis ? "Preis: " + ev.preis : "",
     ev.link ? "Tickets/Infos: " + ev.link : "",
-    "", ...anreise,
-    ev.navi ? "📍 Navigation: " + ev.navi : "",
-    "🏠 Navigation heim: https://www.google.com/maps/dir/?api=1&destination=Beckenried&travelmode=driving",
     "", "Techno Events: " + eventLink(ev)
   ].filter((z, i, a) => z !== "" || (i > 0 && a[i - 1] !== "")).join("\n");
   const ort = [ev.club, ev.adresse].filter(Boolean).join(", ");
@@ -691,6 +704,23 @@ function kalenderLink(ev) {
     + "&location=" + encodeURIComponent(ort)
     + "&details=" + encodeURIComponent(details);
 }
+// iCalendar-Datei (für iPhone-Kalender & «alle Favoriten»): nur das Event, keine An-/Abfahrt
+function icsStempel(d) { return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); }
+function icsText(t) { return String(t || "").replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/([,;])/g, "\\$1"); }
+function icsEvent(ev) {
+  return ["BEGIN:VEVENT", "UID:" + evKey(ev).replace(/[^a-z0-9@.-]/gi, "") + "@techno.howeverto.me", "DTSTAMP:" + icsStempel(new Date()),
+    "DTSTART:" + icsStempel(startDatum(ev)), "DTEND:" + icsStempel(endDatum(ev)), "SUMMARY:" + icsText("🎧 " + ev.name),
+    "LOCATION:" + icsText([ev.club, ev.adresse].filter(Boolean).join(", ")),
+    "DESCRIPTION:" + icsText([ev.lineup && ev.lineup.length ? "Lineup: " + ev.lineup.join(", ") : "", ev.link ? "Tickets: " + ev.link : "", eventLink(ev)].filter(Boolean).join("\n")),
+    "END:VEVENT"].join("\r\n");
+}
+function icsLaden(evs, name) {
+  const txt = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Techno Events//DE", ...evs.map(icsEvent), "END:VCALENDAR"].join("\r\n");
+  const url = URL.createObjectURL(new Blob([txt], { type: "text/calendar" }));
+  const a = document.createElement("a"); a.href = url; a.download = name; document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+const IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 function naviLink(ev) {
   let url = ev.navi || ("https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=" + encodeURIComponent([ev.club, ev.adresse].filter(Boolean).join(", ")) + "&travelmode=driving");
   url = url.replace(/&origin=[^&]*/, "");   // ohne Start = Google Maps nimmt den aktuellen Standort des Handys
@@ -758,7 +788,9 @@ function heimText(ev) {
 function aktionen(ev, mitTicket) {
   const huelle = el("div", "aktionen-huelle");
   const box = el("div", "aktionen"); huelle.append(box);
-  box.append(label(link("btn acid", kalenderLink(ev), ""), "📅", "Kalender"));
+  const kal = label(link("btn acid", kalenderLink(ev), ""), "📅", "Kalender");
+  if (IOS) kal.onclick = (e) => { e.preventDefault(); icsLaden([ev], "event.ics"); };   // iPhone: direkt in den Apple-Kalender
+  box.append(kal);
   box.append(label(link("btn", naviLink(ev), ""), "📍", "Navi"));
   box.append(label(waKnopf("btn wa", whatsappLink(ev), ""), "💬", "Crew"));
   if (ev.link) box.append(label(link("btn", ev.link, ""), "🎟", mitTicket ? "Ticket" : "Tickets"));
@@ -778,6 +810,15 @@ function aktionen(ev, mitTicket) {
     };
     const zeile = el("div", "dabei-zeile"); zeile.append(d, weg);
     box.append(zeile);
+    if (crew.code) {   // Mitfahren in der Crew
+      const ich = (crewZusagen[evKey(ev)] || []).find(p => p.ich === ichHash), meine = (ich && ich.fahrt) || "";
+      const fz = el("div", "fahrt-zeile");
+      const fahre = el("button", "fahrt-knopf" + (meine.startsWith("fahre:") ? " an" : ""), meine.startsWith("fahre:") ? `🚗 Ich fahre · ${meine.slice(6)} frei` : "🚗 Ich fahre"); fahre.type = "button";
+      const suche = el("button", "fahrt-knopf" + (meine === "suche" ? " an" : ""), meine === "suche" ? "🙋 Suche Mitfahrt ✓" : "🙋 Suche Mitfahrt"); suche.type = "button";
+      fahre.onclick = () => meine.startsWith("fahre:") ? fahrtSetzen(ev, "") : plaetzeWaehlen(ev);
+      suche.onclick = () => fahrtSetzen(ev, meine === "suche" ? "" : "suche");
+      fz.append(fahre, suche); box.append(fz);
+    }
     return huelle;
   }
   box.append(d);
@@ -806,7 +847,10 @@ function crewZeile(ev) {
   if (!liste || !liste.length) return null;
   const z = el("div", "crew-zeile");
   z.append(el("b", "", `🔥 ${liste.length} dabei`));
-  z.append(document.createTextNode(" " + liste.map(p => p.ich === ichHash ? "du" : p.name).join(" · ")));
+  const fahrtIcon = p => p.fahrt && p.fahrt.startsWith("fahre:") ? ` 🚗${p.fahrt.slice(6)}` : p.fahrt === "suche" ? " 🙋" : "";
+  z.append(document.createTextNode(" " + liste.map(p => (p.ich === ichHash ? "du" : p.name) + fahrtIcon(p)).join(" · ")));
+  const fahrer = liste.filter(p => p.fahrt && p.fahrt.startsWith("fahre:")), sucher = liste.filter(p => p.fahrt === "suche");
+  if (fahrer.length || sucher.length) z.append(el("div", "fahrt-info", [fahrer.length ? `🚗 ${fahrer.reduce((s, p) => s + (+p.fahrt.slice(6) || 0), 0)} freie Plätze` : "", sucher.length ? `🙋 ${sucher.length} sucht Mitfahrt` : ""].filter(Boolean).join(" · ")));
   return z;
 }
 async function crewLaden() {
@@ -828,6 +872,21 @@ async function crewMelden(ev, aktion) {
       body: JSON.stringify({ crew: crew.code, event_key: evKey(ev), datum: ev.datum, name: crew.name || "", geraet: geraetId(), aktion }) });
     return r.ok;
   } catch (e) { return false; }
+}
+async function fahrtSetzen(ev, fahrt) {
+  try {
+    const r = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ crew: crew.code, event_key: evKey(ev), aktion: "fahrt", fahrt, geraet: geraetId() }) });
+    zeigeToast(!r.ok ? "Server gerade nicht erreichbar" : fahrt.startsWith("fahre:") ? `🚗 Deine Crew sieht: ${fahrt.slice(6)} Plätze frei` : fahrt === "suche" ? "🙋 Deine Crew sieht, dass du eine Mitfahrt suchst" : "Mitfahr-Angabe entfernt");
+  } catch (e) { zeigeToast("Server gerade nicht erreichbar"); }
+  crewLaden();
+}
+function plaetzeWaehlen(ev) {
+  const f = el("div", ""); f.append(el("p", "", "Wie viele Plätze hast du frei?"));
+  const r = el("div", "plaetze"); let zu;
+  for (let n = 1; n <= 4; n++) { const b = el("button", "chip", String(n)); b.type = "button"; b.onclick = () => { zu(); fahrtSetzen(ev, "fahre:" + n); }; r.append(b); }
+  f.append(r, el("p", "ds-klein", "Bitte nur fahren, wenn du fit bist – sonst lieber ÖV oder Taxi. 🙏"));
+  zu = popup("🚗 Ich fahre", f);
 }
 async function zusageStarten(ev) {
   if (!crew.code) { crewDialog(ev); return; }
@@ -982,14 +1041,30 @@ document.getElementById("radio-zu").onclick = () => {
   document.getElementById("radio").classList.remove("offen"); document.getElementById("radio-leiste").hidden = true;
 };
 
+// ---- Lieblings-DJs (nur auf dem Handy) ----
+let djs = []; try { djs = JSON.parse(localStorage.getItem("te-djs") || "[]"); } catch (e) {}
+const djNorm = n => String(n).toLowerCase().replace(/\s*[\[(].*?[\])]\s*/g, " ").replace(/\b(live|dj set|all night long)\b/g, "").replace(/\s+/g, " ").trim();
+function djsVon(ev) { const l = (ev.lineup || []).join(" | ").toLowerCase(); return djs.filter(d => l.includes(djNorm(d))); }
+function djUmschalten(name) {
+  const n = djNorm(name), i = djs.findIndex(d => djNorm(d) === n);
+  if (i >= 0) { djs.splice(i, 1); zeigeToast("Nicht mehr gefolgt: " + name); }
+  else { djs.push(name.replace(/\s*[\[(].*?[\])]\s*/g, " ").trim()); zeigeToast("❤️ Du folgst jetzt " + name); hihat(); }
+  try { localStorage.setItem("te-djs", JSON.stringify(djs)); } catch (e) {}
+  allesNeuZeichnen();
+}
+
 // ---- Reinhören: Sets der Künstler auf SoundCloud / Mixcloud ----
 function reinhoerenZeigen(ev) {
   const f = el("div", "");
-  f.append(el("p", "", "Hör dir vorher an, wer spielt – öffnet die Suche auf SoundCloud bzw. Mixcloud:"));
+  f.append(el("p", "", "Hör dir vorher an, wer spielt – und tipp auf 🤍, um einem DJ zu folgen:"));
   const l = el("div", "hoer-liste");
   for (const name of (ev.lineup || []).slice(0, 8)) {
     const z = el("div", "hoer-zeile");
     z.append(el("b", "", name));
+    const folgt = djs.some(d => djNorm(d) === djNorm(name));
+    const herz = el("button", "herz" + (folgt ? " an" : ""), folgt ? "❤️" : "🤍"); herz.type = "button"; herz.title = "Folgen";
+    herz.onclick = () => { djUmschalten(name); const jetzt = djs.some(d => djNorm(d) === djNorm(name)); herz.textContent = jetzt ? "❤️" : "🤍"; herz.classList.toggle("an", jetzt); };
+    z.append(herz);
     const q = encodeURIComponent(name.replace(/\s*[\[(].*?[\])]\s*/g, " ").replace(/\b(live|b2b.*|all night long)\b/ig, "").trim());
     z.append(link("", `https://soundcloud.com/search/sounds?q=${q}`, "SoundCloud ↗"));
     z.append(link("", `https://www.mixcloud.com/search/?q=${q}`, "Mixcloud ↗"));
@@ -1030,6 +1105,13 @@ async function zaehlen() {
 
 // ======================= PARTY-EXTRAS =======================
 const FARBE = { orange: "#ff6a00", acid: "#39ff14", laser: "#ff10f0", cyan: "#00f0ff", gelb: "#f4ff00" };
+// ---- Strobo-Schutz: weniger Effekte (automatisch bei «Bewegung reduzieren» am Handy) ----
+let ruhig = false;
+try { const r = localStorage.getItem("te-ruhig"); ruhig = r === "1" || (r === null && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch (e) {}
+function ruhigAnwenden() {
+  document.body.classList.toggle("ruhig", ruhig);
+  const b = document.getElementById("ruhig-link"); if (b) b.textContent = ruhig ? "✨ Effekte an" : "⚠️ Effekte reduzieren";
+}
 function heute0() { const d = new Date(); d.setHours(0, 0, 0, 0); return d; }
 function tageBis(ev) { const d = new Date(ev.datum + "T00:00"); return Math.round((d - heute0()) / 864e5); }
 
@@ -1052,6 +1134,7 @@ function airHorn() {
 function dropAusloesen(ev) {
   const k = "te-drop-" + evKey(ev);
   try { if (localStorage.getItem(k)) return; localStorage.setItem(k, "1"); } catch (e) { return; }
+  if (ruhig) { zeigeToast("🔊 Los geht's! Viel Spass bei " + ev.name + " 🎉"); return; }
   const d = document.getElementById("drop"); d.hidden = false; d.style.animation = "none"; d.offsetHeight; d.style.animation = "";
   kick(1.4); setTimeout(() => kick(1.4), 470); setTimeout(() => kick(1.6), 940); setTimeout(airHorn, 1200);
   zeigeToast("🔊 DROP! Viel Spass bei " + ev.name + " 🎉");
@@ -1074,6 +1157,8 @@ function nachtModus(t) {
   n.append(link("", `https://www.google.com/maps/dir/?api=1&destination=${standort.aktiv && standort.name ? encodeURIComponent(standort.name) : standort.aktiv ? standort.lat + "," + standort.lon : encodeURIComponent(basis().basis)}&travelmode=driving`, "🏠 Navi nach Hause"));
   if (startBeiBasis() && t.oev_letzte && t.oev_letzte.sbb) n.append(link("", t.oev_letzte.sbb, "🚆 Verbindung im SBB-Fahrplan"));
   else if (standort.aktiv) n.append(link("", `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent([t.club, t.adresse || t.stadt].filter(Boolean).join(", "))}&destination=${standort.lat},${standort.lon}&travelmode=transit`, "🚆 ÖV-Verbindung nach Hause"));
+  n.append(link("", "https://www.google.com/maps/search/Taxi/", "🚕 Taxi in der Nähe"));
+  n.append(link("", "https://m.uber.com/ul/?action=setPickup&pickup=my_location", "🚘 Uber öffnen"));
   const zu = el("button", "zu-gross", "✕ Nacht-Modus beenden"); zu.type = "button";
   zu.onclick = () => n.remove();
   n.append(zu);
@@ -1154,6 +1239,24 @@ async function storyTeilen(ev) {
   bildTeilen(c, "techno-events-story.png", `${ev.name} – wer kommt mit? 🔥 ${eventLink(ev)}`);
 }
 
+// ---- Party bewerten (nur auf dem Handy) ----
+function bewertenDialog(t) {
+  const f = el("div", ""); let wert = t.bewertung || 0, zu;
+  f.append(el("p", "", `${t.name} · ${kurzDatum(t)}`));
+  const sterne = el("div", "sterne-wahl");
+  const malen = () => [...sterne.children].forEach((b, i) => { b.textContent = i < wert ? "★" : "☆"; b.classList.toggle("an", i < wert); });
+  for (let i = 1; i <= 5; i++) { const b = el("button", "", "☆"); b.type = "button"; b.onclick = () => { wert = i; malen(); }; sterne.append(b); }
+  const notiz = el("input"); notiz.placeholder = "Kurze Notiz (z. B. bestes Set ever!)"; notiz.maxLength = 80; notiz.value = t.notiz_eigen || "";
+  const ok = el("button", "btn dabei", "Speichern"); ok.type = "button"; ok.style.width = "100%";
+  ok.onclick = () => {
+    const i = favoriten.findIndex(x => x.fav_key === t.fav_key);
+    if (i >= 0) { favoriten[i].bewertung = wert; favoriten[i].notiz_eigen = notiz.value.trim(); favSpeichern(); }
+    zu(); zeigeToast(wert ? "★".repeat(wert) + " gespeichert" : "Gespeichert"); allesNeuZeichnen();
+  };
+  f.append(sterne, notiz, ok); malen();
+  zu = popup("⭐ Wie war's?", f);
+}
+
 // ---- Raver-Pass ----
 function erlebte() {
   const jetzt = new Date(), seen = new Set();
@@ -1200,8 +1303,14 @@ function passZeigen() {
   }
   f.append(g);
   f.append(el("h3", "", "🎟 Deine Stempel"));
-  if (l.length) { const st = el("div", "pass-stempel"); for (const e of l.slice().reverse()) st.append(el("span", "", `${e.datum.slice(8, 10)}.${e.datum.slice(5, 7)}. ${e.name.slice(0, 22)}`)); f.append(st); }
+  if (l.length) { const st = el("div", "pass-stempel"); for (const e of l.slice().reverse()) st.append(el("span", "", `${e.datum.slice(8, 10)}.${e.datum.slice(5, 7)}. ${e.name.slice(0, 22)}${e.bewertung ? " " + "★".repeat(e.bewertung) : ""}`)); f.append(st); }
   else f.append(el("p", "", "Noch keine Stempel. Markiere Events mit ☆ – nach der Party landet der Stempel automatisch hier."));
+  f.append(el("h3", "", "❤️ Meine DJs"));
+  if (djs.length) { const dl = el("div", "pass-stempel"); for (const d of djs) { const s = el("span", "", d + " ✕"); s.style.cursor = "pointer"; s.onclick = () => { djUmschalten(d); s.remove(); }; dl.append(s); } f.append(dl); }
+  else f.append(el("p", "", "Noch keine. Bei einem Event auf «🎧 Reinhören» und dann auf 🤍 tippen."));
+  const ics = el("button", "popup-link", "📅 Alle kommenden Favoriten in den Kalender"); ics.type = "button";
+  ics.onclick = () => { const k = favoriten.filter(x => x.datum && endDatum(x) > new Date()); if (!k.length) { zeigeToast("Keine kommenden Favoriten"); return; } icsLaden(k, "techno-events-favoriten.ics"); };
+  f.append(ics);
   f.append(el("p", "ds-klein", "Alles nur auf deinem Handy gespeichert."));
   popup("🎖 Raver-Pass", f);
 }
@@ -1214,7 +1323,8 @@ function raveJahr() {
   const stunden = l.reduce((s, e) => s + Math.max(0, (endDatum(e) - startDatum(e)) / 36e5), 0);
   return { jahr, l, anzahl: l.length, km: Math.round(l.reduce((s, e) => s + 2 * (e.auto_km || 0), 0)), stunden: Math.round(stunden),
     genre: zaehle(l.flatMap(familien)), club: zaehle(l.map(e => e.club)), stadt: zaehle(l.map(e => e.stadt)),
-    hoechste: l.reduce((m, e) => (e.hoehe || 0) > ((m && m.hoehe) || 0) ? e : m, null) };
+    hoechste: l.reduce((m, e) => (e.hoehe || 0) > ((m && m.hoehe) || 0) ? e : m, null),
+    beste: l.filter(e => e.bewertung).sort((a, b) => b.bewertung - a.bewertung)[0] || null };
 }
 function jahrZeigen() {
   const r = raveJahr(), f = el("div", "jahr-liste");
@@ -1228,6 +1338,7 @@ function jahrZeigen() {
     if (r.club) p(`🏠 Lieblings-Location: ${r.club[0]} (${r.club[1]}×)`);
     if (r.stadt) p(`📍 Top-Stadt: ${r.stadt[0]}`);
     if (r.hoechste) p(`⛰ Höchste Party: ${r.hoechste.name} auf ${r.hoechste.hoehe} m`);
+    if (r.beste) p(`🏅 Beste Party: ${r.beste.name} ${"★".repeat(r.beste.bewertung)}`);
     const b = el("button", "btn dabei", "📸 Als Bild teilen"); b.type = "button"; b.style.width = "100%";
     b.onclick = () => jahrBild(r); f.append(b);
   }
@@ -1246,7 +1357,8 @@ async function jahrBild(r) {
     r.km ? [`🚗 ${r.km} km unterwegs`, FARBE.cyan] : null,
     r.genre ? [`🎧 ${r.genre[0]}`, FARBE.orange] : null,
     r.club ? [`🏠 ${r.club[0]}`.slice(0, 32), "#fff"] : null,
-    r.hoechste ? [`⛰ ${r.hoechste.hoehe} m – höchste Party`, FARBE.gelb] : null
+    r.hoechste ? [`⛰ ${r.hoechste.hoehe} m – höchste Party`, FARBE.gelb] : null,
+    r.beste ? [`🏅 ${r.beste.name}`.slice(0, 30), FARBE.laser] : null
   ].filter(Boolean);
   g.font = "800 56px Inter, sans-serif"; let y = 1040;
   for (const [t, farbe] of zeilenTxt) { neonText(g, t, 540, y, farbe, 14); y += 110; }
@@ -1285,7 +1397,11 @@ function guideZeigen() {
       ["🎖 Raver-Pass", "unter «Meine Favoriten»: Stempel für jede erlebte Party und Abzeichen zum Sammeln."],
       ["🎆 Rave-Jahr", "dein Jahresrückblick – Events, Stunden, Kilometer, Lieblingssound. Auch als Bild."],
       ["🌙 Nacht-Modus", "am Event-Tag: dunkle Ansicht mit grosser Schrift, letztem Zug und Navi heim."],
-      ["💥 Drop", "springt der Countdown auf 0, gibt's eine Laser-Explosion."]]],
+      ["💥 Drop", "springt der Countdown auf 0, gibt's eine Laser-Explosion."],
+      ["❤️ Lieblings-DJs", "bei «🎧 Reinhören» auf 🤍 tippen – Events mit deinen DJs werden markiert, Filter «Nur meine DJs»."],
+      ["⭐ Bewerten", "unter «Schon erlebt»: Sterne und Notiz für jede Party – zählt fürs Rave-Jahr."],
+      ["🚗 Mitfahren", "mit Crew und Zusage: «Ich fahre» (freie Plätze) oder «Suche Mitfahrt»."],
+      ["⚠️ Effekte reduzieren", "ganz unten: schaltet Strobo, Blitze und Animationen aus."]]],
     ["📻 Radio & Reinhören", [
       ["📻 unten rechts", "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender, 📣 Air-Horn. Läuft Musik, pulsieren die Laser im Takt."],
       ["🎧 Reinhören", "bei jedem Event: Sets der Künstler auf SoundCloud oder Mixcloud anhören."]]],
@@ -1392,6 +1508,8 @@ function eventKarte(ev, rang) {
   if (ev.adresse) ort.append(el("small", "", ev.adresse));
   k.append(ort);
   if (ev.lineup && ev.lineup.length) {
+    const meine = djsVon(ev);
+    if (meine.length) k.append(el("div", "dj-alarm", "❤️ Dein DJ spielt: " + meine.join(", ")));
     k.append(el("div", "lineup", ev.lineup.join(" · ")));
     const h = el("button", "reinhoeren", "🎧 Reinhören"); h.type = "button";
     h.onclick = () => reinhoerenZeigen(ev);
@@ -1746,6 +1864,9 @@ function ticketsZeigen() {
       const st = el("div", "stempel", t.club || t.stadt || "Rave");
       st.append(el("small", "", "✓ WAR DABEI"));
       z.append(st);
+      const bw = el("button", "bewerten", t.bewertung ? "★".repeat(t.bewertung) : "⭐ Wie war's?"); bw.type = "button";
+      bw.onclick = () => bewertenDialog(t);
+      info.append(bw);
       det.append(z);
     }
     liste.append(det);
@@ -1860,7 +1981,7 @@ setInterval(tick, 1000);
 
 // ======================= WOCHENENDE =======================
 let daten = { events: [], top3: [], ausblick: [] };
-const filter = { tag: "Alle", km: 100, genre: "Alle", stadt: "Alle", sort: "zeit", merk: false };
+const filter = { tag: "Alle", km: 100, genre: "Alle", stadt: "Alle", sort: "zeit", merk: false, djs: false };
 // ---- Merkliste & Zusagen: bleiben NUR auf diesem Gerät (localStorage) – nichts geht an einen Server ----
 function setLaden(key) { try { return new Set(JSON.parse(localStorage.getItem(key) || "[]")); } catch (e) { return new Set(); } }
 function setSpeichern(key, set) { try { localStorage.setItem(key, JSON.stringify([...set])); } catch (e) {} }
@@ -1985,6 +2106,13 @@ function filterZeigen() {
   const wahl = [filter.genre !== "Alle" ? filter.genre : "", filter.stadt !== "Alle" ? filter.stadt : ""].filter(Boolean).join(" · ") || "alle";
   sm.append(el("span", "mf-i", "🎶"), el("span", "", "Genre & Stadt"), el("span", "mf-wahl", wahl), el("span", "mf-pfeil", "▾"));
   det.append(sm);
+  if (djs.length) {
+    det.append(el("div", "mf-titel", "Meine DJs"));
+    const r = el("div", "reihe");
+    const c = el("button", "chip" + (filter.djs ? " on" : ""), `❤️ Nur meine DJs (${daten.events.filter(e => djsVon(e).length).length})`);
+    c.onclick = () => { filter.djs = !filter.djs; filterZeigen(); listeZeigen(); };
+    r.append(c); det.append(r);
+  }
   det.append(el("div", "mf-titel", "Sound"));
   const vorhanden = new Set(daten.events.flatMap(familien));
   const reihenfolge = GENRE_FAMILIEN.map(f => f[0]).filter(n => vorhanden.has(n));
@@ -2002,6 +2130,7 @@ function listeZeigen() {
     (filter.tag === "Alle" || (e.tag || TAGE[startDatum(e).getDay()]) === filter.tag) &&
     (!standort.aktiv || filter.km === 999 || luftlinie(e) <= filter.km) &&
     (filter.genre === "Alle" || familien(e).includes(filter.genre)) &&
+    (!filter.djs || djsVon(e).length > 0) &&
     (filter.stadt === "Alle" || e.stadt === filter.stadt) &&
     (!filter.merk || merkliste.has(evKey(e))));
   evs.sort((a, b) => filter.sort === "zeit" && standort.aktiv ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));
@@ -2079,6 +2208,8 @@ document.getElementById("pass-knopf").onclick = () => passZeigen();
 document.getElementById("jahr-knopf").onclick = () => jahrZeigen();
 document.getElementById("story-knopf").onclick = () => { if (heroEvent) storyTeilen(heroEvent); };
 document.getElementById("radio-horn").onclick = () => airHorn();
+document.getElementById("ruhig-link").onclick = () => { ruhig = !ruhig; try { localStorage.setItem("te-ruhig", ruhig ? "1" : "0"); } catch (e) {} ruhigAnwenden(); zeigeToast(ruhig ? "⚠️ Effekte reduziert – kein Strobo, keine Blitze" : "✨ Effekte wieder an"); };
+ruhigAnwenden();
 document.getElementById("willkommen-los").onclick = () => guideZeigen();
 document.getElementById("willkommen-weg").onclick = () => { document.getElementById("willkommen").hidden = true; try { localStorage.setItem("te-guide", "1"); } catch (e) {} };
 try { if (!localStorage.getItem("te-guide")) document.getElementById("willkommen").hidden = false; } catch (e) {}

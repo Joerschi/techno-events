@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.39.5 – 25.11.2026
+- 📱 Seite lässt sich nicht mehr seitlich verschieben (Radio-Platte bleibt am Rand sichtbar); Knopf-Texte brechen um statt überzulaufen
+
 ## v1.39.4 – 25.11.2026
 - 🌐 Englisch: Wetter-Begriffe, «ab deinem Standort», letzter/erster Zug, «du», Losfahren, Ticket-Notizen übersetzt; Dabei-Knopf passt jetzt auf die Karte
 

@@ -596,7 +596,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab Startort (Beckenried bzw. München Hbf oder dein Standort), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.30.1<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.31.0<span class="motto">Made by Ravers – for Ravers 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -919,6 +919,7 @@ function datenschutzZeigen() {
     ["Favoriten & Einstellungen", "Bleiben nur auf deinem Handy (Speicher des Browsers bzw. der App). Löschen: App-/Browserdaten löschen."],
     ["Standort", "Wird nicht gespeichert. Für Fahrzeit und Ortsnamen gehen die Koordinaten kurz an OpenStreetMap-Dienste (OSRM, Nominatim) bzw. transport.opendata.ch."],
     ["Crew-Zusagen (freiwillig)", "Nur Spitzname, Crew-Code, Event und eine zufällige Geräte-Nummer – auf dem Server von howeverto.me. Nach dem Event automatisch gelöscht. Der Hoster führt technisch übliche Zugriffsprotokolle."],
+    ["Wohnort", "Wenn du einen Startort eingibst, wird der Ortsname bei Open-Meteo bzw. transport.opendata.ch gesucht und nur auf deinem Handy gespeichert."],
     ["Wetter", "Für die Vorhersage gehen nur die Koordinaten des Events an Open-Meteo – nie dein Standort."],
     ["Nutzerzähler", "Einmal pro Tag meldet die App anonym «ein Gerät war da» (gehashte Zufallsnummer und ob App oder Browser) an howeverto.me – keine IP, kein Standort, kein Name."],
     ["Schriften", "Werden von Google Fonts geladen – dabei sieht Google technisch deine IP-Adresse."],
@@ -1067,7 +1068,7 @@ function nachtModus(t) {
   if (t.ende) block("🏁 Ende", t.ende);
   const liste = crew.code && crewZusagen[evKey(t)];
   if (liste && liste.length) block("👥 Crew", `${liste.length} dabei`, liste.map(p => p.ich === ichHash ? "du" : p.name).join(" · "));
-  n.append(link("", `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(basis().basis)}&travelmode=driving`, "🏠 Navi nach Hause"));
+  n.append(link("", `https://www.google.com/maps/dir/?api=1&destination=${standort.aktiv && standort.name ? encodeURIComponent(standort.name) : standort.aktiv ? standort.lat + "," + standort.lon : encodeURIComponent(basis().basis)}&travelmode=driving`, "🏠 Navi nach Hause"));
   if (t.oev_letzte && t.oev_letzte.sbb) n.append(link("", t.oev_letzte.sbb, "🚆 Verbindung im SBB-Fahrplan"));
   const zu = el("button", "zu-gross", "✕ Nacht-Modus beenden"); zu.type = "button";
   zu.onclick = () => n.remove();
@@ -1313,7 +1314,10 @@ function crewFussZeigen() {
 // ---- Anreise-Block für Event-Karten ----
 function anreiseBlock(ev) {
   const box = el("div", "anreise");
-  if (autoKm(ev)) {
+  if (standort.aktiv && !istLive(ev) && hatKoordinaten(ev)) {
+    // Fahrzeit ab hier noch nicht berechnet: lieber ehrliche Luftlinie als falsche Zeit ab Beckenried
+    box.append(el("div", "", `📏 ca. ${Math.round(luftlinie(ev))} km Luftlinie ab ${standort.name || "hier"}`));
+  } else if (autoKm(ev)) {
     const z = el("div", "", `🚗 ${autoKm(ev)} km · ca. ${fmtMin(autoMin(ev))}${ev.losfahren && !istLive(ev) ? " · losfahren ca. " + ev.losfahren : ""}`);
     if (istLive(ev)) z.append(el("span", "live-tag", "AB HIER"));
     box.append(z);
@@ -1323,7 +1327,7 @@ function anreiseBlock(ev) {
     z.append(link("", "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent([ev.club, ev.adresse || ev.stadt].filter(Boolean).join(", ")) + "&travelmode=transit", "Verbindung ↗"));
     box.append(z);
   } else if (ev.oev_hin && typeof ev.oev_hin === "object") {
-    const z = el("div", "", `🚆 Hin: ab ${ev.oev_hin.ab} → an ${ev.oev_hin.an}${ev.oev_hin.umsteigen != null ? ` (${ev.oev_hin.umsteigen}× umst.)` : ""} `);
+    const z = el("div", "", `🚆 Hin ab ${basis().basis}: ${ev.oev_hin.ab} → ${ev.oev_hin.an}${ev.oev_hin.umsteigen != null ? ` (${ev.oev_hin.umsteigen}× umst.)` : ""} `);
     if (ev.oev_hin.sbb) z.append(link("", ev.oev_hin.sbb, "SBB ↗"));
     box.append(z);
   } else if (ev.oev_hin && !standort.aktiv) box.append(el("div", "", "🚆 Hin: " + ev.oev_hin));
@@ -1331,6 +1335,12 @@ function anreiseBlock(ev) {
     const z = el("div", "", "🚇 " + ev.oev_hinweis + " ");
     if (!standort.aktiv) z.append(link("", "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent([ev.club, ev.adresse].filter(Boolean).join(", ")) + "&travelmode=transit", "Route ↗"));
     box.append(z);
+  }
+  if (standort.aktiv && (ev.oev_letzte || ev.oev_erste)) {   // fixe Zeiten gelten nur ab Beckenried – hier lieber live suchen
+    const z = el("div", "", "🌙 Heimweg: ");
+    z.append(link("", `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent([ev.club, ev.adresse || ev.stadt].filter(Boolean).join(", "))}&destination=${standort.lat},${standort.lon}&travelmode=transit`, "Verbindung ↗"));
+    box.append(z);
+    return box;
   }
   if (ev.oev_letzte) {
     const z = el("div", "", `🌙 Heim: letzte ${ev.oev_letzte.ab} → ${ev.oev_letzte.an} `);
@@ -1589,13 +1599,59 @@ function standEinpassen() {
 window.addEventListener("resize", () => requestAnimationFrame(standEinpassen));
 function allesNeuZeichnen() { ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen(); }
 let stillerStart = false;
-document.getElementById("standort-btn").onclick = (e) => {
-  if (e) e.preventDefault();
-  if (standort.aktiv) {                       // zurück zu Beckenried
-    standort.aktiv = false; standortAnzeigen(); metaStart(); zeigeToast("📍 Standort aus – Fahrzeiten ab " + basis().basis);
-    try { localStorage.setItem("te-standort", "beckenried"); } catch (e) {}
-    allesNeuZeichnen(); return;
-  }
+document.getElementById("standort-btn").onclick = (e) => { if (e) e.preventDefault(); standortDialog(); };
+function standortAus() {
+  standort.aktiv = false; standort.name = ""; standortAnzeigen(); metaStart(); zeigeToast("📍 Ohne Standort – Fahrzeiten ab " + basis().basis);
+  try { localStorage.setItem("te-standort", "beckenried"); } catch (e) {}
+  allesNeuZeichnen();
+}
+// Startort-Auswahl: GPS, eigener Wohnort oder ohne
+function standortDialog() {
+  const f = el("div", "");
+  f.append(el("p", "", "Von wo aus sollen Fahrzeiten und Umkreis berechnet werden?"));
+  const gps = el("button", "btn dabei", "📍 Mein aktueller Standort"); gps.type = "button"; gps.style.width = "100%";
+  f.append(gps);
+  f.append(el("label", "", "🏠 Oder Wohnort / Startort eingeben"));
+  const ort = el("input"); ort.placeholder = "z. B. Luzern, Zug, München …"; ort.maxLength = 60;
+  try { const w = JSON.parse(localStorage.getItem("te-wohnort") || "null"); if (w) ort.value = w.name; } catch (e) {}
+  const fehler = el("div", "popup-fehler", "");
+  const speichern = el("button", "btn crew", "Als Startort speichern"); speichern.type = "button"; speichern.style.cssText = "width:100%;margin-top:10px";
+  f.append(ort, fehler, speichern);
+  const ohne = el("button", "popup-link", `Ohne Standort (Fahrzeiten ab ${basis().basis})`); ohne.type = "button";
+  f.append(ohne, el("p", "ds-klein", "Der Ort bleibt nur auf deinem Handy gespeichert."));
+  const zu = popup("📍 Startort", f);
+  gps.onclick = () => { zu(); gpsStarten(); };
+  ohne.onclick = () => { zu(); standortAus(); };
+  speichern.onclick = async () => {
+    const q = ort.value.trim(); if (q.length < 2) { fehler.textContent = "Bitte einen Ort eingeben."; return; }
+    fehler.textContent = "Suche …";
+    const t = await ortSuchen(q);
+    if (!t) { fehler.textContent = "Ort nicht gefunden – anders schreiben?"; return; }
+    zu(); wohnortSetzen(t, true);
+  };
+}
+async function ortSuchen(q) {
+  try {   // Open-Meteo Geocoding (weltweit, ohne Konto)
+    const r = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=1&language=de&format=json`);
+    const j = await r.json(); const x = j.results && j.results[0];
+    if (x) return { name: x.name, lat: x.latitude, lon: x.longitude };
+  } catch (e) {}
+  try {   // Ersatz: Schweizer Haltestellen
+    const r = await fetch(`https://transport.opendata.ch/v1/locations?query=${encodeURIComponent(q)}&type=all`);
+    const j = await r.json(); const x = (j.stations || []).find(s => s.coordinate && s.coordinate.x);
+    if (x) return { name: x.name.split(",")[0], lat: x.coordinate.x, lon: x.coordinate.y };
+  } catch (e) {}
+  return null;
+}
+async function wohnortSetzen(t, melden) {
+  standort.lat = t.lat; standort.lon = t.lon; standort.aktiv = true; standort.name = t.name;
+  try { localStorage.setItem("te-standort", "wohnort"); localStorage.setItem("te-wohnort", JSON.stringify(t)); } catch (e) {}
+  if (!regionManuell) { const r = naechsteRegion(t.lat, t.lon); if (r !== region) { region = r; await start(); } }
+  standortAnzeigen(t.name); metaStart(t.name);
+  try { await fahrzeitenLaden(); if (melden) zeigeToast("🏠 Fahrzeiten ab " + t.name); } catch (e) {}
+  allesNeuZeichnen();
+}
+function gpsStarten() {
   if (!("geolocation" in navigator)) { zeigeToast("Standort wird auf diesem Gerät nicht unterstützt"); return; }
   standortAnzeigen("wird gesucht …"); metaStart("Standort …");
   navigator.geolocation.getCurrentPosition(async (pos) => {
@@ -2051,8 +2107,9 @@ start().then(() => {
   // Automatisch nur, wenn der Standort schon erlaubt ist, in der eigenen App oder wenn man ihn schon mal gewählt hat –
   // wer zum ersten Mal über einen geteilten Link kommt, wird nicht gleich mit einer Standort-Frage begrüsst.
   const eigeneApp = /TechnoEventsApp|; wv\)/.test(navigator.userAgent);
-  const autoStart = () => { stillerStart = true; document.getElementById("standort-btn").click(); setTimeout(() => stillerStart = false, 20000); };
-  if (wahl !== "beckenried" && "geolocation" in navigator && !standort.aktiv) {
+  const autoStart = () => { stillerStart = true; gpsStarten(); setTimeout(() => stillerStart = false, 20000); };
+  if (wahl === "wohnort") { try { const w = JSON.parse(localStorage.getItem("te-wohnort") || "null"); if (w) wohnortSetzen(w, false); } catch (e) {} }
+  if (wahl !== "beckenried" && wahl !== "wohnort" && "geolocation" in navigator && !standort.aktiv) {
     if (eigeneApp || wahl === "gps") autoStart();
     else if (navigator.permissions && navigator.permissions.query) {
       navigator.permissions.query({ name: "geolocation" }).then(p => { if (p.state === "granted") autoStart(); }).catch(() => {});

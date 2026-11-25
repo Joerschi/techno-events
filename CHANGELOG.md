@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.31.0 – 25.11.2026
+- 📍 Startort-Auswahl: aktueller Standort, eigener Wohnort (z. B. Zug, Luzern, München) oder ohne Standort – Wohnort wird gemerkt
+- Ehrliche Anreise: ÖV-Zeiten aus der Ausgabe als «ab Beckenried» beschriftet; mit eigenem Startort Live-Links für Hin- und Heimweg; Luftlinie, solange keine Fahrzeit berechnet ist
+- Nacht-Modus: «Navi nach Hause» führt zum eigenen Startort
+
 ## v1.30.1 – 25.11.2026
 - Ohne Standort steht oben «📍 DEIN STANDORT?» und in der Leiste «Standort» statt Beckenried – antippen aktiviert den Standort
 

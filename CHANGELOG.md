@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.29.0 – 25.11.2026
+- 🟠 Neues Neon-Orange #FF5E1A (einen Tick röter, inspiriert vom Shirt) statt #FF6A00 – überall: Knöpfe, Rahmen, Schriftzug, Radio, Popups
+
 ## v1.28.0 – 25.11.2026
 - 📊 Anonymer Nutzerzähler (einmal pro Tag, nur gehashte Zufallsnummer + Art: App / iPhone / Home-Bildschirm / Browser)
 - Unten in der App: «👥 x Raver nutzen Techno Events»

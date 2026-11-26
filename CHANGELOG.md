@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.48.2 – 26.11.2026
+- Fix: Poster passen sich der Kartenbreite an – auf Tablet und PC ist der Titel nicht mehr abgeschnitten; beim Drehen werden sie neu angepasst
+
 ## v1.48.1 – 26.11.2026
 - 🌑⚡ Neue Szene «Blitze»: alles fast schwarz, dann blitzt auf jeden Schlag (oder jeden halben) ein farbiges Licht an einer anderen Stelle auf; nach «Dunkel» folgt oft direkt «Blitze»; «Dunkel» jetzt richtig dunkel
 

@@ -709,7 +709,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.42.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.42.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -776,7 +776,7 @@ const DICT = {
   "🎧 Reinhören": "🎧 Listen", "🙋 Ich bin dabei": "🙋 I'm in", "Zusage zurückziehen": "Withdraw", "🚗 Ich fahre": "🚗 I'm driving", "🙋 Suche Mitfahrt": "🙋 Need a ride", "🙋 Suche Mitfahrt ✓": "🙋 Need a ride ✓",
   "Keine Events mit diesen Filtern – grösseren Umkreis wählen?": "No events with these filters – try a bigger radius?", "Noch nichts gemerkt – tipp auf ☆ bei einem Event.": "Nothing saved yet – tap ☆ on an event.",
   "Der Ausblick kommt mit der nächsten Ausgabe.": "Coming up arrives with the next edition.", "Die Top 3 kommen mit der nächsten Ausgabe.": "The top 3 arrive with the next edition.",
-  "Jeden Donnerstag ab ca. 6:20 Uhr erscheinen hier alle Techno-Events fürs Wochenende.": "Every Thursday from about 6:20 am, all techno events for the weekend appear here.",
+  "Jeden Donnerstag früh erscheinen hier alle Techno-Events der nächsten drei Wochenenden.": "Every Thursday morning, all techno events for the next three weekends appear here.",
   "Noch keine Favoriten": "No favourites yet", "Tippe bei einem Event auf ☆ – dann erscheint es hier mit Countdown. Gespeichert nur auf deinem Handy.": "Tap ☆ on an event – it shows up here with a countdown. Saved only on your phone.",
   "✓ WAR DABEI": "✓ BEEN THERE", "⭐ Wie war's?": "⭐ How was it?", "Ort folgt": "Venue TBA", "HEUTE!": "TODAY!", "MORGEN!": "TOMORROW!", "● LÄUFT GERADE": "● HAPPENING NOW", "● LIVE": "● LIVE",
   "🚗 Losfahren": "🚗 Leave", "Start": "Start", "JETZT": "NOW", "Party läuft": "Party's on", "bis Abfahrt": "until departure", "bis Start": "until start", "🚀 Let's go": "🚀 Let's go",
@@ -2507,7 +2507,7 @@ function listeZeigen() {
   if (!daten.events.length) {
     const l = el("div", "leer");
     l.append(el("b", "", "Ausgabe wird erstellt"));
-    l.append(document.createTextNode("Jeden Donnerstag ab ca. 6:20 Uhr erscheinen hier alle Techno-Events fürs Wochenende."));
+    l.append(document.createTextNode("Jeden Donnerstag früh erscheinen hier alle Techno-Events der nächsten drei Wochenenden."));
     liste.append(l);
     return;
   }

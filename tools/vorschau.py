@@ -118,8 +118,8 @@ def main():
     neon(bild, (S // 2, 50), "TECHNO EVENTS", f_kopf, ACID, blur=8, staerke=1)
     leiste = Image.new("RGBA", (S, S), (0, 0, 0, 0)); ImageDraw.Draw(leiste).rectangle((0, S - 92, S, S), fill=(0, 0, 0, 200))
     bild.alpha_composite(leiste)
-    text = f"{zeile1} · {n} EVENTS"
-    f_unten = passend(ImageDraw.Draw(bild), text, FONT_TITEL, 44, S - 40)
+    text = "PARTY PEOPLE"
+    f_unten = passend(ImageDraw.Draw(bild), text, FONT_TITEL, 58, S - 60)
     neon(bild, (S // 2, S - 46), text, f_unten, PINK, blur=10)
 
     bild = bild.convert("RGB").resize((AUS, AUS), Image.LANCZOS)

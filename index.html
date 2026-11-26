@@ -533,6 +533,12 @@
   .fresh-djs { margin-top: 12px; font-size: .85rem; color: var(--laser); }
   .fresh-los { width: 100%; margin-top: 16px; padding: 14px; border: 0; background: var(--acid); color: #000; font: 800 .9rem Inter, sans-serif; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; box-shadow: 0 0 18px var(--acid); }
   .we-reihe .chip.on { background: var(--cyan); border-color: var(--cyan); color: #000; box-shadow: 0 0 12px rgba(0,240,255,.6); }
+  .cover.poster { height: 118px; }
+  .karte.kompakt .cover.poster { margin-top: -14px; }
+  .cover.poster.gross { height: 150px; }
+  .cover.poster svg text { pointer-events: none; }
+  body:not(.ruhig).beat .cover .pwelle { animation: pwelle .9375s ease-in-out infinite alternate; }
+  @keyframes pwelle { to { transform: translateY(5px); } }
   .crew-neu { animation: crewNeu 1.2s ease-in-out 4; }
   @keyframes crewNeu { 50% { box-shadow: 0 0 0 2px var(--acid), 0 0 30px var(--acid); } }
   body.ruhig .crew-neu, body.ruhig .fresh-blitz { animation: none; }
@@ -709,7 +715,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.42.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.43.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1419,6 +1425,148 @@ async function zaehlen() {
   } catch (e) {}
 }
 
+// ======================= EVENT-POSTER =======================
+// Jedes Event bekommt ein eigenes, generiertes Neon-Poster – Stil nach Sound, Details aus dem Event selbst.
+const POSTER_STIL = {
+  "Hard Techno":    { f: ["#ff1e3c", "#ff6a00"], bg: "#140003", m: "hard" },
+  "Hard Dance":     { f: ["#ff10f0", "#ff1e3c"], bg: "#14000c", m: "hard" },
+  "Melodic":        { f: ["#b04dff", "#00f0ff"], bg: "#0b0418", m: "wellen" },
+  "Minimal":        { f: ["#00f0ff", "#e8fbff"], bg: "#020a0e", m: "punkte" },
+  "Tech House":     { f: ["#ff6a00", "#f4ff00"], bg: "#120700", m: "sonne" },
+  "House":          { f: ["#ff6a00", "#ff10f0"], bg: "#12040a", m: "sonne" },
+  "Afro House":     { f: ["#ff8c1a", "#ffd166"], bg: "#140800", m: "afro" },
+  "Trance & Psy":   { f: ["#39ff14", "#ff10f0"], bg: "#06100a", m: "spirale" },
+  "Acid & Electro": { f: ["#f4ff00", "#39ff14"], bg: "#0c0e00", m: "acid" },
+  "Bass & DnB":     { f: ["#00f0ff", "#ff10f0"], bg: "#020812", m: "bass" }
+};
+function zufall(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+function poster(ev, gross) {
+  const W = 400, H = gross ? 160 : 128;
+  const h = hashText((ev.id || ev.name || "") + (ev.datum || "")), r = zufall(h);
+  const fam = familien(ev)[0] || "Techno";
+  const stil = POSTER_STIL[fam] || { f: [NEON[h % NEON.length], NEON[(h >>> 4) % NEON.length]], bg: "#07050a", m: ["laser", "gitter", "platte", "eq"][h % 4] };
+  let [f1, f2] = stil.f; if (f1 === f2) f2 = "#ffffff";
+  const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: "xMidYMid slice", "aria-hidden": "true" });
+  const id = "p" + h;
+  const defs = svgEl("defs", {});
+  const lg = svgEl("linearGradient", { id, x1: "0", y1: "0", x2: "1", y2: "1" });
+  lg.append(svgEl("stop", { offset: "0", "stop-color": f1, "stop-opacity": ".45" }), svgEl("stop", { offset: ".6", "stop-color": stil.bg, "stop-opacity": "1" }), svgEl("stop", { offset: "1", "stop-color": f2, "stop-opacity": ".4" }));
+  const vg = svgEl("linearGradient", { id: id + "v", x1: "0", y1: "0", x2: "0", y2: "1" });
+  vg.append(svgEl("stop", { offset: ".35", "stop-color": "#000", "stop-opacity": "0" }), svgEl("stop", { offset: "1", "stop-color": "#000", "stop-opacity": ".85" }));
+  defs.append(lg, vg); svg.append(defs);
+  svg.append(svgEl("rect", { width: W, height: H, fill: stil.bg }), svgEl("rect", { width: W, height: H, fill: `url(#${id})` }));
+  const g = svgEl("g", { fill: "none", "stroke-linecap": "round", class: "pmotiv" });
+  const linie = (x1, y1, x2, y2, s, w, o) => g.append(svgEl("line", { x1, y1, x2, y2, stroke: s, "stroke-width": w, opacity: o }));
+  switch (stil.m) {
+    case "hard": {                                   // Warnstreifen + Zacken
+      for (let x = -H; x < W + H; x += 26) g.append(svgEl("path", { d: `M${x} ${H} L${x + H} 0 L${x + H + 11} 0 L${x + 11} ${H} Z`, fill: f1, opacity: .16, stroke: "none" }));
+      let d = `M0 ${H * .45}`; for (let x = 0; x <= W; x += 20) d += ` L${x} ${H * (.25 + r() * .4)}`;
+      g.append(svgEl("path", { d, stroke: f1, "stroke-width": 2.4, opacity: .9, style: `filter:drop-shadow(0 0 4px ${f1})` }));
+      let d2 = `M0 ${H * .6}`; for (let x = 0; x <= W; x += 14) d2 += ` L${x} ${H * (.4 + r() * .35)}`;
+      g.append(svgEl("path", { d: d2, stroke: f2, "stroke-width": 1.2, opacity: .6 }));
+      break;
+    }
+    case "wellen": {                                 // fliessende Wellen
+      for (let i = 0; i < 7; i++) {
+        const y0 = H * (.15 + i * .1), a = 8 + r() * 16, p = r() * 6, k = .012 + r() * .01;
+        let d = ""; for (let x = 0; x <= W; x += 8) d += (x ? " L" : "M") + x + " " + (y0 + Math.sin(x * k + p) * a).toFixed(1);
+        g.append(svgEl("path", { d, stroke: i % 2 ? f1 : f2, "stroke-width": 1.6, opacity: .35 + i * .07, class: "pwelle" }));
+      }
+      break;
+    }
+    case "punkte": {                                 // Punktraster + Ringe
+      for (let y = 8; y < H; y += 12) for (let x = 6; x < W; x += 12) if (r() > .35) g.append(svgEl("circle", { cx: x, cy: y, r: .9 + r() * 1.3, fill: f1, opacity: .25 + r() * .5, stroke: "none" }));
+      const cx = W * (.55 + r() * .35), cy = H * .4;
+      for (let rr = 10; rr < 140; rr += 14) g.append(svgEl("circle", { cx, cy, r: rr, stroke: f2, "stroke-width": .8, opacity: .5 - rr / 400 }));
+      break;
+    }
+    case "sonne": {                                  // Sonnenuntergang mit Strahlen
+      const cx = W * (.6 + r() * .3), cy = H * .62;
+      for (let i = 0; i < 18; i++) { const w = i / 18 * Math.PI; linie(cx, cy, cx - Math.cos(w) * 420, cy - Math.sin(w) * 420, i % 2 ? f1 : f2, 1, .3); }
+      g.append(svgEl("circle", { cx, cy, r: 38, fill: f1, opacity: .85, stroke: "none", style: `filter:drop-shadow(0 0 14px ${f1})` }));
+      for (let i = 0; i < 5; i++) g.append(svgEl("rect", { x: cx - 42, y: cy + 4 + i * 7, width: 84, height: 2 + i, fill: stil.bg, stroke: "none" }));
+      break;
+    }
+    case "afro": {                                   // Dreiecks-Muster
+      for (let row = 0; row < 3; row++) for (let x = -20 + row * 12; x < W; x += 24) {
+        const y = 10 + row * 22;
+        g.append(svgEl("path", { d: `M${x} ${y + 18} L${x + 12} ${y} L${x + 24} ${y + 18} Z`, fill: (x / 24 + row) % 2 < 1 ? f1 : f2, opacity: .18 + r() * .25, stroke: "none" }));
+      }
+      g.append(svgEl("circle", { cx: W * .85, cy: H * .3, r: 26, stroke: f2, "stroke-width": 3, opacity: .7 }));
+      break;
+    }
+    case "spirale": {                                // psychedelische Spirale
+      const cx = W * (.6 + r() * .3), cy = H * .45;
+      for (let i = 0; i < 12; i++) {
+        const s = 8 + i * 13, w = i * .35;
+        const pts = [0, 1, 2].map(j => { const a = w + j * 2.094; return `${(cx + Math.cos(a) * s).toFixed(1)},${(cy + Math.sin(a) * s).toFixed(1)}`; }).join(" ");
+        g.append(svgEl("polygon", { points: pts, stroke: i % 2 ? f1 : f2, "stroke-width": 1.4, opacity: .75 - i * .04 }));
+      }
+      break;
+    }
+    case "acid": {                                   // 303-Wellenform + Raster
+      for (let x = 0; x < W; x += 20) linie(x, 0, x, H, f2, .5, .2);
+      for (let y = 0; y < H; y += 20) linie(0, y, W, y, f2, .5, .2);
+      let d = `M0 ${H * .4}`, y = H * .4;
+      for (let x = 0; x <= W; x += 10) { y = r() > .5 ? H * (.2 + r() * .4) : y; d += ` L${x} ${y.toFixed(1)} L${x + 10} ${y.toFixed(1)}`; }
+      g.append(svgEl("path", { d, stroke: f1, "stroke-width": 2.2, opacity: .9, style: `filter:drop-shadow(0 0 4px ${f1})` }));
+      break;
+    }
+    case "bass": {                                   // symmetrische Wellenform
+      const mitte = H * .4;
+      for (let i = 0; i < 50; i++) { const a = (6 + r() * 40) * Math.sin(i / 50 * Math.PI); g.append(svgEl("rect", { x: i * 8 + 1, y: mitte - a, width: 4, height: a * 2, fill: i % 4 ? f1 : f2, opacity: .55, stroke: "none", class: "cbar" })); }
+      break;
+    }
+    case "gitter": {
+      for (let i = 0; i < 8; i++) linie(0, H * .5 + i * i * 1.4, W, H * .5 + i * i * 1.4, f1, 1, .55);
+      for (let i = -7; i <= 7; i++) linie(W / 2 + i * 14, H * .5, W / 2 + i * 80, H + 10, f1, 1, .55);
+      g.append(svgEl("circle", { cx: W / 2, cy: H * .45, r: 30, fill: f2, opacity: .8, stroke: "none" }));
+      break;
+    }
+    case "platte": {
+      const cx = W * (.7 + r() * .2);
+      for (let rr = 14; rr < 160; rr += 8) g.append(svgEl("circle", { cx, cy: H * .45, r: rr, stroke: rr % 16 ? f1 : f2, "stroke-width": 1, opacity: .5 }));
+      g.append(svgEl("circle", { cx, cy: H * .45, r: 12, fill: f2, stroke: "none" }));
+      break;
+    }
+    case "eq": {
+      for (let i = 0; i < 26; i++) { const hh = 14 + r() * H * .6; g.append(svgEl("rect", { x: 6 + i * 15.2, y: H * .7 - hh, width: 9, height: hh, fill: i % 3 ? f1 : f2, opacity: .55, stroke: "none", class: "cbar" })); }
+      break;
+    }
+    default: {                                       // Laser
+      const ox = 40 + r() * (W - 80);
+      for (let i = 0; i < 11; i++) linie(ox, -5, -60 + i * 52, H + 10, i % 2 ? f1 : f2, 1.6, .7);
+    }
+  }
+  svg.append(g);
+  svg.append(svgEl("rect", { width: W, height: H, fill: `url(#${id}v)` }));      // Abdunklung unten, damit der Titel lesbar bleibt
+  // Kopfzeile: Datum & Sound
+  const d = startDatum(ev);
+  const kopf = svgEl("text", { x: 14, y: 22, fill: "#fff", "font-family": "Space Mono, monospace", "font-weight": 700, "font-size": 12, "letter-spacing": 1.5, stroke: "#000", "stroke-width": 3, style: "paint-order:stroke" });
+  kopf.textContent = `${TAGE[d.getDay()].toUpperCase()} ${d.getDate()}.${d.getMonth() + 1}.${ev.start ? " · " + ev.start : ""}`;
+  const tag = svgEl("text", { x: W - 14, y: 22, "text-anchor": "end", fill: f1, "font-family": "Space Mono, monospace", "font-weight": 700, "font-size": 11, "letter-spacing": 1.5, stroke: "#000", "stroke-width": 3, style: "paint-order:stroke" });
+  tag.textContent = fam.toUpperCase();
+  // Titel gross wie auf einem Flyer – passt sich der Länge an
+  let name = (ev.name || "").toUpperCase().replace(/\s+/g, " ").trim();
+  if (name.length > 34) name = name.slice(0, 32).trim() + "…";
+  const fs = name.length <= 9 ? (gross ? 46 : 40) : name.length <= 15 ? (gross ? 36 : 31) : name.length <= 22 ? (gross ? 28 : 25) : (gross ? 23 : 20);
+  const ty = H - (ev.lineup && ev.lineup.length ? 34 : 18);
+  const titel = svgEl("text", { x: 14, y: ty, fill: "#fff", "font-family": "Unbounded, sans-serif", "font-weight": 900, "font-size": fs, stroke: f1, "stroke-width": 1, style: `paint-order:stroke;filter:drop-shadow(0 0 6px ${f1})` });
+  titel.textContent = name;
+  if (name.length * fs * .8 > W - 28) { titel.setAttribute("textLength", W - 28); titel.setAttribute("lengthAdjust", "spacingAndGlyphs"); }
+  svg.append(kopf, titel); if (!gross) svg.append(tag);
+  if (ev.lineup && ev.lineup.length) {
+    const lu = ev.lineup.slice(0, 4).join(" · ").toUpperCase();
+    const hell = c => { const n = parseInt(c.slice(1), 16); return ((n >> 16) * .3 + ((n >> 8) & 255) * .59 + (n & 255) * .11) > 120; };
+    const l = svgEl("text", { x: 15, y: H - 13, fill: hell(f2) ? f2 : hell(f1) ? f1 : "#f2f2f7", "font-family": "Space Mono, monospace", "font-weight": 700, "font-size": 12, "letter-spacing": 1, stroke: "#000", "stroke-width": 3, style: "paint-order:stroke" });
+    l.textContent = lu;
+    if (lu.length * 8.6 > W - 30) { l.setAttribute("textLength", W - 30); l.setAttribute("lengthAdjust", "spacingAndGlyphs"); }
+    svg.append(l);
+  }
+  const box = el("div", "cover poster" + (gross ? " gross" : "")); box.append(svg);
+  return box;
+}
+
 // ======================= PARTY-EXTRAS =======================
 const FARBE = { orange: "#ff6a00", acid: "#39ff14", laser: "#ff10f0", cyan: "#00f0ff", gelb: "#f4ff00" };
 // ---- Strobo-Schutz: weniger Effekte (automatisch bei «Bewegung reduzieren» am Handy) ----
@@ -1808,7 +1956,7 @@ function eventKarte(ev, rang) {
   k.dataset.key = evKey(ev);
   if ((ev.openair || ev.hoehe) && wetterMoeglich(ev)) setTimeout(() => { const ziel = k.querySelector(".lineup") || k; const wz = el("div", ""); ziel.after ? ziel.after(wz) : k.append(wz); wetterInKarte(ev, wz); }, 0);
   k.style.setProperty("--ampel", startBeiBasis() ? (AMPEL[ev.ampel] || "var(--grau)") : "var(--line)");
-  if (rang) k.append(cover(ev));   // Cover-Bild nur bei den Top 3 – die Liste bleibt kompakt
+  k.append(poster(ev, !!rang));   // generiertes Neon-Poster für jedes Event
   if (rang) k.append(el("div", "rang", "0" + rang));
   const oben = el("div", "zeile-oben");
   const zeitText = `${ev.start || "?"}${ev.ende ? "–" + ev.ende : ""}`;

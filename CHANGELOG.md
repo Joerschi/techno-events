@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.43.0 – 26.11.2026
+- 🎨 Jedes Event hat ein eigenes, generiertes Neon-Poster: Stil nach Sound (Hard Techno Warnstreifen & Zacken, Melodic Wellen, Minimal Punktraster, House Sonnenuntergang, Afro Dreiecke, Trance Spirale, Acid 303-Linie, Bass Wellenform, Techno Laser/Gitter/Platte/Equalizer), Datum, Startzeit, Titel in Flyer-Typo und Lineup; Wellen und Balken tanzen mit dem Radio
+
 ## v1.42.0 – 26.11.2026
 - 🗓 Drei Wochenenden: Enthält die Ausgabe Events mehrerer Wochenenden, erscheint über den Filtern eine Wochenend-Auswahl (z. B. 27.–29.11. · 4.–6.12. · 11.–13.12.) mit Anzahl; Tag-, Genre-, Stadt- und ★-Filter gelten fürs gewählte Wochenende
 - Fixes: Ticket-Favoriten werden aufgefrischt, Stern nutzt den Favoriten-Schlüssel, Englisch in mehrzeiligen Anreise-Infos

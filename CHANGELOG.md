@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.45.0 – 26.11.2026
+- 🪩 Club-Modus: Läuft das Radio, wird der Raum dunkel, Laser leuchten kräftig über die ganze App (auch von unten), farbige Club-Lichter wandern, dezenter Blitz alle 4 Takte (aus mit «Effekte reduzieren»)
+- 🖼 Wochen-Vorschau: Link-Vorschaubild zeigt die aktuelle Ausgabe (z. B. «27.–29. NOV · 22 EVENTS»), erzeugt von tools/vorschau.py
+
 ## v1.44.0 – 26.11.2026
 - 📸 Teilen mit Poster: Der 💬-Crew-Knopf schickt das Neon-Poster des Events als Bild (1200×630, mit Ort und «Wer kommt mit? 🔥») zusammen mit Text und Link – in der Android-App und in Handy-Browsern mit Teilen-Funktion; sonst wie bisher als Text
 

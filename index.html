@@ -15,9 +15,9 @@
 <title>Techno Events</title>
 <meta property="og:title" content="Techno Events 🎧">
 <meta property="og:description" content="Alle Techno-Events fürs Wochenende – mit Fahrzeit, Tickets und Crew.">
-<meta property="og:image" content="https://techno.howeverto.me/icon-192.png">
-<meta property="og:image:width" content="192">
-<meta property="og:image:height" content="192">
+<meta property="og:image" content="https://techno.howeverto.me/vorschau.png">
+<meta property="og:image:width" content="256">
+<meta property="og:image:height" content="256">
 <meta property="og:type" content="website">
 <meta name="description" content="Alle Techno-Events fürs Wochenende – mit Fahrzeit, Tickets und Crew.">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -457,6 +457,26 @@
   .nav a.nav-ort.aktiv { color: var(--cyan) !important; border-color: var(--cyan); }
   .nav a.nav-ort.sucht { animation: puls 1s ease-in-out infinite; }
 
+  /* ---- Club-Modus: Musik läuft → Raum wird dunkel, Laser & Lichter gehen richtig an ---- */
+  .laser { transition: background-color 1.4s ease; }
+  .laser i:nth-child(n+6) { display: none; }
+  body { transition: background-color 1.4s ease; }
+  body.beat { background: #030205 !important; }
+  body.beat .laser { z-index: 3; mix-blend-mode: screen; opacity: 1 !important; filter: none !important; animation: none; }
+  body.beat .laser::before { content: ""; position: absolute; inset: -20%; background: radial-gradient(circle at 20% 30%, rgba(255,16,240,.22), transparent 30%), radial-gradient(circle at 80% 60%, rgba(0,240,255,.2), transparent 32%), radial-gradient(circle at 50% 90%, rgba(57,255,20,.16), transparent 30%); animation: clubLicht 7.5s ease-in-out infinite alternate; mix-blend-mode: screen; }
+  @keyframes clubLicht { 0% { transform: translate(0,0) rotate(0); } 50% { transform: translate(6%,-4%) rotate(20deg); } 100% { transform: translate(-6%,5%) rotate(-15deg); } }
+  body.beat .laser i { width: 4px; opacity: .7 !important; filter: none; animation-duration: 3.75s !important; }
+  body.beat .laser i:nth-child(1), body.beat .laser i:nth-child(2), body.beat .laser i:nth-child(3) { box-shadow: 0 0 10px currentColor, 0 0 26px var(--laser); }
+  body.beat .laser i:nth-child(n+6) { display: block; top: auto; bottom: -20%; transform-origin: bottom center; width: 3px; }
+  body.beat .laser i:nth-child(6) { left: 8%; background: linear-gradient(transparent 30%, var(--laser)); box-shadow: 0 0 14px var(--laser); animation: sweepUnten 4.7s ease-in-out infinite alternate; }
+  body.beat .laser i:nth-child(7) { left: 92%; background: linear-gradient(transparent 30%, var(--cyan)); box-shadow: 0 0 14px var(--cyan); animation: sweepUnten 5.6s ease-in-out infinite alternate-reverse; }
+  body.beat .laser i:nth-child(8) { left: 35%; background: linear-gradient(transparent 30%, var(--acid)); box-shadow: 0 0 14px var(--acid); animation: sweepUnten 3.75s ease-in-out infinite alternate; }
+  body.beat .laser i:nth-child(9) { left: 65%; background: linear-gradient(transparent 30%, var(--gelb)); box-shadow: 0 0 14px var(--gelb); animation: sweepUnten 6.5s ease-in-out infinite alternate-reverse; }
+  @keyframes sweepUnten { from { transform: rotate(-35deg); } to { transform: rotate(35deg); } }
+  body.beat .laser::after { content: ""; position: absolute; inset: 0; background: #fff; opacity: 0; animation: clubBlitz 1.875s steps(1) infinite; }
+  @keyframes clubBlitz { 0% { opacity: .06; } 6% { opacity: 0; } 100% { opacity: 0; } }
+  body.beat .noise { opacity: .1; }
+  body.beat .karte, body.beat .ticket { box-shadow: 0 0 0 1px rgba(255,255,255,.04), 0 10px 40px rgba(0,0,0,.6); }
   /* ---- Sound an/aus: ohne Musik steht das DJ-Pult, mit Musik geht die Party los ---- */
   .booth .platte, .booth .woofer, .booth .fader-l, .booth .fader-r, .booth .xfader { animation-play-state: paused; }
   .booth .vu rect:not(:first-child) { animation: none; opacity: .15; }
@@ -565,7 +585,7 @@
 </style>
 </head>
 <body>
-  <div class="laser"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="laser"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="noise"></div>
   <div class="scan"></div>
 
@@ -715,7 +735,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.44.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.45.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>

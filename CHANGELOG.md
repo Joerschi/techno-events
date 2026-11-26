@@ -1,5 +1,12 @@
 # Changelog – Techno Events
 
+## v1.47.1 – 26.11.2026 (Code-Prüfung)
+- Sicherheit: Links aus den Daten nur noch als https/tel/mailto/WhatsApp – keine javascript:-Links möglich
+- Service Worker: speichert keine Fehlerseiten mehr; geteilte Links (?e=…) füllen den Speicher nicht mehr; offline klappt jeder Link
+- Sound erst nach dem ersten Tipp (keine Browser-Warnungen), Countdown pausiert im Hintergrund (spart Akku)
+- Anleitung aktualisiert: 3 Wochenenden, Poster, Teilen mit Bild, Club-Modus, Radio bei gesperrtem Handy, Ausgabe frühmorgens (DE/EN)
+- Aufgeräumt: altes Cover-Modul entfernt, doppelte Meta-Beschreibung entfernt
+
 ## v1.47.0 – 26.11.2026
 - 🎛 Lichtshow im Club-Modus: alle 2–8 Takte wechselt die Szene – ganz dunkel, nur grünes oder rotes Licht im Takt, Schwarzlicht, Strobo, Farbwechsel pro Schlag, wandernde Spots, Laser. Start: kurz dunkel, dann Laser. Nebel läuft unabhängig weiter.
 

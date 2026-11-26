@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070403">
-<meta name="description" content="Alle Techno-Events der Schweiz fürs Wochenende – mit Fahrzeit, Tickets und Countdown.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -786,7 +785,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.47.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.47.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -998,6 +997,14 @@ REGELN.push([/ ab deinem Standort$/, " from your location"], [/genaue Zeit und L
   [/Gondel im Ticket inbegriffen/g, "gondola included in the ticket"], [/Gondel inklusive/gi, "gondola included"], [/Ausweis/g, "ID"], [/\bab (\d\d)\b(?!:)/g, "$1+"]);
 Object.assign(DICT, { "Die neue Ausgabe ist da!": "The new edition is here!", "neu": "new", "🚀 Let's go – zum Wochenende": "🚀 Let's go – to the weekend" });
 REGELN.push([/^❤️ Deine DJs: /, "❤️ Your DJs: "]);
+Object.assign(DICT, { "Wochenende": "Weekend", "bis zu 3 Wochenenden – oben umschalten und früher planen.": "up to 3 weekends – switch at the top and plan ahead.",
+  "oder 📍 in der Leiste: Fahrzeiten ab deinem Standort oder Wohnort.": "or 📍 in the bar: drive times from your location or home town.",
+  "teilt das Event per WhatsApp – mit Neon-Poster als Bild und Link direkt zur Karte.": "shares the event on WhatsApp – with a neon poster image and a link straight to the card.",
+  "Poster": "Poster", "jedes Event hat sein eigenes Neon-Poster im Stil seines Sounds.": "every event has its own neon poster in the style of its sound.",
+  "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender, 📣 Air-Horn.": "opens the radio: ▶ play, ⏭ next station, 📣 air horn.",
+  "Club-Modus": "Club mode", "läuft Musik, wird die App zum Club: Lichtshow, Laser im Takt und Nebel.": "while music plays, the app turns into a club: light show, lasers on the beat and fog.",
+  "Display aus": "Screen off", "in der Android-App läuft das Radio weiter, auch bei gesperrtem Handy.": "in the Android app the radio keeps playing, even with the phone locked.",
+  "erscheint früh am Morgen die neue Ausgabe – mit ⚡ Fresh Drop.": "the new edition arrives early in the morning – with a ⚡ fresh drop." });
 for (const k of Object.keys(DICT)) if (!k.endsWith(":")) DICT[k + ":"] = DICT[k] + ":";
 function sprachKnopf() {
   const b = document.createElement("button"); b.type = "button"; b.id = "sprache-link";
@@ -1030,7 +1037,7 @@ function el(tag, cls, text) {
 function label(a, icon, text) { a.textContent = ""; a.append(el("span", "i", icon), el("span", "", text)); return a; }
 function link(cls, href, text) {
   const a = el("a", cls, text);
-  a.href = href; a.target = "_blank"; a.rel = "noopener";
+  a.href = /^(https?:|tel:|mailto:|whatsapp:|intent:)/i.test(href || "") ? href : "#"; a.target = "_blank"; a.rel = "noopener";   // nur sichere Link-Arten
   return a;
 }
 function startDatum(ev) {
@@ -1994,14 +2001,16 @@ function guideZeigen() {
       ["Tag", "Alle · Fr · Sa · So – und ★ zeigt nur deine Favoriten."],
       ["Umkreis", "10 · 25 · 50 · 100 km Luftlinie ab deinem Standort."],
       ["Genre & Stadt", "aufklappen und Sound oder Stadt wählen."],
-      ["↕ Fahrt / Start", "sortiert nach Fahrzeit oder Startzeit."]]],
+      ["↕ Fahrt / Start", "sortiert nach Fahrzeit oder Startzeit."],
+      ["Wochenende", "bis zu 3 Wochenenden – oben umschalten und früher planen."]]],
     ["📍 Standort & Region", [
-      ["Pin oben", "oder 📍 in der Leiste: Fahrzeiten ab deinem Standort statt ab Beckenried bzw. München."],
+      ["Pin oben", "oder 📍 in der Leiste: Fahrzeiten ab deinem Standort oder Wohnort."],
       ["Region", "🇨🇭 Schweiz oder 🇩🇪 München – wird beim Öffnen automatisch nach Standort gewählt."]]],
     ["🎟 Die Event-Karte", [
       ["Kalender", "trägt das Event mit allen Infos in deinen Kalender ein."],
       ["Navi", "öffnet die Route in Google Maps."],
-      ["Crew", "teilt das Event per WhatsApp – mit Link direkt zur Karte."],
+      ["Crew", "teilt das Event per WhatsApp – mit Neon-Poster als Bild und Link direkt zur Karte."],
+      ["Poster", "jedes Event hat sein eigenes Neon-Poster im Stil seines Sounds."],
       ["Farbbalken links", "grün = ÖV hin & zurück · orange = zurück nur Morgenzug · grau = besser Auto."]]],
     ["👥 Crew & Zusagen", [
       ["Crew gründen", "unten auf «👥 Crew» → «Neue Crew gründen» → Freunde per WhatsApp einladen."],
@@ -2018,11 +2027,13 @@ function guideZeigen() {
       ["🚗 Mitfahren", "mit Crew und Zusage: «Ich fahre» (freie Plätze) oder «Suche Mitfahrt»."],
       ["⚠️ Effekte reduzieren", "ganz unten: schaltet Strobo, Blitze und Animationen aus."]]],
     ["📻 Radio & Reinhören", [
-      ["📻 unten rechts", "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender, 📣 Air-Horn. Läuft Musik, pulsieren die Laser im Takt."],
+      ["📻 unten rechts", "öffnet das Radio: ▶ abspielen, ⏭ nächster Sender, 📣 Air-Horn."],
+      ["Club-Modus", "läuft Musik, wird die App zum Club: Lichtshow, Laser im Takt und Nebel."],
+      ["Display aus", "in der Android-App läuft das Radio weiter, auch bei gesperrtem Handy."],
       ["🎧 Reinhören", "bei jedem Event: Sets der Künstler auf SoundCloud oder Mixcloud anhören."]]],
     ["⟳ Aktualisieren", [
       ["Nach unten ziehen", "lädt die neuesten Events – und eine neue App-Version, falls es eine gibt."],
-      ["Jeden Donnerstag", "erscheint die neue Wochenend-Ausgabe."]]],
+      ["Jeden Donnerstag", "erscheint früh am Morgen die neue Ausgabe – mit ⚡ Fresh Drop."]]],
     ["📲 Als App aufs Handy", [
       ["Android", "in Chrome öffnen → Menü ⋮ → «App installieren» bzw. «Zum Startbildschirm hinzufügen»."],
       ["iPhone", "in Safari öffnen → Teilen-Symbol (Quadrat mit Pfeil) → «Zum Home-Bildschirm». Wichtig: So bleiben Favoriten und Crew sicher gespeichert."]]]
@@ -2147,47 +2158,6 @@ function eventKarte(ev, rang) {
 const NS = "http://www.w3.org/2000/svg";
 function svgEl(tag, attrs) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
 function hashText(t) { let h = 2166136261; for (const c of t) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
-function cover(ev) {
-  const h = hashText((ev.name || "") + (ev.club || ""));
-  const f1 = ev.genre && ev.genre[0] ? neonFuer(ev.genre[0]) : NEON[h % NEON.length];
-  let f2 = NEON[(h >> 3) % NEON.length]; if (f2 === f1) f2 = NEON[((h >> 3) + 2) % NEON.length];
-  const id = "g" + h;
-  const svg = svgEl("svg", { viewBox: "0 0 400 130", preserveAspectRatio: "xMinYMid slice", "aria-hidden": "true" });
-  const defs = svgEl("defs", {});
-  const lg = svgEl("linearGradient", { id, x1: "0", y1: "0", x2: "1", y2: "1" });
-  lg.append(svgEl("stop", { offset: "0", "stop-color": f1, "stop-opacity": ".55" }), svgEl("stop", { offset: ".55", "stop-color": "#0a0608", "stop-opacity": "1" }), svgEl("stop", { offset: "1", "stop-color": f2, "stop-opacity": ".5" }));
-  defs.append(lg); svg.append(defs);
-  svg.append(svgEl("rect", { width: 400, height: 130, fill: "#07050a" }), svgEl("rect", { width: 400, height: 130, fill: `url(#${id})` }));
-  const g = svgEl("g", { fill: "none", "stroke-linecap": "round" });
-  const muster = h % 4;
-  if (muster === 0) {            // Laser aus einem Punkt
-    const ox = 60 + (h % 280);
-    for (let i = 0; i < 9; i++) g.append(svgEl("line", { x1: ox, y1: -5, x2: -40 + i * 60, y2: 140, stroke: i % 2 ? f1 : f2, "stroke-width": 1.6, opacity: .75 }));
-  } else if (muster === 1) {     // Synthwave-Gitter
-    for (let i = 0; i < 8; i++) g.append(svgEl("line", { x1: 0, y1: 70 + i * i * 1.3, x2: 400, y2: 70 + i * i * 1.3, stroke: f1, "stroke-width": 1, opacity: .6 }));
-    for (let i = -6; i <= 6; i++) g.append(svgEl("line", { x1: 200 + i * 14, y1: 70, x2: 200 + i * 80, y2: 135, stroke: f1, "stroke-width": 1, opacity: .6 }));
-    g.append(svgEl("circle", { cx: 200, cy: 62, r: 30, fill: f2, opacity: .85, stroke: "none" }));
-  } else if (muster === 2) {     // Schallplatten-Rillen
-    const cx = 300 + (h % 60);
-    for (let r = 14; r < 150; r += 9) g.append(svgEl("circle", { cx, cy: 65, r, stroke: r % 2 ? f1 : f2, "stroke-width": 1.1, opacity: .55 }));
-    g.append(svgEl("circle", { cx, cy: 65, r: 12, fill: f2, stroke: "none" }));
-  } else {                       // Equalizer-Balken
-    for (let i = 0; i < 26; i++) {
-      const hoehe = 18 + ((h >>> (i % 24)) % 90);
-      g.append(svgEl("rect", { x: 8 + i * 15.2, y: 130 - hoehe, width: 9, height: hoehe, fill: i % 3 ? f1 : f2, opacity: .7, stroke: "none", class: "cbar" }));
-    }
-  }
-  svg.append(g);
-  // Datum gross + Genre als Text (sicher als textContent)
-  const d = startDatum(ev);
-  const t1 = svgEl("text", { x: 16, y: 54, fill: "#fff", "font-family": "Unbounded, sans-serif", "font-weight": 900, "font-size": 34, stroke: f1, "stroke-width": .8, style: `paint-order:stroke;filter:drop-shadow(0 0 6px ${f1})` });
-  t1.textContent = `${TAGE[d.getDay()].toUpperCase()} ${d.getDate()}.${d.getMonth() + 1}.`;
-  const t2 = svgEl("text", { x: 18, y: 82, fill: "#fff", stroke: "#000", "stroke-width": 3, style: "paint-order:stroke", "font-family": "Space Mono, monospace", "font-weight": 700, "font-size": 14, "letter-spacing": 2 });
-  t2.textContent = ((ev.genre && ev.genre[0]) || "TECHNO").toUpperCase() + (ev.stadt ? " · " + ev.stadt.toUpperCase() : "");
-  svg.append(t1, t2);
-  const box = el("div", "cover"); box.append(svg);
-  return box;
-}
 
 // ======================= PARTY-EXTRAS =======================
 // Equalizer-Tempo nach Genre: härter = schneller
@@ -2593,7 +2563,7 @@ function heroZeigen(t) {
   tick();
 }
 function tick() {
-  if (!heroZiel) return;
+  if (!heroZiel || document.hidden) return;
   let s = Math.max(0, Math.floor((heroZiel - new Date()) / 1000));
   const t = Math.floor(s / 86400); s -= t * 86400;
   const h = Math.floor(s / 3600); s -= h * 3600;
@@ -3135,6 +3105,7 @@ const sound = { an: true, ctx: null, lautstaerke: 0.35 };
 try { sound.an = localStorage.getItem("te-sound") !== "aus"; } catch (e) {}
 function audio() {
   if (!sound.an) return null;
+  if (!sound.ctx && navigator.userActivation && !navigator.userActivation.hasBeenActive) return null;   // erst nach einem Tipp
   try { sound.ctx = sound.ctx || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
   if (sound.ctx.state === "suspended") sound.ctx.resume();
   return sound.ctx;

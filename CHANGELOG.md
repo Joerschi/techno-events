@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.46.3 – 26.11.2026
+- 🌫 Nebelmaschine: im Club-Modus pufft kurz nach Start und dann alle 30–50 Sek. Disco-Nebel von unten hoch, die Laser leuchten hindurch; dazu leichter Dauer-Dunst
+
 ## v1.46.2 – 26.11.2026
 - 🪩 Club-Modus dunkler: Inhalte gedimmt, Vignette an den Rändern, die im Takt atmet, dickere Laser, kräftigere Club-Lichter – das Radio bleibt hell
 

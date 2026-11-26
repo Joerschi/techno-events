@@ -15,7 +15,9 @@
 <title>Techno Events</title>
 <meta property="og:title" content="Techno Events 🎧">
 <meta property="og:description" content="Alle Techno-Events fürs Wochenende – mit Fahrzeit, Tickets und Crew.">
-<meta property="og:image" content="https://techno.howeverto.me/icon-512.png">
+<meta property="og:image" content="https://techno.howeverto.me/icon-192.png">
+<meta property="og:image:width" content="192">
+<meta property="og:image:height" content="192">
 <meta property="og:type" content="website">
 <meta name="description" content="Alle Techno-Events fürs Wochenende – mit Fahrzeit, Tickets und Crew.">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -706,7 +708,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.2<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.3<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1040,7 +1042,10 @@ function zeigeToast(text) {
   clearTimeout(zeigeToast.timer); zeigeToast.timer = setTimeout(() => t.style.display = "none", 3500);
 }
 // Link direkt auf ein Event: öffnet die App und springt zur Karte
-function eventLink(ev) { return GUIDE_URL + "?e=" + encodeURIComponent(evKey(ev)); }
+// Kurzer Link: Enthält die id schon das Datum, reicht die id (statt «id@datum»)
+function linkKey(ev) { const k = evKey(ev), id = ev.id || ""; return id && ev.datum && id.endsWith(ev.datum) ? id : k; }
+function passtKey(ev, key) { return evKey(ev) === key || linkKey(ev) === key; }
+function eventLink(ev) { return GUIDE_URL + "?e=" + encodeURIComponent(linkKey(ev)).replace(/%40/g, "@"); }
 function whatsappLink(ev) {
   const text = [
     `🔊 *${ev.name}*`,
@@ -2687,8 +2692,9 @@ function crewEinladungPruefen() {
   crewDialog(null, EINLADUNG);
 }
 function zumGeteiltenEvent() {
-  const key = new URLSearchParams(location.search).get("e");
+  let key = new URLSearchParams(location.search).get("e");
   if (!key) return;
+  if (!key.includes("@")) { const ev = [...daten.events, ...favoriten].find(e => passtKey(e, key)); if (ev) key = evKey(ev); }
   history.replaceState(null, "", location.pathname);
   setTimeout(async () => {
     const karte = [...document.querySelectorAll("[data-key]")].find(k => k.dataset.key === key && k.closest("#event-liste, #ticket-liste, #top-liste"));
@@ -2697,7 +2703,7 @@ function zumGeteiltenEvent() {
       for (const k of Object.keys(REGIONEN)) {
         if (k === region) continue;
         const d = await laden(REGIONEN[k].datei);
-        if (d && (d.events || []).some(e => evKey(e) === key)) {
+        if (d && (d.events || []).some(e => passtKey(e, key))) {
           regionManuell = true; await regionWechseln(k);
           history.replaceState(null, "", location.pathname + "?e=" + encodeURIComponent(key));
           return zumGeteiltenEvent();

@@ -496,6 +496,31 @@
   body.beat .laser i:nth-child(8) { animation: sweepUnten 1.875s ease-in-out infinite alternate, blitz .46875s ease-out -.234s infinite; }
   body.beat .laser i:nth-child(9) { animation: sweepUnten 1.875s ease-in-out infinite alternate-reverse, blitz .46875s ease-out -.234s infinite; }
   body.ruhig.beat .laser i { animation: none !important; opacity: .5 !important; }
+  /* ---- Lichtshow: wechselnde Szenen wie im Club (dunkel, grün, rot, Schwarzlicht, Strobo, Farbwechsel, Spots, Laser) ---- */
+  .lichtshow { position: fixed; inset: 0; z-index: 3; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .5s ease; }
+  body.beat .lichtshow { opacity: 1; }
+  body.beat:not(.szene-laser) .laser i { opacity: 0 !important; }
+  body.beat:not(.szene-hell):not(.szene-farben) .laser::before { opacity: 0 !important; }
+  body.beat:not(.szene-strobo) .laser::after { display: none; }
+  @keyframes lichtPuls { 0% { opacity: 1; } 55% { opacity: .3; } 100% { opacity: .3; } }
+  body.szene-gruen .lichtshow { background: radial-gradient(ellipse at 50% -5%, rgba(57,255,20,.75), rgba(57,255,20,.28) 45%, rgba(57,255,20,.08) 80%), radial-gradient(ellipse at 50% 110%, rgba(57,255,20,.4), transparent 60%); animation: lichtPuls .46875s ease-out infinite; }
+  body.szene-rot .lichtshow { background: radial-gradient(ellipse at 15% 0%, rgba(255,20,40,.75), transparent 65%), radial-gradient(ellipse at 85% 0%, rgba(255,20,40,.75), transparent 65%), radial-gradient(ellipse at 50% 120%, rgba(255,40,20,.45), transparent 60%); animation: lichtPuls .9375s ease-out infinite; }
+  body.szene-uv .lichtshow { background: radial-gradient(ellipse at 50% 30%, rgba(130,0,255,.42), rgba(90,0,200,.25) 55%, rgba(60,0,140,.18)); animation: uvAtmen 3.75s ease-in-out infinite alternate; }
+  @keyframes uvAtmen { to { opacity: .65; } }
+  body.szene-uv .wrap { --glow-staerke: 1; }
+  body.szene-hell .lichtshow { background: radial-gradient(circle at var(--sx, 30%) var(--sy, 35%), rgba(255,240,210,.5), transparent 22%), radial-gradient(circle at var(--sx2, 70%) var(--sy2, 60%), rgba(210,230,255,.45), transparent 22%); animation: spots 3.75s ease-in-out infinite alternate; }
+  @property --sx { syntax: "<percentage>"; inherits: false; initial-value: 30%; }
+  @property --sy { syntax: "<percentage>"; inherits: false; initial-value: 35%; }
+  @property --sx2 { syntax: "<percentage>"; inherits: false; initial-value: 70%; }
+  @property --sy2 { syntax: "<percentage>"; inherits: false; initial-value: 60%; }
+  @keyframes spots { 0% { --sx: 20%; --sy: 25%; --sx2: 80%; --sy2: 70%; } 50% { --sx: 70%; --sy: 45%; --sx2: 30%; --sy2: 30%; } 100% { --sx: 40%; --sy: 75%; --sx2: 60%; --sy2: 20%; } }
+  body.szene-farben .lichtshow { animation: farbenTakt 1.875s steps(1) infinite; }
+  @keyframes farbenTakt { 0% { background: radial-gradient(ellipse at 50% 0%, rgba(255,16,240,.5), transparent 70%); } 25% { background: radial-gradient(ellipse at 50% 0%, rgba(0,240,255,.5), transparent 70%); } 50% { background: radial-gradient(ellipse at 50% 0%, rgba(244,255,0,.45), transparent 70%); } 75% { background: radial-gradient(ellipse at 50% 0%, rgba(255,106,0,.5), transparent 70%); } }
+  body.szene-strobo .lichtshow { background: #fff; animation: strobo .46875s steps(1) infinite; }
+  @keyframes strobo { 0% { opacity: .5; } 14% { opacity: 0; } 100% { opacity: 0; } }
+  body.szene-dunkel::after { background: rgba(0,0,0,.82) !important; }
+  body.ruhig .lichtshow { animation: none !important; }
+  body.ruhig.szene-strobo .lichtshow { background: none; }
   /* Nebelmaschine: im Club-Modus pufft ab und zu Disco-Nebel von unten hoch – die Laser leuchten hindurch */
   .nebel { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
   .nebel-wolke { position: absolute; bottom: -35vh; width: 75vw; height: 55vh; border-radius: 50%; background: radial-gradient(ellipse at 50% 50%, rgba(225,220,255,.2), rgba(200,190,255,.09) 40%, rgba(200,190,255,.03) 58%, transparent 70%); opacity: 0; animation: nebelAuf var(--d, 11s) ease-out var(--v, 0s) forwards; }
@@ -761,7 +786,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.46.4<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.47.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -2958,6 +2983,33 @@ function layoutAnpassen() {
 }
 layoutAnpassen();
 try { BREIT.addEventListener("change", layoutAnpassen); } catch (e) { BREIT.addListener(layoutAnpassen); }
+
+// ======================= LICHTSHOW =======================
+// Wie im Club: alle paar Takte wechselt die Szene – mal dunkel, mal nur grün oder rot, Schwarzlicht, Strobo, Farbwechsel, Spots oder Laser.
+const lichtshow = el("div", "lichtshow"); document.body.append(lichtshow);
+const TAKT = 1875;   // ein Takt (4 Schläge bei 128 BPM) in ms
+const SZENEN = [["laser", 8], ["gruen", 4], ["dunkel", 2], ["rot", 4], ["uv", 8], ["strobo", 2], ["farben", 4], ["hell", 4], ["laser", 4], ["uv", 4], ["gruen", 2], ["rot", 2]];
+let szene = "", szeneTimer = null;
+function szeneSetzen(name) {
+  const b = document.body.classList;
+  [...b].filter(c => c.startsWith("szene-")).forEach(c => b.remove(c));
+  if (name) b.add("szene-" + name);
+  szene = name;
+}
+function szeneWeiter() {
+  clearTimeout(szeneTimer);
+  if (!document.body.classList.contains("beat")) return;
+  let wahl = SZENEN.filter(([n]) => n !== szene && !(ruhig && (n === "strobo" || n === "laser")));
+  if (szene === "dunkel") wahl = wahl.filter(([n]) => n !== "strobo");   // nach dem Dunkel kommt erst Licht, kein Strobo
+  const [n, takte] = wahl[Math.floor(Math.random() * wahl.length)];
+  szeneSetzen(n);
+  szeneTimer = setTimeout(szeneWeiter, takte * TAKT);
+}
+new MutationObserver(() => {
+  const an = document.body.classList.contains("beat");
+  if (an && !szene) { szeneSetzen("dunkel"); szeneTimer = setTimeout(() => { szeneSetzen("laser"); szeneTimer = setTimeout(szeneWeiter, 8 * TAKT); }, 2 * TAKT); }
+  else if (!an && szene) { clearTimeout(szeneTimer); szeneSetzen(""); }
+}).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
 // ======================= NEBELMASCHINE =======================
 const nebel = el("div", "nebel"); nebel.append(el("div", "nebel-dunst")); document.body.append(nebel);

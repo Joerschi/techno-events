@@ -511,6 +511,24 @@
   body.sommer .hero { box-shadow: 0 0 14px rgba(255,200,0,.6), 0 0 50px rgba(255,170,0,.35), inset 0 0 30px rgba(255,200,0,.15); }
   .fresh-blitz { position: fixed; inset: 0; z-index: 70; pointer-events: none; background: linear-gradient(120deg, rgba(57,255,20,.35), rgba(255,16,240,.35), rgba(0,240,255,.35)); animation: freshBlitz 1.4s ease-out forwards; }
   @keyframes freshBlitz { 0% { opacity: 0; } 12% { opacity: 1; } 25% { opacity: .2; } 38% { opacity: .9; } 100% { opacity: 0; } }
+  .fresh-rahmen { border-color: var(--acid) !important; box-shadow: 0 0 14px var(--acid), 0 0 50px rgba(255,16,240,.45) !important; background: radial-gradient(ellipse at 50% 0%, rgba(57,255,20,.18), transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(255,16,240,.2), transparent 60%), #0b0b0e !important; }
+  .fresh-rahmen > h3:empty { display: none; }
+  .fresh-pop { text-align: center; padding-top: 26px; }
+  .fresh-titel { font: 900 clamp(1.6rem, 8vw, 2.2rem) Unbounded, sans-serif; color: var(--acid); text-shadow: 0 0 8px var(--acid), 0 0 26px var(--acid), 0 0 50px rgba(57,255,20,.6); letter-spacing: .02em; margin: 6px 0 2px; }
+  body:not(.ruhig) .fresh-titel { animation: freshTitel .46875s ease-out infinite alternate; }
+  @keyframes freshTitel { to { text-shadow: 0 0 4px var(--acid), 0 0 12px var(--acid); transform: scale(1.03); } }
+  .fresh-sub { font: 700 .9rem "Space Mono", monospace; color: var(--laser); text-shadow: 0 0 8px var(--laser); text-transform: uppercase; letter-spacing: .08em; }
+  .fresh-zahlen { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 8px; }
+  .fresh-zahlen div { border: 1px solid var(--line); padding: 10px 6px; background: rgba(0,0,0,.4); }
+  .fresh-zahlen b { display: block; font: 900 2rem Unbounded, sans-serif; color: var(--gelb, #f4ff00); text-shadow: 0 0 10px rgba(244,255,0,.7); }
+  .fresh-zahlen div:last-child b { color: var(--cyan, #00f0ff); text-shadow: 0 0 10px rgba(0,240,255,.7); }
+  .fresh-zahlen small { font: 700 .7rem "Space Mono", monospace; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  .fresh-we { font: 700 .85rem "Space Mono", monospace; margin: 6px 0 4px; }
+  .fresh-label { margin: 14px 0 6px; font: 700 .75rem "Space Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--orange); }
+  .fresh-liste { text-align: left; display: grid; gap: 6px; font-size: .88rem; }
+  .fresh-liste div { padding: 7px 9px; border-left: 3px solid var(--orange); background: rgba(255,106,0,.08); }
+  .fresh-djs { margin-top: 12px; font-size: .85rem; color: var(--laser); }
+  .fresh-los { width: 100%; margin-top: 16px; padding: 14px; border: 0; background: var(--acid); color: #000; font: 800 .9rem Inter, sans-serif; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; box-shadow: 0 0 18px var(--acid); }
   .crew-neu { animation: crewNeu 1.2s ease-in-out 4; }
   @keyframes crewNeu { 50% { box-shadow: 0 0 0 2px var(--acid), 0 0 30px var(--acid); } }
   body.ruhig .crew-neu, body.ruhig .fresh-blitz { animation: none; }
@@ -687,7 +705,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.40.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -896,6 +914,8 @@ Object.assign(DICT, {
 REGELN.push([/ ab deinem Standort$/, " from your location"], [/^🚗 Losfahren ca\. /, "🚗 Leave approx. "], [/Ende nicht angegeben/g, "end time not given"], [/^du · /, "you · "], [/ · du( · |$)/, " · you$1"],
   [/\bletzte (\d)/g, "last $1"], [/erster Zug /g, "first train "], [/kein Nachtanschluss/g, "no night connection"],
   [/Gondel im Ticket inbegriffen/g, "gondola included in the ticket"], [/Gondel inklusive/gi, "gondola included"], [/Ausweis/g, "ID"], [/\bab (\d\d)\b(?!:)/g, "$1+"]);
+Object.assign(DICT, { "Die neue Ausgabe ist da!": "The new edition is here!", "neu": "new", "🚀 Let's go – zum Wochenende": "🚀 Let's go – to the weekend" });
+REGELN.push([/^❤️ Deine DJs: /, "❤️ Your DJs: "]);
 for (const k of Object.keys(DICT)) if (!k.endsWith(":")) DICT[k + ":"] = DICT[k] + ":";
 function sprachKnopf() {
   const b = document.createElement("button"); b.type = "button"; b.id = "sprache-link";
@@ -2509,14 +2529,44 @@ setInterval(lebenAnwenden, 5 * 60000);
 // Fresh Drop: Ist seit dem letzten Besuch eine neue Ausgabe erschienen, gibt's einen kurzen Blitz
 function freshDropPruefen() {
   if (!daten.stand) return;
-  const k = "te-ausgabe-" + region;
-  let alt = null; try { alt = localStorage.getItem(k); localStorage.setItem(k, daten.stand); } catch (e) { return; }
+  const k = "te-ausgabe-" + region, kIds = "te-ausgabe-ids-" + region;
+  const ids = daten.events.map(evKey);
+  let alt = null, altIds = null;
+  try { alt = localStorage.getItem(k); altIds = JSON.parse(localStorage.getItem(kIds) || "null"); localStorage.setItem(k, daten.stand); localStorage.setItem(kIds, JSON.stringify(ids)); } catch (e) { return; }
   if (!alt || alt === daten.stand) return;
-  zeigeToast(`⚡ Fresh Drop! ${daten.events.length} Events fürs Wochenende`);
+  const neu = altIds ? daten.events.filter(e => !altIds.includes(evKey(e))) : daten.events;
+  setTimeout(() => freshDropPopup(neu), 700);
   if (ruhig) return;
   const blitz = el("div", "fresh-blitz"); document.body.append(blitz);
   setTimeout(() => blitz.remove(), 1500);
   try { kick(1.2); setTimeout(() => kick(1.4), 420); } catch (e) {}
+}
+// Party-Popup zur neuen Ausgabe: wie viele Events, was neu ist, die Top 3 und deine DJs
+function freshDropPopup(neu) {
+  if (document.querySelector(".popup-hg, .nacht")) return;
+  const box = el("div", "fresh-pop");
+  box.append(el("div", "fresh-titel", "⚡ FRESH DROP ⚡"));
+  box.append(el("div", "fresh-sub", "Die neue Ausgabe ist da!"));
+  const zahlen = el("div", "fresh-zahlen");
+  const z1 = el("div"); z1.append(el("b", "", String(daten.events.length)), el("small", "", "Events"));
+  const z2 = el("div"); z2.append(el("b", "", String(neu.length)), el("small", "", "neu"));
+  zahlen.append(z1, z2); box.append(zahlen);
+  if (daten.wochenende) box.append(el("div", "fresh-we", "🗓 " + daten.wochenende));
+  const top = (daten.top3 || []).map(id => daten.events.find(e => e.id === id)).filter(Boolean);
+  if (top.length) {
+    box.append(el("div", "fresh-label", "🔥 Top 3"));
+    const l = el("div", "fresh-liste");
+    top.forEach((e, i) => l.append(el("div", "", `${["🥇", "🥈", "🥉"][i]} ${e.name} · ${TAGE[new Date(e.datum + "T12:00").getDay()]} · ${e.club || e.stadt || ""}`)));
+    box.append(l);
+  }
+  const mitDjs = daten.events.filter(e => djsVon(e).length);
+  if (mitDjs.length) box.append(el("div", "fresh-djs", "❤️ Deine DJs: " + mitDjs.slice(0, 3).map(e => `${djsVon(e)[0]} (${TAGE[new Date(e.datum + "T12:00").getDay()]})`).join(" · ")));
+  const los = el("button", "fresh-los", "🚀 Let's go – zum Wochenende");
+  let zu = null;
+  los.onclick = () => { zu && zu(); setTimeout(() => { const w = document.getElementById("weekend"); w && w.scrollIntoView({ behavior: "smooth" }); }, 50); };
+  box.append(los);
+  zu = popup("", box);
+  const p = document.querySelector(".popup-hg .popup"); if (p) p.classList.add("fresh-rahmen");
 }
 
 // Crew lebt mit: neue Zusagen oder Fahrer aus deiner Crew leuchten kurz auf

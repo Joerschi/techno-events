@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.41.0 – 26.11.2026
+- ⚡ Fresh-Drop-Popup bei neuer Ausgabe: Anzahl Events, wie viele neu sind, Wochenende, Top 3 mit Medaillen, deine Lieblings-DJs und «Let's go»-Knopf zum Wochenende (mit Neon-Blitz und Bass-Kick)
+
 ## v1.40.0 – 25.11.2026
 - 🖥 Tablet quer & Desktop (ab 980 px): zwei Spalten – links Kopf, Countdown, Favoriten & Top 3, rechts Wochenende, Filter & Ausblick. Handy bleibt einspaltig.
 

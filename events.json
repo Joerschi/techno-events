@@ -1237,19 +1237,20 @@
   {
    "name": "WinterDaydance",
    "datum": "2027-01-30",
-   "start": "",
-   "club": "",
-   "adresse": "Kriens",
+   "start": "12:00",
+   "club": "Schiessstand Stalden",
+   "adresse": "Hergiswaldstrasse 1, 6012 Kriens",
    "stadt": "Kriens",
-   "lat": 47.0353,
-   "lon": 8.2799,
+   "lat": 47.034016,
+   "lon": 8.255901,
    "lineup": [],
    "genre": [
+    "Techno",
     "Daydance"
    ],
    "link": "",
-   "auto_min": 21,
-   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Kriens&travelmode=driving"
+   "auto_min": 26,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Schiessstand%20Stalden%2C%20Hergiswaldstrasse%201%2C%206012%20Kriens&travelmode=driving"
   },
   {
    "name": "Klewen DayDance – Harmlos Techno",

@@ -708,7 +708,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.5<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.6<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -2344,9 +2344,12 @@ async function ticketsAbgleichen() {
   const t = await laden("tickets.json"); if (!Array.isArray(t)) return;
   let geaendert = false;
   for (const ev of t) {
-    const k = evKey(ev), i = favoriten.findIndex(f => f.fav_key === k);
+    const k = evKey(ev);
+    let i = favoriten.findIndex(f => f.fav_key === k);
+    // auch Favoriten finden, die unter einem anderen Schlüssel gespeichert sind (gleicher Name bzw. gleicher Tag & Ort)
+    if (i < 0) i = favoriten.findIndex(f => f.datum === ev.datum && ((f.name || "").toLowerCase() === (ev.name || "").toLowerCase() || (hatKoordinaten(f) && hatKoordinaten(ev) && km(f.lat, f.lon, ev.lat, ev.lon) < 3)));
     if (i < 0) continue;
-    const neu = Object.assign({}, favoriten[i], favSchnappschuss(ev, k), { region: favoriten[i].region });
+    const neu = Object.assign({}, favoriten[i], favSchnappschuss(ev, favoriten[i].fav_key), { region: favoriten[i].region });
     if (JSON.stringify(neu) !== JSON.stringify(favoriten[i])) { favoriten[i] = neu; geaendert = true; }
   }
   if (geaendert) { favSpeichern(); tickets = favoriten; ticketsZeigen(); }

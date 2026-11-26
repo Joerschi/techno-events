@@ -513,10 +513,11 @@
   @keyframes freshBlitz { 0% { opacity: 0; } 12% { opacity: 1; } 25% { opacity: .2; } 38% { opacity: .9; } 100% { opacity: 0; } }
   .fresh-rahmen { border-color: var(--acid) !important; box-shadow: 0 0 14px var(--acid), 0 0 50px rgba(255,16,240,.45) !important; background: radial-gradient(ellipse at 50% 0%, rgba(57,255,20,.18), transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(255,16,240,.2), transparent 60%), #0b0b0e !important; }
   .fresh-rahmen > h3:empty { display: none; }
-  .fresh-pop { text-align: center; padding-top: 26px; }
-  .fresh-titel { font: 900 clamp(1.6rem, 8vw, 2.2rem) Unbounded, sans-serif; color: var(--acid); text-shadow: 0 0 8px var(--acid), 0 0 26px var(--acid), 0 0 50px rgba(57,255,20,.6); letter-spacing: .02em; margin: 6px 0 2px; }
+  .fresh-pop { text-align: center; padding-top: 26px; container-type: inline-size; }
+  .fresh-titel { white-space: nowrap; display: flex; justify-content: center; align-items: center; gap: .25em; font: 900 clamp(1rem, 6vw, 2rem) Unbounded, sans-serif; font-size: min(8.2cqw, 2.2rem); color: var(--acid); text-shadow: 0 0 8px var(--acid), 0 0 26px var(--acid), 0 0 50px rgba(57,255,20,.6); letter-spacing: .02em; margin: 6px 0 2px; }
   body:not(.ruhig) .fresh-titel { animation: freshTitel .46875s ease-out infinite alternate; }
   @keyframes freshTitel { to { text-shadow: 0 0 4px var(--acid), 0 0 12px var(--acid); transform: scale(1.03); } }
+  .fresh-blitzsym { font-size: .75em; text-shadow: none; }
   .fresh-sub { font: 700 .9rem "Space Mono", monospace; color: var(--laser); text-shadow: 0 0 8px var(--laser); text-transform: uppercase; letter-spacing: .08em; }
   .fresh-zahlen { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 8px; }
   .fresh-zahlen div { border: 1px solid var(--line); padding: 10px 6px; background: rgba(0,0,0,.4); }
@@ -705,7 +706,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.2<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -2546,7 +2547,7 @@ function freshDropPruefen() {
 function freshDropPopup(neu) {
   if (document.querySelector(".popup-hg, .nacht")) return;
   const box = el("div", "fresh-pop");
-  box.append(el("div", "fresh-titel", "⚡ FRESH DROP ⚡"));
+  const ft = el("div", "fresh-titel"); ft.append(el("span", "fresh-blitzsym", "⚡"), el("span", "", "FRESH DROP"), el("span", "fresh-blitzsym", "⚡")); box.append(ft);
   box.append(el("div", "fresh-sub", "Die neue Ausgabe ist da!"));
   const zahlen = el("div", "fresh-zahlen");
   const z1 = el("div"); z1.append(el("b", "", String(daten.events.length)), el("small", "", "Events"));

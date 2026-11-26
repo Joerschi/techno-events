@@ -517,7 +517,6 @@
   @keyframes farbenTakt { 0% { background: radial-gradient(ellipse at 50% 0%, rgba(255,16,240,.5), transparent 70%); } 25% { background: radial-gradient(ellipse at 50% 0%, rgba(0,240,255,.5), transparent 70%); } 50% { background: radial-gradient(ellipse at 50% 0%, rgba(244,255,0,.45), transparent 70%); } 75% { background: radial-gradient(ellipse at 50% 0%, rgba(255,106,0,.5), transparent 70%); } }
   body.szene-strobo .lichtshow { background: #fff; animation: strobo .46875s steps(1) infinite; }
   @keyframes strobo { 0% { opacity: .5; } 14% { opacity: 0; } 100% { opacity: 0; } }
-  body.szene-dunkel::after { background: rgba(0,0,0,.82) !important; }
   body.ruhig .lichtshow { animation: none !important; }
   body.ruhig.szene-strobo .lichtshow { background: none; }
   /* ---- Spar-Modus: wird automatisch aktiv, wenn das Handy beim Club-Modus ins Ruckeln kommt ---- */
@@ -530,6 +529,29 @@
   body.leicht .cover svg text { filter: none !important; }
   body.leicht.beat .cover .cbar, body.leicht.beat .cover .pwelle, body.leicht.beat .cover svg > g { animation: none !important; }
   body.leicht .flocke { display: none; }
+  /* Szene «Blitze»: alles fast schwarz, dann blitzt auf jeden Schlag ein anderes farbiges Licht von einer anderen Stelle auf */
+  body.szene-blitze::after { background: rgba(0,0,0,.94) !important; animation: none !important; }
+  body.szene-blitze .lichtshow { animation: blitzOrt 1.875s steps(1) infinite, blitzAn .46875s ease-out infinite; }
+  body.szene-blitze.blitze-b .lichtshow { animation: blitzOrt2 3.75s steps(1) infinite, blitzAn .234375s ease-out infinite; }
+  @keyframes blitzAn { 0% { opacity: 1; } 30% { opacity: .15; } 60%, 100% { opacity: 0; } }
+  @keyframes blitzOrt {
+    0%   { background: radial-gradient(circle at 20% 15%, rgba(255,16,240,.95), rgba(255,16,240,.3) 25%, transparent 55%); }
+    25%  { background: radial-gradient(circle at 80% 30%, rgba(0,240,255,.95), rgba(0,240,255,.3) 25%, transparent 55%); }
+    50%  { background: radial-gradient(circle at 35% 75%, rgba(57,255,20,.9), rgba(57,255,20,.3) 25%, transparent 55%); }
+    75%  { background: radial-gradient(circle at 70% 85%, rgba(255,40,30,.95), rgba(255,40,30,.3) 25%, transparent 55%); }
+  }
+  @keyframes blitzOrt2 {
+    0%    { background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.9), transparent 60%); }
+    12.5% { background: radial-gradient(circle at 15% 50%, rgba(255,16,240,.95), transparent 50%); }
+    25%   { background: radial-gradient(circle at 85% 50%, rgba(0,240,255,.95), transparent 50%); }
+    37.5% { background: radial-gradient(circle at 50% 90%, rgba(244,255,0,.9), transparent 50%); }
+    50%   { background: radial-gradient(ellipse at 50% 0%, rgba(130,0,255,.95), transparent 60%); }
+    62.5% { background: radial-gradient(circle at 25% 25%, rgba(57,255,20,.9), transparent 50%); }
+    75%   { background: radial-gradient(circle at 75% 75%, rgba(255,106,0,.95), transparent 50%); }
+    87.5% { background: radial-gradient(circle at 50% 50%, rgba(255,40,30,.95), transparent 55%); }
+  }
+  body.szene-dunkel::after { background: rgba(0,0,0,.93) !important; animation: none !important; }
+  body.ruhig.szene-blitze .lichtshow { animation: none !important; background: radial-gradient(circle at 50% 30%, rgba(130,0,255,.35), transparent 60%); }
   /* Nebelmaschine: im Club-Modus pufft ab und zu Disco-Nebel von unten hoch – die Laser leuchten hindurch */
   .nebel { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
   .nebel-wolke { position: absolute; bottom: -35vh; width: 75vw; height: 55vh; border-radius: 50%; background: radial-gradient(ellipse at 50% 50%, rgba(225,220,255,.2), rgba(200,190,255,.09) 40%, rgba(200,190,255,.03) 58%, transparent 70%); opacity: 0; animation: nebelAuf var(--d, 11s) ease-out var(--v, 0s) forwards; }
@@ -795,7 +817,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.48.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.48.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -3000,7 +3022,7 @@ new MutationObserver(() => { if (document.body.classList.contains("beat") && !le
 // Wie im Club: alle paar Takte wechselt die Szene – mal dunkel, mal nur grün oder rot, Schwarzlicht, Strobo, Farbwechsel, Spots oder Laser.
 const lichtshow = el("div", "lichtshow"); document.body.append(lichtshow);
 const TAKT = 1875;   // ein Takt (4 Schläge bei 128 BPM) in ms
-const SZENEN = [["laser", 8], ["gruen", 4], ["dunkel", 2], ["rot", 4], ["uv", 8], ["strobo", 2], ["farben", 4], ["hell", 4], ["laser", 4], ["uv", 4], ["gruen", 2], ["rot", 2]];
+const SZENEN = [["laser", 8], ["gruen", 4], ["dunkel", 2], ["rot", 4], ["uv", 8], ["strobo", 2], ["farben", 4], ["hell", 4], ["laser", 4], ["uv", 4], ["gruen", 2], ["rot", 2], ["blitze", 4], ["dunkel", 1], ["blitze", 2]];
 let szene = "", szeneTimer = null;
 function szeneSetzen(name) {
   const b = document.body.classList;
@@ -3013,8 +3035,10 @@ function szeneWeiter() {
   if (!document.body.classList.contains("beat")) return;
   let wahl = SZENEN.filter(([n]) => n !== szene && !(ruhig && (n === "strobo" || n === "laser")));
   if (szene === "dunkel") wahl = wahl.filter(([n]) => n !== "strobo");   // nach dem Dunkel kommt erst Licht, kein Strobo
-  const [n, takte] = wahl[Math.floor(Math.random() * wahl.length)];
+  let [n, takte] = wahl[Math.floor(Math.random() * wahl.length)];
+  if (szene === "dunkel" && !ruhig && Math.random() < .5) [n, takte] = ["blitze", 4];   // aus dem Schwarz heraus: Farbblitze
   szeneSetzen(n);
+  document.body.classList.toggle("blitze-b", n === "blitze" && Math.random() < .5);  // zwei Blitz-Muster: Viertel oder Achtel
   szeneTimer = setTimeout(szeneWeiter, takte * TAKT);
 }
 new MutationObserver(() => {

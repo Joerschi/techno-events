@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.48.1 – 26.11.2026
+- 🌑⚡ Neue Szene «Blitze»: alles fast schwarz, dann blitzt auf jeden Schlag (oder jeden halben) ein farbiges Licht an einer anderen Stelle auf; nach «Dunkel» folgt oft direkt «Blitze»; «Dunkel» jetzt richtig dunkel
+
 ## v1.48.0 – 26.11.2026
 - 🔋 Automatischer Spar-Modus: misst beim Club-Modus die Bildrate; unter 40 fps schaltet die App still auf eine leichtere Show (weniger Laser, kein Überblenden, 2 Nebelwolken, Poster ohne Glow-Animation) und merkt sich das; sehr schwache Geräte starten gleich im Spar-Modus
 - ⚡ Poster werden zwischengespeichert (schnelleres Filtern/Umschalten), GPU-Hinweise für Laser, Nebel und Lichtshow

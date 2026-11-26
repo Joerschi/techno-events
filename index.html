@@ -532,6 +532,7 @@
   .fresh-liste div { padding: 7px 9px; border-left: 3px solid var(--orange); background: rgba(255,106,0,.08); }
   .fresh-djs { margin-top: 12px; font-size: .85rem; color: var(--laser); }
   .fresh-los { width: 100%; margin-top: 16px; padding: 14px; border: 0; background: var(--acid); color: #000; font: 800 .9rem Inter, sans-serif; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; box-shadow: 0 0 18px var(--acid); }
+  .we-reihe .chip.on { background: var(--cyan); border-color: var(--cyan); color: #000; box-shadow: 0 0 12px rgba(0,240,255,.6); }
   .crew-neu { animation: crewNeu 1.2s ease-in-out 4; }
   @keyframes crewNeu { 50% { box-shadow: 0 0 0 2px var(--acid), 0 0 30px var(--acid); } }
   body.ruhig .crew-neu, body.ruhig .fresh-blitz { animation: none; }
@@ -708,7 +709,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.41.8<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.42.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1991,7 +1992,7 @@ function regionZeigen() {
   }
 }
 async function regionWechseln(k) {
-  region = k; filter.tag = "Alle"; filter.genre = "Alle"; filter.stadt = "Alle";
+  region = k; filter.we = null; filter.tag = "Alle"; filter.genre = "Alle"; filter.stadt = "Alle";
   if (!standort.aktiv) { metaStart(); standortAnzeigen(); }
   await start();
   if (standort.aktiv) { try { await fahrzeitenLaden(); } catch (e) {} allesNeuZeichnen(); }
@@ -2308,7 +2309,7 @@ setInterval(tick, 1000);
 
 // ======================= WOCHENENDE =======================
 let daten = { events: [], top3: [], ausblick: [] };
-const filter = { tag: "Alle", km: 100, genre: "Alle", stadt: "Alle", sort: "zeit", merk: false, djs: false };
+const filter = { we: null, tag: "Alle", km: 100, genre: "Alle", stadt: "Alle", sort: "zeit", merk: false, djs: false };
 // ---- Merkliste & Zusagen: bleiben NUR auf diesem Gerät (localStorage) – nichts geht an einen Server ----
 function setLaden(key) { try { return new Set(JSON.parse(localStorage.getItem(key) || "[]")); } catch (e) { return new Set(); } }
 function setSpeichern(key, set) { try { localStorage.setItem(key, JSON.stringify([...set])); } catch (e) {} }
@@ -2421,16 +2422,40 @@ function familien(ev) {
   }
   return [...set];
 }
+// ---- Mehrere Wochenenden: jedes Event gehört zum Wochenende seines Freitags (Do-Nacht zählt zum folgenden Fr) ----
+function weKey(e) {
+  const d = new Date(e.datum + "T12:00"), dow = d.getDay();
+  d.setDate(d.getDate() + ({ 4: 1, 5: 0, 6: -1, 0: -2, 1: -3, 2: -4, 3: -5 })[dow]);
+  return d.toISOString().slice(0, 10);
+}
+function weListe() { return [...new Set(daten.events.map(weKey))].sort(); }
+function weLabel(k) {
+  const f = new Date(k + "T12:00"), s = new Date(f); s.setDate(f.getDate() + 2);
+  return f.getMonth() === s.getMonth() ? `${f.getDate()}.–${s.getDate()}.${s.getMonth() + 1}.` : `${f.getDate()}.${f.getMonth() + 1}.–${s.getDate()}.${s.getMonth() + 1}.`;
+}
+function weAktiv() {
+  const l = weListe();
+  if (l.length < 2) return null;
+  if (!l.includes(filter.we)) {
+    const heute = new Date(); heute.setHours(0, 0, 0, 0);
+    filter.we = l.find(k => { const so = new Date(k + "T23:59"); so.setDate(so.getDate() + 2); return so >= heute; }) || l[0];
+  }
+  return filter.we;
+}
+function weEvents() { const w = weAktiv(); return w ? daten.events.filter(e => weKey(e) === w) : daten.events; }
 function filterZeigen() {
   document.body.classList.toggle("ohne-ampel", !startBeiBasis());
   const f = document.getElementById("filter");
   f.innerHTML = "";
   if (!daten.events.length) return;
+  const evW = weEvents();
+  // Zeile 0: Wochenende wählen (nur wenn die Ausgabe mehrere Wochenenden enthält)
+  if (weAktiv()) f.append(chipReihe(weListe(), "we", k => `${weLabel(k)} · ${daten.events.filter(e => weKey(e) === k).length}`)), f.lastChild.classList.add("we-reihe");
   // Zeile 1: Tag + Sortierung
   const r1 = chipReihe(["Alle", "Fr", "Sa", "So"], "tag");
   const sort = el("button", "chip sort", filter.sort === "zeit" ? "↕ Fahrt" : "↕ Start");
   sort.onclick = () => { filter.sort = filter.sort === "zeit" ? "start" : "zeit"; filterZeigen(); listeZeigen(); };
-  const nMerk = daten.events.filter(e => merkliste.has(evKey(e))).length;
+  const nMerk = evW.filter(e => merkliste.has(evKey(e))).length;
   const m = el("button", "chip" + (filter.merk ? " on" : ""), `★ ${nMerk}`);
   m.title = "Nur gemerkte Events";
   m.onclick = () => { filter.merk = !filter.merk; filterZeigen(); listeZeigen(); };
@@ -2452,24 +2477,25 @@ function filterZeigen() {
   if (djs.length) {
     det.append(el("div", "mf-titel", "Meine DJs"));
     const r = el("div", "reihe");
-    const c = el("button", "chip" + (filter.djs ? " on" : ""), `❤️ Nur meine DJs (${daten.events.filter(e => djsVon(e).length).length})`);
+    const c = el("button", "chip" + (filter.djs ? " on" : ""), `❤️ Nur meine DJs (${evW.filter(e => djsVon(e).length).length})`);
     c.onclick = () => { filter.djs = !filter.djs; filterZeigen(); listeZeigen(); };
     r.append(c); det.append(r);
   }
   det.append(el("div", "mf-titel", "Sound"));
-  const vorhanden = new Set(daten.events.flatMap(familien));
+  const vorhanden = new Set(evW.flatMap(familien));
   const reihenfolge = GENRE_FAMILIEN.map(f => f[0]).filter(n => vorhanden.has(n));
   const rest = [...vorhanden].filter(n => !reihenfolge.includes(n));
-  det.append(chipReihe(["Alle", ...reihenfolge, ...rest], "genre", g => g === "Alle" ? "Alle" : `${g} ${daten.events.filter(e => familien(e).includes(g)).length}`));
+  det.append(chipReihe(["Alle", ...reihenfolge, ...rest], "genre", g => g === "Alle" ? "Alle" : `${g} ${evW.filter(e => familien(e).includes(g)).length}`));
   det.append(el("div", "mf-titel", "Stadt"));
-  const staedte = ["Alle", ...new Set(daten.events.map(e => e.stadt).filter(Boolean))];
+  const staedte = ["Alle", ...new Set(evW.map(e => e.stadt).filter(Boolean))];
   det.append(chipReihe(staedte, "stadt"));
   f.append(det);
 }
 function listeZeigen() {
   const liste = document.getElementById("event-liste");
   liste.innerHTML = "";
-  let evs = daten.events.filter(e =>
+  const evW = weEvents();
+  let evs = evW.filter(e =>
     (filter.tag === "Alle" || (e.tag || TAGE[startDatum(e).getDay()]) === filter.tag) &&
     (!standort.aktiv || filter.km === 999 || luftlinie(e) <= filter.km) &&
     (filter.genre === "Alle" || familien(e).includes(filter.genre)) &&
@@ -2477,7 +2503,7 @@ function listeZeigen() {
     (filter.stadt === "Alle" || e.stadt === filter.stadt) &&
     (!filter.merk || merkliste.has(evKey(e))));
   evs.sort((a, b) => filter.sort === "zeit" && standort.aktiv ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));
-  document.getElementById("we-anzahl").textContent = daten.events.length ? `${evs.length} von ${daten.events.length}` : "";
+  document.getElementById("we-anzahl").textContent = daten.events.length ? `${evs.length} von ${evW.length}` : "";
   if (!daten.events.length) {
     const l = el("div", "leer");
     l.append(el("b", "", "Ausgabe wird erstellt"));

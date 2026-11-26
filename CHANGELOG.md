@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.42.0 – 26.11.2026
+- 🗓 Drei Wochenenden: Enthält die Ausgabe Events mehrerer Wochenenden, erscheint über den Filtern eine Wochenend-Auswahl (z. B. 27.–29.11. · 4.–6.12. · 11.–13.12.) mit Anzahl; Tag-, Genre-, Stadt- und ★-Filter gelten fürs gewählte Wochenende
+- Fixes: Ticket-Favoriten werden aufgefrischt, Stern nutzt den Favoriten-Schlüssel, Englisch in mehrzeiligen Anreise-Infos
+
 ## v1.41.0 – 26.11.2026
 - ⚡ Fresh-Drop-Popup bei neuer Ausgabe: Anzahl Events, wie viele neu sind, Wochenende, Top 3 mit Medaillen, deine Lieblings-DJs und «Let's go»-Knopf zum Wochenende (mit Neon-Blitz und Bass-Kick)
 

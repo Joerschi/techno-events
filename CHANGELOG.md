@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.46.4 – 26.11.2026
+- ⚡ Laser blitzen im Takt (128 BPM): harter Anschlag, schnelles Abklingen, Gruppen abwechselnd auf Schlag und Offbeat, schnellere Schwenks
+- Fix: kein Verschieben/Flackern der Event-Karten mehr im Club-Modus (keine Filter auf dem Inhalt, Nebel ohne Weichzeichner)
+
 ## v1.46.3 – 26.11.2026
 - 🌫 Nebelmaschine: im Club-Modus pufft kurz nach Start und dann alle 30–50 Sek. Disco-Nebel von unten hoch, die Laser leuchten hindurch; dazu leichter Dauer-Dunst
 

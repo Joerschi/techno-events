@@ -465,33 +465,42 @@
   body.beat .laser { z-index: 3; mix-blend-mode: screen; opacity: 1 !important; filter: none !important; animation: none; }
   body.beat .laser::before { content: ""; position: absolute; inset: -20%; background: radial-gradient(circle at 20% 30%, rgba(255,16,240,.22), transparent 30%), radial-gradient(circle at 80% 60%, rgba(0,240,255,.2), transparent 32%), radial-gradient(circle at 50% 90%, rgba(57,255,20,.16), transparent 30%); animation: clubLicht 7.5s ease-in-out infinite alternate; mix-blend-mode: screen; }
   @keyframes clubLicht { 0% { transform: translate(0,0) rotate(0); } 50% { transform: translate(6%,-4%) rotate(20deg); } 100% { transform: translate(-6%,5%) rotate(-15deg); } }
-  body.beat .laser i { width: 4px; opacity: .7 !important; filter: none; animation-duration: 3.75s !important; }
+  body.beat .laser i { width: 4px; opacity: .9; filter: none; }
   body.beat .laser i:nth-child(1), body.beat .laser i:nth-child(2), body.beat .laser i:nth-child(3) { box-shadow: 0 0 10px currentColor, 0 0 26px var(--laser); }
   body.beat .laser i:nth-child(n+6) { display: block; top: auto; bottom: -20%; transform-origin: bottom center; width: 3px; }
-  body.beat .laser i:nth-child(6) { left: 8%; background: linear-gradient(transparent 30%, var(--laser)); box-shadow: 0 0 14px var(--laser); animation: sweepUnten 4.7s ease-in-out infinite alternate; }
-  body.beat .laser i:nth-child(7) { left: 92%; background: linear-gradient(transparent 30%, var(--cyan)); box-shadow: 0 0 14px var(--cyan); animation: sweepUnten 5.6s ease-in-out infinite alternate-reverse; }
-  body.beat .laser i:nth-child(8) { left: 35%; background: linear-gradient(transparent 30%, var(--acid)); box-shadow: 0 0 14px var(--acid); animation: sweepUnten 3.75s ease-in-out infinite alternate; }
-  body.beat .laser i:nth-child(9) { left: 65%; background: linear-gradient(transparent 30%, var(--gelb)); box-shadow: 0 0 14px var(--gelb); animation: sweepUnten 6.5s ease-in-out infinite alternate-reverse; }
+  body.beat .laser i:nth-child(6) { left: 8%; background: linear-gradient(transparent 30%, var(--laser)); box-shadow: 0 0 14px var(--laser); }
+  body.beat .laser i:nth-child(7) { left: 92%; background: linear-gradient(transparent 30%, var(--cyan)); box-shadow: 0 0 14px var(--cyan); }
+  body.beat .laser i:nth-child(8) { left: 35%; background: linear-gradient(transparent 30%, var(--acid)); box-shadow: 0 0 14px var(--acid); }
+  body.beat .laser i:nth-child(9) { left: 65%; background: linear-gradient(transparent 30%, var(--gelb)); box-shadow: 0 0 14px var(--gelb); }
   @keyframes sweepUnten { from { transform: rotate(-35deg); } to { transform: rotate(35deg); } }
   body.beat .laser::after { content: ""; position: absolute; inset: 0; background: #fff; opacity: 0; animation: clubBlitz 1.875s steps(1) infinite; }
   @keyframes clubBlitz { 0% { opacity: .06; } 6% { opacity: 0; } 100% { opacity: 0; } }
   body.beat .noise { opacity: .1; }
   body.beat .karte, body.beat .ticket { box-shadow: 0 0 0 1px rgba(255,255,255,.04), 0 10px 40px rgba(0,0,0,.6); }
   /* Club-Modus, Stufe 2: noch dunkler – Vignette, gedimmte Inhalte, Nebel */
-  .wrap, .ticker { transition: filter 1.2s ease; }
-  body.beat .wrap { filter: brightness(.72) contrast(1.12) saturate(1.15); }
-  body.beat .ticker { filter: brightness(.8); }
-  body.beat::after { content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse at 50% 42%, transparent 28%, rgba(0,0,0,.55) 68%, rgba(0,0,0,.88) 100%); animation: clubAtmen 1.875s ease-in-out infinite; }
+  body.beat::after { content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse at 50% 42%, rgba(0,0,0,.3) 20%, rgba(0,0,0,.6) 65%, rgba(0,0,0,.9) 100%); animation: clubAtmen 1.875s ease-in-out infinite; }
   @keyframes clubAtmen { 0%, 100% { opacity: 1; } 50% { opacity: .82; } }
   body.beat .laser i { width: 5px; }
-  body.beat .laser::before { opacity: 1.0; filter: blur(8px) saturate(1.4); }
+  body.beat .laser::before { opacity: 1; }
   body.ruhig.beat::after { animation: none; }
   body.beat .radio-leiste, body.beat .radio-knopf { filter: none; }
+  /* Laser blitzen im Takt (128 BPM = 0,469 s pro Schlag): harter Anschlag, schnelles Abklingen – Gruppen abwechselnd auf Schlag und Offbeat */
+  @keyframes blitz { 0% { opacity: 1; } 12% { opacity: .95; } 45% { opacity: .08; } 100% { opacity: .08; } }
+  body.beat .laser i:nth-child(1) { animation: sweep 3.75s ease-in-out infinite alternate, blitz .46875s ease-out infinite; }
+  body.beat .laser i:nth-child(2) { animation: sweep 1.875s ease-in-out infinite alternate-reverse, blitz .46875s ease-out -.234s infinite; }
+  body.beat .laser i:nth-child(3) { animation: sweep 2.8125s ease-in-out infinite alternate, blitz .9375s ease-out infinite; }
+  body.beat .laser i:nth-child(4) { animation: sweep 3.75s ease-in-out infinite alternate-reverse, blitz .46875s ease-out -.234s infinite; }
+  body.beat .laser i:nth-child(5) { animation: sweep 1.875s ease-in-out infinite alternate, blitz .46875s ease-out infinite; }
+  body.beat .laser i:nth-child(6) { animation: sweepUnten 3.75s ease-in-out infinite alternate, blitz .46875s ease-out infinite; }
+  body.beat .laser i:nth-child(7) { animation: sweepUnten 3.75s ease-in-out infinite alternate-reverse, blitz .46875s ease-out infinite; }
+  body.beat .laser i:nth-child(8) { animation: sweepUnten 1.875s ease-in-out infinite alternate, blitz .46875s ease-out -.234s infinite; }
+  body.beat .laser i:nth-child(9) { animation: sweepUnten 1.875s ease-in-out infinite alternate-reverse, blitz .46875s ease-out -.234s infinite; }
+  body.ruhig.beat .laser i { animation: none !important; opacity: .5 !important; }
   /* Nebelmaschine: im Club-Modus pufft ab und zu Disco-Nebel von unten hoch – die Laser leuchten hindurch */
   .nebel { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
-  .nebel-wolke { position: absolute; bottom: -35vh; width: 75vw; height: 55vh; border-radius: 50%; background: radial-gradient(ellipse at 50% 50%, rgba(225,220,255,.34), rgba(200,190,255,.14) 45%, transparent 70%); filter: blur(28px); opacity: 0; animation: nebelAuf var(--d, 11s) ease-out var(--v, 0s) forwards; }
+  .nebel-wolke { position: absolute; bottom: -35vh; width: 75vw; height: 55vh; border-radius: 50%; background: radial-gradient(ellipse at 50% 50%, rgba(225,220,255,.2), rgba(200,190,255,.09) 40%, rgba(200,190,255,.03) 58%, transparent 70%); opacity: 0; animation: nebelAuf var(--d, 11s) ease-out var(--v, 0s) forwards; }
   @keyframes nebelAuf { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 15% { opacity: 1; } 70% { opacity: .75; } 100% { opacity: 0; transform: translate(var(--x, 0), -95vh) scale(1.8); } }
-  body.beat .nebel-dunst { position: absolute; inset: -10%; background: radial-gradient(ellipse at 30% 80%, rgba(200,200,255,.07), transparent 60%), radial-gradient(ellipse at 75% 60%, rgba(255,200,255,.06), transparent 55%); filter: blur(20px); animation: dunst 14s ease-in-out infinite alternate; }
+  body.beat .nebel-dunst { position: absolute; inset: -10%; background: radial-gradient(ellipse at 30% 80%, rgba(200,200,255,.07), transparent 60%), radial-gradient(ellipse at 75% 60%, rgba(255,200,255,.06), transparent 55%); animation: dunst 14s ease-in-out infinite alternate; }
   @keyframes dunst { to { transform: translate(4%, -3%) scale(1.1); } }
   body.ruhig .nebel { display: none; }
   /* ---- Sound an/aus: ohne Musik steht das DJ-Pult, mit Musik geht die Party los ---- */
@@ -752,7 +761,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.46.3<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.46.4<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>

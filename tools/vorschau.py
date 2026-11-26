@@ -69,45 +69,58 @@ def main():
     else:
         zeile1 = f"{erstes.day}.{erstes.month}.–{so.day}.{so.month}."
 
-    bild = Image.new("RGBA", (S, S), (6, 4, 10, 255))
-    d = ImageDraw.Draw(bild)
-    # Hintergrund: Laserfächer + Farbschimmer
-    schimmer = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-    sd = ImageDraw.Draw(schimmer)
-    sd.ellipse((-160, -200, 300, 220), fill=ORANGE + (90,))
-    sd.ellipse((260, 200, 700, 640), fill=PINK + (80,))
-    schimmer = schimmer.filter(ImageFilter.GaussianBlur(70))
-    bild.alpha_composite(schimmer)
-    laser = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-    ld = ImageDraw.Draw(laser)
+    bild = Image.new("RGBA", (S, S), (6, 3, 12, 255))
     farben = [ACID, PINK, CYAN, ORANGE, GELB]
-    for i in range(11):
-        ld.line((S // 2, -10, -120 + i * 75, S + 10), fill=farben[i % 5] + (110,), width=3)
-    laser = laser.filter(ImageFilter.GaussianBlur(1.2))
-    bild.alpha_composite(laser)
-    # untere Hälfte abdunkeln, damit der Text knallt
-    dunkel = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-    dd = ImageDraw.Draw(dunkel)
-    for y in range(S):
-        a = int(max(0, (y - S * .25) / (S * .75)) * 200)
-        dd.line((0, y, S, y), fill=(0, 0, 0, a))
-    bild.alpha_composite(dunkel)
-    # Equalizer unten
-    for i in range(16):
-        h = 18 + ((i * 37 + n * 13) % 70)
-        d.rectangle((24 + i * 29, S - 26 - h, 24 + i * 29 + 18, S - 26), fill=(farben[i % 5] + (150,)))
-
-    # Texte
+    # Farbschimmer hinter dem DJ
+    schimmer = Image.new("RGBA", (S, S), (0, 0, 0, 0)); sd = ImageDraw.Draw(schimmer)
+    sd.ellipse((S * .1, S * .05, S * .9, S * .75), fill=PINK + (120,))
+    sd.ellipse((-S * .3, S * .3, S * .4, S * 1.1), fill=CYAN + (70,))
+    sd.ellipse((S * .6, S * .3, S * 1.3, S * 1.1), fill=ORANGE + (70,))
+    bild.alpha_composite(schimmer.filter(ImageFilter.GaussianBlur(70)))
+    # Laser-Fächer von hinter dem Pult
+    laser = Image.new("RGBA", (S, S), (0, 0, 0, 0)); ld = ImageDraw.Draw(laser)
+    for i in range(15):
+        ld.line((S // 2, int(S * .48), -S * .4 + i * S * 1.8 / 14, -10), fill=farben[i % 5] + (150,), width=4)
+    bild.alpha_composite(laser.filter(ImageFilter.GaussianBlur(6))); bild.alpha_composite(laser.filter(ImageFilter.GaussianBlur(1)))
+    d = ImageDraw.Draw(bild)
+    schwarz = (4, 2, 8, 255)
+    # DJ-Silhouette: Kopf mit Kopfhörern, Schultern, ein Arm hoch
+    cx = S // 2
+    d.ellipse((cx - 34, 150, cx + 34, 222), fill=schwarz)                       # Kopf
+    d.arc((cx - 46, 140, cx + 46, 220), 180, 360, fill=schwarz, width=10)        # Kopfhörer-Bügel
+    d.ellipse((cx - 52, 172, cx - 30, 206), fill=schwarz); d.ellipse((cx + 30, 172, cx + 52, 206), fill=schwarz)
+    d.polygon([(cx - 95, 330), (cx - 70, 240), (cx - 30, 222), (cx + 30, 222), (cx + 70, 240), (cx + 95, 330)], fill=schwarz)   # Oberkörper
+    d.line((cx + 62, 245, cx + 120, 150), fill=schwarz, width=26); d.ellipse((cx + 104, 118, cx + 140, 156), fill=schwarz)   # Arm hoch
+    d.line((cx - 62, 248, cx - 110, 300), fill=schwarz, width=24)               # Hand am Mixer
+    # Pult mit Plattentellern
+    d.rectangle((40, 300, S - 40, 372), fill=(14, 10, 20, 255), outline=ACID + (255,), width=4)
+    for x0 in (70, S - 70 - 120):
+        d.ellipse((x0, 306, x0 + 120, 366), fill=(8, 8, 12, 255), outline=CYAN + (255,), width=3)
+        d.ellipse((x0 + 44, 324, x0 + 76, 348), fill=PINK + (255,) if x0 < S // 2 else ORANGE + (255,))
+    d.rectangle((cx - 40, 312, cx + 40, 360), fill=(20, 16, 28, 255), outline=ORANGE + (255,), width=3)
+    for i in range(3):
+        d.ellipse((cx - 30 + i * 22, 318, cx - 18 + i * 22, 330), outline=GELB + (255,), width=2)
+    # Glow an den Kanten des Pults
+    glow = Image.new("RGBA", (S, S), (0, 0, 0, 0)); ImageDraw.Draw(glow).rectangle((40, 300, S - 40, 372), outline=ACID + (255,), width=8)
+    bild.alpha_composite(glow.filter(ImageFilter.GaussianBlur(10)))
+    # Crowd-Silhouetten mit Händen in der Luft
+    d = ImageDraw.Draw(bild)
+    for i, x in enumerate(range(-10, S + 40, 46)):
+        h = 395 + (i * 37 % 30)
+        d.ellipse((x - 18, h - 18, x + 18, h + 18), fill=schwarz)
+        d.rectangle((x - 26, h + 10, x + 26, S), fill=schwarz)
+        if i % 2 == 0:
+            d.line((x + 16, h + 14, x + 34, h - 40), fill=schwarz, width=12); d.ellipse((x + 26, h - 52, x + 42, h - 36), fill=schwarz)
+        if i % 3 == 1:
+            d.line((x - 16, h + 14, x - 36, h - 34), fill=schwarz, width=12); d.ellipse((x - 44, h - 46, x - 28, h - 30), fill=schwarz)
+    # Texte: oben klein, unten Wochenende & Anzahl
     f_kopf = schrift(FONT_MONO, 30)
-    neon(bild, (S // 2, 62), "TECHNO EVENTS", f_kopf, ACID, blur=8, staerke=1)
-    f_datum = passend(d, zeile1, FONT_TITEL, 86, S - 50)
-    neon(bild, (S // 2, 210), zeile1, f_datum, PINK, blur=14)
-    f_zahl = schrift(FONT_TITEL, 120)
-    f_events = schrift(FONT_MONO, 40)
-    bz, be = d.textlength(str(n), font=f_zahl), d.textlength("EVENTS", font=f_events)
-    x0 = (S - (bz + 16 + be)) / 2
-    neon(bild, (x0, 335), str(n), f_zahl, GELB, anker="lm", blur=16)
-    ImageDraw.Draw(bild).text((x0 + bz + 16, 335), "EVENTS", font=f_events, fill=CYAN + (255,), anchor="lm")
+    neon(bild, (S // 2, 50), "TECHNO EVENTS", f_kopf, ACID, blur=8, staerke=1)
+    leiste = Image.new("RGBA", (S, S), (0, 0, 0, 0)); ImageDraw.Draw(leiste).rectangle((0, S - 92, S, S), fill=(0, 0, 0, 200))
+    bild.alpha_composite(leiste)
+    text = f"{zeile1} · {n} EVENTS"
+    f_unten = passend(ImageDraw.Draw(bild), text, FONT_TITEL, 44, S - 40)
+    neon(bild, (S // 2, S - 46), text, f_unten, PINK, blur=10)
 
     bild = bild.convert("RGB").resize((AUS, AUS), Image.LANCZOS)
     ziel = os.path.join(REPO, "vorschau.png")

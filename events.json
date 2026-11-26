@@ -1,656 +1,1275 @@
 {
-  "stand": "Di 24.11.2026 19:45",
-  "wochenende": "27.–29. November",
-  "top3": [
-    "unum",
-    "wh-cdw",
-    "moving"
-  ],
-  "events": [
-    {
-      "id": "unum",
-      "name": "UNUM in the Mountains",
-      "tag": "So",
-      "datum": "2026-11-29",
-      "start": "12:00",
-      "ende": "22:00",
-      "ende_folgetag": false,
-      "club": "Mountain Lodge Trübsee",
-      "adresse": "Trübsee, 6390 Engelberg (Gondel ab Talstation Titlis)",
-      "stadt": "Engelberg",
-      "lat": 46.816036,
-      "lon": 8.39561,
-      "lineup": [
-        "Sven Väth",
-        "Praslesh",
-        "Alci",
-        "Anitë b2b Gemza"
-      ],
-      "genre": [
-        "Techno",
-        "Minimal"
-      ],
-      "preis": "ab CHF 59 (inkl. Gondel)",
-      "link": "https://tickets.nordstern.com/de/c/unum-in-the-mountains-2245",
-      "auto_km": 27,
-      "auto_min": 33,
-      "losfahren": "11:15",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=46.816036%2C8.39561&travelmode=driving",
-      "oev_min": 71,
-      "oev_hin": {
-        "ab": "10:42",
-        "an": "11:53",
-        "umsteigen": 1,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Engelberg&datum=2026-11-29&zeit=10:42"
-      },
-      "oev_letzte": {
-        "ab": "00:18",
-        "an": "01:20",
-        "sbb": "https://www.sbb.ch/de?von=Engelberg&nach=Beckenried&datum=2026-11-29&zeit=23:00"
-      },
-      "oev_erste": null,
-      "ampel": "gruen",
-      "tipp": "Sven Väth auf 1800 m – dein Ticket! Gondel ist im Preis drin.",
-      "openair": true,
-      "hoehe": 1796,
-      "tipp_en": "Sven Väth at 1800 m – your ticket! Gondola included in the price."
-    },
-    {
-      "id": "moving",
-      "name": "Moving Mountain",
-      "tag": "Sa",
-      "datum": "2026-11-28",
-      "start": "12:00",
-      "ende": "23:00",
-      "ende_folgetag": false,
-      "club": "Trübsee",
-      "adresse": "Trübsee, 6390 Engelberg (Gondel ab Talstation Titlis)",
-      "stadt": "Engelberg",
-      "lat": 46.816036,
-      "lon": 8.39561,
-      "lineup": [
-        "Ben Böhmer (live)",
-        "AWEN",
-        "Read the News",
-        "Ardour"
-      ],
-      "genre": [
-        "Melodic Techno"
-      ],
-      "preis": "",
-      "link": "https://tickets.nordstern.com/en/c/moving-mountain-engelberg-w-ben-bohmer-2128",
-      "auto_km": 27,
-      "auto_min": 33,
-      "losfahren": "11:45",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=46.816036%2C8.39561&travelmode=driving",
-      "oev_min": 71,
-      "oev_hin": {
-        "ab": "11:42",
-        "an": "12:53",
-        "umsteigen": 1,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Engelberg&datum=2026-11-28&zeit=11:42"
-      },
-      "oev_letzte": {
-        "ab": "00:18",
-        "an": "01:20",
-        "sbb": "https://www.sbb.ch/de?von=Engelberg&nach=Beckenried&datum=2026-11-28&zeit=23:00"
-      },
-      "oev_erste": null,
-      "ampel": "gruen",
-      "tipp": "Ben Böhmer live in den Bergen – 30 Min. von zu Hause.",
-      "openair": true,
-      "hoehe": 1796,
-      "tipp_en": "Ben Böhmer live in the mountains – 30 min from home."
-    },
-    {
-      "id": "djhell",
-      "name": "Club Night: DJ Hell | Playlove",
-      "tag": "Fr",
-      "datum": "2026-11-27",
-      "start": "22:00",
-      "ende": "04:00",
-      "ende_folgetag": true,
-      "club": "Palais Mascotte",
-      "adresse": "Theaterstrasse 10, 8001 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.3671,
-      "lon": 8.5451,
-      "lineup": [
-        "DJ Hell",
-        "Playlove"
-      ],
-      "genre": [
-        "Techno",
-        "House"
-      ],
-      "preis": "CHF 25",
-      "link": "https://ra.co/events/2571616",
-      "auto_km": 72,
-      "auto_min": 64,
-      "losfahren": "21:15",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Palais%20Mascotte%2C%20Theaterstrasse%2010%2C%208001%20Z%C3%BCrich&travelmode=driving",
-      "oev_min": 103,
-      "oev_hin": {
-        "ab": "20:08",
-        "an": "21:51",
-        "umsteigen": 2,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
-      },
-      "oev_letzte": {
-        "ab": "00:35",
-        "an": "02:26",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
-      },
-      "oev_erste": {
-        "ab": "06:10",
-        "an": "07:40",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
-      },
-      "ampel": "gruen",
-      "tipp": "Electroclash-Legende DJ Hell – ein Klassiker.",
-      "tipp_en": "Electroclash legend DJ Hell – a classic."
-    },
-    {
-      "id": "frida",
-      "name": "Frida Darko",
-      "tag": "Fr",
-      "datum": "2026-11-27",
-      "start": "22:00",
-      "ende": "07:00",
-      "ende_folgetag": true,
-      "club": "Kauz",
-      "adresse": "Ausstellungsstrasse 21, 8005 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.3821,
-      "lon": 8.5349,
-      "lineup": [
-        "Frida Darko",
-        "Najesh & Artišoko",
-        "Shauna Nice",
-        "Arutani",
-        "AVEM"
-      ],
-      "genre": [
-        "Tech House"
-      ],
-      "preis": "",
-      "link": "https://ra.co/events/2578255",
-      "auto_km": 74,
-      "auto_min": 66,
-      "losfahren": "21:15",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Kauz%2C%20Ausstellungsstrasse%2021%2C%208005%20Z%C3%BCrich&travelmode=driving",
-      "oev_min": 103,
-      "oev_hin": {
-        "ab": "20:08",
-        "an": "21:51",
-        "umsteigen": 2,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
-      },
-      "oev_letzte": {
-        "ab": "00:35",
-        "an": "02:26",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
-      },
-      "oev_erste": {
-        "ab": "06:10",
-        "an": "07:40",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
-      },
-      "ampel": "gruen",
-      "tipp": ""
-    },
-    {
-      "id": "madkatz",
-      "name": "Mad Katz mit Ignez & MARRØN",
-      "tag": "Fr",
-      "datum": "2026-11-27",
-      "start": "23:00",
-      "ende": "09:00",
-      "ende_folgetag": true,
-      "club": "Hive Club",
-      "adresse": "Geroldstrasse 5, 8005 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.3852,
-      "lon": 8.5171,
-      "lineup": [
-        "MARRØN",
-        "Ignez",
-        "Miska",
-        "Dekerim",
-        "Pablo Beltran"
-      ],
-      "genre": [
-        "Techno"
-      ],
-      "preis": "Nur Abendkasse",
-      "link": "https://ra.co/events/2449582",
-      "auto_km": 74,
-      "auto_min": 66,
-      "losfahren": "22:15",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Hive%20Club%2C%20Geroldstrasse%205%2C%208005%20Z%C3%BCrich&travelmode=driving",
-      "oev_min": 103,
-      "oev_hin": {
-        "ab": "20:08",
-        "an": "21:51",
-        "umsteigen": 2,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
-      },
-      "oev_letzte": {
-        "ab": "00:35",
-        "an": "02:26",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
-      },
-      "oev_erste": {
-        "ab": "06:10",
-        "an": "07:40",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
-      },
-      "ampel": "orange",
-      "tipp": "Bis 9 Uhr morgens – Afterhour inklusive.",
-      "tipp_en": "Until 9 am – afterhour included."
-    },
-    {
-      "id": "tension",
-      "name": "Tension Winter Festival",
-      "tag": "Fr",
-      "datum": "2026-11-27",
-      "start": "20:00",
-      "ende": "",
-      "ende_folgetag": false,
-      "club": "Messe Basel",
-      "adresse": "Messeplatz, 4058 Basel",
-      "stadt": "Basel",
-      "lat": 47.5635,
-      "lon": 7.5996,
-      "lineup": [
-        "Kevin de Vries"
-      ],
-      "genre": [
-        "Melodic Techno"
-      ],
-      "preis": "",
-      "link": "https://www.technoairlines.com/event/tension-winter-festival-2026-messe-basel-2026-11-27",
-      "auto_km": 117,
-      "auto_min": 93,
-      "losfahren": "18:45",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Messe%20Basel%2C%20Messeplatz%2C%204058%20Basel&travelmode=driving",
-      "oev_min": 103,
-      "oev_hin": {
-        "ab": "18:12",
-        "an": "19:55",
-        "umsteigen": 2,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Basel%20SBB&datum=2026-11-27&zeit=18:12"
-      },
-      "oev_letzte": null,
-      "oev_erste": {
-        "ab": "05:04",
-        "an": "06:50",
-        "sbb": "https://www.sbb.ch/de?von=Basel%20SBB&nach=Beckenried&datum=2026-11-28&zeit=05:04"
-      },
-      "ampel": "orange",
-      "tipp": "Grosses Hallen-Festival mit Kevin de Vries.",
-      "tipp_en": "Big indoor festival with Kevin de Vries."
-    },
-    {
-      "id": "konrad",
-      "name": "Sebastian Konrad Invites",
-      "tag": "Fr",
-      "datum": "2026-11-27",
-      "start": "23:00",
-      "ende": "",
-      "ende_folgetag": false,
-      "club": "Nordstern",
-      "adresse": "Westquaistrasse 19, 4057 Basel",
-      "stadt": "Basel",
-      "lat": 47.5866,
-      "lon": 7.5935,
-      "lineup": [
-        "Sebastian Konrad",
-        "Alci",
-        "Vera Amberg"
-      ],
-      "genre": [
-        "Techno"
-      ],
-      "preis": "",
-      "link": "https://www.technoairlines.com/event/sebastian-konrad-invites-nordstern-2026-11-27",
-      "auto_km": 119,
-      "auto_min": 96,
-      "losfahren": "21:45",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving",
-      "oev_min": 137,
-      "oev_hin": {
-        "ab": "20:08",
-        "an": "22:25",
-        "umsteigen": 3,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Basel%2C%20Kleinh%C3%BCningen&datum=2026-11-27&zeit=20:08"
-      },
-      "oev_letzte": null,
-      "oev_erste": {
-        "ab": "05:04",
-        "an": "06:50",
-        "sbb": "https://www.sbb.ch/de?von=Basel%20SBB&nach=Beckenried&datum=2026-11-28&zeit=05:04"
-      },
-      "ampel": "orange",
-      "tipp": ""
-    },
-    {
-      "id": "unique",
-      "name": "9 Jahre Unique – 24 hours rave",
-      "tag": "Sa",
-      "datum": "2026-11-28",
-      "start": "22:00",
-      "ende": "22:00",
-      "ende_folgetag": true,
-      "club": "Supermarket",
-      "adresse": "Geroldstrasse 17, 8005 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.3852,
-      "lon": 8.5171,
-      "lineup": [
-        "Petre Inspirescu",
-        "Paul K",
-        "Kler",
-        "Ragan",
-        "Lukka",
-        "Juzz"
-      ],
-      "genre": [
-        "Minimal",
-        "Deep House"
-      ],
-      "preis": "",
-      "link": "https://ra.co/events/2567613",
-      "auto_km": 74,
-      "auto_min": 66,
-      "losfahren": "21:15",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Supermarket%2C%20Geroldstrasse%2017%2C%208005%20Z%C3%BCrich&travelmode=driving",
-      "oev_min": 96,
-      "oev_hin": {
-        "ab": "20:15",
-        "an": "21:51",
-        "umsteigen": 2,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-28&zeit=20:15"
-      },
-      "oev_letzte": {
-        "ab": "00:35",
-        "an": "02:26",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
-      },
-      "oev_erste": {
-        "ab": "06:10",
-        "an": "07:40",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=06:10"
-      },
-      "ampel": "gruen",
-      "tipp": "24 Stunden Minimal mit Petre Inspirescu – einsteigen, wann du willst.",
-      "tipp_en": "24 hours of minimal with Petre Inspirescu – jump in whenever you like."
-    },
-    {
-      "id": "raw",
-      "name": "RAW x Nordstern",
-      "tag": "Sa",
-      "datum": "2026-11-28",
-      "start": "23:00",
-      "ende": "",
-      "ende_folgetag": false,
-      "club": "Nordstern",
-      "adresse": "Westquaistrasse 19, 4057 Basel",
-      "stadt": "Basel",
-      "lat": 47.5866,
-      "lon": 7.5935,
-      "lineup": [
-        "Alignment",
-        "Mha Iri",
-        "ROÜGE"
-      ],
-      "genre": [
-        "Techno"
-      ],
-      "preis": "",
-      "link": "https://www.technoairlines.com/event/raw-x-nordstern-nordstern-2026-11-28",
-      "auto_km": 119,
-      "auto_min": 96,
-      "losfahren": "21:45",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving",
-      "oev_min": null,
-      "oev_hin": null,
-      "oev_letzte": null,
-      "oev_erste": null,
-      "ampel": "grau",
-      "tipp": ""
-    },
-    {
-      "id": "wh-hugel",
-      "name": "Warehouse: HUGEL",
-      "tag": "Fr",
-      "datum": "2026-11-27",
-      "start": "18:00",
-      "ende": "04:00",
-      "ende_folgetag": true,
-      "club": "Warehouse (temporärer Superclub)",
-      "adresse": "Vulkanstrasse 126, 8048 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.394379,
-      "lon": 8.480502,
-      "auto_km": 78,
-      "auto_min": 60,
-      "losfahren": "16:50",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving",
-      "oev_min": 110,
-      "ampel": "gruen",
-      "lineup": [
-        "HUGEL",
-        "AMÉMÉ",
-        "Honeyluv",
-        "Juany Bravo",
-        "Moblack",
-        "Funda La Sol"
-      ],
-      "genre": [
-        "Afro House",
-        "Tech House"
-      ],
-      "preis": "ab CHF 89.90",
-      "link": "https://www.guidle.com/it/veranstaltungen/musik/zuerich/warehouse-hugel_AY6Vxb1",
-      "tipp": "Temporärer Superclub in Altstetten (4500 Leute) – nur noch bis 19.12.",
-      "oev_hin": {
-        "ab": "17:15",
-        "an": "19:05",
-        "umsteigen": 2,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20Altstetten&datum=2026-11-27&zeit=17:15"
-      },
-      "oev_letzte": {
-        "ab": "00:59",
-        "an": "03:26",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-28&zeit=00:59"
-      },
-      "oev_erste": {
-        "ab": "05:54",
-        "an": "07:40",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-28&zeit=05:54"
-      },
-      "tipp_en": "Temporary superclub in Altstetten (4500 people) – only until 19.12."
-    },
-    {
-      "id": "wh-cdw",
-      "name": "Warehouse: Charlotte de Witte",
-      "tag": "Sa",
-      "datum": "2026-11-28",
-      "start": "18:00",
-      "ende": "04:00",
-      "ende_folgetag": true,
-      "club": "Warehouse (temporärer Superclub)",
-      "adresse": "Vulkanstrasse 126, 8048 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.394379,
-      "lon": 8.480502,
-      "auto_km": 78,
-      "auto_min": 60,
-      "losfahren": "16:50",
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving",
-      "oev_min": 110,
-      "ampel": "gruen",
-      "lineup": [
-        "Charlotte de Witte",
-        "Adiel",
-        "FJAAK",
-        "NHŨ",
-        "Sanem"
-      ],
-      "genre": [
-        "Techno"
-      ],
-      "preis": "ca. CHF 80–100",
-      "link": "https://www.guidle.com/it/veranstaltungen/musik/zuerich/warehouse-charlotte-de-witte_AdMK92B",
-      "tipp": "Die Techno-Queen im Superclub – fast ausverkauft, schnell sein! ÖV: ab Altstetten 10 Min. zu Fuss.",
-      "oev_hin": {
-        "ab": "17:15",
-        "an": "19:05",
-        "umsteigen": 2,
-        "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20Altstetten&datum=2026-11-28&zeit=17:15"
-      },
-      "oev_letzte": {
-        "ab": "00:59",
-        "an": "03:26",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-29&zeit=00:59"
-      },
-      "oev_erste": {
-        "ab": "05:54",
-        "an": "07:40",
-        "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-29&zeit=05:54"
-      },
-      "tipp_en": "The techno queen in the superclub – almost sold out, be quick! Public transport: 10 min walk from Altstetten."
-    }
-  ],
-  "ausblick": [
-    {
-      "name": "Schrotthagen",
-      "datum": "2026-12-04",
-      "start": "23:00",
-      "club": "Nordstern",
-      "adresse": "Westquaistrasse 19, 4057 Basel",
-      "stadt": "Basel",
-      "lat": 47.5866,
-      "lon": 7.5935,
-      "lineup": [
-        "Schrotthagen",
-        "Gomorra",
-        "Herrrouine",
-        "Lety"
-      ],
-      "genre": [
-        "Hard Techno"
-      ],
-      "link": "https://ra.co/events/2564364",
-      "auto_min": 96,
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving"
-    },
-    {
-      "name": "Warehouse: ARTBAT",
-      "datum": "2026-12-04",
-      "start": "18:00",
-      "club": "Warehouse",
-      "adresse": "Vulkanstrasse 126, 8048 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.394379,
-      "lon": 8.480502,
-      "lineup": [
-        "ARTBAT",
-        "Miss Monique",
-        "Agents Of Time",
-        "AIIA",
-        "Caromelle"
-      ],
-      "genre": [
-        "Melodic Techno"
-      ],
-      "link": "https://www.warehousezrh.com",
-      "auto_min": 60,
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving"
-    },
-    {
-      "name": "Verknipt Stadion",
-      "datum": "2026-12-19",
-      "start": "21:00",
-      "club": "Hallenstadion",
-      "adresse": "Wallisellenstrasse 45, 8050 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.4107,
-      "lon": 8.5559,
-      "lineup": [
-        "Kobosil",
-        "KRUELTY",
-        "Aiden b2b In Verruf",
-        "Nikolina"
-      ],
-      "genre": [
-        "Hard Techno"
-      ],
-      "link": "https://ra.co/events/2331393",
-      "auto_min": 70,
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Hallenstadion%2C%20Wallisellenstrasse%2045%2C%208050%20Z%C3%BCrich&travelmode=driving"
-    },
-    {
-      "name": "Warehouse Closing: Eric Prydz",
-      "datum": "2026-12-19",
-      "start": "18:00",
-      "club": "Warehouse",
-      "adresse": "Vulkanstrasse 126, 8048 Zürich",
-      "stadt": "Zürich",
-      "lat": 47.394379,
-      "lon": 8.480502,
-      "lineup": [
-        "Eric Prydz",
-        "Innellea",
-        "Mind Against",
-        "Yulia Niko",
-        "Ardour"
-      ],
-      "genre": [
-        "Progressive",
-        "Melodic Techno"
-      ],
-      "link": "https://www.warehousezrh.com",
-      "auto_min": 60,
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving"
-    },
-    {
-      "name": "WinterDaydance",
-      "datum": "2027-01-30",
-      "start": "",
-      "club": "",
-      "adresse": "Kriens",
-      "stadt": "Kriens",
-      "lat": 47.0353,
-      "lon": 8.2799,
-      "lineup": [],
-      "genre": [
-        "Daydance"
-      ],
-      "link": "",
-      "auto_min": 21,
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Kriens&travelmode=driving"
-    },
-    {
-      "name": "Klewen DayDance – Harmlos Techno",
-      "datum": "2027-04-03",
-      "start": "",
-      "club": "Klewenalp",
-      "adresse": "Klewenalpbahn, 6375 Beckenried",
-      "stadt": "Beckenried",
-      "lat": 46.966342,
-      "lon": 8.473215,
-      "lineup": [],
-      "genre": [
-        "Techno",
-        "Daydance"
-      ],
-      "link": "https://www.luzern.com/de/event/klewen-daydance-2027-harmlos-techno",
-      "auto_min": 1,
-      "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Klewenalpbahn%2C%20Beckenried&travelmode=driving",
-      "openair": true,
-      "hoehe": 1600
-    }
-  ]
+ "stand": "Do 26.11.2026 17:45",
+ "wochenende": "27.–29. November",
+ "top3": [
+  "wh-cdw",
+  "unum",
+  "moving"
+ ],
+ "events": [
+  {
+   "id": "wh-hugel",
+   "name": "Warehouse: HUGEL",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "18:00",
+   "ende": "04:00",
+   "ende_folgetag": true,
+   "club": "Warehouse (temporärer Superclub)",
+   "adresse": "Vulkanstrasse 126, 8048 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.394379,
+   "lon": 8.480502,
+   "auto_km": 78,
+   "auto_min": 60,
+   "losfahren": "16:50",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 110,
+   "ampel": "gruen",
+   "lineup": [
+    "HUGEL",
+    "AMÉMÉ",
+    "Honeyluv",
+    "Juany Bravo",
+    "Moblack",
+    "Funda La Sol"
+   ],
+   "genre": [
+    "Afro House",
+    "Tech House"
+   ],
+   "preis": "ab CHF 89.90",
+   "link": "https://www.guidle.com/it/veranstaltungen/musik/zuerich/warehouse-hugel_AY6Vxb1",
+   "tipp": "Temporärer Superclub in Altstetten (4500 Leute) – nur noch bis 19.12.",
+   "oev_hin": {
+    "ab": "17:15",
+    "an": "19:05",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20Altstetten&datum=2026-11-27&zeit=17:15"
+   },
+   "oev_letzte": {
+    "ab": "00:59",
+    "an": "03:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-28&zeit=00:59"
+   },
+   "oev_erste": {
+    "ab": "05:54",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-28&zeit=05:54"
+   },
+   "tipp_en": "Temporary superclub in Altstetten (4500 people) – only until 19.12."
+  },
+  {
+   "id": "tension",
+   "name": "Tension Winter Festival",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "20:00",
+   "ende": "06:00",
+   "ende_folgetag": true,
+   "club": "Messe Basel",
+   "adresse": "Messeplatz, 4058 Basel",
+   "stadt": "Basel",
+   "lat": 47.5635,
+   "lon": 7.5996,
+   "lineup": [
+    "Mathame",
+    "Kevin de Vries",
+    "Maceo Plex"
+   ],
+   "genre": [
+    "Melodic Techno",
+    "Techno"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/tension-winter-festival-2026-messe-basel-2026-11-27",
+   "auto_km": 117,
+   "auto_min": 93,
+   "losfahren": "18:45",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Messe%20Basel%2C%20Messeplatz%2C%204058%20Basel&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": {
+    "ab": "18:12",
+    "an": "19:55",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Basel%20SBB&datum=2026-11-27&zeit=18:12"
+   },
+   "oev_letzte": null,
+   "oev_erste": {
+    "ab": "05:04",
+    "an": "06:50",
+    "sbb": "https://www.sbb.ch/de?von=Basel%20SBB&nach=Beckenried&datum=2026-11-28&zeit=05:04"
+   },
+   "ampel": "orange",
+   "tipp": "Grosses Hallen-Festival mit Kevin de Vries.",
+   "tipp_en": "Big indoor festival with Kevin de Vries."
+  },
+  {
+   "id": "djhell",
+   "name": "Club Night: DJ Hell | Playlove",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "22:00",
+   "ende": "04:00",
+   "ende_folgetag": true,
+   "club": "Palais Mascotte",
+   "adresse": "Theaterstrasse 10, 8001 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3671,
+   "lon": 8.5451,
+   "lineup": [
+    "DJ Hell",
+    "Playlove"
+   ],
+   "genre": [
+    "Techno",
+    "House"
+   ],
+   "preis": "CHF 25",
+   "link": "https://ra.co/events/2571616",
+   "auto_km": 72,
+   "auto_min": 64,
+   "losfahren": "21:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Palais%20Mascotte%2C%20Theaterstrasse%2010%2C%208001%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": {
+    "ab": "20:08",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
+   },
+   "ampel": "gruen",
+   "tipp": "Electroclash-Legende DJ Hell – ein Klassiker.",
+   "tipp_en": "Electroclash legend DJ Hell – a classic."
+  },
+  {
+   "id": "frida",
+   "name": "Frida Darko",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "22:00",
+   "ende": "07:00",
+   "ende_folgetag": true,
+   "club": "Kauz",
+   "adresse": "Ausstellungsstrasse 21, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3821,
+   "lon": 8.5349,
+   "lineup": [
+    "Frida Darko",
+    "Najesh & Artišoko",
+    "Arutani",
+    "AVEM"
+   ],
+   "genre": [
+    "Tech House"
+   ],
+   "preis": "",
+   "link": "https://ra.co/events/2578255",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "21:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Kauz%2C%20Ausstellungsstrasse%2021%2C%208005%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": {
+    "ab": "20:08",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
+   },
+   "ampel": "gruen",
+   "tipp": ""
+  },
+  {
+   "id": "madkatz",
+   "name": "Mad Katz mit Ignez & MARRØN",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "23:00",
+   "ende": "09:00",
+   "ende_folgetag": true,
+   "club": "Hive Club",
+   "adresse": "Geroldstrasse 5, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3852,
+   "lon": 8.5171,
+   "lineup": [
+    "MARRØN",
+    "Ignez",
+    "Dekerim",
+    "Jess Mawi"
+   ],
+   "genre": [
+    "Techno"
+   ],
+   "preis": "Nur Abendkasse",
+   "link": "https://ra.co/events/2449582",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Hive%20Club%2C%20Geroldstrasse%205%2C%208005%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": {
+    "ab": "20:08",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
+   },
+   "ampel": "orange",
+   "tipp": "Bis 9 Uhr morgens – Afterhour inklusive.",
+   "tipp_en": "Until 9 am – afterhour included."
+  },
+  {
+   "id": "konrad",
+   "name": "Sebastian Konrad Invites",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "23:00",
+   "ende": "",
+   "ende_folgetag": false,
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Sebastian Konrad",
+    "Alci",
+    "Vera Amberg"
+   ],
+   "genre": [
+    "Techno"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/sebastian-konrad-invites-nordstern-2026-11-27",
+   "auto_km": 119,
+   "auto_min": 96,
+   "losfahren": "21:45",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving",
+   "oev_min": 137,
+   "oev_hin": {
+    "ab": "20:08",
+    "an": "22:25",
+    "umsteigen": 3,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Basel%2C%20Kleinh%C3%BCningen&datum=2026-11-27&zeit=20:08"
+   },
+   "oev_letzte": null,
+   "oev_erste": {
+    "ab": "05:04",
+    "an": "06:50",
+    "sbb": "https://www.sbb.ch/de?von=Basel%20SBB&nach=Beckenried&datum=2026-11-28&zeit=05:04"
+   },
+   "ampel": "orange",
+   "tipp": ""
+  },
+  {
+   "id": "ruhige",
+   "name": "Ruhige",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "23:00",
+   "ende": "",
+   "ende_folgetag": false,
+   "club": "Supermarket",
+   "adresse": "Geroldstrasse 17, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3852,
+   "lon": 8.5171,
+   "lineup": [
+    "Locklead"
+   ],
+   "genre": [
+    "Techno",
+    "House"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/ruhige-supermarket-2026-11-27",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Supermarket%2C%20Geroldstrasse%2017%2C%208005%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": {
+    "ab": "20:08",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
+   },
+   "ampel": "gruen"
+  },
+  {
+   "id": "pencil",
+   "name": "Pencil All Night Long",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "23:00",
+   "ende": "07:00",
+   "ende_folgetag": true,
+   "club": "MÄX",
+   "adresse": "Hardstrasse 219, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3867082,
+   "lon": 8.5171685,
+   "lineup": [
+    "PENCIL"
+   ],
+   "genre": [
+    "House",
+    "Techno"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/pencil-all-night-long-max-2026-11-27",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=M%C3%84X%2C%20Hardstrasse%20219%2C%208005%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": {
+    "ab": "20:08",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
+   },
+   "ampel": "gruen"
+  },
+  {
+   "id": "kiki",
+   "name": "Kiki: One Last Dance",
+   "tag": "Fr",
+   "datum": "2026-11-27",
+   "start": "23:00",
+   "ende": "08:00",
+   "ende_folgetag": true,
+   "club": "Frieda's Büxe",
+   "adresse": "Friedaustrasse 23, 8003 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3773718,
+   "lon": 8.5109432,
+   "lineup": [
+    "THYORA"
+   ],
+   "genre": [
+    "House",
+    "Techno"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/kiki-one-last-dance-friedas-buxe-2026-11-27",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Frieda%27s%20B%C3%BCxe%2C%20Friedaustrasse%2023%2C%208003%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": {
+    "ab": "20:08",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-27&zeit=20:08"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-28&zeit=06:10"
+   },
+   "ampel": "gruen",
+   "tipp": "Letzte Kiki-Nacht in der Büxe – bis 8 Uhr früh.",
+   "tipp_en": "The last Kiki night at Büxe – until 8 in the morning."
+  },
+  {
+   "id": "moving",
+   "name": "Moving Mountain",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "12:00",
+   "ende": "23:00",
+   "ende_folgetag": false,
+   "club": "Trübsee",
+   "adresse": "Trübsee, 6390 Engelberg (Gondel ab Talstation Titlis)",
+   "stadt": "Engelberg",
+   "lat": 46.816036,
+   "lon": 8.39561,
+   "lineup": [
+    "Ben Böhmer (live)",
+    "AWEN",
+    "Read the News",
+    "Sezer Uysal",
+    "AIIA",
+    "Alay",
+    "Zeno Federspiel",
+    "Ardour"
+   ],
+   "genre": [
+    "Melodic Techno"
+   ],
+   "preis": "",
+   "link": "https://tickets.nordstern.com/en/c/moving-mountain-engelberg-w-ben-bohmer-2128",
+   "auto_km": 27,
+   "auto_min": 33,
+   "losfahren": "11:45",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=46.816036%2C8.39561&travelmode=driving",
+   "oev_min": 71,
+   "oev_hin": {
+    "ab": "11:42",
+    "an": "12:53",
+    "umsteigen": 1,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Engelberg&datum=2026-11-28&zeit=11:42"
+   },
+   "oev_letzte": {
+    "ab": "00:18",
+    "an": "01:20",
+    "sbb": "https://www.sbb.ch/de?von=Engelberg&nach=Beckenried&datum=2026-11-28&zeit=23:00"
+   },
+   "oev_erste": null,
+   "ampel": "gruen",
+   "tipp": "Ben Böhmer live in den Bergen – 30 Min. von zu Hause.",
+   "openair": true,
+   "hoehe": 1796,
+   "tipp_en": "Ben Böhmer live in the mountains – 30 min from home."
+  },
+  {
+   "id": "rakete",
+   "name": "Rakete im Zirkus",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "14:00",
+   "ende": "",
+   "ende_folgetag": false,
+   "club": "Hive Club",
+   "adresse": "Geroldstrasse 5, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3852,
+   "lon": 8.5171,
+   "lineup": [
+    "Henrik Schwarz",
+    "Kellerkind",
+    "Ruben Coslada"
+   ],
+   "genre": [
+    "House",
+    "Tech House"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/rakete-im-zirkus-hive-2026-11-28",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "13:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Hive%20Club%2C%20Geroldstrasse%205%2C%208005%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": null,
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
+   },
+   "oev_erste": null,
+   "ampel": "gruen",
+   "oev_hinweis": "nach Zürich HB – Tagesverbindung, Zeiten auf sbb.ch prüfen",
+   "tipp": "Henrik Schwarz am Nachmittag – ideal als Daydance mit Heimfahrt am Abend.",
+   "tipp_en": "Henrik Schwarz in the afternoon – a perfect daydance with an easy trip home."
+  },
+  {
+   "id": "hidden-freq",
+   "name": "Hidden Frequencies x Out of Space",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "16:00",
+   "ende": "22:00",
+   "ende_folgetag": false,
+   "club": "Club Bellevue",
+   "adresse": "Rämistrasse 6, 8001 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3674891,
+   "lon": 8.5460956,
+   "lineup": [],
+   "genre": [
+    "Minimal",
+    "House"
+   ],
+   "preis": "",
+   "link": "https://zuri.net/en/zurich/agenda/partys/28-11-2026",
+   "auto_km": 72,
+   "auto_min": 64,
+   "losfahren": "15:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Club%20Bellevue%2C%20R%C3%A4mistrasse%206%2C%208001%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": null,
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
+   },
+   "oev_erste": null,
+   "ampel": "gruen",
+   "oev_hinweis": "nach Zürich HB – Tagesverbindung, Zeiten auf sbb.ch prüfen"
+  },
+  {
+   "id": "wh-cdw",
+   "name": "Warehouse: Charlotte de Witte",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "18:00",
+   "ende": "04:00",
+   "ende_folgetag": true,
+   "club": "Warehouse (temporärer Superclub)",
+   "adresse": "Vulkanstrasse 126, 8048 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.394379,
+   "lon": 8.480502,
+   "auto_km": 78,
+   "auto_min": 60,
+   "losfahren": "16:50",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 110,
+   "ampel": "gruen",
+   "lineup": [
+    "Charlotte de Witte",
+    "Adiel",
+    "FJAAK",
+    "NHŨ",
+    "Sanem"
+   ],
+   "genre": [
+    "Techno"
+   ],
+   "preis": "ca. CHF 80–100",
+   "link": "https://www.guidle.com/it/veranstaltungen/musik/zuerich/warehouse-charlotte-de-witte_AdMK92B",
+   "tipp": "Die Techno-Queen im Superclub – fast ausverkauft, schnell sein! ÖV: ab Altstetten 10 Min. zu Fuss.",
+   "oev_hin": {
+    "ab": "17:15",
+    "an": "19:05",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20Altstetten&datum=2026-11-28&zeit=17:15"
+   },
+   "oev_letzte": {
+    "ab": "00:59",
+    "an": "03:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-29&zeit=00:59"
+   },
+   "oev_erste": {
+    "ab": "05:54",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20Altstetten&nach=Beckenried&datum=2026-11-29&zeit=05:54"
+   },
+   "tipp_en": "The techno queen in the superclub – almost sold out, be quick! Public transport: 10 min walk from Altstetten."
+  },
+  {
+   "id": "tension-sa",
+   "name": "Tension Winter Festival – Samstag",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "20:00",
+   "ende": "06:00",
+   "ende_folgetag": true,
+   "club": "Messe Basel",
+   "adresse": "Messeplatz, 4058 Basel",
+   "stadt": "Basel",
+   "lat": 47.5635,
+   "lon": 7.5996,
+   "lineup": [
+    "BUNT",
+    "Swimming Paul"
+   ],
+   "genre": [
+    "Melodic House",
+    "Afro House"
+   ],
+   "preis": "",
+   "link": "https://www.guidle.com/de/veranstaltungen/musik/basel/tension-winter-festival-2026_AZWNMNU",
+   "auto_km": 117,
+   "auto_min": 93,
+   "losfahren": "18:45",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Messe%20Basel%2C%20Messeplatz%2C%204058%20Basel&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": null,
+   "oev_letzte": null,
+   "oev_erste": null,
+   "ampel": "orange",
+   "oev_hinweis": "Basel SBB – hin ok, zurück erst Morgenzug; Zeiten auf sbb.ch prüfen",
+   "tipp": "Tag 2 des Hallenfestivals mit BUNT als Headliner.",
+   "tipp_en": "Day two of the indoor festival with BUNT headlining."
+  },
+  {
+   "id": "unique",
+   "name": "9 Jahre Unique – 24 hours rave",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "22:00",
+   "ende": "22:00",
+   "ende_folgetag": true,
+   "club": "Supermarket",
+   "adresse": "Geroldstrasse 17, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3852,
+   "lon": 8.5171,
+   "lineup": [
+    "Petre Inspirescu",
+    "Paul K",
+    "Kler",
+    "Ragan",
+    "Lukka",
+    "Juzz"
+   ],
+   "genre": [
+    "Minimal",
+    "Deep House"
+   ],
+   "preis": "",
+   "link": "https://ra.co/events/2567613",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "21:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Supermarket%2C%20Geroldstrasse%2017%2C%208005%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 96,
+   "oev_hin": {
+    "ab": "20:15",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-28&zeit=20:15"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=06:10"
+   },
+   "ampel": "gruen",
+   "tipp": "24 Stunden Minimal mit Petre Inspirescu – einsteigen, wann du willst.",
+   "tipp_en": "24 hours of minimal with Petre Inspirescu – jump in whenever you like."
+  },
+  {
+   "id": "raw",
+   "name": "RAW x Nordstern",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "23:00",
+   "ende": "",
+   "ende_folgetag": false,
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Alignment",
+    "ROÜGE",
+    "Mha Iri"
+   ],
+   "genre": [
+    "Techno"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/raw-x-nordstern-nordstern-2026-11-28",
+   "auto_km": 119,
+   "auto_min": 96,
+   "losfahren": "21:45",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving",
+   "oev_min": null,
+   "oev_hin": null,
+   "oev_letzte": null,
+   "oev_erste": null,
+   "ampel": "grau",
+   "tipp": "",
+   "oev_hinweis": "Basel, Kleinhüningen – Zeiten auf sbb.ch prüfen"
+  },
+  {
+   "id": "crudo",
+   "name": ".crudo",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "23:00",
+   "ende": "08:00",
+   "ende_folgetag": true,
+   "club": "Palais Mascotte",
+   "adresse": "Theaterstrasse 10, 8001 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3671,
+   "lon": 8.5451,
+   "lineup": [
+    "Razboi"
+   ],
+   "genre": [
+    "Minimal",
+    "House"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/crudo-palais-mascotte-2026-11-28",
+   "auto_km": 72,
+   "auto_min": 64,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Palais%20Mascotte%2C%20Theaterstrasse%2010%2C%208001%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 96,
+   "oev_hin": {
+    "ab": "20:15",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-28&zeit=20:15"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=06:10"
+   },
+   "ampel": "gruen"
+  },
+  {
+   "id": "undrstnd",
+   "name": "UNDRSTND",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "23:00",
+   "ende": "04:00",
+   "ende_folgetag": true,
+   "club": "Club Bellevue",
+   "adresse": "Rämistrasse 6, 8001 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3674891,
+   "lon": 8.5460956,
+   "lineup": [
+    "UNDRSTND",
+    "Fischfutter",
+    "INAMAR",
+    "Smile"
+   ],
+   "genre": [
+    "Melodic Techno",
+    "Melodic House"
+   ],
+   "preis": "",
+   "link": "https://zuri.net/en/zurich/agenda/partys/28-11-2026",
+   "auto_km": 72,
+   "auto_min": 64,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Club%20Bellevue%2C%20R%C3%A4mistrasse%206%2C%208001%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 96,
+   "oev_hin": {
+    "ab": "20:15",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-28&zeit=20:15"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=06:10"
+   },
+   "ampel": "gruen"
+  },
+  {
+   "id": "impulsif",
+   "name": "IMPULSIF.",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "23:00",
+   "ende": "04:00",
+   "ende_folgetag": true,
+   "club": "Club Bellevue",
+   "adresse": "Rämistrasse 6, 8001 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3674891,
+   "lon": 8.5460956,
+   "lineup": [
+    "DODO",
+    "DYLLON",
+    "Jannik b2b Livio Balti"
+   ],
+   "genre": [
+    "House",
+    "Techno"
+   ],
+   "preis": "",
+   "link": "https://zuri.net/en/zurich/agenda/partys/28-11-2026",
+   "auto_km": 72,
+   "auto_min": 64,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Club%20Bellevue%2C%20R%C3%A4mistrasse%206%2C%208001%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 96,
+   "oev_hin": {
+    "ab": "20:15",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-28&zeit=20:15"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=06:10"
+   },
+   "ampel": "gruen"
+  },
+  {
+   "id": "meraki",
+   "name": "Maxi Meraki",
+   "tag": "Sa",
+   "datum": "2026-11-28",
+   "start": "23:00",
+   "ende": "05:00",
+   "ende_folgetag": true,
+   "club": "Kaufleuten",
+   "adresse": "Pelikanstrasse 18, 8001 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3716325,
+   "lon": 8.5363568,
+   "lineup": [
+    "Maxi Meraki",
+    "Dangel Twins",
+    "Ronny Grauer"
+   ],
+   "genre": [
+    "Afro House",
+    "Melodic House"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/maxi-meraki-kaufleuten-2026-11-28",
+   "auto_km": 73,
+   "auto_min": 65,
+   "losfahren": "22:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Kaufleuten%2C%20Pelikanstrasse%2018%2C%208001%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 96,
+   "oev_hin": {
+    "ab": "20:15",
+    "an": "21:51",
+    "umsteigen": 2,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Z%C3%BCrich%20HB&datum=2026-11-28&zeit=20:15"
+   },
+   "oev_letzte": {
+    "ab": "00:35",
+    "an": "02:26",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=00:35"
+   },
+   "oev_erste": {
+    "ab": "06:10",
+    "an": "07:40",
+    "sbb": "https://www.sbb.ch/de?von=Z%C3%BCrich%20HB&nach=Beckenried&datum=2026-11-29&zeit=06:10"
+   },
+   "ampel": "gruen"
+  },
+  {
+   "id": "muse",
+   "name": "MUSE – Sunday",
+   "tag": "So",
+   "datum": "2026-11-29",
+   "start": "11:00",
+   "ende": "",
+   "ende_folgetag": false,
+   "club": "Hive Club",
+   "adresse": "Geroldstrasse 5, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3852,
+   "lon": 8.5171,
+   "lineup": [],
+   "genre": [
+    "Techno",
+    "House"
+   ],
+   "preis": "",
+   "link": "https://www.technoairlines.com/event/muse-hive-2026-11-29",
+   "auto_km": 74,
+   "auto_min": 66,
+   "losfahren": "10:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Hive%20Club%2C%20Geroldstrasse%205%2C%208005%20Z%C3%BCrich&travelmode=driving",
+   "oev_min": 103,
+   "oev_hin": null,
+   "oev_letzte": null,
+   "oev_erste": null,
+   "ampel": "gruen",
+   "oev_hinweis": "nach Zürich HB – Tagesverbindung, Zeiten auf sbb.ch prüfen"
+  },
+  {
+   "id": "unum",
+   "name": "UNUM in the Mountains",
+   "tag": "So",
+   "datum": "2026-11-29",
+   "start": "12:00",
+   "ende": "22:00",
+   "ende_folgetag": false,
+   "club": "Mountain Lodge Trübsee",
+   "adresse": "Trübsee, 6390 Engelberg (Gondel ab Talstation Titlis)",
+   "stadt": "Engelberg",
+   "lat": 46.816036,
+   "lon": 8.39561,
+   "lineup": [
+    "Sven Väth",
+    "Praslesh",
+    "Alci",
+    "Anitë b2b Gemza"
+   ],
+   "genre": [
+    "Techno",
+    "Minimal"
+   ],
+   "preis": "ab CHF 59 (inkl. Gondel)",
+   "link": "https://tickets.nordstern.com/de/c/unum-in-the-mountains-2245",
+   "auto_km": 27,
+   "auto_min": 33,
+   "losfahren": "11:15",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=46.816036%2C8.39561&travelmode=driving",
+   "oev_min": 71,
+   "oev_hin": {
+    "ab": "10:42",
+    "an": "11:53",
+    "umsteigen": 1,
+    "sbb": "https://www.sbb.ch/de?von=Beckenried&nach=Engelberg&datum=2026-11-29&zeit=10:42"
+   },
+   "oev_letzte": {
+    "ab": "00:18",
+    "an": "01:20",
+    "sbb": "https://www.sbb.ch/de?von=Engelberg&nach=Beckenried&datum=2026-11-29&zeit=23:00"
+   },
+   "oev_erste": null,
+   "ampel": "gruen",
+   "tipp": "Sven Väth auf 1800 m – dein Ticket! Gondel ist im Preis drin.",
+   "openair": true,
+   "hoehe": 1796,
+   "tipp_en": "Sven Väth at 1800 m – your ticket! Gondola included in the price."
+  }
+ ],
+ "ausblick": [
+  {
+   "name": "Schrotthagen",
+   "datum": "2026-12-04",
+   "start": "23:00",
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Schrotthagen",
+    "Gomorra",
+    "Herrrouine",
+    "Lety"
+   ],
+   "genre": [
+    "Hard Techno"
+   ],
+   "link": "https://ra.co/events/2564364",
+   "auto_min": 96,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving"
+  },
+  {
+   "name": "Warehouse: ARTBAT",
+   "datum": "2026-12-04",
+   "start": "18:00",
+   "club": "Warehouse",
+   "adresse": "Vulkanstrasse 126, 8048 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.394379,
+   "lon": 8.480502,
+   "lineup": [
+    "ARTBAT",
+    "Miss Monique",
+    "Agents Of Time",
+    "AIIA",
+    "Caromelle"
+   ],
+   "genre": [
+    "Melodic Techno"
+   ],
+   "link": "https://www.warehousezrh.com",
+   "auto_min": 60,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving"
+  },
+  {
+   "name": "VERVE Andermatt",
+   "datum": "2026-12-04",
+   "start": "15:00",
+   "club": "Parkplatz Eiboden",
+   "adresse": "Parkplatz Eiboden, 6490 Andermatt",
+   "stadt": "Andermatt",
+   "lat": 46.6357,
+   "lon": 8.594,
+   "openair": true,
+   "hoehe": 1440,
+   "lineup": [
+    "Stephan Bodzin",
+    "Klangkuenstler",
+    "Restricted",
+    "Ueberrest"
+   ],
+   "genre": [
+    "Techno",
+    "Melodic Techno"
+   ],
+   "link": "https://www.technoairlines.com/festival/verve-andermatt-switzerland-2026",
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Parkplatz%20Eiboden%2C%206490%20Andermatt&travelmode=driving"
+  },
+  {
+   "name": "Folamour (4h Set)",
+   "datum": "2026-12-12",
+   "start": "18:00",
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Folamour"
+   ],
+   "genre": [
+    "House",
+    "Disco"
+   ],
+   "link": "https://www.technoairlines.com/events/basel",
+   "auto_min": 96,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving"
+  },
+  {
+   "name": "Mad Katz: Marcel Dettmann & Rene Wise",
+   "datum": "2026-12-18",
+   "start": "23:00",
+   "club": "Hive Club",
+   "adresse": "Geroldstrasse 5, 8005 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.3852,
+   "lon": 8.5171,
+   "lineup": [
+    "Marcel Dettmann",
+    "Rene Wise"
+   ],
+   "genre": [
+    "Techno"
+   ],
+   "link": "https://www.technoairlines.com/event/mad-katz-mit-marcel-dettmann-rene-wise-hive-2026-12-18",
+   "auto_min": 66,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Hive%20Club%2C%20Geroldstrasse%205%2C%208005%20Z%C3%BCrich&travelmode=driving"
+  },
+  {
+   "name": "Carl Craig",
+   "datum": "2026-12-18",
+   "start": "22:00",
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Carl Craig",
+    "Ogazón",
+    "KENZA KAYATI",
+    "Garçon"
+   ],
+   "genre": [
+    "Techno"
+   ],
+   "link": "https://www.technoairlines.com/event/carl-craig-ogazon-kenza-kayati-nordstern-2026-12-18",
+   "auto_min": 96,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving"
+  },
+  {
+   "name": "Verknipt Stadion",
+   "datum": "2026-12-19",
+   "start": "21:00",
+   "club": "Hallenstadion",
+   "adresse": "Wallisellenstrasse 45, 8050 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.4107,
+   "lon": 8.5559,
+   "lineup": [
+    "Kobosil",
+    "KRUELTY",
+    "Aiden b2b In Verruf",
+    "Nikolina"
+   ],
+   "genre": [
+    "Hard Techno"
+   ],
+   "link": "https://ra.co/events/2331393",
+   "auto_min": 70,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Hallenstadion%2C%20Wallisellenstrasse%2045%2C%208050%20Z%C3%BCrich&travelmode=driving"
+  },
+  {
+   "name": "Warehouse Closing: Eric Prydz",
+   "datum": "2026-12-19",
+   "start": "18:00",
+   "club": "Warehouse",
+   "adresse": "Vulkanstrasse 126, 8048 Zürich",
+   "stadt": "Zürich",
+   "lat": 47.394379,
+   "lon": 8.480502,
+   "lineup": [
+    "Eric Prydz",
+    "Innellea",
+    "Mind Against",
+    "Yulia Niko",
+    "Ardour"
+   ],
+   "genre": [
+    "Progressive",
+    "Melodic Techno"
+   ],
+   "link": "https://www.warehousezrh.com",
+   "auto_min": 60,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Warehouse%2C%20Vulkanstrasse%20126%2C%208048%20Z%C3%BCrich&travelmode=driving"
+  },
+  {
+   "name": "Deborah De Luca",
+   "datum": "2026-12-19",
+   "start": "23:00",
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Deborah De Luca",
+    "MARCISM"
+   ],
+   "genre": [
+    "Techno"
+   ],
+   "link": "https://www.technoairlines.com/event/deborah-de-luca-nordstern-2026-12-19",
+   "auto_min": 96,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving"
+  },
+  {
+   "name": "Andrea Oliva All Night Long",
+   "datum": "2026-12-26",
+   "start": "23:00",
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Andrea Oliva"
+   ],
+   "genre": [
+    "Tech House"
+   ],
+   "link": "https://www.technoairlines.com/event/andrea-oliva-all-night-long-nordstern-2026-12-26",
+   "auto_min": 96,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving"
+  },
+  {
+   "name": "Kobosil",
+   "datum": "2027-01-01",
+   "start": "23:00",
+   "club": "Nordstern",
+   "adresse": "Westquaistrasse 19, 4057 Basel",
+   "stadt": "Basel",
+   "lat": 47.5866,
+   "lon": 7.5935,
+   "lineup": [
+    "Kobosil",
+    "MARCISM"
+   ],
+   "genre": [
+    "Techno",
+    "Hard Techno"
+   ],
+   "link": "https://www.technoairlines.com/event/kobosil-nordstern-2027-01-01",
+   "auto_min": 96,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Nordstern%2C%20Westquaistrasse%2019%2C%204057%20Basel&travelmode=driving"
+  },
+  {
+   "name": "WinterDaydance",
+   "datum": "2027-01-30",
+   "start": "",
+   "club": "",
+   "adresse": "Kriens",
+   "stadt": "Kriens",
+   "lat": 47.0353,
+   "lon": 8.2799,
+   "lineup": [],
+   "genre": [
+    "Daydance"
+   ],
+   "link": "",
+   "auto_min": 21,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Kriens&travelmode=driving"
+  },
+  {
+   "name": "Klewen DayDance – Harmlos Techno",
+   "datum": "2027-04-03",
+   "start": "",
+   "club": "Klewenalp",
+   "adresse": "Klewenalpbahn, 6375 Beckenried",
+   "stadt": "Beckenried",
+   "lat": 46.966342,
+   "lon": 8.473215,
+   "lineup": [],
+   "genre": [
+    "Techno",
+    "Daydance"
+   ],
+   "link": "https://www.luzern.com/de/event/klewen-daydance-2027-harmlos-techno",
+   "auto_min": 1,
+   "navi": "https://www.google.com/maps/dir/?api=1&origin=Beckenried&destination=Klewenalpbahn%2C%20Beckenried&travelmode=driving",
+   "openair": true,
+   "hoehe": 1600
+  }
+ ]
 }

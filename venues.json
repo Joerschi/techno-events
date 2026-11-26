@@ -1,0 +1,15 @@
+[
+{"name": "Warehouse (temporärer Superclub)", "adresse": "Vulkanstrasse 126, 8048 Zürich", "stadt": "Zürich", "lat": 47.394379, "lon": 8.480502, "auto_km": 78, "auto_min": 60, "oev_halt": "Zürich Altstetten"},
+{"name": "Messe Basel", "adresse": "Messeplatz, 4058 Basel", "stadt": "Basel", "lat": 47.5635, "lon": 7.5996, "auto_km": 117, "auto_min": 93, "oev_halt": "Basel SBB"},
+{"name": "Palais Mascotte", "adresse": "Theaterstrasse 10, 8001 Zürich", "stadt": "Zürich", "lat": 47.3671, "lon": 8.5451, "auto_km": 72, "auto_min": 64, "oev_halt": "Zürich HB"},
+{"name": "Kauz", "adresse": "Ausstellungsstrasse 21, 8005 Zürich", "stadt": "Zürich", "lat": 47.3821, "lon": 8.5349, "auto_km": 74, "auto_min": 66, "oev_halt": "Zürich HB"},
+{"name": "Hive Club", "adresse": "Geroldstrasse 5, 8005 Zürich", "stadt": "Zürich", "lat": 47.3852, "lon": 8.5171, "auto_km": 74, "auto_min": 66, "oev_halt": "Zürich HB"},
+{"name": "Nordstern", "adresse": "Westquaistrasse 19, 4057 Basel", "stadt": "Basel", "lat": 47.5866, "lon": 7.5935, "auto_km": 119, "auto_min": 96, "oev_halt": "Basel, Kleinhüningen"},
+{"name": "Supermarket", "adresse": "Geroldstrasse 17, 8005 Zürich", "stadt": "Zürich", "lat": 47.3852, "lon": 8.5171, "auto_km": 74, "auto_min": 66, "oev_halt": "Zürich HB"},
+{"name": "MÄX", "adresse": "Hardstrasse 219, 8005 Zürich", "stadt": "Zürich", "lat": 47.3867082, "lon": 8.5171685, "auto_km": 74, "auto_min": 66, "oev_halt": "Zürich HB"},
+{"name": "Frieda's Büxe", "adresse": "Friedaustrasse 23, 8003 Zürich", "stadt": "Zürich", "lat": 47.3773718, "lon": 8.5109432, "auto_km": 74, "auto_min": 66, "oev_halt": "Zürich HB"},
+{"name": "Trübsee", "adresse": "Trübsee, 6390 Engelberg (Gondel ab Talstation Titlis)", "stadt": "Engelberg", "lat": 46.816036, "lon": 8.39561, "auto_km": 27, "auto_min": 33, "oev_halt": "Engelberg"},
+{"name": "Club Bellevue", "adresse": "Rämistrasse 6, 8001 Zürich", "stadt": "Zürich", "lat": 47.3674891, "lon": 8.5460956, "auto_km": 72, "auto_min": 64, "oev_halt": "Zürich HB"},
+{"name": "Kaufleuten", "adresse": "Pelikanstrasse 18, 8001 Zürich", "stadt": "Zürich", "lat": 47.3716325, "lon": 8.5363568, "auto_km": 73, "auto_min": 65, "oev_halt": "Zürich HB"},
+{"name": "Mountain Lodge Trübsee", "adresse": "Trübsee, 6390 Engelberg (Gondel ab Talstation Titlis)", "stadt": "Engelberg", "lat": 46.816036, "lon": 8.39561, "auto_km": 27, "auto_min": 33, "oev_halt": "Engelberg"}
+]

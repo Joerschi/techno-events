@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.46.2 – 26.11.2026
+- 🪩 Club-Modus dunkler: Inhalte gedimmt, Vignette an den Rändern, die im Takt atmet, dickere Laser, kräftigere Club-Lichter – das Radio bleibt hell
+
 ## v1.46.0 – 26.11.2026
 - 🔒 Radio im Hintergrund: Android-App 3.1 hält das Radio mit einem Hintergrund-Dienst am Laufen, wenn das Display dunkel oder das Handy gesperrt ist (Benachrichtigung «📻 Techno Events Radio» mit Stopp-Knopf); im Browser Steuerung über Sperrbildschirm (Play/Pause/Weiter)
 

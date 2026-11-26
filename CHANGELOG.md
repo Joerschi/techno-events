@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.44.0 – 26.11.2026
+- 📸 Teilen mit Poster: Der 💬-Crew-Knopf schickt das Neon-Poster des Events als Bild (1200×630, mit Ort und «Wer kommt mit? 🔥») zusammen mit Text und Link – in der Android-App und in Handy-Browsern mit Teilen-Funktion; sonst wie bisher als Text
+
 ## v1.43.0 – 26.11.2026
 - 🎨 Jedes Event hat ein eigenes, generiertes Neon-Poster: Stil nach Sound (Hard Techno Warnstreifen & Zacken, Melodic Wellen, Minimal Punktraster, House Sonnenuntergang, Afro Dreiecke, Trance Spirale, Acid 303-Linie, Bass Wellenform, Techno Laser/Gitter/Platte/Equalizer), Datum, Startzeit, Titel in Flyer-Typo und Lineup; Wellen und Balken tanzen mit dem Radio
 

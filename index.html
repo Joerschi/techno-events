@@ -715,7 +715,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.43.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.44.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -911,6 +911,7 @@ Object.assign(DICT, {
   "4 verschiedene Sound-Gruppen": "4 different sound groups", "In einer Crew": "In a crew", "Zusage-König": "RSVP king", "5× «Ich bin dabei»": "5× “I'm in”", "Winter-Party": "Winter party",
   "Open-Air bei Kälte (Nov–Feb)": "Open-air in the cold (Nov–Feb)", "ZÜRICH": "ZURICH", "Zürich": "Zurich", "TECHNO · ZÜRICH": "TECHNO · ZURICH", "TECHNO · MÜNCHEN": "TECHNO · MUNICH", "Luzern": "Lucerne"
 });
+Object.assign(DICT, { "📸 Poster wird erstellt …": "📸 Creating poster …" });
 Object.assign(DICT, { "☀️ Guten Morgen! Wie war die Party?": "☀️ Good morning! How was the party?" });
 REGELN.push([/^⚡ Fresh Drop! (\d+) Events fürs Wochenende$/, "⚡ Fresh drop! $1 events for the weekend"],
   [/^🔥 (.+) ist jetzt bei «(.*)» dabei(.*)$/, "🔥 $1 is now going to “$2”$3"], [/^🚗 (.+) fährt zu «(.*)» – (\d+) Plätze frei(.*)$/, "🚗 $1 is driving to “$2” – $3 free seats$4"]);
@@ -1097,7 +1098,9 @@ function aktionen(ev, mitTicket) {
   if (IOS) kal.onclick = (e) => { e.preventDefault(); icsLaden([ev], "event.ics"); };   // iPhone: direkt in den Apple-Kalender
   box.append(kal);
   box.append(label(link("btn", naviLink(ev), ""), "📍", "Navi"));
-  box.append(label(waKnopf("btn wa", whatsappLink(ev), ""), "💬", "Crew"));
+  const crewKnopf = label(waKnopf("btn wa", whatsappLink(ev), ""), "💬", "Crew");
+  if (bildTeilenMoeglich()) crewKnopf.onclick = (e) => { e.preventDefault(); teilenMitPoster(ev); };   // mit Poster als Bild
+  box.append(crewKnopf);
   if (ev.link) box.append(label(link("btn", ev.link, ""), "🎟", mitTicket ? "Ticket" : "Tickets"));
   else box.append(label(el("span", "btn", ""), "🎟", "–"));
   const ja = zusagen.has(evKey(ev));
@@ -1565,6 +1568,67 @@ function poster(ev, gross) {
   }
   const box = el("div", "cover poster" + (gross ? " gross" : "")); box.append(svg);
   return box;
+}
+
+// ======================= TEILEN MIT POSTER =======================
+// Beim Teilen geht das Neon-Poster des Events als Bild mit – statt der Schallplatten-Vorschau.
+let posterSchriften = null;
+function posterSchriftenLaden() {
+  if (posterSchriften) return posterSchriften;
+  posterSchriften = (async () => {
+    try {
+      let css = await (await fetch("https://fonts.googleapis.com/css2?family=Unbounded:wght@900&family=Space+Mono:wght@700&display=swap")).text();
+      const urls = [...new Set([...css.matchAll(/url\((https:[^)]+)\)/g)].map(m => m[1]))];
+      for (const u of urls) {
+        const b = await (await fetch(u)).blob();
+        const data = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(b); });
+        css = css.split(u).join(data);
+      }
+      return css;
+    } catch (e) { return ""; }
+  })();
+  return posterSchriften;
+}
+function bildTeilenMoeglich() {
+  try {
+    if (window.TechnoApp && TechnoApp.bildTeilen) return true;
+    return !!(navigator.canShare && navigator.canShare({ files: [new File([""], "x.png", { type: "image/png" })] }));
+  } catch (e) { return false; }
+}
+async function posterBild(ev) {
+  const W = 1200, H = 630;
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const g = c.getContext("2d");
+  g.fillStyle = "#08070b"; g.fillRect(0, 0, W, H);
+  // Poster (SVG) mit eingebetteten Schriften als Bild zeichnen
+  const svg = poster(ev, true).querySelector("svg");
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg"); svg.setAttribute("width", W); svg.setAttribute("height", 480);
+  const css = await posterSchriftenLaden();
+  if (css) { const st = document.createElementNS("http://www.w3.org/2000/svg", "style"); st.textContent = css; svg.prepend(st); }
+  const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: "image/svg+xml" }));
+  await new Promise(r => { const img = new Image(); img.onload = () => { g.drawImage(img, 0, 0, W, 480); r(); }; img.onerror = r; img.src = url; });
+  URL.revokeObjectURL(url);
+  // Fussleiste: Ort, Aufruf, Adresse der App
+  const f1 = (familien(ev)[0] && POSTER_STIL[familien(ev)[0]]) ? POSTER_STIL[familien(ev)[0]].f[0] : "#39ff14";
+  g.fillStyle = f1; g.shadowColor = f1; g.shadowBlur = 18; g.fillRect(0, 480, W, 4); g.shadowBlur = 0;
+  try { await document.fonts.ready; } catch (e) {}
+  g.textBaseline = "middle";
+  g.fillStyle = "#fff"; g.font = "700 38px Inter, sans-serif";
+  const ort = [ev.club, ev.stadt].filter(Boolean).join(", ");
+  let o = ort; while (o.length > 4 && g.measureText(o).width > 640) o = o.slice(0, -2).trim() + "…";
+  g.fillText(o, 44, 545);
+  g.fillStyle = "#8a8a96"; g.font = "700 24px 'Space Mono', monospace";
+  g.fillText("TECHNO.HOWEVERTO.ME", 44, 597);
+  g.textAlign = "right"; g.fillStyle = "#39ff14"; g.shadowColor = "#39ff14"; g.shadowBlur = 16;
+  g.font = "900 36px Unbounded, sans-serif"; g.fillText(tr("WER KOMMT MIT? 🔥"), W - 44, 560);
+  return c;
+}
+async function teilenMitPoster(ev) {
+  zeigeToast(tr("📸 Poster wird erstellt …"));
+  try {
+    const c = await posterBild(ev);
+    await bildTeilen(c, "techno-event.png", waText(whatsappLink(ev)));
+  } catch (e) { location.href = waApp(whatsappLink(ev)); }
 }
 
 // ======================= PARTY-EXTRAS =======================

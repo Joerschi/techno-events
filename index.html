@@ -473,6 +473,38 @@
   .lade-punkte i:nth-child(2) { animation-delay: .156s; background: #ff10f0; box-shadow: 0 0 8px #ff10f0; } .lade-punkte i:nth-child(3) { animation-delay: .312s; background: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
   @keyframes ladePunkt { 0%, 100% { opacity: .25; transform: scale(.7); } 50% { opacity: 1; transform: scale(1); } }
   @media (prefers-reduced-motion: reduce) { .lade-logo, .lade-punkte i { animation: none; } }
+  /* Läuft jetzt, Party-People-Zähler, Für dich, Safer Clubbing */
+  .jetzt-reihe { display: flex !important; } .jetzt-reihe .chip { flex: 1; }
+  .chip.jetzt { border-color: #ff1e3c; color: #ff6b7d; }
+  .chip.jetzt.on { background: #ff1e3c; color: #fff; box-shadow: 0 0 12px rgba(255,30,60,.6); }
+  .chip.jetzt::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-right: 5px; vertical-align: 1px; animation: jetztPuls 1.2s ease-in-out infinite; }
+  @keyframes jetztPuls { 50% { opacity: .25; } }
+  .noch { font: 700 .72rem "Space Mono", monospace; color: #ff6b7d; margin-left: 6px; }
+  .party-zahl { grid-column: 1 / -1; font: 700 .78rem "Space Mono", monospace; color: var(--laser); text-shadow: 0 0 6px rgba(255,16,240,.5); text-align: center; padding: 2px 0; }
+  .fuer-dich-tag { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 9px; border: 1px solid rgba(57,255,20,.5); color: var(--acid); font: 700 .62rem "Space Mono", monospace; letter-spacing: .05em; vertical-align: 3px; }
+  .geschmack { border: 1px dashed rgba(57,255,20,.45); padding: 12px; margin: 0 0 12px; }
+  .geschmack b { display: block; font: 800 .9rem Inter, sans-serif; margin-bottom: 4px; }
+  .geschmack small { display: block; color: var(--muted); margin-bottom: 8px; }
+  .geschmack .reihe { flex-wrap: wrap; }
+  .geschmack .knoepfe { display: flex; gap: 10px; margin-top: 10px; align-items: center; }
+  .geschmack .knoepfe button { font: 700 .78rem "Space Mono", monospace; padding: 8px 12px; border: 1px solid var(--acid); background: var(--acid); color: #000; cursor: pointer; }
+  .geschmack .knoepfe .spaeter { background: none; border: 0; color: var(--muted); text-decoration: underline; padding: 8px 0; }
+  .geschmack-klein { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 0 0 10px; font: 700 .72rem "Space Mono", monospace; color: var(--muted); }
+  .geschmack-klein b { color: var(--acid); font-weight: 700; }
+  .geschmack-klein button { font: inherit; color: var(--cyan); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0; }
+  .safer { margin: 18px 0 8px; border: 1px solid var(--line); background: var(--panel); }
+  .safer summary { list-style: none; cursor: pointer; padding: 12px 14px; font: 700 .85rem "Space Mono", monospace; display: flex; justify-content: space-between; }
+  .safer summary::-webkit-details-marker { display: none; }
+  .safer summary::after { content: "▾"; color: var(--muted); } .safer[open] summary::after { content: "▴"; }
+  .safer-inhalt { padding: 0 14px 14px; font-size: .9rem; line-height: 1.5; color: #e6dcd2; }
+  .safer-inhalt h4 { margin: 12px 0 4px; font: 800 .8rem "Space Mono", monospace; color: var(--cyan); letter-spacing: .04em; }
+  .safer-nummern { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+  .safer-nummern a { display: block; text-align: center; text-decoration: none; padding: 8px 6px; border: 1px solid var(--line); color: #fff; font: 800 1rem Inter, sans-serif; }
+  .safer-nummern a small { display: block; font: 600 .68rem Inter, sans-serif; color: var(--muted); }
+  .safer-nummern a.sos { border-color: #ff1e3c; box-shadow: 0 0 10px rgba(255,30,60,.35); }
+  .safer-inhalt ul { margin: 4px 0 0; padding-left: 18px; }
+  .safer-inhalt a { color: var(--cyan); }
+  .safer-klein { color: var(--muted); font-size: .78rem; margin-top: 10px; }
   .kopf { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 16px); margin: 6px 0 4px; }
   .kopf h1 { text-align: center; }
   .kopf h1 .t1 { font-size: clamp(1.9rem, 9.4vw, 3rem); }
@@ -936,6 +968,8 @@
       <span><i style="background:var(--grau)"></i>Besser Auto</span>
     </div>
 
+    <details class="safer" id="safer"></details>
+
     <div class="label" id="ausblick"><b>// Ausblick</b><small>nächste Wochen</small></div>
     <div id="ausblick-liste"></div>
 
@@ -945,7 +979,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.54.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.55.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1029,7 +1063,7 @@ const DICT = {
   "Genre & Stadt": "Genre & city", "Sound": "Sound", "Stadt": "City", "Meine DJs": "My DJs", "alle": "all", "Kalender": "Calendar", "Navi": "Navi", "Crew": "Crew", "Tickets": "Tickets", "Ticket": "Ticket",
   "🎧 Reinhören": "🎧 Listen", "🙋 Ich bin dabei": "🙋 I'm in", "Zusage zurückziehen": "Withdraw", "🚗 Ich fahre": "🚗 I'm driving", "🙋 Suche Mitfahrt": "🙋 Need a ride", "🙋 Suche Mitfahrt ✓": "🙋 Need a ride ✓",
   "Keine Events mit diesen Filtern – grösseren Umkreis wählen?": "No events with these filters – try a bigger radius?",
-  "Wo feierst du?": "Where are you partying?", "Sag uns, wo du bist – dann siehst du die Partys in deiner Nähe.": "Tell us where you are – and see the parties near you.", "📍 Meinen Standort verwenden": "📍 Use my location", "🏠 Wohnort eingeben": "🏠 Enter my town", "📍 Standort blockiert – wähl einfach deine Region:": "📍 Location blocked – just pick your region:", "📍 Standort nicht gefunden – wähl einfach deine Region:": "📍 Location not found – just pick your region:", "Schweiz": "Switzerland", "München": "Munich", "Dieses Weekend ist durch 🥲": "This weekend is over 🥲", "Donnerstag früh kommen die nächsten Partys. Schau so lange in den Ausblick oder in deine Favoriten.": "The next parties drop on Thursday morning. Until then, check the outlook or your favourites.", "Noch nichts gemerkt – tipp auf ☆ bei einem Event.": "Nothing saved yet – tap ☆ on an event.",
+  "Wo feierst du?": "Where are you partying?", "🫶 Safer Clubbing": "🫶 Safer clubbing", "IM NOTFALL": "IN AN EMERGENCY", "AUFEINANDER ACHTEN": "LOOK OUT FOR EACH OTHER", "INFOS & DRUG CHECKING": "INFO & DRUG CHECKING", "Sanität": "Ambulance", "Polizei": "Police", "Notruf EU": "EU emergency", "Notruf": "Emergency", "Giftnotruf": "Poison hotline", "Genug Wasser trinken und Pausen an der frischen Luft machen": "Drink enough water and take breaks in the fresh air", "Auf deine Crew achten – niemand geht allein heim": "Look out for your crew – nobody goes home alone", "Awareness-Team oder Personal im Club ansprechen, wenn es jemandem nicht gut geht": "Talk to the awareness team or club staff if someone isn't feeling well", "Im Notfall sofort Hilfe rufen und offen sagen, was genommen wurde": "In an emergency, call for help right away and say openly what was taken", "Anonym und kostenlos. Aktuelle Zeiten und Warnungen auf den Seiten der Angebote.": "Anonymous and free. Current hours and warnings on the services' websites.", "– Drug Checking (DIZ), Substanzwarnungen": "– drug checking (DIZ), substance warnings", "– Drug Checking & Beratung (Contact Nightlife)": "– drug checking & advice (Contact Nightlife)", "– Drug Checking (DIBS), Warnungen": "– drug checking (DIBS), warnings", "– Infos & Beratung von Party People für Party People": "– info & advice by party people for party people", "🎧 Was hörst du gern?": "🎧 What do you like to hear?", "Tipp 1–3 Sounds an – passende Partys rutschen nach oben.": "Tap 1–3 sounds – matching parties move to the top.", "✓ Fertig": "✓ Done", "Später": "Later", "Abbrechen": "Cancel", "ändern": "change", "💚 Für dich:": "💚 For you:", "FÜR DICH": "FOR YOU", "Maximal 3 – nimm erst einen raus": "Max. 3 – remove one first", "💚 Passende Partys stehen jetzt oben": "💚 Matching parties are now at the top", "Partys, die gerade laufen": "Parties happening right now", "Sag uns, wo du bist – dann siehst du die Partys in deiner Nähe.": "Tell us where you are – and see the parties near you.", "📍 Meinen Standort verwenden": "📍 Use my location", "🏠 Wohnort eingeben": "🏠 Enter my town", "📍 Standort blockiert – wähl einfach deine Region:": "📍 Location blocked – just pick your region:", "📍 Standort nicht gefunden – wähl einfach deine Region:": "📍 Location not found – just pick your region:", "Schweiz": "Switzerland", "München": "Munich", "Dieses Weekend ist durch 🥲": "This weekend is over 🥲", "Donnerstag früh kommen die nächsten Partys. Schau so lange in den Ausblick oder in deine Favoriten.": "The next parties drop on Thursday morning. Until then, check the outlook or your favourites.", "Noch nichts gemerkt – tipp auf ☆ bei einem Event.": "Nothing saved yet – tap ☆ on an event.",
   "Der Ausblick kommt mit der nächsten Ausgabe.": "Coming up arrives with the next edition.", "Die Top 3 kommen mit der nächsten Ausgabe.": "The top 3 arrive with the next edition.",
   "Jeden Donnerstag früh erscheinen hier alle Techno-Events der nächsten drei Wochenenden.": "Every Thursday morning, all techno events for the next three weekends appear here.",
   "Noch keine Favoriten": "No favourites yet", "Tippe bei einem Event auf ☆ – dann erscheint es hier mit Countdown. Gespeichert nur auf deinem Handy.": "Tap ☆ on an event – it shows up here with a countdown. Saved only on your phone.",
@@ -1046,7 +1080,7 @@ const DICT = {
   "📍 Standort blockiert – siehe Tipp unten": "📍 Location blocked – see the tip below", "Standort nicht gefunden – ist GPS am Handy an?": "Location not found – is GPS on?", "Standort wird auf diesem Gerät nicht unterstützt": "Location isn't supported on this device",
   "📍 Für den Umkreis zuerst einen Startort wählen": "📍 Choose a start location first to use the radius",
   "👥 Deine Crew": "👥 Your crew", "👥 Crew-Einladung": "👥 Crew invite", "Sag deiner Crew direkt in der App, dass du dabei bist. Alle mit demselben Crew-Code sehen deinen Spitznamen bei den Events, für die du zusagst.": "Tell your crew right in the app that you're in. Everyone with the same crew code sees your nickname on the events you're going to.",
-  "Spitzname": "Nickname", "Spitzname (z. B. Jörg)": "Nickname (e.g. Alex)", "Crew-Code – gleicher Code = gleiche Crew": "Crew code – same code = same crew", "Crew-Code (z. B. 7K3Q-X9TP)": "Crew code (e.g. 7K3Q-X9TP)",
+  "Spitzname": "Nickname", "Spitzname (z. B. Alex)": "Nickname (e.g. Alex)", "Crew-Code – gleicher Code = gleiche Crew": "Crew code – same code = same crew", "Crew-Code (z. B. 7K3Q-X9TP)": "Crew code (e.g. 7K3Q-X9TP)",
   "Speichern": "Save", "Speichern & zusagen": "Save & I'm in", "Crew beitreten": "Join crew", "✨ Neue Crew gründen – Code erzeugen": "✨ Start a new crew – create code", "📨 Freunde in die Crew einladen": "📨 Invite friends to your crew",
   "Crew verlassen": "Leave crew", "🔒 Was wird gespeichert?": "🔒 What is stored?", "Lieber nur per WhatsApp sagen": "Just tell them on WhatsApp", "Crew-Code: mind. 3 Zeichen, nur Buchstaben, Zahlen und -": "Crew code: at least 3 characters, letters, numbers and - only",
   "Neuer Code erzeugt – speichern und dann Freunde einladen.": "New code created – save, then invite friends.", "👥 Du bist schon in dieser Crew": "👥 You're already in this crew", "Crew verlassen ": "Leave crew",
@@ -1111,6 +1145,7 @@ const DICT = {
   "NOCH": "", "TAG": "DAY", "HEUTE": "TODAY", "WER KOMMT MIT? 🔥": "WHO'S COMING? 🔥", "MEIN PARTY-JAHR": "MY PARTY YEAR", "EVENT": "EVENT", "EVENTS": "EVENTS", "MADE BY PARTY PEOPLE – FOR PARTY PEOPLE": "MADE BY PARTY PEOPLE – FOR PARTY PEOPLE"
 };
 const REGELN = [
+  [/^🔥 (\d+) Party People gehen hin$/, "🔥 $1 party people are going"], [/^Läuft jetzt (\d+)$/, "On now $1"], [/^● noch (\d+) h ?(\d*)$/, (m, h, mi) => `● ${h} h${mi ? " " + mi : ""} left`], [/^● noch (\d+) Min\.$/, "● $1 min left"],
   [/^Hey (.+), neue Events für dich & (.+)!$/, "Hey $1, new events for you & $2!"], [/^Hey (.+), neue Events für dich!$/, "Hey $1, new events for you!"], [/^Hey Party People, neue Events für euch!$/, "Hey Party People, new events for you!"], [/^(\d+) von (\d+)$/, "$1 of $2"], [/^(\d+) kommend$/, "$1 upcoming"], [/^IN (\d+) TAGEN$/, "IN $1 DAYS"], [/^✓ Schon erlebt \((\d+)\)$/, "✓ Been there ($1)"],
   [/^🔥 (\d+) dabei$/, "🔥 $1 going"], [/^(\d+) dabei$/, "$1 going"], [/^🚗 (\d+) freie Plätze$/, "🚗 $1 free seats"], [/^🙋 (\d+) sucht Mitfahrt$/, "🙋 $1 need a ride"],
   [/^🚗 Ich fahre · (\d+) frei$/, "🚗 I'm driving · $1 free"], [/^🚗 Deine Crew sieht: (\d+) Plätze frei$/, "🚗 Your crew sees: $1 free seats"],
@@ -1363,6 +1398,7 @@ function aktionen(ev, mitTicket) {
   if (ev.link) box.append(label(link("btn", ev.link, ""), "🎟", mitTicket ? "Ticket" : "Tickets"));
   else box.append(label(el("span", "btn", ""), "🎟", "–"));
   const ja = zusagen.has(evKey(ev));
+  const pz = partyZeile(ev); if (pz) box.append(pz);
   const crewBox = crewZeile(ev);
   if (crewBox) box.append(crewBox);
   let d;
@@ -1372,7 +1408,7 @@ function aktionen(ev, mitTicket) {
     const weg = el("button", "weg", "✕");
     weg.title = "Zusage zurückziehen"; weg.setAttribute("aria-label", "Zusage zurückziehen");
     weg.onclick = async () => {
-      zusagen.delete(evKey(ev)); setSpeichern("te-dabei", zusagen); zeigeToast("Zusage zurückgezogen"); allesNeuZeichnen();
+      zusagen.delete(evKey(ev)); setSpeichern("te-dabei", zusagen); partyMelden(ev, false); zeigeToast("Zusage zurückgezogen"); allesNeuZeichnen();
       if (crew.code) { await crewMelden(ev, "weg"); crewLaden(); }
     };
     const zeile = el("div", "dabei-zeile"); zeile.append(d, weg);
@@ -1462,13 +1498,13 @@ function plaetzeWaehlen(ev) {
 }
 async function zusageStarten(ev) {
   if (!crew.code) { crewDialog(ev); return; }
-  zusagen.add(evKey(ev)); setSpeichern("te-dabei", zusagen); favHinzu(ev); kick(1.2); allesNeuZeichnen();
+  zusagen.add(evKey(ev)); setSpeichern("te-dabei", zusagen); partyMelden(ev, true); favHinzu(ev); kick(1.2); allesNeuZeichnen();
   const ok = await crewMelden(ev, "dabei");
   zeigeToast(ok ? "✓ Zugesagt – deine Crew sieht's" : "Zusage gemerkt – Server gerade nicht erreichbar");
   crewLaden();
 }
 function nurWhatsApp(ev) {
-  zusagen.add(evKey(ev)); setSpeichern("te-dabei", zusagen); favHinzu(ev);
+  zusagen.add(evKey(ev)); setSpeichern("te-dabei", zusagen); partyMelden(ev, true); favHinzu(ev);
   const l = dabeiLink(ev);
   try { navigator.clipboard.writeText(waText(l)); } catch (e) {}
   location.href = waApp(l);
@@ -1505,7 +1541,7 @@ function einladenLink() {
 function crewDialog(ev, vorgabeCode) {
   const f = el("div", "");
   f.append(el("p", "", "Sag deiner Crew direkt in der App, dass du dabei bist. Alle mit demselben Crew-Code sehen deinen Spitznamen bei den Events, für die du zusagst."));
-  const n = el("input"); n.placeholder = "Spitzname (z. B. Jörg)"; n.maxLength = 30; n.value = crew.name || "";
+  const n = el("input"); n.placeholder = "Spitzname (z. B. Alex)"; n.maxLength = 30; n.value = crew.name || "";
   const c = el("input"); c.placeholder = "Crew-Code (z. B. 7K3Q-X9TP)"; c.maxLength = 40; c.value = vorgabeCode || crew.code || ""; c.autocapitalize = "characters";
   f.append(el("label", "", "Spitzname"), n, el("label", "", "Crew-Code – gleicher Code = gleiche Crew"), c);
   const fehler = el("div", "popup-fehler", ""); f.append(fehler);
@@ -1553,6 +1589,7 @@ function datenschutzZeigen() {
     ["Favoriten & Einstellungen", "Bleiben nur auf deinem Handy (Speicher des Browsers bzw. der App). Löschen: App-/Browserdaten löschen."],
     ["Standort", "Wird nicht gespeichert. Für Fahrzeit und Ortsnamen gehen die Koordinaten kurz an OpenStreetMap-Dienste (OSRM, Nominatim) bzw. transport.opendata.ch."],
     ["Crew-Zusagen (freiwillig)", "Nur Spitzname, Crew-Code, Event und eine zufällige Geräte-Nummer – auf dem Server von howeverto.me. Nach dem Event automatisch gelöscht. Der Hoster führt technisch übliche Zugriffsprotokolle."],
+    ["«Party People gehen hin»", "Wenn du «Ich bin dabei» tippst, zählt die App dich anonym mit: nur das Event und eine verschlüsselte Zufallsnummer (kein Name, kein Standort) auf howeverto.me. Nach dem Event automatisch gelöscht."],
     ["Wohnort", "Wenn du einen Startort eingibst, wird der Ortsname bei Open-Meteo bzw. transport.opendata.ch gesucht und nur auf deinem Handy gespeichert."],
     ["Wetter", "Für die Vorhersage gehen nur die Koordinaten des Events an Open-Meteo – nie dein Standort."],
     ["Nutzerzähler", "Einmal pro Tag meldet die App anonym «ein Gerät war da» (gehashte Zufallsnummer und ob App oder Browser) an howeverto.me – keine IP, kein Standort, kein Name."],
@@ -1967,7 +2004,7 @@ function nachtModus(t) {
   if (t.ende) block("🏁 Ende", t.ende);
   const liste = crew.code && crewZusagen[evKey(t)];
   if (liste && liste.length) block("👥 Crew", `${liste.length} dabei`, liste.map(p => p.ich === ichHash ? "du" : p.name).join(" · "));
-  n.append(link("", `https://www.google.com/maps/dir/?api=1&destination=${standort.aktiv && standort.name ? encodeURIComponent(standort.name) : standort.aktiv ? standort.lat + "," + standort.lon : encodeURIComponent(basis().basis)}&travelmode=driving`, "🏠 Navi nach Hause"));
+  if (standort.aktiv) n.append(link("", `https://www.google.com/maps/dir/?api=1&destination=${standort.name ? encodeURIComponent(standort.name) : standort.lat + "," + standort.lon}&travelmode=driving`, "🏠 Navi nach Hause"));
   if (startBeiBasis() && t.oev_letzte && t.oev_letzte.sbb) n.append(link("", t.oev_letzte.sbb, "🚆 Verbindung im SBB-Fahrplan"));
   else if (standort.aktiv) n.append(link("", `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent([t.club, t.adresse || t.stadt].filter(Boolean).join(", "))}&destination=${standort.lat},${standort.lon}&travelmode=transit`, "🚆 ÖV-Verbindung nach Hause"));
   n.append(link("", "https://www.google.com/maps/search/Taxi/", "🚕 Taxi in der Nähe"));
@@ -2276,7 +2313,8 @@ function anreiseBlock(ev) {
     if (istLive(ev)) z.append(el("span", "live-tag", "AB HIER"));
     box.append(z);
   }
-  if (!startBeiBasis()) {
+  const fix = startBeiBasis() && !!(ev.oev_hin || ev.oev_letzte || ev.oev_erste);   // fixe Zeiten gibt es nur noch aus alten Ausgaben
+  if (!fix) {
     const z = el("div", "", "🚆 ÖV ab hier: ");
     z.append(link("", "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent([ev.club, ev.adresse || ev.stadt].filter(Boolean).join(", ")) + "&travelmode=transit", "Verbindung ↗"));
     box.append(z);
@@ -2290,7 +2328,7 @@ function anreiseBlock(ev) {
     if (!standort.aktiv) z.append(link("", "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent([ev.club, ev.adresse].filter(Boolean).join(", ")) + "&travelmode=transit", "Route ↗"));
     box.append(z);
   }
-  if (!startBeiBasis() && (ev.oev_letzte || ev.oev_erste)) {   // fixe Zeiten gelten nur ab Beckenried – hier lieber live suchen
+  if (!fix) {   // fixe Zeiten gelten nur ab Beckenried – hier lieber live suchen
     const z = el("div", "", "🌙 Heimweg: ");
     z.append(link("", `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent([ev.club, ev.adresse || ev.stadt].filter(Boolean).join(", "))}&destination=${standort.lat},${standort.lon}&travelmode=transit`, "Verbindung ↗"));
     box.append(z);
@@ -2331,7 +2369,9 @@ function eventKarte(ev, rang) {
   if (merkliste.has(evKey(ev))) k.classList.add("gemerkt");
   const titel = el("div", "titel", ev.name);
   if (zusagen.has(evKey(ev))) titel.append(el("span", "dabei-tag", "DABEI ✓"));
+  else if (!rang && fuerDich(ev)) titel.append(el("span", "fuer-dich-tag", "FÜR DICH"));
   k.append(titel);
+  if (laeuftJetzt(ev)) oben.querySelector(".zeit").append(el("span", "noch", "● " + nochText(ev)));
   const ort = el("div", "ort", [ev.club, ev.stadt].filter(Boolean).join(" · "));
   if (ev.adresse) ort.append(el("small", "", ev.adresse));
   k.append(ort);
@@ -2656,6 +2696,120 @@ async function torRegion(k) {
   if (k !== region) await regionWechseln(k); else zeigeToast(`📍 ${basis().name}`);
 }
 
+// ======================= PARTY PEOPLE ZÄHLER =======================
+// Anonym für alle: wer «Ich bin dabei» tippt, zählt mit. Nur Event + gehashte Zufallsnummer, nach dem Event gelöscht.
+const PARTY_URL = "https://howeverto.me/techno/dabei.php";
+let partyZahlen = {};
+async function partyMelden(ev, an) {
+  try {
+    await fetch(PARTY_URL, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event_key: evKey(ev), datum: ev.datum, geraet: geraetId(), aktion: an ? "an" : "weg" }) });
+    partyLaden();
+  } catch (e) {}
+}
+async function partyLaden() {
+  const keys = [...new Set([...daten.events, ...(daten.ausblick || [])].map(evKey))].slice(0, 120);
+  if (!keys.length) return;
+  try {
+    const r = await fetch(`${PARTY_URL}?keys=${encodeURIComponent(keys.join(","))}`, { cache: "no-store" });
+    if (!r.ok) return;
+    const j = await r.json(); const neu = j.zahlen || {};
+    if (JSON.stringify(neu) === JSON.stringify(partyZahlen)) return;
+    partyZahlen = neu; allesNeuZeichnen();
+  } catch (e) {}
+}
+// bestehende Zusagen einmalig nachmelden (Zusagen von vor diesem Update)
+function partyNachmelden() {
+  let schon = null; try { schon = localStorage.getItem("te-party-sync"); } catch (e) {}
+  if (schon) return;
+  for (const ev of daten.events) if (zusagen.has(evKey(ev))) partyMelden(ev, true);
+  try { localStorage.setItem("te-party-sync", "1"); } catch (e) {}
+}
+function partyZeile(ev) {
+  const n = partyZahlen[evKey(ev)] || 0;
+  if (n < 3) return null;   // erst ab 3 – «1 geht hin» wäre eher traurig als motivierend
+  return el("div", "party-zahl", `🔥 ${n} Party People gehen hin`);
+}
+
+// ======================= LÄUFT JETZT =======================
+function laeuftJetzt(ev, jetzt = new Date()) { return startDatum(ev) <= jetzt && endDatum(ev) > jetzt; }
+function nochText(ev) {
+  const min = Math.round((endDatum(ev) - new Date()) / 60000);
+  return min >= 60 ? `noch ${Math.floor(min / 60)} h${min % 60 >= 15 ? " " + String(min % 60).padStart(2, "0") : ""}` : `noch ${min} Min.`;
+}
+
+// ======================= FÜR DICH =======================
+let geschmack = []; try { geschmack = JSON.parse(localStorage.getItem("te-geschmack") || "[]"); } catch (e) {}
+if (!Array.isArray(geschmack)) geschmack = [];
+let geschmackOffen = false;
+function fuerDich(ev) { return geschmack.length > 0 && familien(ev).some(f => geschmack.includes(f)); }
+function geschmackBox() {
+  let weg = null; try { weg = localStorage.getItem("te-geschmack-weg"); } catch (e) {}
+  if (geschmack.length && !geschmackOffen) {
+    const z = el("div", "geschmack-klein");
+    const t = el("span"); t.append(document.createTextNode("💚 Für dich: "), el("b", "", geschmack.join(", ")));
+    const b = el("button", "", "ändern"); b.type = "button"; b.onclick = () => { geschmackOffen = true; listeZeigen(); };
+    z.append(t, b); return z;
+  }
+  if (!geschmackOffen && weg) return null;
+  const box = el("div", "geschmack");
+  box.append(el("b", "", "🎧 Was hörst du gern?"), el("small", "", "Tipp 1–3 Sounds an – passende Partys rutschen nach oben."));
+  const wahl = new Set(geschmack);
+  const r = el("div", "reihe");
+  const alle = GENRE_FAMILIEN.map(([n]) => n);
+  for (const g of alle) {
+    const c = el("button", "chip" + (wahl.has(g) ? " on" : ""), g); c.type = "button";
+    c.onclick = () => { if (wahl.has(g)) wahl.delete(g); else if (wahl.size < 3) wahl.add(g); else { zeigeToast("Maximal 3 – nimm erst einen raus"); return; } c.classList.toggle("on", wahl.has(g)); };
+    r.append(c);
+  }
+  box.append(r);
+  const k = el("div", "knoepfe");
+  const ok = el("button", "", "✓ Fertig"); ok.type = "button";
+  ok.onclick = () => { geschmack = [...wahl]; try { localStorage.setItem("te-geschmack", JSON.stringify(geschmack)); } catch (e) {} geschmackOffen = false; listeZeigen(); if (geschmack.length) { zeigeToast("💚 Passende Partys stehen jetzt oben"); hihat(); } };
+  const sp = el("button", "spaeter", geschmack.length ? "Abbrechen" : "Später"); sp.type = "button";
+  sp.onclick = () => { geschmackOffen = false; try { localStorage.setItem("te-geschmack-weg", "1"); } catch (e) {} listeZeigen(); };
+  k.append(ok, sp); box.append(k);
+  return box;
+}
+
+// ======================= SAFER CLUBBING =======================
+// Nur feste Nummern und Links – Öffnungszeiten ändern sich, die stehen auf den verlinkten Seiten.
+const SAFER = {
+  ch: {
+    nummern: [["144", "Sanität", true], ["117", "Polizei"], ["112", "Notruf EU"], ["145", "Tox Info Suisse"]],
+    angebote: [
+      ["Zürich", "saferparty.ch", "https://www.saferparty.ch/", "Drug Checking (DIZ), Substanzwarnungen"],
+      ["Bern", "raveitsafe.ch", "https://www.raveitsafe.ch/", "Drug Checking & Beratung (Contact Nightlife)"],
+      ["Basel", "saferdancebasel.ch", "https://www.saferdancebasel.ch/", "Drug Checking (DIBS), Warnungen"]
+    ]
+  },
+  muc: {
+    nummern: [["112", "Notruf", true], ["110", "Polizei"], ["089 19240", "Giftnotruf"]],
+    angebote: [["München", "mindzone.info", "https://mindzone.info/", "Infos & Beratung von Party People für Party People"]]
+  }
+};
+function saferZeigen() {
+  const box = document.getElementById("safer"); if (!box) return;
+  const s = SAFER[region] || SAFER.ch;
+  const offen = box.open; box.innerHTML = "";
+  box.append(el("summary", "", "🫶 Safer Clubbing"));
+  const i = el("div", "safer-inhalt");
+  i.append(el("h4", "", "IM NOTFALL"));
+  const n = el("div", "safer-nummern");
+  for (const [nr, was, sos] of s.nummern) { const a = link(sos ? "sos" : "", "tel:" + nr.replace(/\s/g, ""), nr); a.append(el("small", "", was)); n.append(a); }
+  i.append(n);
+  i.append(el("h4", "", "AUFEINANDER ACHTEN"));
+  const ul = el("ul");
+  ["Genug Wasser trinken und Pausen an der frischen Luft machen", "Auf deine Crew achten – niemand geht allein heim", "Awareness-Team oder Personal im Club ansprechen, wenn es jemandem nicht gut geht", "Im Notfall sofort Hilfe rufen und offen sagen, was genommen wurde"].forEach(t => ul.append(el("li", "", t)));
+  i.append(ul);
+  i.append(el("h4", "", "INFOS & DRUG CHECKING"));
+  const ul2 = el("ul");
+  for (const [ort, name, url, was] of s.angebote) { const li = el("li"); li.append(el("b", "", ort + ": "), link("", url, name), document.createTextNode(" – " + was)); ul2.append(li); }
+  i.append(ul2);
+  i.append(el("p", "safer-klein", "Anonym und kostenlos. Aktuelle Zeiten und Warnungen auf den Seiten der Angebote."));
+  box.append(i); box.open = offen;
+}
+
 // ======================= TICKETS =======================
 let tickets = [];
 function ticketsZeigen() {
@@ -2834,7 +2988,7 @@ setInterval(tick, 1000);
 
 // ======================= WOCHENENDE =======================
 let daten = { events: [], top3: [], ausblick: [] };
-const filter = { we: null, tag: "Alle", km: 100, genre: "Alle", stadt: "Alle", sort: "zeit", merk: false, djs: false };
+const filter = { jetzt: false, we: null, tag: "Alle", km: 100, genre: "Alle", stadt: "Alle", sort: "zeit", merk: false, djs: false };
 // ---- Merkliste & Zusagen: bleiben NUR auf diesem Gerät (localStorage) – nichts geht an einen Server ----
 function setLaden(key) { try { return new Set(JSON.parse(localStorage.getItem(key) || "[]")); } catch (e) { return new Set(); } }
 function setSpeichern(key, set) { try { localStorage.setItem(key, JSON.stringify([...set])); } catch (e) {} }
@@ -2985,6 +3139,14 @@ function filterZeigen() {
   m.title = "Nur gemerkte Events";
   m.onclick = () => { filter.merk = !filter.merk; filterZeigen(); listeZeigen(); };
   r1.append(m, sort);
+  const nJetzt = daten.events.filter(e => laeuftJetzt(e)).length;
+  if (!nJetzt) filter.jetzt = false;
+  else {
+    const j = el("button", "chip jetzt" + (filter.jetzt ? " on" : ""), `Läuft jetzt ${nJetzt}`);
+    j.title = "Partys, die gerade laufen";
+    j.onclick = () => { filter.jetzt = !filter.jetzt; filterZeigen(); listeZeigen(); };
+    const rj = el("div", "reihe jetzt-reihe"); rj.append(j); f.append(rj);
+  }
   f.append(r1);
   // Zeile 2: Fahrzeit
   const kmReihe = chipReihe([10, 25, 50, 100, 999], "km", w => w === 999 ? "Alle" : `${w} km`);
@@ -3019,7 +3181,7 @@ function filterZeigen() {
 function listeZeigen() {
   const liste = document.getElementById("event-liste");
   liste.innerHTML = "";
-  const evW = weEvents();
+  const evW = filter.jetzt ? daten.events.filter(e => laeuftJetzt(e)) : weEvents();
   let evs = evW.filter(e =>
     (filter.tag === "Alle" || (e.tag || TAGE[startDatum(e).getDay()]) === filter.tag) &&
     (!standort.aktiv || filter.km === 999 || luftlinie(e) <= filter.km) &&
@@ -3027,7 +3189,9 @@ function listeZeigen() {
     (!filter.djs || djsVon(e).length > 0) &&
     (filter.stadt === "Alle" || e.stadt === filter.stadt) &&
     (!filter.merk || merkliste.has(evKey(e))));
-  evs.sort((a, b) => filter.sort === "zeit" && standort.aktiv ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));
+  evs.sort((a, b) => filter.jetzt ? endDatum(b) - endDatum(a) : filter.sort === "zeit" && standort.aktiv ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));
+  if (geschmack.length && !filter.jetzt) evs.sort((a, b) => fuerDich(b) - fuerDich(a));   // «Für dich» nach oben, sonst Reihenfolge behalten
+  const gb = daten.events.length ? geschmackBox() : null; if (gb) liste.append(gb);
   document.getElementById("we-anzahl").textContent = daten.events.length ? `${evs.length} von ${evW.length}` : "";
   if (!daten.events.length && daten.vorbei) {
     const l = el("div", "weekend-aus");
@@ -3348,8 +3512,8 @@ async function start() {
     ? `⟳ ${String(daten.stand).replace(/\.20\d\d/, ".")}${daten.wochenende ? " · Weekend " + kurzMonat(daten.wochenende) : ""}`
     : "";
   document.getElementById("we-datum").textContent = daten.wochenende || "";
-  ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen();
-  freshDropPruefen(); morgenDanach();
+  ticketsZeigen(); topZeigen(); filterZeigen(); listeZeigen(); ausblickZeigen(); saferZeigen();
+  freshDropPruefen(); morgenDanach(); partyLaden(); partyNachmelden();
 }
 document.getElementById("crew-fuss").onclick = () => crewDialog(null);
 document.getElementById("ds-link").onclick = () => datenschutzZeigen();
@@ -3406,6 +3570,7 @@ function ladeWeg() {
   setTimeout(() => { l.classList.add("weg"); setTimeout(() => l.remove(), 500); }, Math.max(0, 700 - (performance.now() - ladeStart)));
 }
 setTimeout(ladeWeg, 6000);
+setInterval(() => { if (!document.hidden) { partyLaden(); if (daten.events.some(e => laeuftJetzt(e)) || filter.jetzt) { filterZeigen(); listeZeigen(); } } }, 180000);
 start().then(() => {
   ladeWeg();
   abzeichenPruefen(false);

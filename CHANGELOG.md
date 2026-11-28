@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.49.0 – 28.11.2026
+- 🎧 Neuer Radio-Knopf: eigenes Maskottchen – Schallplatte mit Gesicht und Neon-Kopfhörern, Schild «▶ RADIO»; winkt alle paar Sekunden; läuft Musik, wippt es im Takt mit geschlossenen Augen, Noten steigen auf, Schild wird zu «● ON AIR»
+- Fix Englisch: Wetter im Countdown («Bewölkt» → «Cloudy»)
+
 ## v1.48.2 – 26.11.2026
 - Fix: Poster passen sich der Kartenbreite an – auf Tablet und PC ist der Titel nicht mehr abgeschnitten; beim Drehen werden sie neu angepasst
 

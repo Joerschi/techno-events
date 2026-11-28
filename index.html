@@ -259,6 +259,47 @@
   body.zeit-nacht .radio:not(.an) .m-augen { display: none; } body.zeit-nacht .radio:not(.an) .m-zu { display: inline; }
   body.zeit-nacht:not(.ruhig) .radio:not(.an) .m-zzz text { animation: mNote 2.5s ease-out infinite; } body.zeit-nacht .radio:not(.an) .m-zzz text:nth-child(2) { animation-delay: -1.2s; }
   body.zeit-nacht .radio:not(.an) .m-kopf { animation: none !important; transform: rotate(-12deg); }
+  /* Start-Tor: beim ersten Öffnen ohne Standort – kleine Party-Szene + «Wo feierst du?» */
+  .tor { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); background: radial-gradient(ellipse at 50% 30%, #2a0830, #050307 70%); overflow: hidden; text-align: center; animation: torAuf .5s ease-out; }
+  .tor[hidden] { display: none; }
+  @keyframes torAuf { from { opacity: 0; } }
+  .tor.weg { animation: torWeg .45s ease-in forwards; }
+  @keyframes torWeg { to { opacity: 0; transform: scale(1.08); } }
+  .tor-buehne { position: relative; width: min(340px, 86vw); height: 220px; flex: none; }
+  .tor-laser { position: absolute; left: 50%; top: 58px; width: 3px; height: 260px; transform-origin: 50% 0; border-radius: 2px; opacity: .8; mix-blend-mode: screen; }
+  .tor-laser:nth-child(1) { background: linear-gradient(#39ff14, transparent); animation: torSweep 3.75s ease-in-out infinite; }
+  .tor-laser:nth-child(2) { background: linear-gradient(#ff10f0, transparent); animation: torSweep 3.75s ease-in-out infinite reverse; }
+  .tor-laser:nth-child(3) { background: linear-gradient(#00f0ff, transparent); animation: torSweep 5.6s ease-in-out -1s infinite; }
+  @keyframes torSweep { 0%, 100% { transform: rotate(-55deg); } 50% { transform: rotate(55deg); } }
+  .tor-m { position: absolute; left: 50%; top: 0; width: 120px; height: 120px; margin-left: -60px; filter: drop-shadow(0 0 12px rgba(255,16,240,.8)) drop-shadow(0 0 22px rgba(255,106,0,.45)); }
+  .tor-m svg { width: 100%; height: 100%; overflow: visible; }
+  .tor-m .m-zu { display: inline; } .tor-m .m-augen, .tor-m .m-zzz, .tor-m .m-mund-offen { display: none; } .tor-m .m-noten { opacity: 1; }
+  .tor-m .m-arm-l, .tor-m .m-hand-l { transform: rotate(75deg); } .tor-m .m-arm-r, .tor-m .m-hand-r { transform: rotate(-75deg); }
+  body:not(.ruhig) .tor-m .m-kopf { animation: mWippen .46875s ease-in-out infinite; }
+  body:not(.ruhig) .tor-m .m-arm-l, body:not(.ruhig) .tor-m .m-hand-l { animation: mArmL .46875s ease-in-out infinite; }
+  body:not(.ruhig) .tor-m .m-arm-r, body:not(.ruhig) .tor-m .m-hand-r { animation: mArmR .46875s ease-in-out infinite; }
+  body:not(.ruhig) .tor-m .m-noten text { animation: mNote 1.875s ease-out infinite; } body:not(.ruhig) .tor-m .m-noten text:nth-child(2) { animation-delay: -.9s; }
+  .tor-pult { position: absolute; left: 50%; top: 112px; width: 170px; height: 26px; margin-left: -85px; border-radius: 4px; background: linear-gradient(180deg, #1c1c24, #08080b); border-top: 2px solid #39ff14; box-shadow: 0 0 16px rgba(57,255,20,.45); }
+  .tor-crowd { position: absolute; left: 0; right: 0; bottom: 0; height: 70px; display: flex; justify-content: space-around; align-items: flex-end; }
+  .tor-crowd i { display: block; width: 30px; height: 56px; position: relative; background: #000; border-radius: 15px 15px 4px 4px; transform-origin: 50% 100%; }
+  .tor-crowd i::before { content: ""; position: absolute; left: 6px; top: -18px; width: 18px; height: 18px; border-radius: 50%; background: #000; }
+  .tor-crowd i::after { content: ""; position: absolute; left: -6px; top: -26px; width: 42px; height: 30px; border: 4px solid #000; border-bottom: 0; border-radius: 50% 50% 0 0; clip-path: inset(0 0 40% 0); opacity: 0; }
+  body:not(.ruhig) .tor-crowd i { animation: torHuepf .46875s ease-in-out infinite; }
+  .tor-crowd i:nth-child(odd) { animation-delay: -.23s !important; height: 48px; }
+  .tor-crowd i:nth-child(3n)::after { opacity: 1; }
+  @keyframes torHuepf { 50% { transform: translateY(-7px); } }
+  .tor-crowd { filter: drop-shadow(0 -2px 6px rgba(255,16,240,.55)); }
+  .tor h2 { margin: 6px 0 0; font: 900 clamp(1.4rem, 6.4vw, 2rem) Unbounded, sans-serif; color: #fff; text-shadow: 0 0 14px rgba(255,16,240,.8); letter-spacing: .02em; }
+  .tor p { margin: 0; max-width: 340px; color: #d9cfe0; font-size: .95rem; line-height: 1.45; }
+  .tor-knoepfe { display: grid; gap: 10px; width: min(340px, 100%); margin-top: 4px; }
+  .tor-knoepfe button { font: 800 .95rem "Space Mono", monospace; padding: 14px 12px; border-radius: 12px; border: 2px solid var(--line); background: #0d0a12; color: #fff; cursor: pointer; }
+  .tor-knoepfe .tor-gps { background: #39ff14; color: #000; border-color: #39ff14; box-shadow: 0 0 18px rgba(57,255,20,.55); }
+  .tor-regionen { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tor-regionen button.tipp { border-color: var(--laser); box-shadow: 0 0 12px rgba(255,16,240,.5); }
+  .tor-regionen .flagge { width: 18px; height: 12px; vertical-align: -1px; margin-right: 6px; }
+  .tor-ort { background: none !important; border: 0 !important; color: var(--cyan) !important; font-size: .82rem !important; padding: 6px !important; text-decoration: underline; }
+  .tor-fehler { color: #ffb36b; font-size: .85rem; min-height: 1.2em; }
+  .weekend-aus { border: 1px dashed var(--laser); padding: 22px 18px; text-align: center; color: #e6dcd2; line-height: 1.5; }
   /* Radio als Mini-DJ-Deck */
   .radio-leiste { pointer-events: auto; position: relative; flex: 1; max-width: 460px; margin: 0 auto; padding: 12px 12px 24px; background: linear-gradient(180deg, #17171c, #0b0b0e); border: 1px solid #2c2c36; border-top: 2px solid var(--orange); border-radius: 10px; box-shadow: 0 0 18px rgba(255,106,0,.35), inset 0 1px 0 rgba(255,255,255,.06); font-family: Inter, sans-serif; }
   .radio-leiste[hidden] { display: none; }
@@ -858,7 +899,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.50.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.51.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -941,7 +982,8 @@ const DICT = {
   "Alle": "All", "Fr": "Fri", "Sa": "Sat", "So": "Sun", "Schweiz": "Switzerland", "München": "Munich", "Merken": "Save", "Nur gemerkte Events": "Saved events only",
   "Genre & Stadt": "Genre & city", "Sound": "Sound", "Stadt": "City", "Meine DJs": "My DJs", "alle": "all", "Kalender": "Calendar", "Navi": "Navi", "Crew": "Crew", "Tickets": "Tickets", "Ticket": "Ticket",
   "🎧 Reinhören": "🎧 Listen", "🙋 Ich bin dabei": "🙋 I'm in", "Zusage zurückziehen": "Withdraw", "🚗 Ich fahre": "🚗 I'm driving", "🙋 Suche Mitfahrt": "🙋 Need a ride", "🙋 Suche Mitfahrt ✓": "🙋 Need a ride ✓",
-  "Keine Events mit diesen Filtern – grösseren Umkreis wählen?": "No events with these filters – try a bigger radius?", "Noch nichts gemerkt – tipp auf ☆ bei einem Event.": "Nothing saved yet – tap ☆ on an event.",
+  "Keine Events mit diesen Filtern – grösseren Umkreis wählen?": "No events with these filters – try a bigger radius?",
+  "Wo feierst du?": "Where are you partying?", "Sag uns, wo du bist – dann siehst du die Partys in deiner Nähe.": "Tell us where you are – and see the parties near you.", "📍 Meinen Standort verwenden": "📍 Use my location", "🏠 Wohnort eingeben": "🏠 Enter my town", "📍 Standort blockiert – wähl einfach deine Region:": "📍 Location blocked – just pick your region:", "📍 Standort nicht gefunden – wähl einfach deine Region:": "📍 Location not found – just pick your region:", "Schweiz": "Switzerland", "München": "Munich", "Dieses Weekend ist durch 🥲": "This weekend is over 🥲", "Donnerstag früh kommen die nächsten Partys. Schau so lange in den Ausblick oder in deine Favoriten.": "The next parties drop on Thursday morning. Until then, check the outlook or your favourites.", "Noch nichts gemerkt – tipp auf ☆ bei einem Event.": "Nothing saved yet – tap ☆ on an event.",
   "Der Ausblick kommt mit der nächsten Ausgabe.": "Coming up arrives with the next edition.", "Die Top 3 kommen mit der nächsten Ausgabe.": "The top 3 arrive with the next edition.",
   "Jeden Donnerstag früh erscheinen hier alle Techno-Events der nächsten drei Wochenenden.": "Every Thursday morning, all techno events for the next three weekends appear here.",
   "Noch keine Favoriten": "No favourites yet", "Tippe bei einem Event auf ☆ – dann erscheint es hier mit Countdown. Gespeichert nur auf deinem Handy.": "Tap ☆ on an event – it shows up here with a countdown. Saved only on your phone.",
@@ -2336,6 +2378,7 @@ const REGIONEN = {
 };
 // Region folgt beim Start immer dem Standort; Umschalten von Hand gilt nur bis zum nächsten Öffnen
 let region = "ch", regionManuell = false;
+try { const r = localStorage.getItem("te-start-region"); if (r && REGIONEN[r]) region = r; } catch (e) {}
 try { localStorage.removeItem("te-region"); } catch (e) {}
 function basis() { return REGIONEN[region]; }
 function km(lat1, lon1, lat2, lon2) {   // Luftlinie (Haversine)
@@ -2486,7 +2529,7 @@ function gpsStarten() {
   if (!("geolocation" in navigator)) { zeigeToast("Standort wird auf diesem Gerät nicht unterstützt"); return; }
   standortAnzeigen("wird gesucht …"); metaStart("Standort …");
   navigator.geolocation.getCurrentPosition(async (pos) => {
-    standort.lat = pos.coords.latitude; standort.lon = pos.coords.longitude; standort.aktiv = true;
+    standort.lat = pos.coords.latitude; standort.lon = pos.coords.longitude; standort.aktiv = true; torGps = false;
     if (!regionManuell) { const r = naechsteRegion(standort.lat, standort.lon); if (r !== region) { region = r; await start(); } }
     try { localStorage.setItem("te-standort", "gps"); } catch (e) {}
     standortAnzeigen("Mein Standort"); metaStart("Mein Standort");
@@ -2497,11 +2540,64 @@ function gpsStarten() {
   }, (err) => {
     standort.aktiv = false; standortAnzeigen();
     metaStart();
+    if (torGps) { torGps = false; torZeigen(err.code === 1 ? "📍 Standort blockiert – wähl einfach deine Region:" : "📍 Standort nicht gefunden – wähl einfach deine Region:"); return; }
     if (stillerStart) return;   // beim automatischen Start leise bei Beckenried bleiben
     zeigeToast(err.code === 1 ? "📍 Standort blockiert – siehe Tipp unten" : "Standort nicht gefunden – ist GPS am Handy an?");
     if (err.code === 1) document.getElementById("standort-hilfe").hidden = false;
   }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
 };
+
+// ======================= START-TOR =======================
+// Erstes Öffnen ohne Standort: nicht einfach Schweizer Events zeigen, sondern fragen, wo gefeiert wird
+let torAktiv = false, torTimer = 0;
+function torVorschlag() {
+  let tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+  const sp = (navigator.languages || [navigator.language || ""]).join(",");
+  if (/Europe\/(Berlin|Vienna)/.test(tz) || /\bde-(DE|AT)\b/.test(sp)) return "muc";
+  if (/Europe\/Zurich/.test(tz) || /-CH\b/.test(sp)) return "ch";
+  return "";
+}
+function torZu() {
+  const t = document.getElementById("tor"); if (!t || t.hidden) return;
+  torAktiv = false; t.classList.add("weg");
+  torTimer = setTimeout(() => { t.hidden = true; t.classList.remove("weg"); }, 450);
+}
+function torZeigen(meldung) {
+  let t = document.getElementById("tor");
+  if (!t) {
+    t = el("div", "tor"); t.id = "tor"; t.setAttribute("role", "dialog"); t.setAttribute("aria-modal", "true");
+    const b = el("div", "tor-buehne");
+    for (let i = 0; i < 3; i++) b.append(el("span", "tor-laser"));
+    const m = el("div", "tor-m"); const svg = document.querySelector("#radio-knopf svg"); if (svg) m.append(svg.cloneNode(true));
+    const crowd = el("div", "tor-crowd"); for (let i = 0; i < 9; i++) crowd.append(el("i"));
+    b.append(m, el("div", "tor-pult"), crowd);
+    const knoepfe = el("div", "tor-knoepfe");
+    const gps = el("button", "tor-gps", "📍 Meinen Standort verwenden"); gps.type = "button";
+    const reg = el("div", "tor-regionen"); const tipp = torVorschlag();
+    for (const k of Object.keys(REGIONEN)) {
+      const r = el("button", k === tipp ? "tipp" : ""); r.type = "button";
+      r.innerHTML = document.querySelector(`#region button:nth-child(${Object.keys(REGIONEN).indexOf(k) + 1}) svg`)?.outerHTML || "";
+      r.append(document.createTextNode(REGIONEN[k].name));
+      r.onclick = () => torRegion(k);
+      reg.append(r);
+    }
+    const ort = el("button", "tor-ort", "🏠 Wohnort eingeben"); ort.type = "button";
+    knoepfe.append(gps, reg, ort);
+    t.append(b, el("h2", "", "Wo feierst du?"), el("p", "", "Sag uns, wo du bist – dann siehst du die Partys in deiner Nähe."), el("div", "tor-fehler", ""), knoepfe);
+    gps.onclick = () => { torZu(); torGps = true; gpsStarten(); };
+    ort.onclick = () => { torZu(); standortDialog(); };
+    document.body.append(t);
+  }
+  clearTimeout(torTimer); t.classList.remove("weg");
+  t.querySelector(".tor-fehler").textContent = meldung || "";
+  t.hidden = false; torAktiv = true;
+}
+let torGps = false;
+async function torRegion(k) {
+  try { localStorage.setItem("te-start-region", k); } catch (e) {}
+  torZu();
+  if (k !== region) await regionWechseln(k); else zeigeToast(`📍 ${basis().name}`);
+}
 
 // ======================= TICKETS =======================
 let tickets = [];
@@ -2814,7 +2910,7 @@ function weAktiv() {
   }
   return filter.we;
 }
-function weEvents() { const w = weAktiv(); return w ? daten.events.filter(e => weKey(e) === w) : daten.events; }
+function weEvents() { const w = weAktiv(), jetzt = new Date(); return daten.events.filter(e => (!w || weKey(e) === w) && endDatum(e) > jetzt); }
 function filterZeigen() {
   document.body.classList.toggle("ohne-ampel", !startBeiBasis());
   const f = document.getElementById("filter");
@@ -2876,6 +2972,12 @@ function listeZeigen() {
     (!filter.merk || merkliste.has(evKey(e))));
   evs.sort((a, b) => filter.sort === "zeit" && standort.aktiv ? reiseMin(a) - reiseMin(b) : startDatum(a) - startDatum(b));
   document.getElementById("we-anzahl").textContent = daten.events.length ? `${evs.length} von ${evW.length}` : "";
+  if (!daten.events.length && daten.vorbei) {
+    const l = el("div", "weekend-aus");
+    l.append(el("b", "", "Dieses Weekend ist durch 🥲"), el("br"));
+    l.append(document.createTextNode("Donnerstag früh kommen die nächsten Partys. Schau so lange in den Ausblick oder in deine Favoriten."));
+    liste.append(l); return;
+  }
   if (!daten.events.length) {
     const l = el("div", "leer");
     l.append(el("b", "", "Ausgabe wird erstellt"));
@@ -3163,6 +3265,9 @@ async function start() {
   const d = await laden(basis().datei);
   daten = { events: [], top3: [], ausblick: [] };
   if (d && typeof d === "object") daten = Object.assign(daten, d);
+  // schon vorbei? dann ausblenden (Favoriten behalten ihre eigene Kopie)
+  const alleEv = Array.isArray(daten.events) ? daten.events : [];
+  daten.events = alleEv.filter(e => endDatum(e) > new Date()); daten.vorbei = alleEv.length - daten.events.length;
   favAbgleichen(); ticketsAbgleichen();
   await ticketsUebernehmen();
   tickets = favoriten;
@@ -3199,6 +3304,7 @@ function crewEinladungPruefen() {
   if (crew.code === EINLADUNG) { zeigeToast("👥 Du bist schon in dieser Crew"); return; }
   crewDialog(null, EINLADUNG);
 }
+const geteilterLink = new URLSearchParams(location.search).has("e");
 function zumGeteiltenEvent() {
   let key = new URLSearchParams(location.search).get("e");
   if (!key) return;
@@ -3235,12 +3341,15 @@ start().then(() => {
   const eigeneApp = /TechnoEventsApp|; wv\)/.test(navigator.userAgent);
   const autoStart = () => { stillerStart = true; gpsStarten(); setTimeout(() => stillerStart = false, 20000); };
   if (wahl === "wohnort") { try { const w = JSON.parse(localStorage.getItem("te-wohnort") || "null"); if (w) wohnortSetzen(w, false); } catch (e) {} }
+  let startRegion = null; try { startRegion = localStorage.getItem("te-start-region"); } catch (e) {}
+  // Start-Tor nur beim allerersten Öffnen im Browser (nicht bei geteiltem Event-Link, nicht in der eigenen App)
+  const torNoetig = !wahl && !startRegion && !eigeneApp && !geteilterLink;
   if (wahl !== "beckenried" && wahl !== "wohnort" && "geolocation" in navigator && !standort.aktiv) {
     if (eigeneApp || wahl === "gps") autoStart();
     else if (navigator.permissions && navigator.permissions.query) {
-      navigator.permissions.query({ name: "geolocation" }).then(p => { if (p.state === "granted") autoStart(); }).catch(() => {});
-    }
-  }
+      navigator.permissions.query({ name: "geolocation" }).then(p => { if (p.state === "granted") autoStart(); else if (torNoetig) torZeigen(); }).catch(() => { if (torNoetig) torZeigen(); });
+    } else if (torNoetig) torZeigen();
+  } else if (torNoetig && !standort.aktiv) torZeigen();
 });
 
 

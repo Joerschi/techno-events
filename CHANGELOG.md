@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.51.0 – 28.11.2026
+- 🚪 Start-Tor: Wer die App zum ersten Mal im Browser öffnet (ohne Standort), sieht nicht mehr einfach Schweizer Events, sondern eine kleine Party-Szene mit tanzendem Maskottchen und «Wo feierst du?» – Standort verwenden, Schweiz/München wählen oder Wohnort eingeben. Die passende Region wird anhand von Sprache/Zeitzone hervorgehoben; die Wahl bleibt gespeichert. Bei geteilten Event-Links und in der Android-App kommt das Tor nicht.
+- ⏱️ Vorbei-Events werden ausgeblendet; ist das ganze Weekend durch, steht «Dieses Weekend ist durch 🥲»
+
 ## v1.50.0 – 28.11.2026
 - 🎧 Neues App-Logo: das Maskottchen mit Hände hoch und Zwinkern – als App-Symbol (Startbildschirm, iPhone, Android), Browser-Tab und WhatsApp-Vorschau
 

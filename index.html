@@ -457,6 +457,11 @@
 
 
   /* ---------- Logo + DJ-Pult ---------- */
+  /* persönlich, aber dezent: Spitzname und Crew unter dem Titel */
+  .hallo { display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; margin: -2px 0 6px; font: 700 .72rem "Space Mono", monospace; letter-spacing: .05em; color: var(--muted); }
+  .hallo[hidden] { display: none; }
+  .hallo b { color: var(--text); font-weight: 700; }
+  .hallo button { font: inherit; letter-spacing: inherit; color: var(--cyan); background: none; border: 1px solid rgba(0,229,255,.35); border-radius: 10px; padding: 1px 8px; cursor: pointer; }
   .kopf { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 16px); margin: 6px 0 4px; }
   .kopf h1 { text-align: center; }
   .kopf h1 .t1 { font-size: clamp(1.9rem, 9.4vw, 3rem); }
@@ -812,6 +817,7 @@
       <circle cx="50" cy="59" r="1.6" fill="#050505"/>
     </svg>
   </div>
+  <div class="hallo" id="hallo" hidden></div>
 <div class="booth">
     <div class="stand" id="stand"></div>
     <svg viewBox="0 0 360 136" aria-hidden="true">
@@ -913,7 +919,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.52.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.53.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -1079,7 +1085,7 @@ const DICT = {
   "NOCH": "", "TAG": "DAY", "HEUTE": "TODAY", "WER KOMMT MIT? 🔥": "WHO'S COMING? 🔥", "MEIN PARTY-JAHR": "MY PARTY YEAR", "EVENT": "EVENT", "EVENTS": "EVENTS", "MADE BY PARTY PEOPLE – FOR PARTY PEOPLE": "MADE BY PARTY PEOPLE – FOR PARTY PEOPLE"
 };
 const REGELN = [
-  [/^(\d+) von (\d+)$/, "$1 of $2"], [/^(\d+) kommend$/, "$1 upcoming"], [/^IN (\d+) TAGEN$/, "IN $1 DAYS"], [/^✓ Schon erlebt \((\d+)\)$/, "✓ Been there ($1)"],
+  [/^Hey (.+), neue Events für dich & (.+)!$/, "Hey $1, new events for you & $2!"], [/^Hey (.+), neue Events für dich!$/, "Hey $1, new events for you!"], [/^Hey Party People, neue Events für euch!$/, "Hey Party People, new events for you!"], [/^(\d+) von (\d+)$/, "$1 of $2"], [/^(\d+) kommend$/, "$1 upcoming"], [/^IN (\d+) TAGEN$/, "IN $1 DAYS"], [/^✓ Schon erlebt \((\d+)\)$/, "✓ Been there ($1)"],
   [/^🔥 (\d+) dabei$/, "🔥 $1 going"], [/^(\d+) dabei$/, "$1 going"], [/^🚗 (\d+) freie Plätze$/, "🚗 $1 free seats"], [/^🙋 (\d+) sucht Mitfahrt$/, "🙋 $1 need a ride"],
   [/^🚗 Ich fahre · (\d+) frei$/, "🚗 I'm driving · $1 free"], [/^🚗 Deine Crew sieht: (\d+) Plätze frei$/, "🚗 Your crew sees: $1 free seats"],
   [/ · losfahren ca\. /, " · leave approx. "], [/^🚗 ([\d.,]+) km · ca\. /, "🚗 $1 km · approx. "], [/(\d+):(\d+) Std\./, "$1:$2 h"], [/(\d+) Min\.?/, "$1 min"],
@@ -2214,6 +2220,17 @@ function guideZeigen() {
 function crewFussZeigen() {
   const a = document.getElementById("crew-fuss");
   if (a) a.textContent = crew.code ? `👥 ${crew.code}${crew.name ? " · " + crew.name : ""}` : "👥 Crew beitreten";
+  halloZeigen();
+}
+// Oben unter dem Titel: «Hey Jörg 👋 · 👥 CREW» – nur wenn ein Spitzname gesetzt ist
+function halloZeigen() {
+  const h = document.getElementById("hallo"); if (!h) return;
+  h.textContent = "";
+  if (!crew.name) { h.hidden = true; return; }
+  const gruss = el("span"); gruss.append(document.createTextNode("Hey "), el("b", "", crew.name), document.createTextNode(" 👋"));
+  h.append(gruss);
+  if (crew.code) { const c = el("button", "", "👥 " + crew.code); c.type = "button"; c.title = "Crew"; c.onclick = () => crewDialog(null); h.append(c); }
+  h.hidden = false;
 }
 
 // ---- Anreise-Block für Event-Karten ----
@@ -3083,7 +3100,7 @@ function freshDropPopup(neu) {
   if (document.querySelector(".popup-hg, .nacht")) return;
   const box = el("div", "fresh-pop");
   const ft = el("div", "fresh-titel"); ft.append(el("span", "fresh-blitzsym", "⚡"), el("span", "", "FRESH DROP"), el("span", "fresh-blitzsym", "⚡")); box.append(ft);
-  box.append(el("div", "fresh-sub", "Die neue Ausgabe ist da!"));
+  box.append(el("div", "fresh-sub", !crew.name ? "Hey Party People, neue Events für euch!" : crew.code ? `Hey ${crew.name}, neue Events für dich & ${crew.code}!` : `Hey ${crew.name}, neue Events für dich!`));
   const zahlen = el("div", "fresh-zahlen");
   const z1 = el("div"); z1.append(el("b", "", String(daten.events.length)), el("small", "", "Events"));
   const z2 = el("div"); z2.append(el("b", "", String(neu.length)), el("small", "", "neu"));

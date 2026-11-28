@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.53.0 – 28.11.2026
+- 👋 Persönlich, aber dezent: Mit Spitzname steht klein unter dem Titel «Hey Jörg 👋» und – falls vorhanden – die Crew als Knopf (öffnet die Crew)
+- ⚡ Fresh Drop persönlich: «Hey Jörg, neue Events für dich & BASS-CREW!», ohne Crew «… für dich!», ohne Spitzname «Hey Party People, neue Events für euch!» (auch auf Englisch)
+
 ## v1.52.0 – 28.11.2026
 - 🪩 Disco wärmt sich auf: Beim Start der Musik nicht mehr gleich dunkel, sondern gedimmtes Licht mit sanften Effekten (neue Szene «Warm»: zwei warme Spots wandern langsam, dazu Grün, Rot, Schwarzlicht, Farbwechsel). Nach ca. 1 Minute wird es dunkler und die Laser kommen dazu, nach ca. 2½ Minuten läuft die volle Show mit Dunkel, Blitzen und Strobo. Übergänge fliessend; kurze Pause (< 1 Min.) setzt auf gleicher Stufe fort. Erster Nebel nach 20 Sekunden.
 

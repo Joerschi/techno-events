@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.50.0 – 28.11.2026
+- 🎧 Neues App-Logo: das Maskottchen mit Hände hoch und Zwinkern – als App-Symbol (Startbildschirm, iPhone, Android), Browser-Tab und WhatsApp-Vorschau
+
 ## v1.49.1 – 28.11.2026
 - 🎧 Maskottchen mit mehr Charakter: blinzelt, rosa Bäckchen, Ärmchen (bei Musik pumpt es im Takt), Sprechblase mit Sprüchen («Psst … Musik? 🎶», «Hände hoch! 🙌», «Bass! 🔊» …, auch auf Englisch), nachts schläft es mit «Zzz»
 

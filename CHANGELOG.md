@@ -1,5 +1,10 @@
 # Changelog – Techno Events
 
+## v1.56.0 – 28.11.2026
+- Ladebildschirm wieder entfernt (war zu viel)
+- 🎧 Nach unten ziehen: statt der Schallplatte kommt das Maskottchen – wackelt beim Ziehen, wippt im Takt, während es lädt
+- Logo dezent unten im Abschluss über «TECHNO EVENTS · v…»
+
 ## v1.55.1 – 28.11.2026
 - Beispiel-Spitzname im Crew-Dialog: «Bassi»
 

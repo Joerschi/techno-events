@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.57.0 – 28.11.2026
+- 📻 Radio-Statistik: Die App zählt anonym, welcher Sender wie viele Minuten läuft und wie oft er gestartet wird (ab 30 Sekunden). Auswertung auf der Statistik-Seite – so sieht man, welche Sender man austauschen kann. Neue Datei radio.php, neue stats.php
+
 ## v1.56.0 – 28.11.2026
 - Ladebildschirm wieder entfernt (war zu viel)
 - 🎧 Nach unten ziehen: statt der Schallplatte kommt das Maskottchen – wackelt beim Ziehen, wippt im Takt, während es lädt

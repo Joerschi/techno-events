@@ -971,7 +971,7 @@
 <path d="M43.5 59.5 q6.5 7 13 0 z" fill="#000"/><path d="M47 62.6 q3 1.6 6 0" stroke="#ff10f0" stroke-width="1.6" fill="none" stroke-linecap="round"/>
 <rect x="9" y="44" width="15" height="24" rx="7" fill="#ff10f0"/><rect x="76" y="44" width="15" height="24" rx="7" fill="#ff10f0"/>
 <rect x="12" y="48" width="9" height="16" rx="4.5" fill="#00f0ff" opacity=".85"/><rect x="79" y="48" width="9" height="16" rx="4.5" fill="#00f0ff" opacity=".85"/>
-</svg></span>TECHNO EVENTS · v1.56.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+</svg></span>TECHNO EVENTS · v1.57.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 14 100 76">
@@ -1596,6 +1596,7 @@ function datenschutzZeigen() {
     ["Standort", "Wird nicht gespeichert. Für Fahrzeit und Ortsnamen gehen die Koordinaten kurz an OpenStreetMap-Dienste (OSRM, Nominatim) bzw. transport.opendata.ch."],
     ["Crew-Zusagen (freiwillig)", "Nur Spitzname, Crew-Code, Event und eine zufällige Geräte-Nummer – auf dem Server von howeverto.me. Nach dem Event automatisch gelöscht. Der Hoster führt technisch übliche Zugriffsprotokolle."],
     ["«Party People gehen hin»", "Wenn du «Ich bin dabei» tippst, zählt die App dich anonym mit: nur das Event und eine verschlüsselte Zufallsnummer (kein Name, kein Standort) auf howeverto.me. Nach dem Event automatisch gelöscht."],
+    ["Radio-Statistik", "Damit schwache Sender ausgetauscht werden können, zählt die App anonym, welcher Sender wie viele Minuten läuft – nur Sendername und Minuten, ohne Geräte-Nummer."],
     ["Wohnort", "Wenn du einen Startort eingibst, wird der Ortsname bei Open-Meteo bzw. transport.opendata.ch gesucht und nur auf deinem Handy gespeichert."],
     ["Wetter", "Für die Vorhersage gehen nur die Koordinaten des Events an Open-Meteo – nie dein Standort."],
     ["Nutzerzähler", "Einmal pro Tag meldet die App anonym «ein Gerät war da» (gehashte Zufallsnummer und ob App oder Browser) an howeverto.me – keine IP, kein Standort, kein Name."],
@@ -1638,14 +1639,15 @@ function radioAnzeigen() {
 function radioStarten() {
   if (!radio.audio) {
     radio.audio = new Audio(); radio.audio.preload = "none"; if (radio.vol != null) radio.audio.volume = radio.vol;
-    radio.audio.onplaying = () => { radio.laeuft = true; radioAnzeigen(); radioHintergrund(true); };
-    radio.audio.onpause = () => { radio.laeuft = false; radioAnzeigen(); radioHintergrund(false); };
+    radio.audio.onplaying = () => { radio.laeuft = true; radioAnzeigen(); radioHintergrund(true); radioStatLaeuft(); };
+    radio.audio.onpause = () => { radio.laeuft = false; radioAnzeigen(); radioHintergrund(false); radioStatPause(); };
     radio.audio.onerror = () => {   // anderer Server versuchen
       const su = SENDER[radio.nr].url;
       if ((!su && radio.server < 3) || (Array.isArray(su) && radio.server < su.length - 1)) { radio.server++; radio.audio.src = radioUrl(); radio.audio.play().catch(() => {}); }
       else { radio.server = 0; radio.laeuft = false; zeigeToast("Radio gerade nicht erreichbar"); radioAnzeigen(); }
     };
   }
+  radioStatPause();   // Senderwechsel: bisherige Zeit dem alten Sender gutschreiben
   radio.audio.src = radioUrl();
   document.getElementById("radio-genre").textContent = "verbindet …";
   radio.audio.play().catch(() => { zeigeToast("Radio konnte nicht starten"); radioAnzeigen(); });
@@ -1655,8 +1657,46 @@ document.getElementById("radio-knopf").onclick = () => {
   document.getElementById("radio").classList.add("offen"); document.getElementById("radio-leiste").hidden = false; radioAnzeigen();
 };
 // Radio stoppen (auch aus der Android-Benachrichtigung oder vom Sperrbildschirm)
-function radioStopp() { if (radio.audio && !radio.audio.paused) { radio.audio.pause(); radio.laeuft = false; radio.audio.removeAttribute("src"); radio.audio.load(); radioAnzeigen(); } radioHintergrund(false); }
+function radioStopp() { radioStatPause(); if (radio.audio && !radio.audio.paused) { radio.audio.pause(); radio.laeuft = false; radio.audio.removeAttribute("src"); radio.audio.load(); radioAnzeigen(); } radioHintergrund(false); }
 window.radioStopp = radioStopp;
+// ---- Radio-Statistik (anonym): welcher Sender läuft wie lange – hilft, schwache Sender auszutauschen ----
+// Gezählt wird mit Zeitstempeln (klappt auch, wenn das Handy gesperrt ist); gesendet wird gesammelt alle 5 Min.
+const RADIO_STAT_URL = "https://howeverto.me/techno/radio.php";
+const radioStat = { seit: 0, nr: -1, startTimer: null };
+let radioStatOffen = {}; try { radioStatOffen = JSON.parse(localStorage.getItem("te-radio-stat") || "{}") || {}; } catch (e) {}
+function radioStatSpeichern() { try { localStorage.setItem("te-radio-stat", JSON.stringify(radioStatOffen)); } catch (e) {} }
+function radioStatEintrag(nr) { const n = SENDER[nr] && SENDER[nr].name; if (!n) return null; return radioStatOffen[n] || (radioStatOffen[n] = { ms: 0, starts: 0 }); }
+function radioStatBuchen(weiter) {
+  if (radioStat.seit && radioStat.nr >= 0) {
+    const e = radioStatEintrag(radioStat.nr), jetzt = Date.now();
+    if (e) e.ms += Math.min(jetzt - radioStat.seit, 4 * 3600e3);
+    radioStat.seit = weiter ? jetzt : 0;
+    radioStatSpeichern();
+  }
+}
+function radioStatLaeuft() {
+  radioStatBuchen(false); clearTimeout(radioStat.startTimer);
+  radioStat.seit = Date.now(); radioStat.nr = radio.nr;
+  // als «Start» zählt erst, wer mindestens 30 Sekunden dranbleibt
+  radioStat.startTimer = setTimeout(() => { if (radio.laeuft && radioStat.nr === radio.nr) { const e = radioStatEintrag(radio.nr); if (e) { e.starts++; radioStatSpeichern(); } } }, 30000);
+}
+function radioStatPause() { clearTimeout(radioStat.startTimer); radioStatBuchen(false); }
+function radioStatSenden() {
+  if (radio.laeuft) radioStatBuchen(true);
+  const sender = {}; let etwas = false;
+  for (const [n, e] of Object.entries(radioStatOffen)) {
+    const min = Math.floor(e.ms / 60000);
+    if (min || e.starts) { sender[n] = { min, starts: e.starts }; etwas = true; }
+  }
+  if (!etwas) return;
+  // als text/plain, damit der Browser keine Vorab-Anfrage braucht; keepalive = klappt auch beim Schliessen
+  fetch(RADIO_STAT_URL, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ sender }), keepalive: true })
+    .then(r => { if (!r.ok) return; for (const [n, w] of Object.entries(sender)) { const e = radioStatOffen[n]; if (!e) continue; e.ms = Math.max(0, e.ms - w.min * 60000); e.starts = Math.max(0, e.starts - w.starts); if (!e.ms && !e.starts) delete radioStatOffen[n]; } radioStatSpeichern(); })
+    .catch(() => {});
+}
+setInterval(radioStatSenden, 300000);
+document.addEventListener("visibilitychange", () => { if (document.hidden) radioStatSenden(); });
+setTimeout(radioStatSenden, 8000);   // Reste vom letzten Mal
 // Hintergrund: In der Android-App hält ein Dienst das Radio bei dunklem Display am Laufen; im Browser gibt's Steuerung auf dem Sperrbildschirm
 function radioHintergrund(an) {
   try { if (window.TechnoApp && TechnoApp.radioStatus) TechnoApp.radioStatus(!!an, an ? SENDER[radio.nr].name : ""); } catch (e) {}

@@ -462,6 +462,17 @@
   .hallo[hidden] { display: none; }
   .hallo b { color: var(--text); font-weight: 700; }
   .hallo button { font: inherit; letter-spacing: inherit; color: var(--cyan); background: none; border: 1px solid rgba(0,229,255,.35); border-radius: 10px; padding: 1px 8px; cursor: pointer; }
+  /* Ladebildschirm mit Logo – verschwindet, sobald die Events da sind */
+  .lade { position: fixed; inset: 0; z-index: 80; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: radial-gradient(ellipse at 50% 40%, #3a0a3a, #0a0610 70%); transition: opacity .45s ease, transform .45s ease; }
+  .lade.weg { opacity: 0; transform: scale(1.06); pointer-events: none; }
+  .lade-logo { width: 150px; filter: drop-shadow(0 0 14px rgba(255,16,240,.8)) drop-shadow(0 0 26px rgba(255,106,0,.45)); animation: ladeWipp .46875s ease-in-out infinite alternate; transform-origin: 50% 90%; }
+  .lade-logo svg { width: 100%; height: auto; display: block; }
+  @keyframes ladeWipp { from { transform: rotate(-5deg); } to { transform: rotate(5deg) translateY(-4px); } }
+  .lade-name { font: 900 1.05rem Unbounded, sans-serif; letter-spacing: .28em; color: #fff; text-shadow: 0 0 12px rgba(255,16,240,.8); }
+  .lade-punkte { display: flex; gap: 6px; } .lade-punkte i { width: 7px; height: 7px; border-radius: 50%; background: #39ff14; box-shadow: 0 0 8px #39ff14; animation: ladePunkt .9375s ease-in-out infinite; }
+  .lade-punkte i:nth-child(2) { animation-delay: .156s; background: #ff10f0; box-shadow: 0 0 8px #ff10f0; } .lade-punkte i:nth-child(3) { animation-delay: .312s; background: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
+  @keyframes ladePunkt { 0%, 100% { opacity: .25; transform: scale(.7); } 50% { opacity: 1; transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) { .lade-logo, .lade-punkte i { animation: none; } }
   .kopf { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 16px); margin: 6px 0 4px; }
   .kopf h1 { text-align: center; }
   .kopf h1 .t1 { font-size: clamp(1.9rem, 9.4vw, 3rem); }
@@ -768,6 +779,21 @@
 </style>
 </head>
 <body>
+<div class="lade" id="lade" aria-hidden="true"><div class="lade-logo"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 14 100 76">
+<path d="M27 74 Q12 66 11 30" stroke="#ff6a00" stroke-width="5.5" fill="none" stroke-linecap="round"/><circle cx="11" cy="26" r="5.5" fill="#ff6a00"/>
+<path d="M73 74 Q88 66 89 30" stroke="#ff6a00" stroke-width="5.5" fill="none" stroke-linecap="round"/><circle cx="89" cy="26" r="5.5" fill="#ff6a00"/>
+<path d="M18 50 A32 32 0 0 1 82 50" fill="none" stroke="#ff10f0" stroke-width="7" stroke-linecap="round"/>
+<circle cx="50" cy="56" r="30" fill="#070608" stroke="#2a2a33" stroke-width="1.5"/>
+<circle cx="50" cy="56" r="23" fill="none" stroke="#24242c" stroke-width="1.2"/><circle cx="50" cy="56" r="17" fill="none" stroke="#24242c" stroke-width="1.2"/>
+<path d="M30 40 A26 26 0 0 1 44 31" stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<circle cx="50" cy="56" r="13" fill="#ff6a00"/>
+<path d="M42 53.5 q3 2.6 6 0" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="55" cy="53" rx="2.2" ry="3" fill="#000"/><circle cx="55.8" cy="52" r=".8" fill="#fff"/>
+<ellipse cx="40.5" cy="59" rx="2.6" ry="1.6" fill="#ff10f0" opacity=".7"/><ellipse cx="59.5" cy="59" rx="2.6" ry="1.6" fill="#ff10f0" opacity=".7"/>
+<path d="M43.5 59.5 q6.5 7 13 0 z" fill="#000"/><path d="M47 62.6 q3 1.6 6 0" stroke="#ff10f0" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<rect x="9" y="44" width="15" height="24" rx="7" fill="#ff10f0"/><rect x="76" y="44" width="15" height="24" rx="7" fill="#ff10f0"/>
+<rect x="12" y="48" width="9" height="16" rx="4.5" fill="#00f0ff" opacity=".85"/><rect x="79" y="48" width="9" height="16" rx="4.5" fill="#00f0ff" opacity=".85"/>
+</svg></div><div class="lade-name">TECHNO EVENTS</div><div class="lade-punkte"><i></i><i></i><i></i></div></div>
   <div class="laser"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="noise"></div>
   <div class="scan"></div>
@@ -919,7 +945,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.53.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.54.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -3373,7 +3399,15 @@ function zumGeteiltenEvent() {
     karte.classList.add("geteilt"); setTimeout(() => karte.classList.remove("geteilt"), 4000);
   }, 600);
 }
+// Ladebildschirm ausblenden (mind. 0,7 s sichtbar, damit es nicht flackert; spätestens nach 6 s)
+const ladeStart = performance.now();
+function ladeWeg() {
+  const l = document.getElementById("lade"); if (!l || l.classList.contains("weg")) return;
+  setTimeout(() => { l.classList.add("weg"); setTimeout(() => l.remove(), 500); }, Math.max(0, 700 - (performance.now() - ladeStart)));
+}
+setTimeout(ladeWeg, 6000);
 start().then(() => {
+  ladeWeg();
   abzeichenPruefen(false);
   crewEinladungPruefen();
   zumGeteiltenEvent();

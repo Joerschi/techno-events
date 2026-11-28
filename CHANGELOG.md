@@ -1,5 +1,9 @@
 # Changelog – Techno Events
 
+## v1.54.0 – 28.11.2026
+- 🎧 Ladebildschirm mit Logo: Beim Öffnen wippt das Maskottchen im Takt über «TECHNO EVENTS», drei Neon-Punkte laden; verschwindet, sobald die Events da sind (mind. 0,7 s, höchstens 6 s)
+- Android 3.2: Startbildschirm (Android 12+) mit dem Maskottchen auf dunklem Lila
+
 ## v1.53.0 – 28.11.2026
 - 👋 Persönlich, aber dezent: Mit Spitzname steht klein unter dem Titel «Hey Jörg 👋» und – falls vorhanden – die Crew als Knopf (öffnet die Crew)
 - ⚡ Fresh Drop persönlich: «Hey Jörg, neue Events für dich & BASS-CREW!», ohne Crew «… für dich!», ohne Spitzname «Hey Party People, neue Events für euch!» (auch auf Englisch)

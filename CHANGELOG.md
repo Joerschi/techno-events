@@ -1,11 +1,14 @@
 # Changelog – Techno Events
 
+## v1.55.1 – 28.11.2026
+- Beispiel-Spitzname im Crew-Dialog: «Bassi»
+
 ## v1.55.0 – 28.11.2026
 - 🔴 «Läuft jetzt»: Erscheint, sobald Partys laufen – zeigt nur die laufenden, sortiert nach Ende, mit «noch 3 h» auf der Karte
 - 🔥 «X Party People gehen hin»: anonymer Zähler über alle Nutzer, sobald mindestens 3 «Ich bin dabei» getippt haben (neue Datei dabei.php auf howeverto.me)
 - 💚 «Für dich»: 1–3 Lieblings-Sounds antippen, passende Partys rutschen nach oben und bekommen «FÜR DICH»
 - 🫶 Safer Clubbing: Notfallnummern, Tipps und Drug-Checking-Angebote (Zürich, Bern, Basel bzw. München) – aufklappbar vor dem Ausblick
-- Für alle statt nur ab Beckenried: «Navi nach Hause» nur mit eigenem Startort, ÖV-Links immer live ab dem eigenen Standort, Beispiel-Spitzname «Alex»; die wöchentliche Recherche sucht keine ÖV-Verbindungen ab Beckenried mehr
+- Für alle statt nur ab Beckenried: «Navi nach Hause» nur mit eigenem Startort, ÖV-Links immer live ab dem eigenen Standort, neutraler Beispiel-Spitzname; die wöchentliche Recherche sucht keine ÖV-Verbindungen ab Beckenried mehr
 
 ## v1.54.0 – 28.11.2026
 - 🎧 Ladebildschirm mit Logo: Beim Öffnen wippt das Maskottchen im Takt über «TECHNO EVENTS», drei Neon-Punkte laden; verschwindet, sobald die Events da sind (mind. 0,7 s, höchstens 6 s)

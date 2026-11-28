@@ -635,6 +635,20 @@
   body.szene-dunkel::after { background: rgba(0,0,0,.93) !important; animation: none !important; }
   body.ruhig.szene-blitze .lichtshow { animation: none !important; background: radial-gradient(circle at 50% 30%, rgba(130,0,255,.35), transparent 60%); }
   /* Nebelmaschine: im Club-Modus pufft ab und zu Disco-Nebel von unten hoch – die Laser leuchten hindurch */
+  /* ---- Aufwärmen: Disco startet gedimmt, nach und nach wird es mehr (Stufe 1 → 2 → 3) ---- */
+  @property --club { syntax: "<number>"; inherits: true; initial-value: 1; }
+  body { transition: --club 12s ease-in-out; }
+  body.club-1 { --club: .3; } body.club-2 { --club: .65; } body.club-3 { --club: 1; }
+  body.beat::after { background: radial-gradient(ellipse at 50% 42%, rgba(0,0,0,calc(.3 * var(--club))) 20%, rgba(0,0,0,calc(.6 * var(--club))) 65%, rgba(0,0,0,calc(.9 * var(--club))) 100%); }
+  body.beat.club-1 { background: var(--bg) !important; }
+  .licht-raum { position: fixed; inset: 0; z-index: 3; pointer-events: none; mix-blend-mode: screen; opacity: 1; transition: opacity 10s ease-in-out; }
+  .licht-raum .lichtshow { mix-blend-mode: normal; }
+  body.club-1 .licht-raum { opacity: .4; } body.club-2 .licht-raum { opacity: .7; }
+  body.beat.club-2.szene-laser .laser i { opacity: .55 !important; }
+  /* neue sanfte Szene: warmes, gedimmtes Licht, zwei Spots wandern langsam */
+  body.szene-warm .lichtshow { background: radial-gradient(circle at var(--wx, 25%) 20%, rgba(255,150,60,.55), transparent 38%), radial-gradient(circle at calc(100% - var(--wx, 25%)) 70%, rgba(255,40,180,.45), transparent 40%), radial-gradient(ellipse at 50% 110%, rgba(120,40,255,.25), transparent 60%); animation: warmWandern 7.5s ease-in-out infinite alternate; }
+  @keyframes warmWandern { 0% { --wx: 20%; } 100% { --wx: 75%; } }
+  @property --wx { syntax: "<percentage>"; inherits: false; initial-value: 25%; }
   .nebel { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
   .nebel-wolke { position: absolute; bottom: -35vh; width: 75vw; height: 55vh; border-radius: 50%; background: radial-gradient(ellipse at 50% 50%, rgba(225,220,255,.2), rgba(200,190,255,.09) 40%, rgba(200,190,255,.03) 58%, transparent 70%); opacity: 0; animation: nebelAuf var(--d, 11s) ease-out var(--v, 0s) forwards; }
   @keyframes nebelAuf { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 15% { opacity: 1; } 70% { opacity: .75; } 100% { opacity: 0; transform: translate(var(--x, 0), -95vh) scale(1.8); } }
@@ -899,7 +913,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.51.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.52.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -3188,9 +3202,9 @@ new MutationObserver(() => { if (document.body.classList.contains("beat") && !le
 
 // ======================= LICHTSHOW =======================
 // Wie im Club: alle paar Takte wechselt die Szene – mal dunkel, mal nur grün oder rot, Schwarzlicht, Strobo, Farbwechsel, Spots oder Laser.
-const lichtshow = el("div", "lichtshow"); document.body.append(lichtshow);
+const lichtshow = el("div", "lichtshow"); const lichtRaum = el("div", "licht-raum"); lichtRaum.append(lichtshow); document.body.append(lichtRaum);
 const TAKT = 1875;   // ein Takt (4 Schläge bei 128 BPM) in ms
-const SZENEN = [["laser", 8], ["gruen", 4], ["dunkel", 2], ["rot", 4], ["uv", 8], ["strobo", 2], ["farben", 4], ["hell", 4], ["laser", 4], ["uv", 4], ["gruen", 2], ["rot", 2], ["blitze", 4], ["dunkel", 1], ["blitze", 2]];
+const SZENEN = [["warm", 4], ["laser", 8], ["gruen", 4], ["dunkel", 2], ["rot", 4], ["uv", 8], ["strobo", 2], ["farben", 4], ["hell", 4], ["laser", 4], ["uv", 4], ["gruen", 2], ["rot", 2], ["blitze", 4], ["dunkel", 1], ["blitze", 2]];
 let szene = "", szeneTimer = null;
 function szeneSetzen(name) {
   const b = document.body.classList;
@@ -3198,21 +3212,34 @@ function szeneSetzen(name) {
   if (name) b.add("szene-" + name);
   szene = name;
 }
+// Aufwärmen wie in einer echten Disco: erst gedimmtes Licht mit sanften Effekten, nach ~1 Min. mehr, nach ~2½ Min. volle Show
+let clubStart = 0, clubAus = 0;
+const STUFEN = {
+  1: ["warm", "uv", "gruen", "rot", "farben"],
+  2: ["warm", "uv", "gruen", "rot", "farben", "hell", "laser"]
+};
+function clubStufe() { const s = (Date.now() - clubStart) / 1000; return s < 60 ? 1 : s < 150 ? 2 : 3; }
+function clubStufeSetzen() { const st = clubStufe(), b = document.body.classList; [1, 2, 3].forEach(i => b.toggle("club-" + i, i === st)); return st; }
 function szeneWeiter() {
   clearTimeout(szeneTimer);
   if (!document.body.classList.contains("beat")) return;
-  let wahl = SZENEN.filter(([n]) => n !== szene && !(ruhig && (n === "strobo" || n === "laser")));
+  const stufe = clubStufeSetzen();
+  let wahl = SZENEN.filter(([n]) => n !== szene && !(ruhig && (n === "strobo" || n === "laser")) && (stufe === 3 || STUFEN[stufe].includes(n)));
   if (szene === "dunkel") wahl = wahl.filter(([n]) => n !== "strobo");   // nach dem Dunkel kommt erst Licht, kein Strobo
   let [n, takte] = wahl[Math.floor(Math.random() * wahl.length)];
-  if (szene === "dunkel" && !ruhig && Math.random() < .5) [n, takte] = ["blitze", 4];   // aus dem Schwarz heraus: Farbblitze
+  if (stufe === 3 && szene === "dunkel" && !ruhig && Math.random() < .5) [n, takte] = ["blitze", 4];   // aus dem Schwarz heraus: Farbblitze
   szeneSetzen(n);
   document.body.classList.toggle("blitze-b", n === "blitze" && Math.random() < .5);  // zwei Blitz-Muster: Viertel oder Achtel
   szeneTimer = setTimeout(szeneWeiter, takte * TAKT);
 }
 new MutationObserver(() => {
   const an = document.body.classList.contains("beat");
-  if (an && !szene) { szeneSetzen("dunkel"); szeneTimer = setTimeout(() => { szeneSetzen("laser"); szeneTimer = setTimeout(szeneWeiter, 8 * TAKT); }, 2 * TAKT); }
-  else if (!an && szene) { clearTimeout(szeneTimer); szeneSetzen(""); }
+  if (an && !szene) {
+    // war die Musik nur kurz aus (< 1 Min.), geht es auf der gleichen Stufe weiter – sonst wieder gedimmt anfangen
+    if (!clubStart || Date.now() - clubAus > 60000) clubStart = Date.now();
+    clubStufeSetzen(); szeneSetzen("warm"); szeneTimer = setTimeout(szeneWeiter, 8 * TAKT);
+  }
+  else if (!an && szene) { clearTimeout(szeneTimer); szeneSetzen(""); clubAus = Date.now(); ["club-1", "club-2", "club-3"].forEach(c => document.body.classList.remove(c)); }
 }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
 // ======================= NEBELMASCHINE =======================
@@ -3234,7 +3261,7 @@ function nebelStoss() {
 let nebelTimer = null;
 function nebelPlanen() { clearTimeout(nebelTimer); nebelTimer = setTimeout(() => { nebelStoss(); nebelPlanen(); }, 30000 + Math.random() * 20000); }
 new MutationObserver(() => {
-  if (document.body.classList.contains("beat")) { if (!nebelTimer) { setTimeout(nebelStoss, 2500); nebelPlanen(); } }
+  if (document.body.classList.contains("beat")) { if (!nebelTimer) { setTimeout(nebelStoss, 20000); nebelPlanen(); } }
   else { clearTimeout(nebelTimer); nebelTimer = null; }
 }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 

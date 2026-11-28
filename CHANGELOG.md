@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.52.0 – 28.11.2026
+- 🪩 Disco wärmt sich auf: Beim Start der Musik nicht mehr gleich dunkel, sondern gedimmtes Licht mit sanften Effekten (neue Szene «Warm»: zwei warme Spots wandern langsam, dazu Grün, Rot, Schwarzlicht, Farbwechsel). Nach ca. 1 Minute wird es dunkler und die Laser kommen dazu, nach ca. 2½ Minuten läuft die volle Show mit Dunkel, Blitzen und Strobo. Übergänge fliessend; kurze Pause (< 1 Min.) setzt auf gleicher Stufe fort. Erster Nebel nach 20 Sekunden.
+
 ## v1.51.0 – 28.11.2026
 - 🚪 Start-Tor: Wer die App zum ersten Mal im Browser öffnet (ohne Standort), sieht nicht mehr einfach Schweizer Events, sondern eine kleine Party-Szene mit tanzendem Maskottchen und «Wo feierst du?» – Standort verwenden, Schweiz/München wählen oder Wohnort eingeben. Die passende Region wird anhand von Sprache/Zeitzone hervorgehoben; die Wahl bleibt gespeichert. Bei geteilten Event-Links und in der Android-App kommt das Tor nicht.
 - ⏱️ Vorbei-Events werden ausgeblendet; ist das ganze Weekend durch, steht «Dieses Weekend ist durch 🥲»

@@ -235,6 +235,29 @@
   @keyframes mNote { 0% { transform: translateY(8px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(-22px); opacity: 0; } }
   .m-schild { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); white-space: nowrap; padding: 2px 7px; border-radius: 10px; background: #39ff14; color: #000; font: 800 .58rem "Space Mono", monospace; letter-spacing: .06em; box-shadow: 0 0 10px #39ff14; }
   .radio.an .m-schild { background: #ff1e3c; color: #fff; box-shadow: 0 0 10px #ff1e3c; }
+  /* mehr Charakter: blinzeln, Bäckchen, Arme, Sprechblase, nachts schläft er */
+  .m-augen { transform-origin: 50px 53px; transform-box: view-box; }
+  body:not(.ruhig) .radio:not(.an) .m-augen { animation: mBlinzeln 4.2s infinite; }
+  @keyframes mBlinzeln { 0%, 93%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+  .m-mund-offen, .m-zzz { display: none; }
+  .m-arme path, .m-arme circle { transform-box: view-box; }
+  .m-arm-l, .m-hand-l { transform-origin: 24px 72px; } .m-arm-r, .m-hand-r { transform-origin: 76px 72px; }
+  .radio.an .m-arm-l, .radio.an .m-hand-l { transform: rotate(75deg); } .radio.an .m-arm-r, .radio.an .m-hand-r { transform: rotate(-75deg); }
+  body:not(.ruhig) .radio.an .m-arm-l, body:not(.ruhig) .radio.an .m-hand-l { animation: mArmL .46875s ease-in-out infinite; }
+  body:not(.ruhig) .radio.an .m-arm-r, body:not(.ruhig) .radio.an .m-hand-r { animation: mArmR .46875s ease-in-out infinite; }
+  @keyframes mArmL { 0%, 100% { transform: rotate(60deg); } 50% { transform: rotate(95deg); } }
+  @keyframes mArmR { 0%, 100% { transform: rotate(-95deg); } 50% { transform: rotate(-60deg); } }
+  .radio-knopf.spricht .m-mund { display: none; } .radio-knopf.spricht .m-mund-offen { display: inline; }
+  body:not(.ruhig) .radio-knopf.spricht .m-mund-offen { animation: mReden .2s steps(2) infinite; }
+  @keyframes mReden { 50% { transform: scaleY(.4); } }
+  .m-mund-offen { transform-origin: 50px 62px; transform-box: view-box; }
+  .m-blase { position: absolute; right: 64px; bottom: 54px; white-space: nowrap; padding: 6px 10px; border-radius: 14px 14px 2px 14px; background: #fff; color: #000; font: 800 .72rem Inter, sans-serif; box-shadow: 0 0 14px rgba(255,16,240,.7); animation: mBlase .25s ease-out; pointer-events: none; }
+  .m-blase[hidden] { display: none; }
+  @keyframes mBlase { from { transform: scale(.4) translate(20px, 20px); opacity: 0; } }
+  body.zeit-nacht .radio:not(.an) .m-zzz { display: inline; }
+  body.zeit-nacht .radio:not(.an) .m-augen { display: none; } body.zeit-nacht .radio:not(.an) .m-zu { display: inline; }
+  body.zeit-nacht:not(.ruhig) .radio:not(.an) .m-zzz text { animation: mNote 2.5s ease-out infinite; } body.zeit-nacht .radio:not(.an) .m-zzz text:nth-child(2) { animation-delay: -1.2s; }
+  body.zeit-nacht .radio:not(.an) .m-kopf { animation: none !important; transform: rotate(-12deg); }
   /* Radio als Mini-DJ-Deck */
   .radio-leiste { pointer-events: auto; position: relative; flex: 1; max-width: 460px; margin: 0 auto; padding: 12px 12px 24px; background: linear-gradient(180deg, #17171c, #0b0b0e); border: 1px solid #2c2c36; border-top: 2px solid var(--orange); border-radius: 10px; box-shadow: 0 0 18px rgba(255,106,0,.35), inset 0 1px 0 rgba(255,255,255,.06); font-family: Inter, sans-serif; }
   .radio-leiste[hidden] { display: none; }
@@ -834,7 +857,7 @@
       Quellen: Resident Advisor, Eventfrog, technoairlines, Guidle, zuri.net, luzern.com, Club-Websites. Instagram/Facebook nicht einsehbar.<br>
       Fahrpläne: Stand der Ausgabe – kurz vor Abfahrt im SBB-Link prüfen. Fahrzeiten Auto ab deinem Startort (📍 oben wählen), ohne Stau. Umkreis = Luftlinie.<br>
       📅 öffnet Google Kalender · 📍 öffnet Google Maps · 💬 fragt die Crew per WhatsApp · 🙋 sagt der Crew per WhatsApp zu.
-      <div class="abschluss" id="version">TECHNO EVENTS · v1.49.0<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
+      <div class="abschluss" id="version">TECHNO EVENTS · v1.49.1<span class="motto">Made by Party People – for Party People 🎧</span><span class="approved">✓ TECHNO DANCER APPROVED</span><span class="nutzer" id="nutzer" hidden></span><span class="fuss-links"><button type="button" id="crew-fuss">👥 Crew beitreten</button> · <button type="button" id="ds-link">🔒 Datenschutz</button> · <button type="button" id="guide-link">❓ Anleitung</button> · <button type="button" id="ruhig-link">⚠️ Effekte reduzieren</button></span></div>
     </footer>
   </div>
   <div class="pull" id="pull"><svg viewBox="0 0 100 100"><defs><linearGradient id="pr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39ff14"/><stop offset=".5" stop-color="#ff10f0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="#0b0b0e" stroke="url(#pr)" stroke-width="5"/><circle cx="50" cy="50" r="32" fill="none" stroke="#22222a" stroke-width="2"/><circle cx="50" cy="50" r="22" fill="none" stroke="#22222a" stroke-width="2"/><path d="M22 32 A34 34 0 0 1 36 18" stroke="rgba(255,255,255,.5)" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#ff6a00"/><circle cx="50" cy="50" r="2.5" fill="#000"/></svg></div>
@@ -844,19 +867,23 @@
   <div class="radio" id="radio">
     <button type="button" class="radio-knopf maskottchen" id="radio-knopf" aria-label="Radio"><svg viewBox="0 0 100 100" aria-hidden="true">
       <g class="m-noten"><text x="78" y="30" font-size="16" fill="#39ff14">♪</text><text x="14" y="34" font-size="14" fill="#ff10f0">♫</text></g>
+      <g class="m-arme"><path class="m-arm-l" d="M24 72 L10 82" stroke="#ff6a00" stroke-width="5" stroke-linecap="round"/><circle class="m-hand-l" cx="9" cy="83" r="4.5" fill="#ff6a00"/><path class="m-arm-r" d="M76 72 L90 82" stroke="#ff6a00" stroke-width="5" stroke-linecap="round"/><circle class="m-hand-r" cx="91" cy="83" r="4.5" fill="#ff6a00"/></g>
+      <g class="m-zzz"><text x="74" y="22" font-size="11" fill="#00f0ff">z</text><text x="82" y="12" font-size="14" fill="#00f0ff">Z</text></g>
       <g class="m-kopf">
         <path d="M18 50 A32 32 0 0 1 82 50" fill="none" stroke="#ff10f0" stroke-width="7" stroke-linecap="round"/>
         <circle cx="50" cy="56" r="30" fill="#070608" stroke="#2a2a33" stroke-width="1.5"/>
         <circle cx="50" cy="56" r="23" fill="none" stroke="#24242c" stroke-width="1.2"/><circle cx="50" cy="56" r="17" fill="none" stroke="#24242c" stroke-width="1.2"/>
         <path d="M30 40 A26 26 0 0 1 44 31" stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
         <circle cx="50" cy="56" r="13" fill="#ff6a00"/>
-        <g class="m-augen"><ellipse cx="45" cy="53" rx="2.2" ry="3" fill="#000"/><ellipse cx="55" cy="53" rx="2.2" ry="3" fill="#000"/></g>
+        <g class="m-augen"><ellipse cx="45" cy="53" rx="2.2" ry="3" fill="#000"/><ellipse cx="55" cy="53" rx="2.2" ry="3" fill="#000"/><circle cx="45.8" cy="52" r=".8" fill="#fff"/><circle cx="55.8" cy="52" r=".8" fill="#fff"/></g>
         <path class="m-zu" d="M42 53 q3 -3 6 0 M52 53 q3 -3 6 0" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M44 60 q6 6 12 0" stroke="#000" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <ellipse class="m-backe" cx="40.5" cy="59" rx="2.6" ry="1.6" fill="#ff10f0" opacity=".7"/><ellipse class="m-backe" cx="59.5" cy="59" rx="2.6" ry="1.6" fill="#ff10f0" opacity=".7"/>
+        <path class="m-mund" d="M44 60 q6 6 12 0" stroke="#000" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <ellipse class="m-mund-offen" cx="50" cy="62" rx="3.4" ry="2.6" fill="#000"/>
         <rect x="9" y="44" width="15" height="24" rx="7" fill="#ff10f0"/><rect x="76" y="44" width="15" height="24" rx="7" fill="#ff10f0"/>
         <rect x="12" y="48" width="9" height="16" rx="4.5" fill="#00f0ff" opacity=".85"/><rect x="79" y="48" width="9" height="16" rx="4.5" fill="#00f0ff" opacity=".85"/>
       </g>
-    </svg><span class="m-schild">▶ RADIO</span></button>
+    </svg><span class="m-schild">▶ RADIO</span><span class="m-blase" hidden></span></button>
     <div class="radio-leiste" id="radio-leiste" hidden>
       <div class="dj-oben">
         <div class="dj-platte" id="radio-platte" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="49" fill="#060607"/><g fill="none" stroke="#1f1f27"><circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="39"/><circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="29"/><circle cx="50" cy="50" r="24"/></g><path d="M14 38 A38 38 0 0 1 38 14" stroke="rgba(255,255,255,.3)" stroke-width="2.5" fill="none"/><circle cx="50" cy="50" r="17" fill="var(--label, #ff6a00)"/><text x="50" y="54" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700" font-size="10" fill="#000" id="radio-label">TE</text><circle cx="50" cy="50" r="2" fill="#000"/></svg></div>
@@ -1069,6 +1096,7 @@ Object.assign(DICT, { "Wochenende": "Weekend", "bis zu 3 Wochenenden – oben um
   "Club-Modus": "Club mode", "läuft Musik, wird die App zum Club: Lichtshow, Laser im Takt und Nebel.": "while music plays, the app turns into a club: light show, lasers on the beat and fog.",
   "Display aus": "Screen off", "in der Android-App läuft das Radio weiter, auch bei gesperrtem Handy.": "in the Android app the radio keeps playing, even with the phone locked.",
   "erscheint früh am Morgen die neue Ausgabe – mit ⚡ Fresh Drop.": "the new edition arrives early in the morning – with a ⚡ fresh drop." });
+Object.assign(DICT, { "Psst … Musik? 🎶": "Psst … music? 🎶", "Drück mich! 🎧": "Tap me! 🎧", "Lust auf Techno?": "Fancy some techno?", "Ich bin bereit! 🔥": "I'm ready! 🔥", "Hände hoch! 🙌": "Hands up! 🙌", "Lauter! 🔥": "Louder! 🔥", "Tanz mit! 💃": "Dance! 💃", "Was für ein Track!": "What a track!" });
 for (const k of Object.keys(DICT)) if (!k.endsWith(":")) DICT[k + ":"] = DICT[k] + ":";
 function sprachKnopf() {
   const b = document.createElement("button"); b.type = "button"; b.id = "sprache-link";
@@ -3106,6 +3134,21 @@ new MutationObserver(() => {
   if (document.body.classList.contains("beat")) { if (!nebelTimer) { setTimeout(nebelStoss, 2500); nebelPlanen(); } }
   else { clearTimeout(nebelTimer); nebelTimer = null; }
 }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+// ---- Maskottchen spricht: kurze Sprüche in der Sprechblase ----
+const SPRUECHE_AUS = ["Psst … Musik? 🎶", "Drück mich! 🎧", "Lust auf Techno?", "Ich bin bereit! 🔥"];
+const SPRUECHE_AN = ["Bass! 🔊", "Hände hoch! 🙌", "Lauter! 🔥", "Tanz mit! 💃", "Was für ein Track!", "One more! 🎶", "Feel the beat! ⚡"];
+function maskottchenSagt(text, ms = 2600) {
+  const k = document.getElementById("radio-knopf"), b = k && k.querySelector(".m-blase");
+  if (!b || document.getElementById("radio").classList.contains("offen") || document.hidden) return;
+  b.textContent = tr(text); b.hidden = false; k.classList.add("spricht");
+  clearTimeout(maskottchenSagt.t); maskottchenSagt.t = setTimeout(() => { b.hidden = true; k.classList.remove("spricht"); }, ms);
+}
+const zufallsSpruch = l => l[Math.floor(Math.random() * l.length)];
+// Einmal pro Besuch auf sich aufmerksam machen, wenn das Radio noch nie lief
+setTimeout(() => { let schon = false; try { schon = !!localStorage.getItem("te-radio"); } catch (e) {} if (!schon && !radio.laeuft && !document.body.classList.contains("zeit-nacht")) maskottchenSagt(zufallsSpruch(SPRUECHE_AUS), 3500); }, 9000);
+// Läuft Musik: alle 25–45 Sekunden ein Spruch
+(function spruchSchleife() { setTimeout(() => { if (radio.laeuft) maskottchenSagt(zufallsSpruch(SPRUECHE_AN)); spruchSchleife(); }, 25000 + Math.random() * 20000); })();
 
 // ======================= LADEN =======================
 async function laden(datei) {

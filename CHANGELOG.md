@@ -1,5 +1,8 @@
 # Changelog – Techno Events
 
+## v1.49.1 – 28.11.2026
+- 🎧 Maskottchen mit mehr Charakter: blinzelt, rosa Bäckchen, Ärmchen (bei Musik pumpt es im Takt), Sprechblase mit Sprüchen («Psst … Musik? 🎶», «Hände hoch! 🙌», «Bass! 🔊» …, auch auf Englisch), nachts schläft es mit «Zzz»
+
 ## v1.49.0 – 28.11.2026
 - 🎧 Neuer Radio-Knopf: eigenes Maskottchen – Schallplatte mit Gesicht und Neon-Kopfhörern, Schild «▶ RADIO»; winkt alle paar Sekunden; läuft Musik, wippt es im Takt mit geschlossenen Augen, Noten steigen auf, Schild wird zu «● ON AIR»
 - Fix Englisch: Wetter im Countdown («Bewölkt» → «Cloudy»)
